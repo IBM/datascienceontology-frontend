@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "name": "data-science-ontology",
+  "version": "0.1",
+  "description": "Frontend for the Data Science Ontology",
+  "main": "index.js",
+  "author": "Evan Patterson",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@types/react": "^15.0.35",
+    "@types/react-dom": "^15.5.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.2.1",
+    "source-map-loader": "^0.2.1",
+    "typescript": "^2.4.1"
+  }
+}
