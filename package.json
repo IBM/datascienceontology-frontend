@@ -7,8 +7,12 @@
   "author": "Evan Patterson",
   "license": "UNLICENSED",
   "dependencies": {
+    "@types/pouchdb": "^6.1.1",
+    "@types/pouchdb-find": "^0.10.1",
     "@types/react": "^15.0.35",
     "@types/react-dom": "^15.5.1",
+    "pouchdb": "^6.2.0",
+    "pouchdb-find": "^6.2.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
