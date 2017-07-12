@@ -1,44 +1,23 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as PouchDB from "pouchdb";
-import * as PouchDBFind from 'pouchdb-find';
-PouchDB.plugin(PouchDBFind);
+
+import { SearchBar } from "./search";
+import { SummaryStats } from "./stats";
 
 interface IAppProps {
   db: PouchDB.Database;
-  ontology: string;
-}
-interface IAppState {
-  nconcepts: number;
 }
 
-export class App extends React.Component<IAppProps,IAppState> {
-  constructor(props: IAppProps) {
-    super(props);
-    this.state = {
-      nconcepts: 0
-    }
-  }
-  
-  componentWillMount() {
-    this.props.db.query("query/schema_index", {
-      group: true
-    }).then(result => {
-      this.setState({
-        nconcepts: result.rows.find(row => row.key[0] === "concept").value});
-    });
-  }
-  
-  render() {
-    return (
-      <p>{this.state.nconcepts} concepts</p>
-    );
-  }
-}
+const App = (props: IAppProps) =>
+ <div>
+  <SearchBar placeholder="Search the ontology"/>
+  <SummaryStats db={props.db}/>
+ </div>;
 
 const db = new PouchDB("***REMOVED***/data-science-ontology");
 
 ReactDOM.render(
-  <App db={db} ontology="data-science" />,
+  <App db={db} />,
   document.getElementById("main")
 );
