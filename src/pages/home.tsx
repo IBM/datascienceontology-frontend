@@ -8,7 +8,6 @@ import { OntologySearchBar } from "./search";
 
 export const HomePage = () => 
   <section className="home">
-    <h1>Data Science Ontology</h1>
     <Grid>
       <Col sm={8} smOffset={2}>
         <Jumbotron>
