@@ -51,8 +51,17 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
   }
   
   componentWillMount() {
+    this.search(this.props.query);
+  }
+  componentWillReceiveProps(nextProps: OntologyResultsProps) {
+    if (nextProps.query !== this.props.query) {
+      this.search(nextProps.query);
+    }
+  }
+  
+  search(query: string) {
     Cloudant.search<IConcept>(`${Common.db_url}/_design/search/_search/concept`, {
-      query: this.props.query
+      query: query
     }).then(response => {
         const concepts = response.rows.map(row => {
           // Include document with ID with other IConcept fields.
