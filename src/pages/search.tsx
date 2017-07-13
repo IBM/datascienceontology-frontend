@@ -4,7 +4,7 @@ import * as Router from "react-router-dom";
 import { Form, FormControl, FormGroup, Button, Col } from "react-bootstrap";
 
 import * as Cloudant from "../cloudant";
-import * as Common from "../common";
+import * as Services from "../services";
 import { IConcept } from "../models/concept";
 
 
@@ -62,7 +62,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
   }
   
   search(query: string) {
-    Cloudant.search<IConcept>(`${Common.db_url}/_design/search/_search/concept`, {
+    Cloudant.search<IConcept>(`${Services.db_url}/_design/search/_search/concept`, {
       query: query
     }).then(response => {
         const concepts = response.rows.map(row => {

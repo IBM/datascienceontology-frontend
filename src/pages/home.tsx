@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as PouchDB from "pouchdb";
 
-import * as Common from "../common";
+import * as Services from "../services";
 import { OntologySearchBar } from "./search";
 
 export const HomePage = () => 
@@ -26,7 +26,7 @@ export class Welcome extends React.Component<{},IWelcomeState> {
   }
   
   componentWillMount() {
-    Common.db.query("query/schema_index", {
+    Services.db.query("query/schema_index", {
       group: true
     }).then(result => {
       this.setState({
