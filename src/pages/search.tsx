@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as Router from "react-router-dom";
+import { Form, FormControl, FormGroup, Button, Col } from "react-bootstrap";
 
 import * as Cloudant from "../cloudant";
 import * as Common from "../common";
@@ -90,30 +91,46 @@ interface SearchBarProps {
   placeholder?: string;
   onSearch?: (query: string) => void;
 }
+interface SearchBarState {
+  query: string;
+}
 
 /** A generic search bar.
-
-  Implemented as an "uncontrolled component", in the React jargon.
 */
-export class SearchBar extends React.Component<SearchBarProps,{}> {
-  private input: HTMLInputElement;
+export class SearchBar extends React.Component<SearchBarProps,SearchBarState> {
+  constructor(props: SearchBarProps) {
+    super(props);
+    this.state = {
+      query: props.defaultQuery || ""
+    };
+  }
   
-  onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const query = this.input.value;
-    if (this.props.onSearch && query) {
-      this.props.onSearch(query);
+    if (this.props.onSearch && this.state.query) {
+      this.props.onSearch(this.state.query);
     }
   }
   
+  onChange(event: React.ChangeEvent<HTMLInputElement>) {
+    this.setState({query: event.target.value});
+  }
+  
   render() {
+    // XXX: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/16208
     return <div className="search-bar">
-      <form onSubmit={this.onSubmit}>
-        <input type="text" ref={(input) => this.input = input}
-               defaultValue={this.props.defaultQuery}
-               placeholder={this.props.placeholder} />
-        <input type="submit" value="Submit" />
-      </form>
+      <Form horizontal onSubmit={(e) => this.onSubmit(e as any)}>
+        <FormGroup>
+          <Col sm={10}>
+            <FormControl type="text" value={this.state.query}
+                         placeholder={this.props.placeholder}
+                         onChange={(e) => this.onChange(e as any)} />
+          </Col>
+          <Col sm={2}>
+            <Button type="submit">Search</Button>
+          </Col>
+        </FormGroup>
+      </Form>
     </div>;
   }
 }
