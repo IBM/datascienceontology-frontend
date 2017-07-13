@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as PouchDB from "pouchdb";
-import { Grid, Col, Jumbotron } from "react-bootstrap";
+import { Grid, Col, Button, Jumbotron } from "react-bootstrap";
 
 import * as Services from "../services";
 import { OntologySearchBar } from "./search";
@@ -12,7 +12,8 @@ export const HomePage = () =>
       <Col sm={8} smOffset={2}>
         <Jumbotron>
           <Welcome/>
-          <OntologySearchBar/>
+          <p><OntologySearchBar/></p>
+          <p><Button bsStyle="primary">Learn more</Button></p>
         </Jumbotron>
        </Col>
     </Grid>
