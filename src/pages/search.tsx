@@ -40,14 +40,16 @@ interface OntologyResultsProps {
   query: string;
 }
 interface OntologyResultsState {
-  concepts: Array<IConcept>;
+  results: Array<IConcept>;
+  total_results: number;
 }
 
 export class OntologyResults extends React.Component<OntologyResultsProps,OntologyResultsState> {
   constructor(props: OntologyResultsProps) {
     super(props);
     this.state = {
-      concepts: []
+      results: [],
+      total_results: 0
     }
   }
   
@@ -62,23 +64,28 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
   
   search(query: string) {
     Cloudant.search<IConcept>(`${Services.db_url}/_design/search/_search/concept`, {
-      query: query
+      query: query,
+      limit: 25
     }).then(response => {
-        const concepts = response.rows.map(row => {
+        const results = response.rows.map(row => {
           // Include document with ID with other IConcept fields.
           return {
             _id: row.id,
             ...row.fields
           } as IConcept;
         });
-        this.setState({concepts: concepts});
+        this.setState({
+          results: results,
+          total_results: response.total_rows,
+        });
       });
   }
   
   render() {
     return <div className="search-results">
+      <p className="text-muted">{this.state.total_results} results</p>
       <ul>
-        {this.state.concepts.map(concept => 
+        {this.state.results.map(concept => 
           <li key={concept._id}>{concept.name}</li>)}
       </ul>
     </div>;
