@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as PouchDB from "pouchdb";
+import { Grid, Col, Jumbotron } from "react-bootstrap";
 
 import * as Services from "../services";
 import { OntologySearchBar } from "./search";
@@ -8,8 +9,14 @@ import { OntologySearchBar } from "./search";
 export const HomePage = () => 
   <section className="home">
     <h1>Data Science Ontology</h1>
-    <OntologySearchBar/>
-    <Welcome/>
+    <Grid>
+      <Col sm={8} smOffset={2}>
+        <Jumbotron>
+          <Welcome/>
+          <OntologySearchBar/>
+        </Jumbotron>
+       </Col>
+    </Grid>
   </section>
 
 
@@ -39,9 +46,8 @@ export class Welcome extends React.Component<{},IWelcomeState> {
     return (
       <section className="welcome">
         {nconcepts ? 
-          <p>Welcome to the Data Science Ontology, containing {nconcepts} data science concepts</p> :
+          <p>Welcome to the Data Science Ontology, with {nconcepts} data science concepts</p> :
           <p>Welcome to the Data Science Ontology</p>}
-        <p>Search for concepts and annotations or learn more</p>
       </section>
     )
   }

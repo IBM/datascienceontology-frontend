@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as Router from "react-router-dom";
-import { Form, FormControl, FormGroup, Button, Col } from "react-bootstrap";
+import { Form, FormControl, InputGroup, Button } from "react-bootstrap";
 
 import * as Cloudant from "../cloudant";
 import * as Services from "../services";
@@ -119,17 +119,15 @@ export class SearchBar extends React.Component<SearchBarProps,SearchBarState> {
   render() {
     // XXX: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/16208
     return <div className="search-bar">
-      <Form horizontal onSubmit={(e) => this.onSubmit(e as any)}>
-        <FormGroup>
-          <Col sm={10}>
-            <FormControl type="text" value={this.state.query}
-                         placeholder={this.props.placeholder}
-                         onChange={(e) => this.onChange(e as any)} />
-          </Col>
-          <Col sm={2}>
+      <Form onSubmit={(e) => this.onSubmit(e as any)}>
+        <InputGroup>
+          <FormControl type="text" value={this.state.query}
+                       placeholder={this.props.placeholder}
+                       onChange={(e) => this.onChange(e as any)} />
+          <InputGroup.Button>
             <Button type="submit">Search</Button>
-          </Col>
-        </FormGroup>
+          </InputGroup.Button>
+        </InputGroup>
       </Form>
     </div>;
   }
