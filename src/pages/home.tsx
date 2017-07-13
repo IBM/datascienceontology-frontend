@@ -2,23 +2,31 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as PouchDB from "pouchdb";
 
-interface IStatsProps {
-  db: PouchDB.Database;
-}
+import * as Common from "../common";
+import { OntologySearchBar } from "./search";
+
+export const HomePage = () => 
+  <section className="home">
+    <h1>Data Science Ontology</h1>
+    <OntologySearchBar/>
+    <SummaryStats/>
+  </section>
+
+
 interface IStatsState {
   nconcepts: number;
 }
 
-export class SummaryStats extends React.Component<IStatsProps,IStatsState> {
-  constructor(props: IStatsProps) {
-    super(props);
+export class SummaryStats extends React.Component<{},IStatsState> {
+  constructor() {
+    super();
     this.state = {
       nconcepts: 0
     }
   }
   
   componentWillMount() {
-    this.props.db.query("query/schema_index", {
+    Common.db.query("query/schema_index", {
       group: true
     }).then(result => {
       this.setState({

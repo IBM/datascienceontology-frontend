@@ -1,23 +1,20 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as PouchDB from "pouchdb";
+import * as Router from "react-router-dom";
 
-import { SearchBar } from "./search";
-import { SummaryStats } from "./stats";
+import { HomePage } from "./pages/home";
+import { SearchPage } from "./pages/search";
 
-interface IAppProps {
-  db: PouchDB.Database;
-}
 
-const App = (props: IAppProps) =>
- <div>
-  <SearchBar placeholder="Search the ontology"/>
-  <SummaryStats db={props.db}/>
- </div>;
-
-const db = new PouchDB("***REMOVED***/data-science-ontology");
+const App = () =>
+ <Router.HashRouter>
+  <div className="main">
+    <Router.Route exact path="/" component={HomePage} />
+    <Router.Route path="/search/:query" component={SearchPage} />
+  </div>
+ </Router.HashRouter>;
 
 ReactDOM.render(
-  <App db={db} />,
-  document.getElementById("main")
+  <App/>,
+  document.getElementById("react-container")
 );
