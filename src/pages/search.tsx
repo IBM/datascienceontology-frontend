@@ -18,7 +18,7 @@ type OntologySearchBarProps = Router.RouteComponentProps<{query?: string}>;
 
 class OntologySearchBarWithoutRouter extends React.Component<OntologySearchBarProps,{}> {
   onSearch = (query: string) => {
-    this.props.history.push("/search", { query: query });
+    this.props.history.push(`/search/${query}`);
   }
   
   render() {
