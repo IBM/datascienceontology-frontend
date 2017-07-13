@@ -1,8 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as Router from "react-router-dom";
-import * as Cloudant from "../cloudant";
 
+import * as Cloudant from "../cloudant";
+import * as Common from "../common";
 import { IConcept } from "../models/concept";
 
 
@@ -13,6 +14,7 @@ export const SearchPage = (props: SearchPageProps) =>
     <OntologySearchBar/>
     <OntologyResults query={props.match.params.query} />
   </section>;
+
 
 type OntologySearchBarProps = Router.RouteComponentProps<{query?: string}>;
 
@@ -49,7 +51,27 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
   }
   
   componentWillMount() {
-    
+    Cloudant.search<IConcept>(`${Common.db_url}/_design/search/_search/concept`, {
+      query: this.props.query
+    }).then(response => {
+        const concepts = response.rows.map(row => {
+          // Include document with ID with other IConcept fields.
+          return {
+            _id: row.id,
+            ...row.fields
+          } as IConcept;
+        });
+        this.setState({concepts: concepts});
+      });
+  }
+  
+  render() {
+    return <div className="search-results">
+      <ul>
+        {this.state.concepts.map(concept => 
+          <li key={concept._id}>{concept.name}</li>)}
+      </ul>
+    </div>;
   }
 }
 

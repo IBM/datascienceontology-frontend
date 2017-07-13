@@ -1,3 +1,7 @@
 import * as PouchDB from "pouchdb";
 
-export const db = new PouchDB("***REMOVED***/data-science-ontology");
+const db_origin = "***REMOVED***";
+const db_name = "data-science-ontology";
+export const db_url = `${db_origin}/${db_name}`;
+
+export const db = new PouchDB(db_url);
