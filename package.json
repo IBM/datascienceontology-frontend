@@ -1,11 +1,14 @@
 {
   "private": true,
   "name": "data-science-ontology",
-  "version": "0.1",
+  "version": "0.1.0",
   "description": "Frontend for the Data Science Ontology",
   "main": "index.js",
   "author": "Evan Patterson",
   "license": "UNLICENSED",
+  "scripts": {
+    "serve": "webpack-dev-server"
+  },
   "dependencies": {
     "@types/pouchdb": "^6.1.1",
     "@types/pouchdb-find": "^0.10.1",

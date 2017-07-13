@@ -7,14 +7,14 @@ import { SearchPage } from "./pages/search";
 
 
 const App = () =>
- <Router.HashRouter>
   <div className="main">
     <Router.Route exact path="/" component={HomePage} />
     <Router.Route path="/search/:query" component={SearchPage} />
-  </div>
- </Router.HashRouter>;
+  </div>;
 
 ReactDOM.render(
-  <App/>,
+  <Router.BrowserRouter>
+    <App/>
+  </Router.BrowserRouter>,
   document.getElementById("react-container")
 );
