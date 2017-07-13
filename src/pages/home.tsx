@@ -9,15 +9,15 @@ export const HomePage = () =>
   <section className="home">
     <h1>Data Science Ontology</h1>
     <OntologySearchBar/>
-    <SummaryStats/>
+    <Welcome/>
   </section>
 
 
-interface IStatsState {
+interface IWelcomeState {
   nconcepts: number;
 }
 
-export class SummaryStats extends React.Component<{},IStatsState> {
+export class Welcome extends React.Component<{},IWelcomeState> {
   constructor() {
     super();
     this.state = {
@@ -35,11 +35,14 @@ export class SummaryStats extends React.Component<{},IStatsState> {
   }
   
   render() {
-    if (!this.state.nconcepts) {
-      return null;
-    }
+    const { nconcepts } = this.state;
     return (
-      <span>{this.state.nconcepts} concepts</span>
-    );
+      <section className="welcome">
+        {nconcepts ? 
+          <p>Welcome to the Data Science Ontology, containing {nconcepts} data science concepts</p> :
+          <p>Welcome to the Data Science Ontology</p>}
+        <p>Search for concepts and annotations or learn more</p>
+      </section>
+    )
   }
 }
