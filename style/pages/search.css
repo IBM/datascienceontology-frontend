@@ -1,0 +1,6 @@
+.search-results ul {
+  list-style-type: none;
+}
+.search-results li {
+  margin: 3ex 0;
+}

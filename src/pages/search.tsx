@@ -7,6 +7,8 @@ import * as Services from "../services";
 import { SearchBar } from "../components";
 import { IConcept } from "../models/concept";
 
+import "../../style/pages/search.css";
+
 
 type SearchPageProps = Router.RouteComponentProps<{query: string}>;
 
@@ -90,8 +92,12 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
     }
     return <section className="search-results">
       <p className="text-muted">{this.state.total_results} results</p>
-      {this.state.results.map(concept => 
-        <ConceptResult key={concept._id} concept={concept} />)}
+      <ul>
+        {this.state.results.map(concept =>
+          <li key={concept._id} >
+            <ConceptResult concept={concept} />
+          </li>)}
+      </ul>
     </section>;
   }
 }
