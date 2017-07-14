@@ -107,6 +107,8 @@ export const ConceptResult = (props: {concept: IConcept}) => {
   const concept = props.concept;
   return (
     <div className="search-result">
+      <KindGlyph kind={concept.kind} />
+      {' '}
       <Router.Link to={`/concept/${concept.id}`}>
         {concept.name}
       </Router.Link>
@@ -117,4 +119,13 @@ export const ConceptResult = (props: {concept: IConcept}) => {
       {concept.description !== undefined && <p>{concept.description}</p>}
     </div>
   );
+}
+
+const KindGlyph = (props: {kind: string}) => {
+  if (props.kind === "object") {
+    return <FontAwesome name="circle-o" />;
+  } else if (props.kind === "morphism") {
+    return <FontAwesome name="long-arrow-right" />;
+  }
+  return null;
 }
