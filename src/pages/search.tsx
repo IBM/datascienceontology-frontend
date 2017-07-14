@@ -32,7 +32,6 @@ class OntologySearchBarWithoutRouter extends React.Component<OntologySearchBarPr
   }
 }
 export const OntologySearchBar = Router.withRouter<{}>(OntologySearchBarWithoutRouter);
-  
 
 
 interface OntologyResultsProps {
@@ -81,12 +80,30 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
   }
   
   render() {
-    return <div className="search-results">
+    return <section className="search-results">
       <p className="text-muted">{this.state.total_results} results</p>
-      <ul>
-        {this.state.results.map(concept => 
-          <li key={concept._id}>{concept.name}</li>)}
-      </ul>
-    </div>;
+      {this.state.results.map(concept => 
+        <ConceptResult key={concept._id} concept={concept} />)}
+    </section>;
   }
+}
+
+
+interface ConceptResultProps {
+  concept: IConcept;
+}
+
+export const ConceptResult = (props: ConceptResultProps) => {
+  const concept = props.concept;
+  return (
+    <div className="search-result">
+      <Router.Link to={`/concept/${concept.id}`}>
+        {concept.name}
+      </Router.Link>
+      <span className="text-muted">
+        ({concept.id})
+      </span>
+      {concept.description !== undefined && <p>{concept.description}</p>}
+    </div>
+  );
 }

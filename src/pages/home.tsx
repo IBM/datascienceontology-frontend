@@ -10,8 +10,8 @@ export const HomePage = () =>
       <Col sm={8} smOffset={2}>
         <Jumbotron>
           <Welcome/>
-          <p><OntologySearchBar/></p>
-          <p><Button bsStyle="primary">Learn more</Button></p>
+          <OntologySearchBar/>
+          <Button bsStyle="primary">Learn more</Button>
         </Jumbotron>
        </Col>
     </Grid>
