@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as Router from "react-router-dom";
-import { PageHeader } from "react-bootstrap";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Alert, PageHeader } from "react-bootstrap";
 
 import { HomePage } from "./pages/home";
 import { SearchPage } from "./pages/search";
@@ -10,15 +10,25 @@ import "../style/main.css";
 
 
 const App = () =>
-  <div id="main">
+  <div id="app">
     <PageHeader>Data Science Ontology</PageHeader>
-    <Router.Route exact path="/" component={HomePage} />
-    <Router.Route path="/search/:query" component={SearchPage} />
+    <Switch>
+      <Route exact path="/" component={HomePage} />
+      <Route path="/search/:query" component={SearchPage} />
+      <Route component={Error404Page} />
+    </Switch>
   </div>;
 
+const Error404Page = () =>
+  <Alert bsStyle="danger">
+    <h4>Whoops</h4>
+    <p>The page you are looking for does not exist.</p>
+  </Alert>;
+
+
 ReactDOM.render(
-  <Router.BrowserRouter>
+  <Router>
     <App/>
-  </Router.BrowserRouter>,
+  </Router>,
   document.getElementById("react-container")
 );
