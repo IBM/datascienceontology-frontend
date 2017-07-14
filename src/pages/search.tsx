@@ -97,11 +97,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
 }
 
 
-interface ConceptResultProps {
-  concept: IConcept;
-}
-
-export const ConceptResult = (props: ConceptResultProps) => {
+export const ConceptResult = (props: {concept: IConcept}) => {
   const concept = props.concept;
   return (
     <div className="search-result">

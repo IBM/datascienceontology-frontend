@@ -4,6 +4,7 @@ import { Grid, Col, Button, Jumbotron } from "react-bootstrap";
 import * as Services from "../services";
 import { OntologySearchBar } from "./search";
 
+
 export const HomePage = () => 
   <section className="home">
     <Grid>

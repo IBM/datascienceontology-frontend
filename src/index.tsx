@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Alert, PageHeader } from "react-bootstrap";
 
+import { ConceptPage } from "./pages/concept";
 import { HomePage } from "./pages/home";
 import { SearchPage } from "./pages/search";
 
@@ -14,6 +15,7 @@ const App = () =>
     <PageHeader>Data Science Ontology</PageHeader>
     <Switch>
       <Route exact path="/" component={HomePage} />
+      <Route path="/concept/:id" component={ConceptPage} />
       <Route path="/search/:query" component={SearchPage} />
       <Route component={Error404Page} />
     </Switch>
