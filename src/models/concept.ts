@@ -1,3 +1,12 @@
+/** Object belonging to the domain or codomain of a morphism.
+ */
+export interface IDomainObject {
+  /* ID of an object concept. */
+  object: string;
+  
+  /* Human-readable name of domain object. */
+  name?: string;
+}
 
 /** Concept in an ontology.
 
@@ -26,6 +35,6 @@ export interface IConcept {
   definition?: any;
   
   /* Domain and codomain of concept, if it is a morphism */
-  domain?: any;
-  codomain?: any;
+  domain?: Array<IDomainObject>;
+  codomain?: Array<IDomainObject>;
 }
