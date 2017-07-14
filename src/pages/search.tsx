@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
+import FontAwesome = require("react-fontawesome");
 
 import * as Cloudant from "../cloudant";
 import * as Services from "../services";
@@ -38,6 +39,7 @@ interface OntologyResultsProps {
   query: string;
 }
 interface OntologyResultsState {
+  loading: boolean;
   results: Array<IConcept>;
   total_results: number;
 }
@@ -46,6 +48,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
   constructor(props: OntologyResultsProps) {
     super(props);
     this.state = {
+      loading: false,
       results: [],
       total_results: 0
     }
@@ -61,6 +64,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
   }
   
   search(query: string) {
+    this.setState({loading: true});
     Cloudant.search<IConcept>(`${Services.db_url}/_design/search/_search/concept`, {
       query: query,
       limit: 25
@@ -73,6 +77,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
           } as IConcept;
         });
         this.setState({
+          loading: false,
           results: results,
           total_results: response.total_rows,
         });
@@ -80,6 +85,9 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
   }
   
   render() {
+    if (this.state.loading) {
+      return <FontAwesome name="spinner" spin/>;
+    }
     return <section className="search-results">
       <p className="text-muted">{this.state.total_results} results</p>
       {this.state.results.map(concept => 
@@ -100,6 +108,7 @@ export const ConceptResult = (props: ConceptResultProps) => {
       <Router.Link to={`/concept/${concept.id}`}>
         {concept.name}
       </Router.Link>
+      {' '}
       <span className="text-muted">
         ({concept.id})
       </span>
