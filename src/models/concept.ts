@@ -8,13 +8,13 @@ export interface IConcept {
   _id?: string;
   
   /* Ontology to which concept belongs. */
-  ontology: string;
+  ontology?: string;
   
   /* ID for concept, unique within ontology */
   id: string;
   
   /* Human-readable name of concept */
-  name?: string;
+  name: string;
   
   /* Human-readable description of concept in Markdown */
   description?: string;
