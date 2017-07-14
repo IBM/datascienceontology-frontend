@@ -1,6 +1,4 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import * as PouchDB from "pouchdb";
 import { Grid, Col, Button, Jumbotron } from "react-bootstrap";
 
 import * as Services from "../services";
