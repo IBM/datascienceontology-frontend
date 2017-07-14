@@ -6,9 +6,11 @@ import { PageHeader } from "react-bootstrap";
 import { HomePage } from "./pages/home";
 import { SearchPage } from "./pages/search";
 
+import "../style/main.css";
+
 
 const App = () =>
-  <div className="main">
+  <div id="main">
     <PageHeader>Data Science Ontology</PageHeader>
     <Router.Route exact path="/" component={HomePage} />
     <Router.Route path="/search/:query" component={SearchPage} />
