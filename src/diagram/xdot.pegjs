@@ -2,6 +2,10 @@
 
 Adapted from graph-viz-d3-js:
 https://github.com/mstefaniuk/graph-viz-d3-js/blob/master/src/grammar/xdot.pegjs
+
+References:
+http://www.graphviz.org/doc/info/lang.html
+http://www.graphviz.org/doc/info/output.html#d:xdot
 */
 {
     function lengthInUtf8Bytes(str) {
@@ -34,15 +38,17 @@ edge = src:identifier _ r:("->" / "--") _ tgt:identifier a:attributes? ";" WS+
 attributes = _+ "[" a:attribute aa:("," WS+ aaa:attribute {return aaa})* _* "]" {return aa!=null ? [a].concat(aa) : [a];}
 attribute =
  draw
- / size
- / id
+ / dimension
+ / pair
+ / rect
  / attribute_default
 
-size = "size" "=" q w:decimal "," h:decimal q {return {type: "size", value: [w,h]}}
-id = "id" "=" id:identifier {return {type: 'id', value: id}}
+dimension = t:("width" / "height") "=" d:decimal {return {key: t, value: d}}
+pair = t:("pos" / "size") "=" '"' x:decimal "," y:decimal '"' {return {key: t, value: [x,y]}}
+rect = t:"bb" "=" '"' x1:decimal "," y1:decimal "," x2:decimal "," y2:decimal '"' {return {key: t, value: [x1,y1,x2,y2]}}
 attribute_default = k:identifier "=" v:nqs {return {key: k, value: v}}
 
-draw = "_" s:("draw" / "ldraw" / "hdraw" / "tdraw" / "hldraw" / "tldraw") "_=" q d:drawing+ q {return {type: s, elements: d}}
+draw = "_" s:("draw" / "ldraw" / "hdraw" / "tdraw" / "hldraw" / "tldraw") "_=" '"' d:drawing+ '"' {return {type: s, elements: d}}
 drawing = st:styling? _ sh:shapes _ {sh.style = st; return sh}
 styling = s:styles ss:(_ sss:styles {return sss})*
     {return [].concat(s).concat(ss);}
@@ -55,6 +61,7 @@ polyline = [L] _ integer c:coordinates+ {return {shape: 'polyline', points:c}}
 bspline = [bB] _ integer c:coordinates+ {return {shape: 'bspline', points: c}}
 text = [T] c:coordinates _ a:integer _ decimal _ t:vardata {
     return {
+        shape: 'text',
         x: c[0],
         y: c[1],
         text: t,
@@ -88,12 +95,10 @@ port = ':' identifier
 integer = s:"-"? i:$[0-9]+ {return parseInt((s||'') + i)}
 decimal = s:"-"? f:$[0-9]+ r:("." d:$[0-9]+ {return "." + d})? {return parseFloat((s||'') + f + (r||''))}
 
-ncs = a:[^,\]]+ { return a.join('').trim() }
-nqs = ('"' s:nq '"' {return s}) / ("<" s:ts ">" {return s}}) / ncs
-nq = a:('\\"' / [^"])* { return a.join('') }
-ts = a:([^<>]+ / "<" [^<>]* ">")* { return a.join('')}
-c = [,]
-q = '"'
+nqs = ('"' s:nq '"' {return s}) / $("<" ts ">") / (s:ncs {return s.trim()})
+nq = $ ('\\"' / [^"])*
+ts = $ ([^<>]+ / "<" [^<>]* ">")*
+ncs = $ [^,\]]+
 
 CHAR = [a-zA-Z0-9_\.\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]
 CR = [\n\r]
