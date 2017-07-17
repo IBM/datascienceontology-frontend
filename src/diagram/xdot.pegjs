@@ -16,6 +16,7 @@ https://github.com/mstefaniuk/graph-viz-d3-js/blob/master/src/grammar/xdot.pegjs
     }
 
     var counter;
+    var c0;
 }
 
 dot = prolog? ("strict" _)? t:("digraph" / "graph") i:(_ identifier)? _ b:body {return {type:"digraph", id: i==null ? null : i[1], commands:b}}
@@ -74,16 +75,16 @@ vardata = s:varsize _ "-" v:varchar {return v}
 varsize = s:integer {counter=s; c0=""}
 varchar = &{return counter==0} / a:anysign s:varchar {return a + (s||'')}
 anysign = LC? c:. {
-    c2="";
+    var c2 = "";
     if (c != "\\" || c0 == "\\") {
        counter -= lengthInUtf8Bytes(c);
        if (c0 == "\\" && c != "\\" && c != '"') {
           counter -=1;
-          c2=c0;
+          c2 = c0;
        }
        c2 += c;
    }
-   c0=c;
+   c0 = c;
    return c2;
 }
 
