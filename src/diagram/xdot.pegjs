@@ -2,7 +2,7 @@
 
 Adapted from graph-viz-d3-js:
 https://github.com/mstefaniuk/graph-viz-d3-js/blob/master/src/grammar/xdot.pegjs
- */
+*/
 {
     function lengthInUtf8Bytes(str) {
         var c = str.charCodeAt(0);
@@ -30,7 +30,7 @@ relation = f:identifier _ r:("->" / "--") _ t:identifier a:attributes? ";" WS+
     {return {type:"relation", id: [f,t].join(r), from:f, to:t, attributes:a}}
 node = i:identifier a:attributes? ";" WS+ {return {type:"node",id:i,attributes:a}}
 
-attributes = _+ "[" a:attribute aa:("," WS+ a:attribute {return a})* _* "]" {return aa!=null ? [a].concat(aa) : [a];}
+attributes = _+ "[" a:attribute aa:("," WS+ aaa:attribute {return aaa})* _* "]" {return aa!=null ? [a].concat(aa) : [a];}
 attribute =
  draw
  / size
@@ -49,7 +49,7 @@ anyattribute = nn:identifier "=" nqs {return {name: nn}}
 
 draw = "_" s:("draw" / "ldraw" / "hdraw" / "tdraw" / "hldraw" / "tldraw") "_=" q d:drawing+ q {return {type: s, elements: d}}
 drawing = st:styling? _ sh:shapes _ {sh.style = st; return sh}
-styling = s:styles ss:(_ s:styles {return s})*
+styling = s:styles ss:(_ sss:styles {return sss})*
     {return [].concat(s).concat(ss);}
 styles = pen / font / style / fontdecoration
 shapes = polygon / polyline / ellipse / bspline / text
