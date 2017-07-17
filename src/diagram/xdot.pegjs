@@ -19,17 +19,17 @@ https://github.com/mstefaniuk/graph-viz-d3-js/blob/master/src/grammar/xdot.pegjs
     var c0;
 }
 
-dot = prolog? ("strict" _)? t:("digraph" / "graph") i:(_ identifier)? _ b:body {return {type:"digraph", id: i==null ? null : i[1], commands:b}}
+dot = prolog? ("strict" _)? t:("digraph" / "graph") i:(_ identifier)? _ b:body {return {type:"digraph", id: i==null ? null : i[1], statements:b}}
 prolog = ("#" [^\n]* CR)+ CR
 body = "{" c:statement+ "}" WS* {return c}
-statement= WS* cc:(skip /graph / node / relation / subgraph / struct) {return cc}
-skip = n:"node" a:attributes ";" WS+ {return {type:"skip", attributes:a}}
-struct = b:body {return {type:"struct", commands:b}}
+statement= WS* cc:(defaults / node / edge / subgraph / struct) {return cc}
+defaults = t:("graph" / "node" / "edge") a:attributes ";" WS+ {return {type:t+"-attributes", attributes:a}}
+struct = b:body {return {type:"subgraph", statements:b}}
 graph = n:"graph" a:attributes ";" WS+ {return {type:n, attributes:a}}
-subgraph = t:"subgraph" _ i:identifier _ b:body {return {type:t, id:i, commands:b}}
-relation = f:identifier _ r:("->" / "--") _ t:identifier a:attributes? ";" WS+
-    {return {type:"relation", id: [f,t].join(r), from:f, to:t, attributes:a}}
+subgraph = t:"subgraph" _ i:identifier _ b:body {return {type:t, id:i, statements:b}}
 node = i:identifier a:attributes? ";" WS+ {return {type:"node",id:i,attributes:a}}
+edge = src:identifier _ r:("->" / "--") _ tgt:identifier a:attributes? ";" WS+
+    {return {type:"edge", source:src, target:tgt, attributes:a}}
 
 attributes = _+ "[" a:attribute aa:("," WS+ aaa:attribute {return aaa})* _* "]" {return aa!=null ? [a].concat(aa) : [a];}
 attribute =
@@ -41,10 +41,10 @@ attribute =
  / id
  / a:(anyattribute) {a.type="skip"; return a}
 
+size = "size" "=" q w:decimal "," h:decimal q {return {type: "size", value: [w,h]}}
 image = "image" "=" q url:nq q {return {type: 'image', value: url.join('')}}
 URL = "URL" "=" q url:nq q {return {type: 'url', value: url.join('')}}
 tooltip = "tooltip" "=" q tt:nq q {return {type: 'tooltip', value: tt.join('')}}
-size = "size" "=" q w:decimal "," h:decimal q {return {type: "size", value: [w,h]}}
 id = "id" "=" id:identifier {return {type: 'id', value: id}}
 anyattribute = nn:identifier "=" nqs {return {name: nn}}
 
