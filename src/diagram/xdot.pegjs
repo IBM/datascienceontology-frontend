@@ -35,18 +35,12 @@ attributes = _+ "[" a:attribute aa:("," WS+ aaa:attribute {return aaa})* _* "]" 
 attribute =
  draw
  / size
- / image
- / URL
- / tooltip
  / id
- / a:(anyattribute) {a.type="skip"; return a}
+ / attribute_default
 
 size = "size" "=" q w:decimal "," h:decimal q {return {type: "size", value: [w,h]}}
-image = "image" "=" q url:nq q {return {type: 'image', value: url.join('')}}
-URL = "URL" "=" q url:nq q {return {type: 'url', value: url.join('')}}
-tooltip = "tooltip" "=" q tt:nq q {return {type: 'tooltip', value: tt.join('')}}
 id = "id" "=" id:identifier {return {type: 'id', value: id}}
-anyattribute = nn:identifier "=" nqs {return {name: nn}}
+attribute_default = k:identifier "=" v:nqs {return {key: k, value: v}}
 
 draw = "_" s:("draw" / "ldraw" / "hdraw" / "tdraw" / "hldraw" / "tldraw") "_=" q d:drawing+ q {return {type: s, elements: d}}
 drawing = st:styling? _ sh:shapes _ {sh.style = st; return sh}
@@ -94,10 +88,10 @@ port = ':' identifier
 integer = s:"-"? i:$[0-9]+ {return parseInt((s||'') + i)}
 decimal = s:"-"? f:$[0-9]+ r:("." d:$[0-9]+ {return "." + d})? {return parseFloat((s||'') + f + (r||''))}
 
-ncs = [^,\]]+
-nqs = '"' nq '"' / "<" ts ">" / ncs
-nq = ('\\"' / [^"])*
-ts = ([^<>]+ / "<" [^<>]* ">")*
+ncs = a:[^,\]]+ { return a.join('').trim() }
+nqs = ('"' s:nq '"' {return s}) / ("<" s:ts ">" {return s}}) / ncs
+nq = a:('\\"' / [^"])* { return a.join('') }
+ts = a:([^<>]+ / "<" [^<>]* ">")* { return a.join('')}
 c = [,]
 q = '"'
 
