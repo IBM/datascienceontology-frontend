@@ -1,13 +1,12 @@
 {
   "private": true,
-  "name": "data-science-ontology",
+  "name": "data-science-ontology-frontend",
   "version": "0.1.0",
   "description": "Frontend for the Data Science Ontology",
   "main": "index.js",
   "author": "Evan Patterson",
   "license": "UNLICENSED",
   "scripts": {
-    "build-parser": "pegjs -o ./src/diagram/xdot.js ./src/diagram/xdot.pegjs",
     "serve": "webpack-dev-server"
   },
   "dependencies": {
