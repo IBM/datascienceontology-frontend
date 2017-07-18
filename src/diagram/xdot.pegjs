@@ -8,19 +8,25 @@ http://www.graphviz.org/doc/info/lang.html
 http://www.graphviz.org/doc/info/output.html#d:xdot
 */
 {
-    function lengthInUtf8Bytes(str) {
-        var c = str.charCodeAt(0);
-        if (c < 128) {
-          return 1;
-        } else if (c < 2048) {
-          return 2;
-        } else {
-          return 3;
-        }
-    }
+function attributeArrayToObject(attrs) {
+    var obj = {};
+    attrs.forEach(function(attr) { obj[attr.key] = attr.value; });
+    return obj;
+}
 
-    var counter;
-    var c0;
+function lengthInUtf8Bytes(str) {
+    var c = str.charCodeAt(0);
+    if (c < 128) {
+      return 1;
+    } else if (c < 2048) {
+      return 2;
+    } else {
+      return 3;
+    }
+}
+
+var counter;
+var c0;
 }
 
 dot = prolog? ("strict" _)? t:("digraph" / "graph") i:(_ identifier)? _ b:body {return {type:"digraph", name: i==null ? null : i[1], statements:b}}
@@ -35,7 +41,8 @@ node = i:identifier a:attributes? ";" WS+ {return {type:"node", name:i, attribut
 edge = src:identifier _ r:("->" / "--") _ tgt:identifier a:attributes? ";" WS+
     {return {type:"edge", source:src, target:tgt, attributes:a}}
 
-attributes = _+ "[" a:attribute aa:("," WS+ aaa:attribute {return aaa})* _* "]" {return aa!=null ? [a].concat(aa) : [a];}
+attributes = _+ "[" a:attribute aa:("," WS+ aaa:attribute {return aaa})* _* "]"
+    {return attributeArrayToObject(aa!=null ? [a].concat(aa) : [a]);}
 attribute =
  draw
  / dimension_attr
@@ -64,7 +71,7 @@ attribute_default = k:identifier "=" v:nqs {return {key: k, value: v}}
 draw = "_" s:("draw" / "ldraw" / "hdraw" / "tdraw" / "hldraw" / "tldraw") "_=" '"' d:drawing+ '"' {return {key: s, value: d}}
 drawing = st:styling? _ sh:shapes _ {sh.style = st; return sh}
 styling = s:styles ss:(_ sss:styles {return sss})*
-    {return [].concat(s).concat(ss);}
+    {return attributeArrayToObject([].concat(s).concat(ss));}
 styles = pen / font / style / fontdecoration
 shapes = polygon / polyline / ellipse / bspline / text
 
