@@ -23,32 +23,45 @@ http://www.graphviz.org/doc/info/output.html#d:xdot
     var c0;
 }
 
-dot = prolog? ("strict" _)? t:("digraph" / "graph") i:(_ identifier)? _ b:body {return {type:"digraph", id: i==null ? null : i[1], statements:b}}
+dot = prolog? ("strict" _)? t:("digraph" / "graph") i:(_ identifier)? _ b:body {return {type:"digraph", name: i==null ? null : i[1], statements:b}}
 prolog = ("#" [^\n]* CR)+ CR
 body = "{" c:statement+ "}" WS* {return c}
 statement= WS* cc:(defaults / node / edge / subgraph / struct) {return cc}
 defaults = t:("graph" / "node" / "edge") a:attributes ";" WS+ {return {type:t+"-attributes", attributes:a}}
 struct = b:body {return {type:"subgraph", statements:b}}
 graph = n:"graph" a:attributes ";" WS+ {return {type:n, attributes:a}}
-subgraph = t:"subgraph" _ i:identifier _ b:body {return {type:t, id:i, statements:b}}
-node = i:identifier a:attributes? ";" WS+ {return {type:"node",id:i,attributes:a}}
+subgraph = t:"subgraph" _ i:identifier _ b:body {return {type:t, name:i, statements:b}}
+node = i:identifier a:attributes? ";" WS+ {return {type:"node", name:i, attributes:a}}
 edge = src:identifier _ r:("->" / "--") _ tgt:identifier a:attributes? ";" WS+
     {return {type:"edge", source:src, target:tgt, attributes:a}}
 
 attributes = _+ "[" a:attribute aa:("," WS+ aaa:attribute {return aaa})* _* "]" {return aa!=null ? [a].concat(aa) : [a];}
 attribute =
  draw
- / dimension
- / pair
- / rect
+ / dimension_attr
+ / point_attr
+ / rect_attr
+ / spline_attr
  / attribute_default
 
-dimension = t:("width" / "height") "=" d:decimal {return {key: t, value: d}}
-pair = t:("pos" / "size") "=" '"' x:decimal "," y:decimal '"' {return {key: t, value: [x,y]}}
-rect = t:"bb" "=" '"' x1:decimal "," y1:decimal "," x2:decimal "," y2:decimal '"' {return {key: t, value: [x1,y1,x2,y2]}}
+dimension_attr = t:("width" / "height") "=" d:decimal {return {key: t, value: d}}
+point_attr = t:("pos" / "lp" / "size") "=" '"' p:point '"' {return {key: t, value: p}}
+point = x:decimal "," y:decimal {return [x,y]}
+rect_attr = t:"bb" "=" '"' r:rect '"' {return {key: t, value: r}}
+rect = x1:decimal "," y1:decimal "," x2:decimal "," y2:decimal {return [x1,y1,x2,y2]}
+spline_attr = t:"pos" "=" '"' e:("e," point _)? s:("s," point _)? p:point ps:(_ pss:point {return pss})* '"' {
+    return {
+        key: t,
+        value: {
+            shape: "spline",
+            start: s == null ? null : s[1],
+            end: e == null ? null : e[1],
+            points: [p].concat(ps)
+        }
+    }}
 attribute_default = k:identifier "=" v:nqs {return {key: k, value: v}}
 
-draw = "_" s:("draw" / "ldraw" / "hdraw" / "tdraw" / "hldraw" / "tldraw") "_=" '"' d:drawing+ '"' {return {type: s, elements: d}}
+draw = "_" s:("draw" / "ldraw" / "hdraw" / "tdraw" / "hldraw" / "tldraw") "_=" '"' d:drawing+ '"' {return {key: s, value: d}}
 drawing = st:styling? _ sh:shapes _ {sh.style = st; return sh}
 styling = s:styles ss:(_ sss:styles {return sss})*
     {return [].concat(s).concat(ss);}
@@ -61,7 +74,7 @@ polyline = [L] _ integer c:coordinates+ {return {shape: 'polyline', points:c}}
 bspline = [bB] _ integer c:coordinates+ {return {shape: 'bspline', points: c}}
 text = [T] c:coordinates _ a:integer _ decimal _ t:vardata {
     return {
-        shape: 'text',
+        shape: "text",
         x: c[0],
         y: c[1],
         text: t,
