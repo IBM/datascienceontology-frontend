@@ -39,7 +39,18 @@ module.exports = {
     ]
   },
   externals: {
+    "cls-bluebird": "cls-bluebird",
     "react": "React",
     "react-dom": "ReactDOM"
+  },
+  node: {
+    // Needed because `openwhisk` (indirectly) imports these Node-only modules
+    fs: "empty",
+    net: "empty",
+    tls: "empty",
+  },
+  devServer: {
+    // Route 404's back to index.html to be handled by React Router.
+    historyApiFallback: true
   }
 };

@@ -4,7 +4,7 @@ import FontAwesome = require("react-fontawesome");
 
 import * as Cloudant from "../cloudant";
 import * as Services from "../services";
-import { SearchBar } from "../components";
+import { SearchBar } from "../components/search_bar";
 import { IConcept } from "../models/concept";
 
 import "../../style/pages/search.css";

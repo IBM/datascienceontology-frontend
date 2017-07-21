@@ -1,5 +1,3 @@
-/** Miscellaneous generic React components.
- */
 import * as React from "react";
 import { Form, FormControl, InputGroup, Button } from "react-bootstrap";
 

@@ -3,9 +3,10 @@ import * as ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Alert, PageHeader } from "react-bootstrap";
 
-import { ConceptPage } from "./pages/concept";
 import { HomePage } from "./pages/home";
+import { ConceptPage } from "./pages/concept";
 import { SearchPage } from "./pages/search";
+import { DiagramPage } from "./pages/diagram";
 
 import "../style/main.css";
 
@@ -17,6 +18,7 @@ const App = () =>
       <Route exact path="/" component={HomePage} />
       <Route path="/concept/:id" component={ConceptPage} />
       <Route path="/search/:query" component={SearchPage} />
+      <Route path="/diagram" component={DiagramPage} />
       <Route component={Error404Page} />
     </Switch>
   </div>;
