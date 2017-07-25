@@ -1,18 +1,14 @@
 import * as React from "react";
 import cytoscape = require("cytoscape");
 
+import { Cytoscape } from "data-science-ontology-backend";
 
-interface CytoscapeProps {
-  elements?: Array<{}>;
-  style?: string | Array<{}>;
-  layout?: {};
-}
 
 /** React componet wrapping Cytoscape.js.
 
   Inspired by https://github.com/cytoscape/cytoscape.js/issues/1468
  */
-export class CytoscapeComponent extends React.Component<CytoscapeProps,{}> {
+export class CytoscapeComponent extends React.Component<Cytoscape.Cytoscape,{}> {
   private _cy: any;
   
   get cy(): any {
@@ -24,7 +20,7 @@ export class CytoscapeComponent extends React.Component<CytoscapeProps,{}> {
     this._cy = cytoscape(opts);
   }
   
-  componentWillReceiveProps(nextProps: CytoscapeProps) {
+  componentWillReceiveProps(nextProps: Cytoscape.Cytoscape) {
     this._cy.json(nextProps);
   }
 

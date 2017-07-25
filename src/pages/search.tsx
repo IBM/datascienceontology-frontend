@@ -2,10 +2,10 @@ import * as React from "react";
 import * as Router from "react-router-dom";
 import FontAwesome = require("react-fontawesome");
 
+import { Concept } from "data-science-ontology-backend";
 import * as Cloudant from "../cloudant";
 import * as Services from "../services";
 import { SearchBar } from "../components/search_bar";
-import { IConcept } from "../models/concept";
 
 import "../../style/pages/search.css";
 
@@ -42,7 +42,7 @@ interface OntologyResultsProps {
 }
 interface OntologyResultsState {
   loading: boolean;
-  results: Array<IConcept>;
+  results: Array<Concept>;
   total_results: number;
 }
 
@@ -67,16 +67,16 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
   
   search(query: string) {
     this.setState({loading: true});
-    Cloudant.search<IConcept>(`${Services.db_url}/_design/search/_search/concept`, {
+    Cloudant.search<Concept>(`${Services.db_url}/_design/search/_search/concept`, {
       query: query,
       limit: 25
     }).then(response => {
         const results = response.rows.map(row => {
-          // Include document with ID with other IConcept fields.
+          // Include document with ID with other Concept fields.
           return {
             _id: row.id,
             ...row.fields
-          } as IConcept;
+          } as Concept;
         });
         this.setState({
           loading: false,
@@ -103,7 +103,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
 }
 
 
-export const ConceptResult = (props: {concept: IConcept}) => {
+export const ConceptResult = (props: {concept: Concept}) => {
   const concept = props.concept;
   return (
     <div className="search-result">

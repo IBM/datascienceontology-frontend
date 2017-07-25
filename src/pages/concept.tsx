@@ -1,14 +1,14 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
 
+import { Concept } from "data-science-ontology-backend";
 import * as Services from "../services";
-import { IConcept } from "../models/concept";
 
 
 type ConceptPageProps = Router.RouteComponentProps<{id: string}>;
 
 interface ConceptPageState {
-  concept: IConcept;
+  concept: Concept;
 }
 
 export class ConceptPage extends React.Component<ConceptPageProps,ConceptPageState> {
@@ -21,7 +21,7 @@ export class ConceptPage extends React.Component<ConceptPageProps,ConceptPageSta
     const id = this.props.match.params.id;
     Services.db.get(`concept/data-science/${id}`)
       .then(doc => {
-        this.setState({concept: doc as IConcept});
+        this.setState({concept: doc as Concept});
       });
   }
   
@@ -31,7 +31,7 @@ export class ConceptPage extends React.Component<ConceptPageProps,ConceptPageSta
 }
 
 
-export const ConceptDisplay = (props: {concept: IConcept}) => {
+export const ConceptDisplay = (props: {concept: Concept}) => {
   const concept = props.concept;
   return (
     <div className="concept">
