@@ -65,10 +65,18 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
     }
   }
   
-  search(query: string) {
+  luceneQuery(text: string): string {
+    return [
+      `id:(${text})^100`,      // Exact match on ID due to `keyword` analyzer
+      `name:(${text})^3`,      // Inexact match on name
+      `description:(${text})`, // Inexact match on description
+    ].join(" ");
+  }
+  
+  search(text: string) {
     this.setState({loading: true});
     Cloudant.search<Concept>(`${Services.db_url}/_design/search/_search/concept`, {
-      query: query,
+      query: this.luceneQuery(text),
       limit: 25
     }).then(response => {
         const results = response.rows.map(row => {
