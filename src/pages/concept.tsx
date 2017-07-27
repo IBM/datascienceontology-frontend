@@ -1,7 +1,8 @@
+import { Location } from "history";
 import * as React from "react";
 import * as Router from "react-router-dom";
 
-import { Concept } from "data-science-ontology-backend";
+import { Concept } from "data-science-ontology";
 import * as Services from "../services";
 
 
@@ -18,7 +19,15 @@ export class ConceptPage extends React.Component<ConceptPageProps,ConceptPageSta
   }
   
   componentWillMount() {
-    const id = this.props.match.params.id;
+    this.setConcept(this.props.match.params.id);
+  }
+  componentWillReceiveProps(nextProps: ConceptPageProps) {
+    if (this.props.match.params.id != nextProps.match.params.id) {
+      this.setConcept(nextProps.match.params.id);
+    }
+  }
+  
+  setConcept(id: string) {
     Services.db.get(`concept/data-science/${id}`)
       .then(doc => {
         this.setState({concept: doc as Concept});
@@ -26,13 +35,16 @@ export class ConceptPage extends React.Component<ConceptPageProps,ConceptPageSta
   }
   
   render() {
-    return this.state.concept && <ConceptDisplay concept={this.state.concept} />;
+    return this.state.concept && <ConceptDisplay concept={this.state.concept}/>;
   }
 }
 
 
 export const ConceptDisplay = (props: {concept: Concept}) => {
-  const concept = props.concept;
+  const concept = props.concept
+  const superconcepts = concept.subconcept === undefined ? null :
+    (concept.subconcept || []).map(id =>
+      <Router.Link key={id} to={`/concept/${id}`}>{id}</Router.Link>);
   return (
     <div className="concept">
       <h3>{concept.name}</h3>
@@ -45,6 +57,8 @@ export const ConceptDisplay = (props: {concept: Concept}) => {
         <dd>{concept.name}</dd>
         {concept.description && <dt>Description</dt>}
         {concept.description && <dd>{concept.description}</dd>}
+        {superconcepts && <dt>Is</dt>}
+        {superconcepts && <dd>{superconcepts}</dd>}
       </dl>
     </div>
   );

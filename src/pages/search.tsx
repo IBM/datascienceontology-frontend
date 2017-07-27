@@ -2,7 +2,7 @@ import * as React from "react";
 import * as Router from "react-router-dom";
 import FontAwesome = require("react-fontawesome");
 
-import { Concept } from "data-science-ontology-backend";
+import { Concept } from "data-science-ontology";
 import * as Cloudant from "../cloudant";
 import * as Services from "../services";
 import { SearchBar } from "../components/search_bar";
