@@ -10,6 +10,7 @@
     "serve": "webpack-dev-server"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.71",
     "@types/pouchdb": "^6.1.1",
     "@types/pouchdb-find": "^0.10.1",
     "@types/react": "^15.0.35",
@@ -19,6 +20,7 @@
     "@types/react-router": "^4.0.14",
     "@types/react-router-dom": "^4.0.7",
     "cytoscape": "^3.1.4",
+    "lodash": "^4.17.4",
     "pouchdb": "^6.2.0",
     "pouchdb-find": "^6.2.0",
     "react": "^15.6.1",

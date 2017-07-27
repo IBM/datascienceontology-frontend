@@ -39,6 +39,11 @@ module.exports = {
     ]
   },
   externals: {
+    "lodash": {
+      commonjs: "lodash",
+      amd: "lodash",
+      root: "_"
+    },
     "react": "React",
     "react-dom": "ReactDOM"
   },

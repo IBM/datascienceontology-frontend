@@ -46,7 +46,12 @@ export const ConceptDisplay = (props: {concept: Concept}) => {
       <Router.Link key={id} to={`/concept/${id}`}>{id}</Router.Link>);
   return (
     <div className="concept">
-      <h3>{concept.name}</h3>
+      <h3>
+        <span className="text-muted" style={{"padding-right": "2em"}}>
+          Concept
+        </span>
+        {concept.name}
+      </h3>
       <dl className="dl-horizontal" key="fields">
         <dt>ID</dt>
         <dd>{concept.id}</dd>
