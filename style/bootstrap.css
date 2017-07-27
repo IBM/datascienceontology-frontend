@@ -1,0 +1,10 @@
+/* Bootstrap 3 CSS variables.
+
+Copied from: http://bootstrapdocs.com/v3.3.6/docs/css/#less-variables
+*/
+:root {
+  --bootstrap-font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --bootstrap-font-family-serif:       Georgia, "Times New Roman", Times, serif;
+  --bootstrap-font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+  --bootstrap-font-family-base:        var(--bootstrap-font-family-sans-serif);
+}

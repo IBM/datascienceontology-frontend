@@ -2,8 +2,10 @@ import * as _ from "lodash";
 import * as React from "react";
 import * as Router from "react-router-dom";
 
-import { Annotation } from "data-science-ontology";
+import { Annotation, PythonAnnotation } from "data-science-ontology";
 import * as Services from "../services";
+
+import "../../style/pages/annotation.css";
 
 
 interface AnnotationKey {
@@ -48,6 +50,10 @@ export class AnnotationPage extends React.Component<AnnotationPageProps,Annotati
 
 export const AnnotationDisplay = (props: {annotation: Annotation}) => {
   const annotation = props.annotation;
+  let inner = null;
+  if (annotation.language == "python") {
+    inner = <PythonAnnotationDisplay annotation={annotation as PythonAnnotation} />;
+  }
   return (
     <div className="annotation">
       <h3>
@@ -56,20 +62,41 @@ export const AnnotationDisplay = (props: {annotation: Annotation}) => {
         </span>
         {annotation.name || annotation.id}
       </h3>
-      <dl className="dl-horizontal" key="fields">
-        <dt>Language</dt>
-        <dd>{annotation.language}</dd>
-        <dt>Package</dt>
-        <dd>{annotation.package}</dd>
-        <dt>ID</dt>
-        <dd>{annotation.id}</dd>
-        <dt>Kind</dt>
-        <dd>{annotation.kind}</dd>
-        {annotation.name && <dt>Name</dt>}
-        {annotation.name && <dd>{annotation.name}</dd>}
-        {annotation.description && <dt>Description</dt>}
-        {annotation.description && <dd>{annotation.description}</dd>}
-      </dl>
+      {inner}
     </div>
+  );
+}
+
+const PythonAnnotationDisplay = (props: {annotation: PythonAnnotation}) => {
+  const annotation = props.annotation;
+  return (
+    <dl className="dl-horizontal" key="fields">
+      <dt>Language</dt>
+      <dd>
+        <a href="https://docs.python.org">{annotation.language}</a>
+      </dd>
+      <dt>Package</dt>
+      <dd>
+        <a href={`https://pypi.python.org/pypi/${annotation.package}`}>
+          {annotation.package}
+        </a>
+      </dd>
+      <dt>ID</dt>
+      <dd>{annotation.id}</dd>
+      <dt>Kind</dt>
+      <dd>{annotation.kind}</dd>
+      {annotation.name && <dt>Name</dt>}
+      {annotation.name && <dd>{annotation.name}</dd>}
+      {annotation.description && <dt>Description</dt>}
+      {annotation.description && <dd>{annotation.description}</dd>}
+      {annotation.class && <dt>Python class</dt>}
+      {annotation.class && <dd>
+        <div className="annotation-class-list">
+          <ul>{annotation.class.map((className, i) =>
+            <li key={i}>{className}</li>)}
+          </ul>
+        </div>
+       </dd>}
+    </dl>
   );
 }
