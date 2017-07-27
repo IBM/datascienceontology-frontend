@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Alert, PageHeader } from "react-bootstrap";
 
 import { HomePage } from "./pages/home";
@@ -13,7 +13,7 @@ import "../style/main.css";
 
 const App = () =>
   <div id="app">
-    <PageHeader>Data Science Ontology</PageHeader>
+    <PageHeader><Link to="/">Data Science Ontology</Link></PageHeader>
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route path="/concept/:id" component={ConceptPage} />
