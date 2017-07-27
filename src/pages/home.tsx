@@ -20,6 +20,7 @@ export const HomePage = () =>
 
 
 interface IWelcomeState {
+  nannotations: number;
   nconcepts: number;
 }
 
@@ -27,6 +28,7 @@ export class Welcome extends React.Component<{},IWelcomeState> {
   constructor() {
     super();
     this.state = {
+      nannotations: 0,
       nconcepts: 0
     }
   }
@@ -35,17 +37,21 @@ export class Welcome extends React.Component<{},IWelcomeState> {
     Services.db.query("query/schema_index", {
       group: true
     }).then(result => {
+      const getCount = (schema: string) =>
+        result.rows.find(row => row.key[0] === schema).value;
       this.setState({
-        nconcepts: result.rows.find(row => row.key[0] === "concept").value});
+        nannotations: getCount("annotation"),
+        nconcepts: getCount("concept")
+      });
     });
   }
   
   render() {
-    const { nconcepts } = this.state;
+    const { nannotations, nconcepts } = this.state;
     return (
       <section className="welcome">
-        {nconcepts ? 
-          <p>Welcome to the Data Science Ontology, with {nconcepts} data science concepts</p> :
+        {nannotations && nconcepts ?
+          <p>Welcome to the Data Science Ontology, with {nconcepts} data science concepts and {nannotations} code annotations</p> :
           <p>Welcome to the Data Science Ontology</p>}
       </section>
     )
