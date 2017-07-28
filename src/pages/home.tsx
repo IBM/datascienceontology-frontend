@@ -51,7 +51,9 @@ export class Welcome extends React.Component<{},IWelcomeState> {
     return (
       <section className="welcome">
         {nannotations && nconcepts ?
-          <p>Welcome to the Data Science Ontology, with {nconcepts} data science concepts and {nannotations} code annotations</p> :
+          <p>Welcome to the Data Science Ontology,
+            with {nconcepts} data science concepts
+            and {nannotations} code annotations</p> :
           <p>Welcome to the Data Science Ontology</p>}
       </section>
     )

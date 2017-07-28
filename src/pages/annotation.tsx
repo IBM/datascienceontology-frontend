@@ -2,7 +2,8 @@ import * as _ from "lodash";
 import * as React from "react";
 import * as Router from "react-router-dom";
 
-import { Annotation, PythonAnnotation } from "data-science-ontology";
+import { Annotation, PythonAnnotation, PythonObject, PythonMorphism }
+  from "data-science-ontology";
 import * as Services from "../services";
 
 import "../../style/pages/annotation.css";
@@ -50,9 +51,9 @@ export class AnnotationPage extends React.Component<AnnotationPageProps,Annotati
 
 export const AnnotationDisplay = (props: {annotation: Annotation}) => {
   const annotation = props.annotation;
-  let inner = null;
+  let languageDisplay = null;
   if (annotation.language == "python") {
-    inner = <PythonAnnotationDisplay annotation={annotation as PythonAnnotation} />;
+    languageDisplay = <PythonAnnotationDisplay annotation={annotation as PythonAnnotation} />;
   }
   return (
     <div className="annotation">
@@ -62,33 +63,77 @@ export const AnnotationDisplay = (props: {annotation: Annotation}) => {
         </span>
         {annotation.name || annotation.id}
       </h3>
-      {inner}
+      {languageDisplay}
     </div>
   );
 }
 
 const PythonAnnotationDisplay = (props: {annotation: PythonAnnotation}) => {
   const annotation = props.annotation;
+  const pythonDisplay = <dl className="dl-horizontal" style={{"margin-bottom": 0}}>
+    <dt>Language</dt>
+    <dd>
+      <a href="https://www.python.org">{annotation.language}</a>
+    </dd>
+    <dt>Package</dt>
+    <dd>
+      <a href={`https://pypi.python.org/pypi/${annotation.package}`}>
+        {annotation.package}
+      </a>
+    </dd>
+    <dt>ID</dt>
+    <dd>{annotation.id}</dd>
+    <dt>Kind</dt>
+    <dd>{annotation.kind}</dd>
+    {annotation.name && <dt>Name</dt>}
+    {annotation.name && <dd>{annotation.name}</dd>}
+    {annotation.description && <dt>Description</dt>}
+    {annotation.description && <dd>{annotation.description}</dd>}
+  </dl>;
+  
+  let kindDisplay = null;
+  if (annotation.kind == "object") {
+    kindDisplay = <PythonObjectDisplay annotation={annotation as PythonObject} />;
+  } else if (annotation.kind == "morphism") {
+    kindDisplay = <PythonMorphismDisplay annotation={annotation as PythonMorphism} />;
+  }
+  
+  return <div className="python-annotation">
+    {pythonDisplay}
+    {kindDisplay}
+  </div>;
+}
+
+const PythonObjectDisplay = (props: {annotation: PythonObject}) => {
+  const annotation = props.annotation;
   return (
-    <dl className="dl-horizontal" key="fields">
-      <dt>Language</dt>
+    <dl className="dl-horizontal">
+      <dt>Python class</dt>
       <dd>
-        <a href="https://docs.python.org">{annotation.language}</a>
+        <div className="annotation-class-list">
+          <ul>{annotation.class.map((className, i) =>
+            <li key={i}>{className}</li>)}
+          </ul>
+        </div>
       </dd>
-      <dt>Package</dt>
+      <dt>Definition</dt>
       <dd>
-        <a href={`https://pypi.python.org/pypi/${annotation.package}`}>
-          {annotation.package}
-        </a>
+        <Router.Link to={`/concept/${annotation.definition}`}>
+          {annotation.definition}
+        </Router.Link>
       </dd>
-      <dt>ID</dt>
-      <dd>{annotation.id}</dd>
-      <dt>Kind</dt>
-      <dd>{annotation.kind}</dd>
-      {annotation.name && <dt>Name</dt>}
-      {annotation.name && <dd>{annotation.name}</dd>}
-      {annotation.description && <dt>Description</dt>}
-      {annotation.description && <dd>{annotation.description}</dd>}
+    </dl>
+  );
+}
+
+const PythonMorphismDisplay = (props: {annotation: PythonMorphism}) => {
+  const annotation = props.annotation;
+  return (
+    <dl className="dl-horizontal">
+      {annotation.function && <dt>Python function</dt>}
+      {annotation.function && <dd>
+        <span className="annotation-code">{annotation.function}</span>
+      </dd>}
       {annotation.class && <dt>Python class</dt>}
       {annotation.class && <dd>
         <div className="annotation-class-list">
@@ -96,7 +141,11 @@ const PythonAnnotationDisplay = (props: {annotation: PythonAnnotation}) => {
             <li key={i}>{className}</li>)}
           </ul>
         </div>
-       </dd>}
+      </dd>}
+      {annotation.method && <dt>Python method</dt>}
+      {annotation.method && <dd>
+        <span className="annotation-code">{annotation.method}</span>
+      </dd>}
     </dl>
   );
 }

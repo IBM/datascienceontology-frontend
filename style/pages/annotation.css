@@ -1,5 +1,9 @@
 @import "../bootstrap.css";
 
+.annotation-code {
+  font-family: var(--bootstrap-font-family-monospace);
+}
+
 .annotation-class-list ul {
   display: inline;
   list-style: none;

@@ -52,7 +52,7 @@ export const ConceptDisplay = (props: {concept: Concept}) => {
         </span>
         {concept.name}
       </h3>
-      <dl className="dl-horizontal" key="fields">
+      <dl className="dl-horizontal">
         <dt>ID</dt>
         <dd>{concept.id}</dd>
         <dt>Kind</dt>
