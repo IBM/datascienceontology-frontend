@@ -2,8 +2,9 @@ import * as _ from "lodash";
 import * as React from "react";
 import * as Router from "react-router-dom";
 
-import { Annotation, PythonAnnotation, PythonObject, PythonMorphism }
-  from "data-science-ontology";
+import { Annotation, PythonAnnotation, PythonObject, PythonMorphism,
+  Cache, Cytoscape } from "data-science-ontology";
+import { CytoscapeComponent } from "../components/cytoscape";
 import * as Services from "../services";
 
 import "../../style/pages/annotation.css";
@@ -126,26 +127,90 @@ const PythonObjectDisplay = (props: {annotation: PythonObject}) => {
   );
 }
 
-const PythonMorphismDisplay = (props: {annotation: PythonMorphism}) => {
-  const annotation = props.annotation;
-  return (
-    <dl className="dl-horizontal">
-      {annotation.function && <dt>Python function</dt>}
-      {annotation.function && <dd>
-        <span className="annotation-code">{annotation.function}</span>
-      </dd>}
-      {annotation.class && <dt>Python class</dt>}
-      {annotation.class && <dd>
-        <div className="annotation-class-list">
-          <ul>{annotation.class.map((className, i) =>
-            <li key={i}>{className}</li>)}
-          </ul>
-        </div>
-      </dd>}
-      {annotation.method && <dt>Python method</dt>}
-      {annotation.method && <dd>
-        <span className="annotation-code">{annotation.method}</span>
-      </dd>}
-    </dl>
-  );
+
+interface PythonMorphismProps {
+  annotation: PythonMorphism;
 }
+interface PythonMorphismState {
+  cytoscape: Cytoscape.Cytoscape;
+}
+
+export class PythonMorphismDisplay extends React.Component<PythonMorphismProps,PythonMorphismState> {
+  constructor(props: PythonMorphismProps) {
+    super(props);
+    this.state = { cytoscape: null };
+  }
+  
+  componentWillMount() {
+    this.loadCache(this.props.annotation);
+  }
+  
+  loadCache(key: AnnotationKey) {
+    Services.db.get(`cache/annotation/${key.language}/${key.package}/${key.id}`)
+      .then(doc => {
+        this.setState({ cytoscape: (doc as Cache).definition.cytoscape});
+      });
+  }
+  
+  render() {
+    const annotation = this.props.annotation;
+    const cytoscape = this.state.cytoscape;
+    return (
+      <dl className="dl-horizontal">
+        {annotation.function && <dt>Python function</dt>}
+        {annotation.function && <dd>
+          <span className="annotation-code">{annotation.function}</span>
+        </dd>}
+        {annotation.class && <dt>Python class</dt>}
+        {annotation.class && <dd>
+          <div className="annotation-class-list">
+            <ul>{annotation.class.map((className, i) =>
+              <li key={i}>{className}</li>)}
+            </ul>
+          </div>
+        </dd>}
+        {annotation.method && <dt>Python method</dt>}
+        {annotation.method && <dd>
+          <span className="annotation-code">{annotation.method}</span>
+        </dd>}
+        {cytoscape && <dt>Definition</dt>}
+        {cytoscape && <dd>
+          <CytoscapeComponent elements={cytoscape.elements}
+            layout={cytoscape.layout} style={cytoscapeStyle} />
+         </dd>}
+      </dl>
+    );
+  }
+}
+
+const cytoscapeStyle = [
+  {
+    selector: "node.graphviz",
+    style: {
+      width: "data(width)",
+      height: "data(height)",
+      shape: "roundrectangle",
+      
+      label: "data(label)",
+      "font-size": 12,
+      "text-halign": "center",
+      "text-valign": "center",
+    }
+  },
+  {
+    selector: "edge.graphviz",
+    style: {
+      // Endpoint modification not supported for default curve style ("haystack")
+      "curve-style": "bezier",
+      "source-endpoint": "data(sourceEndpoint)",
+      "target-endpoint": "data(targetEndpoint)",
+      width: "2px",
+    }
+  },
+  {
+    selector: ".graphviz-invis",
+    style: {
+      "visibility": "hidden"
+    }
+  }
+]
