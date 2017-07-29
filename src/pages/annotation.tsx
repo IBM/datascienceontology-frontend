@@ -8,6 +8,7 @@ import { CytoscapeComponent } from "../components/cytoscape";
 import * as Services from "../services";
 
 import "../../style/pages/annotation.css";
+import * as CytoscapeStyle from "../../style/cytoscape.json";
 
 
 interface AnnotationKey {
@@ -176,41 +177,9 @@ export class PythonMorphismDisplay extends React.Component<PythonMorphismProps,P
         {cytoscape && <dt>Definition</dt>}
         {cytoscape && <dd>
           <CytoscapeComponent elements={cytoscape.elements}
-            layout={cytoscape.layout} style={cytoscapeStyle} />
+            layout={cytoscape.layout} style={CytoscapeStyle as any} />
          </dd>}
       </dl>
     );
   }
 }
-
-const cytoscapeStyle = [
-  {
-    selector: "node.graphviz",
-    style: {
-      width: "data(width)",
-      height: "data(height)",
-      shape: "roundrectangle",
-      
-      label: "data(label)",
-      "font-size": 12,
-      "text-halign": "center",
-      "text-valign": "center",
-    }
-  },
-  {
-    selector: "edge.graphviz",
-    style: {
-      // Endpoint modification not supported for default curve style ("haystack")
-      "curve-style": "bezier",
-      "source-endpoint": "data(sourceEndpoint)",
-      "target-endpoint": "data(targetEndpoint)",
-      width: "2px",
-    }
-  },
-  {
-    selector: ".graphviz-invis",
-    style: {
-      "visibility": "hidden"
-    }
-  }
-]

@@ -1,0 +1,29 @@
+[
+  {
+    "selector": "node.graphviz",
+    "style": {
+      "width": "data(width)",
+      "height": "data(height)",
+      "shape": "roundrectangle",
+      "label": "data(label)",
+      "font-size": 12,
+      "text-halign": "center",
+      "text-valign": "center"
+    }
+  },
+  {
+    "selector": "edge.graphviz",
+    "style": {
+      "curve-style": "bezier",
+      "source-endpoint": "data(sourceEndpoint)",
+      "target-endpoint": "data(targetEndpoint)",
+      "width": "2px"
+    }
+  },
+  {
+    "selector": ".graphviz-invis",
+    "style": {
+      "visibility": "hidden"
+    }
+  }
+]
