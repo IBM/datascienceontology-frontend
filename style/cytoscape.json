@@ -2,10 +2,10 @@
   {
     "selector": "node.graphviz",
     "style": {
+      "label": "data(label)",
       "width": "data(width)",
       "height": "data(height)",
       "shape": "roundrectangle",
-      "label": "data(label)",
       "font-size": 12,
       "text-halign": "center",
       "text-valign": "center"
@@ -14,10 +14,12 @@
   {
     "selector": "edge.graphviz",
     "style": {
+      "label": "data(label)",
       "curve-style": "bezier",
       "source-endpoint": "data(sourceEndpoint)",
       "target-endpoint": "data(targetEndpoint)",
-      "width": "2px"
+      "width": "1px",
+      "font-size": 8
     }
   },
   {
