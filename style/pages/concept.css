@@ -1,0 +1,15 @@
+.subconcept-list ul {
+  display: inline;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.subconcept-list li {
+  display: inline;
+}
+.subconcept-list li:after {
+  content: ", ";
+}
+.subconcept-list li:last-child::after {
+  content: "";
+}

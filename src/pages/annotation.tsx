@@ -60,7 +60,7 @@ export const AnnotationDisplay = (props: {annotation: Annotation}) => {
   return (
     <div className="annotation">
       <h3>
-        <span className="text-muted" style={{"padding-right": "2em"}}>
+        <span className="text-muted" style={{paddingRight: "2em"}}>
           Annotation
         </span>
         {annotation.name || annotation.id}
@@ -72,7 +72,7 @@ export const AnnotationDisplay = (props: {annotation: Annotation}) => {
 
 const PythonAnnotationDisplay = (props: {annotation: PythonAnnotation}) => {
   const annotation = props.annotation;
-  const pythonDisplay = <dl className="dl-horizontal" style={{"margin-bottom": 0}}>
+  const pythonDisplay = <dl className="dl-horizontal" style={{marginBottom: 0}}>
     <dt>Language</dt>
     <dd>
       <a href="https://www.python.org">{annotation.language}</a>

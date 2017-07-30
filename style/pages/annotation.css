@@ -10,16 +10,13 @@
   padding: 0;
   margin: 0;
 }
-
 .annotation-class-list li {
   display: inline;
   font-family: var(--bootstrap-font-family-monospace);
 }
-
 .annotation-class-list li:after {
   content: ", ";
 }
-
 .annotation-class-list li:last-child::after {
   content: "";
 }

@@ -4,6 +4,8 @@ import * as Router from "react-router-dom";
 import { Concept } from "data-science-ontology";
 import * as Services from "../services";
 
+import "../../style/pages/concept.css";
+
 
 type ConceptPageProps = Router.RouteComponentProps<{id: string}>;
 
@@ -42,12 +44,17 @@ export class ConceptPage extends React.Component<ConceptPageProps,ConceptPageSta
 export const ConceptDisplay = (props: {concept: Concept}) => {
   const concept = props.concept
   const superconcepts = concept.subconcept === undefined ? null :
-    (concept.subconcept || []).map(id =>
-      <Router.Link key={id} to={`/concept/${id}`}>{id}</Router.Link>);
+    <div className="subconcept-list">
+      <ul>{concept.subconcept.map((id,i) =>
+        <li key={i}>
+          <Router.Link key={id} to={`/concept/${id}`}>{id}</Router.Link>
+        </li>)}
+      </ul>
+    </div>;
   return (
     <div className="concept">
       <h3>
-        <span className="text-muted" style={{"padding-right": "2em"}}>
+        <span className="text-muted" style={{paddingRight: "2em"}}>
           Concept
         </span>
         {concept.name}
