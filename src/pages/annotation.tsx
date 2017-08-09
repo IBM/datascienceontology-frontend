@@ -75,11 +75,11 @@ const PythonAnnotationDisplay = (props: {annotation: PythonAnnotation}) => {
   const pythonDisplay = <dl className="dl-horizontal" style={{marginBottom: 0}}>
     <dt>Language</dt>
     <dd>
-      <a href="https://www.python.org">{annotation.language}</a>
+      <a href="https://www.python.org" target="_blank">{annotation.language}</a>
     </dd>
     <dt>Package</dt>
     <dd>
-      <a href={`https://pypi.python.org/pypi/${annotation.package}`}>
+      <a href={`https://pypi.python.org/pypi/${annotation.package}`} target="_blank">
         {annotation.package}
       </a>
     </dd>
@@ -106,6 +106,7 @@ const PythonAnnotationDisplay = (props: {annotation: PythonAnnotation}) => {
   </div>;
 }
 
+
 const PythonObjectDisplay = (props: {annotation: PythonObject}) => {
   const annotation = props.annotation;
   const classes = typeof annotation.class === "string" ?
@@ -125,6 +126,22 @@ const PythonObjectDisplay = (props: {annotation: PythonObject}) => {
         <Router.Link to={`/concept/${annotation.definition}`}>
           {annotation.definition}
         </Router.Link>
+      </dd>
+      <dt>Slots</dt>
+      <dd>
+        <div className="slot-list">
+          <ul>{Object.keys(annotation.slots || {}).map(key => 
+            <li key={key}>
+              <Router.Link to={`/concept/${key}`}>
+                {key}
+              </Router.Link>
+              {": "}
+              <span className="annotation-code">
+                {annotation.slots[key]}
+              </span>
+            </li>)}
+          </ul>
+        </div>
       </dd>
     </dl>
   );

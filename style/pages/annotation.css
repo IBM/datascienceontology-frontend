@@ -20,3 +20,11 @@
 .annotation-class-list li:last-child::after {
   content: "";
 }
+
+.slot-list ul {
+  list-style: none;
+  padding: 0;
+}
+.slot-list ul:empty::after {
+  content: "(none)";
+}

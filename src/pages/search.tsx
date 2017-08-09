@@ -99,12 +99,9 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
   
   searchAnnotations(text: string): Promise<void> {
     const query = [
-      `key:(${text})^100`,
-      `name:(${text})^3`,
-      `description:(${text})`,
-      `class:(${text})^5`,
-      `function:(${text})^5`,
-      `method:(${text})^5`
+      `language:(${text})`, `package:(${text})^3`, `id:(${text})^100`,
+      `name:(${text})^3`, `description:(${text})`,
+      `class:(${text})`, `function:(${text})`, `method:(${text})`
     ].join(" ");
 
     return Cloudant.search<Annotation>(`${Services.db_url}/_design/search/_search/annotation`, {
