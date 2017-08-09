@@ -108,12 +108,14 @@ const PythonAnnotationDisplay = (props: {annotation: PythonAnnotation}) => {
 
 const PythonObjectDisplay = (props: {annotation: PythonObject}) => {
   const annotation = props.annotation;
+  const classes = typeof annotation.class === "string" ?
+    [ annotation.class ] : annotation.class;
   return (
     <dl className="dl-horizontal">
       <dt>Python class</dt>
       <dd>
         <div className="annotation-class-list">
-          <ul>{annotation.class.map((className, i) =>
+          <ul>{classes.map((className, i) =>
             <li key={i}>{className}</li>)}
           </ul>
         </div>
@@ -156,16 +158,18 @@ export class PythonMorphismDisplay extends React.Component<PythonMorphismProps,P
   render() {
     const annotation = this.props.annotation;
     const cytoscape = this.state.cytoscape;
+    const classes = typeof annotation.class === "string" ?
+      [ annotation.class ] : annotation.class;
     return (
       <dl className="dl-horizontal">
         {annotation.function && <dt>Python function</dt>}
         {annotation.function && <dd>
           <span className="annotation-code">{annotation.function}</span>
         </dd>}
-        {annotation.class && <dt>Python class</dt>}
-        {annotation.class && <dd>
+        {classes && <dt>Python class</dt>}
+        {classes && <dd>
           <div className="annotation-class-list">
-            <ul>{annotation.class.map((className, i) =>
+            <ul>{classes.map((className, i) =>
               <li key={i}>{className}</li>)}
             </ul>
           </div>
