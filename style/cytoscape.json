@@ -14,7 +14,7 @@
   {
     "selector": "edge.graphviz",
     "style": {
-      "label": "data(label)",
+      "label": "",
       "curve-style": "unbundled-bezier",
       "source-endpoint": "data(sourceEndpoint)",
       "target-endpoint": "data(targetEndpoint)",
@@ -25,9 +25,31 @@
     }
   },
   {
+    "selector": "edge.graphviz:selected",
+    "style": {
+      "label": "data(label)",
+      "text-background-color": "white",
+      "text-background-opacity": 1,
+      "text-background-shape": "roundrectangle",
+      "z-index": 5
+    }
+  },
+  {
     "selector": ".graphviz-invis",
     "style": {
       "visibility": "hidden"
+    }
+  },
+  {
+    "selector": "core",
+    "style": {
+      "active-bg-size": 0
+    }
+  },
+  {
+    "selector": "*:active",
+    "style": {
+      "overlay-padding": 0
     }
   }
 ]
