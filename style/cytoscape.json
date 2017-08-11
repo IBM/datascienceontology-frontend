@@ -15,9 +15,11 @@
     "selector": "edge.graphviz",
     "style": {
       "label": "data(label)",
-      "curve-style": "bezier",
+      "curve-style": "unbundled-bezier",
       "source-endpoint": "data(sourceEndpoint)",
       "target-endpoint": "data(targetEndpoint)",
+      "control-point-distances": "data(controlPointDistances)",
+      "control-point-weights": "data(controlPointWeights)",
       "width": "1px",
       "font-size": 8
     }
