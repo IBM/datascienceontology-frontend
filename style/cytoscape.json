@@ -6,9 +6,17 @@
       "width": "data(width)",
       "height": "data(height)",
       "shape": "roundrectangle",
+      "border-width": 1,
+      "background-color": "#eeeeee",
       "font-size": 12,
       "text-halign": "center",
       "text-valign": "center"
+    }
+  },
+  {
+    "selector": "node.graphviz:selected",
+    "style": {
+      "border-color": "#0169D9"
     }
   },
   {
@@ -20,7 +28,8 @@
       "target-endpoint": "data(targetEndpoint)",
       "control-point-distances": "data(controlPointDistances)",
       "control-point-weights": "data(controlPointWeights)",
-      "width": "1px",
+      "width": 1,
+      "line-color": "black",
       "font-size": 8
     }
   },
@@ -31,6 +40,7 @@
       "text-background-color": "white",
       "text-background-opacity": 1,
       "text-background-shape": "roundrectangle",
+      "line-color": "#0169D9",
       "z-index": 5
     }
   },
@@ -47,9 +57,10 @@
     }
   },
   {
-    "selector": "*:active",
+    "selector": ":active",
     "style": {
-      "overlay-padding": 0
+      "overlay-padding": 0,
+      "overlay-opacity": 0
     }
   }
 ]
