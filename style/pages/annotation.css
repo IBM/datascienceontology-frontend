@@ -28,3 +28,21 @@
 .slot-list ul:empty::after {
   content: "(none)";
 }
+
+.domain-list ol {
+  padding-left: 1em;
+  margin: 0;
+}
+.domain-list ol:empty {
+  padding: 0;
+}
+.domain-list ol:empty::after {
+  content: "(empty)";
+}
+.domain-list li {
+  font-family: var(--bootstrap-font-family-monospace);
+}
+.domain-list li:only-child {
+  list-style: none;
+  margin-left: -1em;
+}
