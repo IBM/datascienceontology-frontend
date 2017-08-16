@@ -41,6 +41,13 @@
   font-family: var(--bootstrap-font-family-monospace);
 }
 
+.morphism-definition .container {
+  padding: 0;
+}
+.morphism-definition div[class^="col"] {
+  padding: 0;
+}
+
 .s-expression ol {
   list-style: none;
   margin: 0;

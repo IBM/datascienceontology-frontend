@@ -1,6 +1,7 @@
 import * as _ from "lodash";
 import * as React from "react";
 import * as Router from "react-router-dom";
+import { Grid, Col } from "react-bootstrap";
 
 import { Annotation, PythonAnnotation, PythonObject, PythonMorphism,
   Cache, Cytoscape, SExp } from "data-science-ontology";
@@ -174,7 +175,6 @@ export class PythonMorphismDisplay extends React.Component<PythonMorphismProps,P
   
   render() {
     const annotation = this.props.annotation;
-    const cytoscape = this.state.cytoscape;
     const classes = typeof annotation.class === "string" ?
       [ annotation.class ] : annotation.class;
     return (
@@ -213,13 +213,30 @@ export class PythonMorphismDisplay extends React.Component<PythonMorphismProps,P
         </dd>
         <dt>Definition</dt>
         <dd>
-        <SExpComponent sexp={annotation.definition} />
-        {cytoscape && <CytoscapeComponent elements={cytoscape.elements}
-          layout={cytoscape.layout} style={CytoscapeStyle as any} />}
+          <MorphismDefinition sexp={annotation.definition}
+            cytoscape={this.state.cytoscape} />
         </dd>
       </dl>
     );
   }
+}
+
+const MorphismDefinition = (props: {sexp: SExp, cytoscape?: Cytoscape.Cytoscape}) => {
+  const cytoscape = props.cytoscape;
+  if (cytoscape === undefined || cytoscape === null) {
+    return <SExpComponent sexp={props.sexp} />;
+  }
+  return <div className="morphism-definition">
+    <Grid>
+      <Col md={4}>
+        <SExpComponent sexp={props.sexp} />
+      </Col>
+      <Col md={8}>
+        <CytoscapeComponent elements={cytoscape.elements}
+          layout={cytoscape.layout} style={CytoscapeStyle as any} />
+      </Col>
+    </Grid>
+  </div>;
 }
 
 class SExpComponent extends React.Component<{sexp: SExp}> {
