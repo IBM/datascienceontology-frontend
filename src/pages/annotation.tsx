@@ -3,7 +3,7 @@ import * as React from "react";
 import * as Router from "react-router-dom";
 
 import { Annotation, PythonAnnotation, PythonObject, PythonMorphism,
-  Cache, Cytoscape } from "data-science-ontology";
+  Cache, Cytoscape, SExp } from "data-science-ontology";
 import { CytoscapeComponent } from "../components/cytoscape";
 import * as Services from "../services";
 
@@ -191,6 +191,10 @@ export class PythonMorphismDisplay extends React.Component<PythonMorphismProps,P
             </ul>
           </div>
         </dd>}
+        {annotation.method && <dt>Python method</dt>}
+        {annotation.method && <dd>
+          <span className="annotation-code">{annotation.method}</span>
+        </dd>}
         <dt>Domain</dt>
         <dd>
           <div className="domain-list">
@@ -207,16 +211,38 @@ export class PythonMorphismDisplay extends React.Component<PythonMorphismProps,P
             </ol>
           </div>
         </dd>
-        {annotation.method && <dt>Python method</dt>}
-        {annotation.method && <dd>
-          <span className="annotation-code">{annotation.method}</span>
-        </dd>}
-        {cytoscape && <dt>Definition</dt>}
-        {cytoscape && <dd>
-          <CytoscapeComponent elements={cytoscape.elements}
-            layout={cytoscape.layout} style={CytoscapeStyle as any} />
-         </dd>}
+        <dt>Definition</dt>
+        <dd>
+        <SExpComponent sexp={annotation.definition} />
+        {cytoscape && <CytoscapeComponent elements={cytoscape.elements}
+          layout={cytoscape.layout} style={CytoscapeStyle as any} />}
+        </dd>
       </dl>
     );
+  }
+}
+
+class SExpComponent extends React.Component<{sexp: SExp}> {
+  render() {
+    return <div className="s-expression">
+      {this.renderSExp(this.props.sexp)}
+    </div>;
+  }
+  
+  renderSExp(sexp: SExp): JSX.Element {
+    if (typeof sexp === "string") {
+      return <Router.Link to={`/concept/${sexp}`}>{sexp}</Router.Link>;
+    }
+    return <ol>
+      {sexp.map((term,i) => {
+        let content: JSX.Element = null;
+        if (i === 0) {
+          content = <span className="s-expression-head">{term}</span>;
+        } else {
+          content = this.renderSExp(term);
+        }
+        return <li key={i}>{content}</li>;
+      })}
+    </ol>;
   }
 }

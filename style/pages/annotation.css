@@ -7,8 +7,8 @@
 .annotation-class-list ul {
   display: inline;
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 .annotation-class-list li {
   display: inline;
@@ -30,10 +30,8 @@
 }
 
 .domain-list ol {
-  padding-left: 1em;
+  list-style: none;
   margin: 0;
-}
-.domain-list ol:empty {
   padding: 0;
 }
 .domain-list ol:empty::after {
@@ -42,7 +40,15 @@
 .domain-list li {
   font-family: var(--bootstrap-font-family-monospace);
 }
-.domain-list li:only-child {
+
+.s-expression ol {
   list-style: none;
-  margin-left: -1em;
+  margin: 0;
+  padding: 0;
+}
+.s-expression li {
+  padding-left: 1em;
+}
+.s-expression li:first-child {
+  padding-left: 0;
 }
