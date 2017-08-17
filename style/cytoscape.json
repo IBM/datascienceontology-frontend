@@ -28,6 +28,7 @@
       "target-endpoint": "data(targetEndpoint)",
       "control-point-distances": "data(controlPointDistances)",
       "control-point-weights": "data(controlPointWeights)",
+      "edge-distances": "node-position",
       "width": 1,
       "line-color": "black",
       "font-size": 8
