@@ -198,16 +198,16 @@ export class PythonMorphismDisplay extends React.Component<PythonMorphismProps,P
         <dt>Domain</dt>
         <dd>
           <div className="domain-list">
-            <ol>{annotation.domain.map((arg, i) =>
-              <li key={i}>{arg}</li>)}
+            <ol>{annotation.domain.map((ob, i) =>
+              <li key={i}>{ob.slot}</li>)}
             </ol>
           </div>
         </dd>
         <dt>Codomain</dt>
         <dd>
           <div className="domain-list">
-            <ol>{annotation.codomain.map((arg, i) =>
-              <li key={i}>{arg}</li>)}
+            <ol>{annotation.codomain.map((ob, i) =>
+              <li key={i}>{ob.slot}</li>)}
             </ol>
           </div>
         </dd>
