@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Alert, PageHeader } from "react-bootstrap";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Alert, Nav, Navbar, NavItem } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 import { HomePage } from "./pages/home";
 import { AnnotationPage } from "./pages/annotation";
@@ -13,7 +14,21 @@ import "../style/main.css";
 
 const App = () =>
   <div id="app">
-    <PageHeader><Link to="/">Data Science Ontology</Link></PageHeader>
+    <Navbar>
+      <Navbar.Header>
+        <LinkContainer to="/" style={{ cursor: "pointer" }}>
+          <Navbar.Brand>Data Science Ontology</Navbar.Brand>
+        </LinkContainer>
+      </Navbar.Header>
+      <Nav>
+        <LinkContainer to="/search">
+          <NavItem>Search</NavItem>
+        </LinkContainer>
+        <LinkContainer to="/about">
+          <NavItem>About</NavItem>
+        </LinkContainer>
+      </Nav>
+    </Navbar>
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route path="/annotation/:language/:package/:id" component={AnnotationPage} />
