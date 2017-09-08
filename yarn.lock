@@ -11,8 +11,8 @@
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.0.tgz#093d67ed780d889c9543f6dca24ebee0b6b9fc45"
 
 "@types/lodash@^4.14.71":
-  version "4.14.71"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.71.tgz#0dc383f78981216ac76e2f2c3afd998e0450e4c1"
+  version "4.14.74"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.74.tgz#ac3bd8db988e7f7038e5d22bd76a7ba13f876168"
 
 "@types/pouchdb-adapter-fruitdown@*":
   version "6.1.1"
@@ -116,8 +116,8 @@
     "@types/pouchdb-core" "*"
 
 "@types/pouchdb@^6.1.1":
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/@types/pouchdb/-/pouchdb-6.1.1.tgz#4a192a9384f5cabf81598236cc31052cf1a200ba"
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@types/pouchdb/-/pouchdb-6.3.0.tgz#dbab3dda675c583ccdfd231860643f537d9a9d19"
   dependencies:
     "@types/pouchdb-adapter-fruitdown" "*"
     "@types/pouchdb-adapter-http" "*"
@@ -141,14 +141,14 @@
     "@types/react" "*"
 
 "@types/react-dom@^15.5.1":
-  version "15.5.1"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-15.5.1.tgz#f3c3e14c682785923c7d64583537df319442dec1"
+  version "15.5.4"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-15.5.4.tgz#3f75ba86a2ce9a7d1d9e7d1ee3f186f3a9652d8f"
   dependencies:
     "@types/react" "*"
 
 "@types/react-fontawesome@^1.6.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@types/react-fontawesome/-/react-fontawesome-1.6.0.tgz#e95c82c9a819a062ccd50fc5b8a182b6c668cd66"
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@types/react-fontawesome/-/react-fontawesome-1.6.1.tgz#a07ff96f89c9a778cc7abb8e66b52f0c47bb3188"
   dependencies:
     "@types/react" "*"
 
@@ -168,15 +168,15 @@
     "@types/react-router" "*"
 
 "@types/react-router@*", "@types/react-router@^4.0.14":
-  version "4.0.14"
-  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-4.0.14.tgz#dd650f40bbb20ad1fec26471707665908efa9e9f"
+  version "4.0.15"
+  resolved "https://registry.yarnpkg.com/@types/react-router/-/react-router-4.0.15.tgz#be8aaefc20afd968a5dbcffcf09060e6c2e8746e"
   dependencies:
     "@types/history" "*"
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^15.0.35":
-  version "15.0.38"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-15.0.38.tgz#6afea31a9fe66304af474106ba372ddaba449995"
+  version "15.6.2"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-15.6.2.tgz#2c8495aa853cb37591d0046e9afe544fb837c612"
 
 abbrev@1:
   version "1.1.0"
@@ -328,11 +328,11 @@ autoprefixer@^6.3.1:
     postcss-value-parser "^3.2.3"
 
 awesome-typescript-loader@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/awesome-typescript-loader/-/awesome-typescript-loader-3.2.1.tgz#600f5d552da3e5501e3e5c19aa3e8986059f8947"
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/awesome-typescript-loader/-/awesome-typescript-loader-3.2.3.tgz#aa2119b7c808a031e2b28945b031450a8975367f"
   dependencies:
     colors "^1.1.2"
-    enhanced-resolve "^3.1.0"
+    enhanced-resolve "3.3.0"
     loader-utils "^1.1.0"
     lodash "^4.17.4"
     micromatch "^3.0.3"
@@ -664,8 +664,8 @@ css-color-names@0.0.4:
   resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
 
 css-loader@^0.28.4:
-  version "0.28.4"
-  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.28.4.tgz#6cf3579192ce355e8b38d5f42dd7a1f2ec898d0f"
+  version "0.28.7"
+  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.28.7.tgz#5f2ee989dd32edd907717f953317656160999c1b"
   dependencies:
     babel-code-frame "^6.11.0"
     css-selector-tokenizer "^0.7.0"
@@ -680,7 +680,7 @@ css-loader@^0.28.4:
     postcss-modules-scope "^1.0.0"
     postcss-modules-values "^1.1.0"
     postcss-value-parser "^3.3.0"
-    source-list-map "^0.1.7"
+    source-list-map "^2.0.0"
 
 css-selector-tokenizer@^0.7.0:
   version "0.7.0"
@@ -739,8 +739,11 @@ csso@~2.3.1:
     source-map "^0.5.3"
 
 cytoscape@^3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/cytoscape/-/cytoscape-3.1.4.tgz#f9bc078f7892bc66fc489cfae0f269693ed63665"
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/cytoscape/-/cytoscape-3.2.2.tgz#76ed3b6d1cc85f6b9d3f83d3434f2df37e72482a"
+  dependencies:
+    heap "^0.2.6"
+    lodash.debounce "^4.0.8"
 
 d@1:
   version "1.0.0"
@@ -754,11 +757,11 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-debug@2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.1.tgz#79855090ba2c4e3115cc7d8769491d58f0491351"
+debug@2.6.4:
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.4.tgz#7586a9b3c39741c0282ae33445c4e8ac74734fe0"
   dependencies:
-    ms "0.7.2"
+    ms "0.7.3"
 
 debug@^2.2.0, debug@^2.3.3:
   version "2.6.8"
@@ -850,7 +853,7 @@ end-stream@~0.1.0:
   dependencies:
     write-stream "~0.4.3"
 
-enhanced-resolve@^3.1.0:
+enhanced-resolve@3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-3.3.0.tgz#950964ecc7f0332a42321b673b38dc8ff15535b3"
   dependencies:
@@ -1176,23 +1179,27 @@ hawk@~3.1.3:
     hoek "2.x.x"
     sntp "1.x.x"
 
-history@^4.5.1, history@^4.6.0:
-  version "4.6.3"
-  resolved "https://registry.yarnpkg.com/history/-/history-4.6.3.tgz#6d723a8712c581d6bef37e8c26f4aedc6eb86967"
+heap@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/heap/-/heap-0.2.6.tgz#087e1f10b046932fc8594dd9e6d378afc9d1e5ac"
+
+history@^4.7.2:
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/history/-/history-4.7.2.tgz#22b5c7f31633c5b8021c7f4a8a954ac139ee8d5b"
   dependencies:
     invariant "^2.2.1"
     loose-envify "^1.2.0"
-    resolve-pathname "^2.0.0"
-    value-equal "^0.2.0"
+    resolve-pathname "^2.2.0"
+    value-equal "^0.4.0"
     warning "^3.0.0"
 
 hoek@2.x.x:
   version "2.16.3"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
 
-hoist-non-react-statics@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
+hoist-non-react-statics@^2.3.0:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.3.1.tgz#343db84c6018c650778898240135a1420ee22ce0"
 
 html-comment-regex@^1.1.0:
   version "1.1.1"
@@ -1547,9 +1554,9 @@ leveldown@1.5.0:
     nan "~2.4.0"
     prebuild "^4.1.1"
 
-levelup@1.3.5:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/levelup/-/levelup-1.3.5.tgz#fa80a972b74011f2537c8b65678bd8b5188e4e66"
+levelup@1.3.8:
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/levelup/-/levelup-1.3.8.tgz#fb442c488efbea1043f7eb9929a792a74fbd1da6"
   dependencies:
     deferred-leveldown "~1.2.1"
     level-codec "~6.1.0"
@@ -1586,6 +1593,10 @@ lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
 
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+
 lodash.isnull@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash.isnull/-/lodash.isnull-3.0.0.tgz#fafbe59ea1dca27eed786534039dd84c2e07c56e"
@@ -1620,9 +1631,9 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3
   dependencies:
     js-tokens "^3.0.0"
 
-ltgt@2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/ltgt/-/ltgt-2.1.3.tgz#10851a06d9964b971178441c23c9e52698eece34"
+ltgt@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/ltgt/-/ltgt-2.2.0.tgz#b65ba5fcb349a29924c8e333f7c6a5562f2e4842"
 
 macaddress@^0.2.8:
   version "0.2.8"
@@ -1705,9 +1716,9 @@ mixin-deep@^1.1.3:
   dependencies:
     minimist "0.0.8"
 
-ms@0.7.2:
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.2.tgz#ae25cf2512b3885a1d95d7f037868d8431124765"
+ms@0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.3.tgz#708155a5e44e33f5fd0fc53e81d0d40a91be1fff"
 
 ms@2.0.0:
   version "2.0.0"
@@ -1895,7 +1906,7 @@ path-is-absolute@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
 
-path-to-regexp@^1.5.3:
+path-to-regexp@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-1.7.0.tgz#59fde0f435badacba103a84e9d3bc64e96b9937d"
   dependencies:
@@ -2187,111 +2198,113 @@ postcss@^6.0.1, postcss@^6.0.2:
     source-map "^0.5.6"
     supports-color "^4.1.0"
 
-pouchdb-abstract-mapreduce@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/pouchdb-abstract-mapreduce/-/pouchdb-abstract-mapreduce-6.2.0.tgz#55858d1799c89290185df56b71c843a481abcbae"
+pouchdb-abstract-mapreduce@6.3.4:
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/pouchdb-abstract-mapreduce/-/pouchdb-abstract-mapreduce-6.3.4.tgz#0d8a11ec300e3affcacbf6e9618d3eccd3f2e9ce"
   dependencies:
-    pouchdb-binary-utils "6.2.0"
-    pouchdb-collate "6.2.0"
-    pouchdb-collections "6.2.0"
-    pouchdb-mapreduce-utils "6.2.0"
-    pouchdb-md5 "6.2.0"
-    pouchdb-promise "6.2.0"
-    pouchdb-utils "6.2.0"
+    pouchdb-binary-utils "6.3.4"
+    pouchdb-collate "6.3.4"
+    pouchdb-collections "6.3.4"
+    pouchdb-mapreduce-utils "6.3.4"
+    pouchdb-md5 "6.3.4"
+    pouchdb-promise "6.3.4"
+    pouchdb-utils "6.3.4"
 
-pouchdb-binary-utils@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/pouchdb-binary-utils/-/pouchdb-binary-utils-6.2.0.tgz#dc4154c01b92fb9ad87fdf695394a91b5d9429bf"
+pouchdb-binary-utils@6.3.4:
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/pouchdb-binary-utils/-/pouchdb-binary-utils-6.3.4.tgz#9bfd1b4b3d8caccfd2b6046b1316b4f70afea9f6"
   dependencies:
     buffer-from "0.1.1"
 
-pouchdb-collate@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/pouchdb-collate/-/pouchdb-collate-6.2.0.tgz#9ee5e578de004581c148754f7decdc0b70495ffc"
+pouchdb-collate@6.3.4:
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/pouchdb-collate/-/pouchdb-collate-6.3.4.tgz#4f03245b3309fdd5f937caffc9efa0e8ee591b4d"
 
-pouchdb-collections@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/pouchdb-collections/-/pouchdb-collections-6.2.0.tgz#f532601870cbd329ba0c6005bcdd301126825be2"
+pouchdb-collections@6.3.4:
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/pouchdb-collections/-/pouchdb-collections-6.3.4.tgz#24f4dd3d7aabd630b2f5f26353fe09ddd4ef7afa"
 
-pouchdb-errors@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/pouchdb-errors/-/pouchdb-errors-6.2.0.tgz#5ccbefaf2b92e918d5d90b5a5b779376464b5907"
+pouchdb-errors@6.3.4:
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/pouchdb-errors/-/pouchdb-errors-6.3.4.tgz#abc1a84242e9276a1102e5cba1802aa08e5be45a"
   dependencies:
     inherits "2.0.3"
 
 pouchdb-find@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/pouchdb-find/-/pouchdb-find-6.2.0.tgz#a824e158e25b0816614d67e680a4d8c8a694fa1e"
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/pouchdb-find/-/pouchdb-find-6.3.4.tgz#27163e3d9a82bab2cc6db1deb73447762e8bd705"
   dependencies:
-    pouchdb-abstract-mapreduce "6.2.0"
-    pouchdb-collate "6.2.0"
-    pouchdb-md5 "6.2.0"
-    pouchdb-promise "6.2.0"
-    pouchdb-selector-core "6.2.0"
-    pouchdb-utils "6.2.0"
+    pouchdb-abstract-mapreduce "6.3.4"
+    pouchdb-collate "6.3.4"
+    pouchdb-md5 "6.3.4"
+    pouchdb-promise "6.3.4"
+    pouchdb-selector-core "6.3.4"
+    pouchdb-utils "6.3.4"
 
-pouchdb-mapreduce-utils@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/pouchdb-mapreduce-utils/-/pouchdb-mapreduce-utils-6.2.0.tgz#fe6c15eff1a6fe48d68f973c7a79ef492652ca2f"
+pouchdb-mapreduce-utils@6.3.4:
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/pouchdb-mapreduce-utils/-/pouchdb-mapreduce-utils-6.3.4.tgz#0d85fb7cc1faf078afc638fdf07d9db3ce8fdaa6"
   dependencies:
     argsarray "0.0.1"
     inherits "2.0.3"
-    pouchdb-collections "6.2.0"
-    pouchdb-utils "6.2.0"
+    pouchdb-collections "6.3.4"
+    pouchdb-utils "6.3.4"
 
-pouchdb-md5@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/pouchdb-md5/-/pouchdb-md5-6.2.0.tgz#7581fc4e932c57c78ee48d25a7d0014bff008e4d"
+pouchdb-md5@6.3.4:
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/pouchdb-md5/-/pouchdb-md5-6.3.4.tgz#364987fa184a33a48cfc7eb175a279fca113a4e8"
   dependencies:
-    pouchdb-binary-utils "6.2.0"
+    pouchdb-binary-utils "6.3.4"
     spark-md5 "3.0.0"
 
-pouchdb-promise@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/pouchdb-promise/-/pouchdb-promise-6.2.0.tgz#1e4fcec0aa0678df583e6a7b4b996ba010a608fe"
+pouchdb-promise@6.3.4:
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/pouchdb-promise/-/pouchdb-promise-6.3.4.tgz#817052fa2320293dd2dbc4be2f1cc81b02be30c2"
   dependencies:
     lie "3.1.1"
 
-pouchdb-selector-core@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/pouchdb-selector-core/-/pouchdb-selector-core-6.2.0.tgz#ab753c17182bc394e6a6b1de275331161f85e325"
+pouchdb-selector-core@6.3.4:
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/pouchdb-selector-core/-/pouchdb-selector-core-6.3.4.tgz#116958b1af9d7147143da5a5e6ee74de128a9fbc"
   dependencies:
-    pouchdb-collate "6.2.0"
-    pouchdb-utils "6.2.0"
+    pouchdb-collate "6.3.4"
+    pouchdb-utils "6.3.4"
 
-pouchdb-utils@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/pouchdb-utils/-/pouchdb-utils-6.2.0.tgz#cd8d4207a34e478b49af201ff0c51ea733244061"
+pouchdb-utils@6.3.4:
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/pouchdb-utils/-/pouchdb-utils-6.3.4.tgz#3926541ae439c019d9738d5e5c3aa9bb110e6a25"
   dependencies:
     argsarray "0.0.1"
     clone-buffer "1.0.0"
     immediate "3.0.6"
     inherits "2.0.3"
-    pouchdb-collections "6.2.0"
-    pouchdb-errors "6.2.0"
-    pouchdb-promise "6.2.0"
+    pouchdb-collections "6.3.4"
+    pouchdb-errors "6.3.4"
+    pouchdb-promise "6.3.4"
+    uuid "^3.1.0"
 
 pouchdb@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/pouchdb/-/pouchdb-6.2.0.tgz#5c8521b46cfc83644ca7fc61a7b240d2ce17dc0d"
+  version "6.3.4"
+  resolved "https://registry.yarnpkg.com/pouchdb/-/pouchdb-6.3.4.tgz#e3c8596d19cc12f7474ca48d5d3800affaf701b1"
   dependencies:
     argsarray "0.0.1"
     buffer-from "0.1.1"
     clone-buffer "1.0.0"
-    debug "2.6.1"
+    debug "2.6.4"
     double-ended-queue "2.1.0-0"
     immediate "3.0.6"
     inherits "2.0.3"
     level-codec "7.0.0"
     level-write-stream "1.0.0"
     leveldown "1.5.0"
-    levelup "1.3.5"
+    levelup "1.3.8"
     lie "3.1.1"
-    ltgt "2.1.3"
+    ltgt "2.2.0"
     readable-stream "1.0.33"
     request "2.80.0"
     spark-md5 "3.0.0"
     through2 "2.0.3"
+    uuid "^3.1.0"
     vuvuzela "1.0.3"
 
 prebuild@^4.1.1:
@@ -2392,8 +2405,8 @@ rc@^1.0.3:
     strip-json-comments "~2.0.1"
 
 react-bootstrap@^0.31.1:
-  version "0.31.1"
-  resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-0.31.1.tgz#679c9f73ae77ff207867d536496207291f3a3ed7"
+  version "0.31.3"
+  resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-0.31.3.tgz#db2b7d45b00b5dac1ab8b6de3dd97feb3091b849"
   dependencies:
     babel-runtime "^6.11.6"
     classnames "^2.2.5"
@@ -2445,35 +2458,25 @@ react-router-bootstrap@^0.24.3:
     prop-types "^15.5.10"
 
 react-router-dom@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.1.2.tgz#7f8a7ca868d32acadd19ca09543b40d26df8ec37"
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.2.2.tgz#c8a81df3adc58bba8a76782e946cbd4eae649b8d"
   dependencies:
-    history "^4.5.1"
-    loose-envify "^1.3.1"
-    prop-types "^15.5.4"
-    react-router "^4.1.1"
-
-react-router@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-4.1.1.tgz#d448f3b7c1b429a6fbb03395099949c606b1fe95"
-  dependencies:
-    history "^4.6.0"
-    hoist-non-react-statics "^1.2.0"
+    history "^4.7.2"
     invariant "^2.2.2"
     loose-envify "^1.3.1"
-    path-to-regexp "^1.5.3"
     prop-types "^15.5.4"
+    react-router "^4.2.0"
     warning "^3.0.0"
 
-react-router@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-4.1.2.tgz#7ae027341abc42eb08ad9f7a8cac08d0563672ce"
+react-router@^4.1.2, react-router@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-4.2.0.tgz#61f7b3e3770daeb24062dae3eedef1b054155986"
   dependencies:
-    history "^4.6.0"
-    hoist-non-react-statics "^1.2.0"
+    history "^4.7.2"
+    hoist-non-react-statics "^2.3.0"
     invariant "^2.2.2"
     loose-envify "^1.3.1"
-    path-to-regexp "^1.5.3"
+    path-to-regexp "^1.7.0"
     prop-types "^15.5.4"
     warning "^3.0.0"
 
@@ -2656,9 +2659,9 @@ require-from-string@^1.1.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-1.2.1.tgz#529c9ccef27380adfec9a2f965b649bbee636418"
 
-resolve-pathname@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/resolve-pathname/-/resolve-pathname-2.1.0.tgz#e8358801b86b83b17560d4e3c382d7aef2100944"
+resolve-pathname@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/resolve-pathname/-/resolve-pathname-2.2.0.tgz#7e9ae21ed815fd63ab189adeee64dc831eefa879"
 
 resolve-url@^0.2.1:
   version "0.2.1"
@@ -2770,9 +2773,9 @@ sort-keys@^1.0.0:
   dependencies:
     is-plain-obj "^1.0.0"
 
-source-list-map@^0.1.7:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-0.1.8.tgz#c550b2ab5427f6b3f21f5afead88c4f5587b2106"
+source-list-map@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-2.0.0.tgz#aaa47403f7b245a92fbc97ea08f250d6087ed085"
 
 source-map-loader@^0.2.1:
   version "0.2.1"
@@ -3018,8 +3021,8 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
 typescript@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.4.1.tgz#c3ccb16ddaa0b2314de031e7e6fee89e5ba346bc"
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.5.2.tgz#038a95f7d9bbb420b1bf35ba31d4c5c1dd3ffe34"
 
 ua-parser-js@^0.7.9:
   version "0.7.13"
@@ -3089,7 +3092,7 @@ util-extend@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/util-extend/-/util-extend-1.0.3.tgz#a7c216d267545169637b3b6edc6ca9119e2ff93f"
 
-uuid@^3.0.0:
+uuid@^3.0.0, uuid@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
 
@@ -3097,9 +3100,9 @@ validate.io-undefined@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/validate.io-undefined/-/validate.io-undefined-1.0.3.tgz#7e27fcbb315b841e78243431897671929e20b7f4"
 
-value-equal@^0.2.0:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/value-equal/-/value-equal-0.2.1.tgz#c220a304361fce6994dbbedaa3c7e1a1b895871d"
+value-equal@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/value-equal/-/value-equal-0.4.0.tgz#c5bdd2f54ee093c04839d71ce2e4758a6890abc7"
 
 vendors@^1.0.0:
   version "1.0.1"

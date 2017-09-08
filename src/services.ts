@@ -1,4 +1,4 @@
-import * as PouchDB from "pouchdb";
+import PouchDB from "pouchdb";
 
 // CouchDB via PouchDB
 const db_origin = "***REMOVED***";
