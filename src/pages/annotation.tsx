@@ -4,7 +4,7 @@ import * as Router from "react-router-dom";
 import { Grid, Col } from "react-bootstrap";
 
 import { Annotation, PythonAnnotation, PythonObject, PythonMorphism,
-  Cache, Cytoscape, SExp } from "data-science-ontology";
+  AnnotationCache, Cytoscape, SExp } from "data-science-ontology";
 import { CytoscapeComponent } from "../components/cytoscape";
 import * as Services from "../services";
 
@@ -167,9 +167,10 @@ export class PythonMorphismDisplay extends React.Component<PythonMorphismProps,P
   }
   
   loadCache(key: AnnotationKey) {
-    Services.db.get(`cache/annotation/${key.language}/${key.package}/${key.id}`)
+    Services.app_db.get(`annotation/${key.language}/${key.package}/${key.id}`)
       .then(doc => {
-        this.setState({ cytoscape: (doc as Cache).definition.cytoscape});
+        const cache = doc as AnnotationCache;
+        this.setState({ cytoscape: cache.definition.cytoscape});
       });
   }
   
