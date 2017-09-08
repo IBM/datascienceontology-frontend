@@ -2,9 +2,8 @@ import * as React from "react";
 import * as Router from "react-router-dom";
 import FontAwesome = require("react-fontawesome");
 
-import { Annotation, Concept } from "data-science-ontology";
+import { Config, Concept, Annotation } from "data-science-ontology";
 import * as Cloudant from "../cloudant";
-import * as Services from "../services";
 import { SearchBar } from "../components/search_bar";
 
 import "../../style/pages/search.css";
@@ -90,7 +89,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
       `description:(${text})`, // Inexact match on description
     ].join(" ");
     
-    return Cloudant.search<Concept>(`${Services.db_url}/_design/search/_search/concept`, {
+    return Cloudant.search<Concept>(`${Config.db_url}/_design/search/_search/concept`, {
       query: query,
       limit: 10
     }).then(response => {
@@ -108,7 +107,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
       `class:(${text})`, `function:(${text})`, `method:(${text})`
     ].join(" ");
 
-    return Cloudant.search<Annotation>(`${Services.db_url}/_design/search/_search/annotation`, {
+    return Cloudant.search<Annotation>(`${Config.db_url}/_design/search/_search/annotation`, {
       query: query,
       limit: 10
     }).then(response => {
