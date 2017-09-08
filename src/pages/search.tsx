@@ -10,13 +10,17 @@ import { SearchBar } from "../components/search_bar";
 import "../../style/pages/search.css";
 
 
-type SearchPageProps = Router.RouteComponentProps<{query: string}>;
+type SearchPageProps = Router.RouteComponentProps<{query?: string}>;
 
-export const SearchPage = (props: SearchPageProps) =>
-  <section className="search">
-    <OntologySearchBar/>
-    <OntologyResults query={props.match.params.query} />
-  </section>;
+export const SearchPage = (props: SearchPageProps) => {
+  const query = props.match.params.query;
+  return (
+    <section className="search">
+      <OntologySearchBar/>
+      {query && <OntologyResults query={query} />}
+    </section>
+  );
+}
 
 
 type OntologySearchBarProps = Router.RouteComponentProps<{query?: string}>;

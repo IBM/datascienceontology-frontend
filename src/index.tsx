@@ -33,7 +33,7 @@ const App = () =>
       <Route exact path="/" component={HomePage} />
       <Route path="/annotation/:language/:package/:id" component={AnnotationPage} />
       <Route path="/concept/:id" component={ConceptPage} />
-      <Route path="/search/:query" component={SearchPage} />
+      <Route path="/search/:query?" component={SearchPage} />
       <Route component={Error404Page} />
     </Switch>
   </div>;

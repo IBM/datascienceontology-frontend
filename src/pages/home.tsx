@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Grid, Col, Button, Jumbotron } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 import * as Services from "../services";
 import { OntologySearchBar } from "./search";
@@ -12,7 +13,10 @@ export const HomePage = () =>
         <Jumbotron>
           <Welcome/>
           <OntologySearchBar/>
-          <Button bsStyle="primary">Learn more</Button>
+          <br/>
+          <LinkContainer to="/about">
+            <Button bsStyle="primary">Learn more</Button>
+          </LinkContainer>
         </Jumbotron>
        </Col>
     </Grid>
