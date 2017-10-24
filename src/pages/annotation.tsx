@@ -4,7 +4,8 @@ import * as Router from "react-router-dom";
 import { Grid, Col } from "react-bootstrap";
 
 import { Annotation, PythonAnnotation, PythonObject, PythonMorphism,
-  AnnotationCache, Cytoscape, SExp } from "data-science-ontology";
+  AnnotationCache } from "data-science-ontology";
+import { Cytoscape, SExp } from "open-discovery";
 import { CytoscapeComponent } from "../components/cytoscape";
 import * as Services from "../services";
 

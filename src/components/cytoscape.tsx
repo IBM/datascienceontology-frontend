@@ -1,7 +1,7 @@
 import * as React from "react";
 import cytoscape = require("cytoscape");
 
-import { Cytoscape } from "data-science-ontology";
+import { Cytoscape } from "open-discovery";
 
 
 /** React componet wrapping Cytoscape.js.
