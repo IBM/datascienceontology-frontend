@@ -2,7 +2,7 @@ import * as React from "react";
 import * as Router from "react-router-dom";
 import FontAwesome = require("react-fontawesome");
 
-import { Config, Concept, Annotation } from "data-science-ontology";
+import { Config, Concept, Annotation } from "open-discovery";
 import { SearchBar } from "open-discovery-components";
 import * as Cloudant from "../cloudant";
 

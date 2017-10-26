@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
 
-import { Concept, MorphismConcept, DomainObject } from "data-science-ontology";
+import { Concept, MorphismConcept, DomainObject } from "open-discovery";
 import * as Services from "../services";
 
 import "../../style/pages/concept.css";

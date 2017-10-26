@@ -1,5 +1,5 @@
 import PouchDB from "pouchdb";
-import { Config } from "data-science-ontology";
+import * as Config from "./config";
 
 /* CouchDB database for data science ontology. */
 export const db = new PouchDB(Config.db_url);

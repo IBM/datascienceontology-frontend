@@ -3,10 +3,10 @@ import * as React from "react";
 import * as Router from "react-router-dom";
 import { Grid, Col } from "react-bootstrap";
 
-import { Annotation, PythonAnnotation, PythonObject, PythonMorphism,
-  AnnotationCache } from "data-science-ontology";
-import { Cytoscape, SExp } from "open-discovery";
+import { Annotation, PythonAnnotation, PythonObject, PythonMorphism, 
+  Cytoscape, SExp } from "open-discovery";
 import { CytoscapeComponent } from "open-discovery-components";
+import { AnnotationCache } from "../interfaces/annotation_cache";
 import * as Services from "../services";
 
 import "../../style/pages/annotation.css";
