@@ -6,7 +6,7 @@ import { Grid, Col } from "react-bootstrap";
 import { Annotation, PythonAnnotation, PythonObject, PythonMorphism,
   AnnotationCache } from "data-science-ontology";
 import { Cytoscape, SExp } from "open-discovery";
-import { CytoscapeComponent } from "../components/cytoscape";
+import { CytoscapeComponent } from "open-discovery-components";
 import * as Services from "../services";
 
 import "../../style/pages/annotation.css";

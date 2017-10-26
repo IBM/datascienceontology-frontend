@@ -3,8 +3,8 @@ import * as Router from "react-router-dom";
 import FontAwesome = require("react-fontawesome");
 
 import { Config, Concept, Annotation } from "data-science-ontology";
+import { SearchBar } from "open-discovery-components";
 import * as Cloudant from "../cloudant";
-import { SearchBar } from "../components/search_bar";
 
 import "../../style/pages/search.css";
 

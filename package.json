@@ -22,6 +22,8 @@
     "@types/react-router-dom": "^4.0.8",
     "cytoscape": "3.1.5",
     "lodash": "^4.17.4",
+    "open-discovery": "file:.yalc/open-discovery",
+    "open-discovery-components": "file:.yalc/open-discovery-components",
     "pouchdb": "^6.2.0",
     "pouchdb-find": "^6.2.0",
     "react": "^16.0.0",
