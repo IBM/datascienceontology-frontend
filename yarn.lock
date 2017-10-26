@@ -142,9 +142,9 @@
     "@types/pouchdb-node" "*"
     "@types/pouchdb-replication" "*"
 
-"@types/react-bootstrap@^0.31.4":
-  version "0.31.4"
-  resolved "https://registry.yarnpkg.com/@types/react-bootstrap/-/react-bootstrap-0.31.4.tgz#5ffc4a8090d61eaf3639df1c8b089428db9270ff"
+"@types/react-bootstrap@^0.31.6":
+  version "0.31.6"
+  resolved "https://registry.yarnpkg.com/@types/react-bootstrap/-/react-bootstrap-0.31.6.tgz#9f69c11e8389fdfbbdf19bfc3ec9822dd28f2423"
   dependencies:
     "@types/react" "*"
 
@@ -1861,8 +1861,11 @@ once@^1.3.0, once@^1.3.1, once@^1.4.0:
   dependencies:
     wrappy "1"
 
+"open-discovery-components@file:.yalc/open-discovery-components":
+  version "0.1.0-03b424d6"
+
 "open-discovery@file:.yalc/open-discovery":
-  version "0.1.0-610f7036"
+  version "0.1.0-2cb29542"
   dependencies:
     "@types/lodash" "^4.14.72"
     lodash "^4.17.4"
@@ -2402,9 +2405,9 @@ rc@^1.0.3:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-bootstrap@^0.31.3:
-  version "0.31.3"
-  resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-0.31.3.tgz#db2b7d45b00b5dac1ab8b6de3dd97feb3091b849"
+react-bootstrap@^0.31.5:
+  version "0.31.5"
+  resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-0.31.5.tgz#57040fa8b1274e1e074803c21a1b895fdabea05a"
   dependencies:
     babel-runtime "^6.11.6"
     classnames "^2.2.5"
@@ -2413,8 +2416,7 @@ react-bootstrap@^0.31.3:
     keycode "^2.1.2"
     prop-types "^15.5.10"
     prop-types-extra "^1.0.1"
-    react-overlays "^0.7.0"
-    react-prop-types "^0.4.0"
+    react-overlays "^0.7.4"
     uncontrollable "^4.1.0"
     warning "^3.0.0"
 
@@ -2433,20 +2435,14 @@ react-fontawesome@^1.6.1:
   dependencies:
     prop-types "^15.5.6"
 
-react-overlays@^0.7.0:
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/react-overlays/-/react-overlays-0.7.2.tgz#03808f80d99dfadd93d67438c619aa55d07b3f80"
+react-overlays@^0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/react-overlays/-/react-overlays-0.7.4.tgz#ef2ec652c3444ab8aa014262b18f662068e56d5c"
   dependencies:
     classnames "^2.2.5"
     dom-helpers "^3.2.1"
     prop-types "^15.5.10"
     prop-types-extra "^1.0.1"
-    warning "^3.0.0"
-
-react-prop-types@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/react-prop-types/-/react-prop-types-0.4.0.tgz#f99b0bfb4006929c9af2051e7c1414a5c75b93d0"
-  dependencies:
     warning "^3.0.0"
 
 react-router-bootstrap@^0.24.4:
