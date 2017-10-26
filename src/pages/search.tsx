@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
+import { Tabs, Tab } from "react-bootstrap";
 import FontAwesome = require("react-fontawesome");
 
 import { Config, Concept, Annotation } from "open-discovery";
@@ -122,36 +123,28 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
     if (this.state.loading) {
       return <FontAwesome name="spinner" spin/>;
     }
-    
-    const conceptResults = this.state.total_concepts > 0 ?
-      <section className="concept-results">
-        <h2>Concepts</h2>
-        <ul>
-          {this.state.concepts.map(concept =>
-            <li key={concept.id} >
-              <ConceptResult concept={concept} />
-            </li>)}
-        </ul>
-      </section> : null;
-    
-    const annotationResults = this.state.total_annotations > 0 ?
-      <section className="annotation-results">
-        <h2>Annotations</h2>
-        <ul>
-          {this.state.annotations.map((annotation,i) =>
-            <li key={i} >
-              <AnnotationResult annotation={annotation} />
-            </li>)}
-        </ul>
-      </section> : null;
-    
+        
     return <section className="search-results">
-      <p className="text-muted">
-        {this.state.total_concepts} concepts, {" "}
-        {this.state.total_annotations} annotations
-      </p>
-      {conceptResults}
-      {annotationResults}
+      <Tabs>
+        <Tab eventKey={1} disabled={this.state.total_concepts === 0}
+             title={`Concepts (${this.state.total_concepts})`}>
+          <ul>
+            {this.state.concepts.map(concept =>
+              <li key={concept.id} >
+                <ConceptResult concept={concept} />
+              </li>)}
+          </ul>
+        </Tab>
+        <Tab eventKey={2} disabled={this.state.total_annotations === 0}
+             title={`Annotations (${this.state.total_annotations})`}>
+          <ul>
+            {this.state.annotations.map((annotation,i) =>
+              <li key={i} >
+                <AnnotationResult annotation={annotation} />
+              </li>)}
+          </ul>
+        </Tab>
+      </Tabs>
     </section>;
   }
 }
