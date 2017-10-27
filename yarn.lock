@@ -772,9 +772,12 @@ csso@~2.3.1:
     clap "^1.0.9"
     source-map "^0.5.3"
 
-cytoscape@3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/cytoscape/-/cytoscape-3.1.5.tgz#683617e9fe03d503fc46357de0a8e6ede6c5fc5a"
+cytoscape@^3.2.5:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/cytoscape/-/cytoscape-3.2.5.tgz#cd50ab9fcd6a12e51d2e8e5a13f1e5aeb2cd84c8"
+  dependencies:
+    heap "^0.2.6"
+    lodash.debounce "^4.0.8"
 
 d@1:
   version "1.0.0"
@@ -1249,6 +1252,10 @@ hawk@~6.0.2:
     cryptiles "3.x.x"
     hoek "4.x.x"
     sntp "2.x.x"
+
+heap@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/heap/-/heap-0.2.6.tgz#087e1f10b046932fc8594dd9e6d378afc9d1e5ac"
 
 history@^4.7.2:
   version "4.7.2"
@@ -1734,6 +1741,10 @@ loader-utils@~0.2.2:
 lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
+
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
 
 lodash.isnull@^3.0.0:
   version "3.0.0"
