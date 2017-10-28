@@ -5,9 +5,10 @@ import { Grid, Col } from "react-bootstrap";
 
 import { Annotation, PythonAnnotation, PythonObject, PythonMorphism, 
   Cytoscape, SExp } from "open-discovery";
-import { CytoscapeComponent } from "open-discovery-components";
+import { CytoscapeComponent,
+  displayCouchDocument } from "open-discovery-components";
 import { AnnotationCache } from "../interfaces/annotation_cache";
-import * as Services from "../services";
+import * as Config from "../config";
 
 import "../../style/pages/annotation.css";
 import * as CytoscapeStyle from "../../style/cytoscape.json";
@@ -20,41 +21,14 @@ interface AnnotationKey {
 }
 type AnnotationPageProps = Router.RouteComponentProps<AnnotationKey>;
 
-interface AnnotationPageState {
-  annotation: Annotation;
+export const AnnotationPage = (props: AnnotationPageProps) => {
+  const key = props.match.params;
+  const docId = `annotation/${key.language}/${key.package}/${key.id}`;
+  return <AnnotationDisplayCouchDB db={Config.db_url} docId={docId} />;
 }
 
-export class AnnotationPage extends React.Component<AnnotationPageProps,AnnotationPageState> {
-  constructor(props: AnnotationPageProps) {
-    super(props);
-    this.state = { annotation: null };
-  }
-  
-  componentWillMount() {
-    this.setAnnotation(this.props.match.params);
-  }
-  componentWillReceiveProps(nextProps: AnnotationPageProps) {
-    if (!_.isEqual(this.props.match.params, nextProps.match.params)) {
-      this.setAnnotation(nextProps.match.params);
-    }
-  }
-  
-  setAnnotation(key: AnnotationKey) {
-    Services.db.get(`annotation/${key.language}/${key.package}/${key.id}`)
-      .then(doc => {
-        this.setState({annotation: doc as Annotation});
-      });
-  }
-  
-  render() {
-    return this.state.annotation &&
-      <AnnotationDisplay annotation={this.state.annotation}/>;
-  }  
-}
-
-
-export const AnnotationDisplay = (props: {annotation: Annotation}) => {
-  const annotation = props.annotation;
+export const AnnotationDisplay = (props: {doc: Annotation}) => {
+  const annotation = props.doc;
   let languageDisplay = null;
   if (annotation.language == "python") {
     languageDisplay = <PythonAnnotationDisplay annotation={annotation as PythonAnnotation} />;
@@ -71,6 +45,8 @@ export const AnnotationDisplay = (props: {annotation: Annotation}) => {
     </div>
   );
 }
+const AnnotationDisplayCouchDB = displayCouchDocument(AnnotationDisplay);
+
 
 const PythonAnnotationDisplay = (props: {annotation: PythonAnnotation}) => {
   const annotation = props.annotation;
@@ -107,7 +83,6 @@ const PythonAnnotationDisplay = (props: {annotation: PythonAnnotation}) => {
     {kindDisplay}
   </div>;
 }
-
 
 const PythonObjectDisplay = (props: {annotation: PythonObject}) => {
   const annotation = props.annotation;
@@ -149,97 +124,68 @@ const PythonObjectDisplay = (props: {annotation: PythonObject}) => {
   );
 }
 
-
-interface PythonMorphismProps {
-  annotation: PythonMorphism;
-}
-interface PythonMorphismState {
-  cytoscape: Cytoscape.Cytoscape;
-}
-
-export class PythonMorphismDisplay extends React.Component<PythonMorphismProps,PythonMorphismState> {
-  constructor(props: PythonMorphismProps) {
-    super(props);
-    this.state = { cytoscape: null };
-  }
-  
-  componentWillMount() {
-    this.loadCache(this.props.annotation);
-  }
-  
-  loadCache(key: AnnotationKey) {
-    Services.app_db.get(`annotation/${key.language}/${key.package}/${key.id}`)
-      .then(doc => {
-        const cache = doc as AnnotationCache;
-        this.setState({ cytoscape: cache.definition.cytoscape});
-      });
-  }
-  
-  render() {
-    const annotation = this.props.annotation;
-    const classes = typeof annotation.class === "string" ?
-      [ annotation.class ] : annotation.class;
-    return (
-      <dl className="dl-horizontal">
-        {annotation.function && <dt>Python function</dt>}
-        {annotation.function && <dd>
-          <span className="annotation-code">{annotation.function}</span>
-        </dd>}
-        {classes && <dt>Python class</dt>}
-        {classes && <dd>
-          <div className="annotation-class-list">
-            <ul>{classes.map((className, i) =>
-              <li key={i}>{className}</li>)}
-            </ul>
-          </div>
-        </dd>}
-        {annotation.method && <dt>Python method</dt>}
-        {annotation.method && <dd>
-          <span className="annotation-code">{annotation.method}</span>
-        </dd>}
-        <dt>Domain</dt>
-        <dd>
-          <div className="domain-list">
-            <ol>{annotation.domain.map((ob, i) =>
-              <li key={i}>{ob.slot}</li>)}
-            </ol>
-          </div>
-        </dd>
-        <dt>Codomain</dt>
-        <dd>
-          <div className="domain-list">
-            <ol>{annotation.codomain.map((ob, i) =>
-              <li key={i}>{ob.slot}</li>)}
-            </ol>
-          </div>
-        </dd>
-        <dt>Definition</dt>
-        <dd>
-          <MorphismDefinition sexp={annotation.definition}
-            cytoscape={this.state.cytoscape} />
-        </dd>
-      </dl>
-    );
-  }
+const PythonMorphismDisplay = (props: {annotation: PythonMorphism}) => {
+  const annotation = props.annotation;
+  const classes = typeof annotation.class === "string" ?
+    [ annotation.class ] : annotation.class;
+  const cacheId = `annotation/${annotation.language}/${annotation.package}/${annotation.id}`;
+  return (
+    <dl className="dl-horizontal">
+      {annotation.function && <dt>Python function</dt>}
+      {annotation.function && <dd>
+        <span className="annotation-code">{annotation.function}</span>
+      </dd>}
+      {classes && <dt>Python class</dt>}
+      {classes && <dd>
+        <div className="annotation-class-list">
+          <ul>{classes.map((className, i) =>
+            <li key={i}>{className}</li>)}
+          </ul>
+        </div>
+      </dd>}
+      {annotation.method && <dt>Python method</dt>}
+      {annotation.method && <dd>
+        <span className="annotation-code">{annotation.method}</span>
+      </dd>}
+      <dt>Domain</dt>
+      <dd>
+        <div className="domain-list">
+          <ol>{annotation.domain.map((ob, i) =>
+            <li key={i}>{ob.slot}</li>)}
+          </ol>
+        </div>
+      </dd>
+      <dt>Codomain</dt>
+      <dd>
+        <div className="domain-list">
+          <ol>{annotation.codomain.map((ob, i) =>
+            <li key={i}>{ob.slot}</li>)}
+          </ol>
+        </div>
+      </dd>
+      <dt>Definition</dt>
+      <dd>
+        <Grid>
+          <Col md={4}>
+            <SExpComponent sexp={annotation.definition} />
+          </Col>
+          <Col md={8}>
+            <MorphismDiagramCouchDB db={Config.app_db_url} docId={cacheId} />
+          </Col>
+        </Grid>
+      </dd>
+    </dl>
+  );
 }
 
-const MorphismDefinition = (props: {sexp: SExp, cytoscape?: Cytoscape.Cytoscape}) => {
-  const cytoscape = props.cytoscape;
-  if (cytoscape === undefined || cytoscape === null) {
-    return <SExpComponent sexp={props.sexp} />;
-  }
-  return <div className="morphism-definition">
-    <Grid>
-      <Col md={4}>
-        <SExpComponent sexp={props.sexp} />
-      </Col>
-      <Col md={8}>
-        <CytoscapeComponent elements={cytoscape.elements}
+const MorphismDiagram = (props: {doc: AnnotationCache}) => {
+  const cache = props.doc;
+  const cytoscape = cache.definition.cytoscape;
+  return <CytoscapeComponent elements={cytoscape.elements}
           layout={cytoscape.layout} style={CytoscapeStyle as any} />
-      </Col>
-    </Grid>
-  </div>;
 }
+const MorphismDiagramCouchDB = displayCouchDocument(MorphismDiagram);
+
 
 class SExpComponent extends React.Component<{sexp: SExp}> {
   render() {

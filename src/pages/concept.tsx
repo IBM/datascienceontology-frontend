@@ -2,47 +2,22 @@ import * as React from "react";
 import * as Router from "react-router-dom";
 
 import { Concept, MorphismConcept, DomainObject } from "open-discovery";
-import * as Services from "../services";
+import { displayCouchDocument } from "open-discovery-components";
+import * as Config from "../config";
 
 import "../../style/pages/concept.css";
 
 
 type ConceptPageProps = Router.RouteComponentProps<{id: string}>;
 
-interface ConceptPageState {
-  concept: Concept;
+export const ConceptPage = (props: ConceptPageProps) => {
+  const id = props.match.params.id;
+  const docId = `concept/data-science/${id}`;
+  return <ConceptDisplayCouchDB db={Config.db_url} docId={docId} />;
 }
 
-export class ConceptPage extends React.Component<ConceptPageProps,ConceptPageState> {
-  constructor(props: ConceptPageProps) {
-    super(props);
-    this.state = { concept: null };
-  }
-  
-  componentWillMount() {
-    this.setConcept(this.props.match.params.id);
-  }
-  componentWillReceiveProps(nextProps: ConceptPageProps) {
-    if (this.props.match.params.id != nextProps.match.params.id) {
-      this.setConcept(nextProps.match.params.id);
-    }
-  }
-  
-  setConcept(id: string) {
-    Services.db.get(`concept/data-science/${id}`)
-      .then(doc => {
-        this.setState({concept: doc as Concept});
-      });
-  }
-  
-  render() {
-    return this.state.concept && <ConceptDisplay concept={this.state.concept}/>;
-  }
-}
-
-
-export const ConceptDisplay = (props: {concept: Concept}) => {
-  const concept = props.concept
+export const ConceptDisplay = (props: {doc: Concept}) => {
+  const concept = props.doc;
   const superconcepts = concept.subconcept === undefined ? null :
     <div className="subconcept-list">
       <ul>{concept.subconcept.map((id,i) =>
@@ -78,6 +53,7 @@ export const ConceptDisplay = (props: {concept: Concept}) => {
     </div>
   );
 }
+const ConceptDisplayCouchDB = displayCouchDocument(ConceptDisplay);
 
 const MorphismDisplay = (props: {concept: MorphismConcept}) => {
   const concept = props.concept;
