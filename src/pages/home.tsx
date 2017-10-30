@@ -1,8 +1,9 @@
 import * as React from "react";
 import { Grid, Col, Button, Jumbotron } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import Client from "davenport";
 
-import * as Services from "../services";
+import * as Config from "../config";
 import { OntologySearchBar } from "./search";
 
 
@@ -38,8 +39,10 @@ export class Welcome extends React.Component<{},IWelcomeState> {
   }
   
   componentWillMount() {
-    Services.db.query("query/schema_index", {
-      group: true
+    const client = new Client(Config.db_origin, Config.db_name);
+    client.view<number>("query", "schema_index", {
+      group: true,
+      reduce: true,
     }).then(result => {
       const getCount = (schema: string) =>
         result.rows.find(row => row.key[0] === schema).value;

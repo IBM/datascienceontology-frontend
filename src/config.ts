@@ -1,4 +1,5 @@
-const db_origin = "***REMOVED***";
+// URL of CouchDB deployment
+export const db_origin = "***REMOVED***";
 
 // DSO database
 export const db_name = "data-science-ontology";

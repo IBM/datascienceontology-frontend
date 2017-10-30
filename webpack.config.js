@@ -20,7 +20,10 @@ module.exports = {
       {
         enforce: "pre",
         test: /\.js$/,
-        loader: "source-map-loader"
+        loader: "source-map-loader",
+        exclude: [
+          __dirname + "/node_modules/davenport"
+        ]
       },
       // Bundle all imported '.css' files.
       {
