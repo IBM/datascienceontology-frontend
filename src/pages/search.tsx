@@ -3,9 +3,10 @@ import * as Router from "react-router-dom";
 import { Tabs, Tab } from "react-bootstrap";
 import FontAwesome = require("react-fontawesome");
 
-import { Config, Concept, Annotation } from "open-discovery";
+import { Concept, Annotation } from "open-discovery";
 import { SearchBar } from "open-discovery-components";
 import * as Cloudant from "../cloudant";
+import * as Config from "../config";
 
 import "../../style/pages/search.css";
 

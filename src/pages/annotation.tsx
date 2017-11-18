@@ -88,6 +88,7 @@ const PythonObjectDisplay = (props: {annotation: PythonObject}) => {
   const annotation = props.annotation;
   const classes = typeof annotation.class === "string" ?
     [ annotation.class ] : annotation.class;
+  const slots = annotation.slots || [];
   return (
     <dl className="dl-horizontal">
       <dt>Python class</dt>
@@ -107,15 +108,13 @@ const PythonObjectDisplay = (props: {annotation: PythonObject}) => {
       <dt>Slots</dt>
       <dd>
         <div className="slot-list">
-          <ul>{Object.keys(annotation.slots || {}).map(key => 
-            <li key={key}>
-              <Router.Link to={`/concept/${key}`}>
-                {key}
-              </Router.Link>
-              {": "}
+          <ul>{slots.map((slot, i) =>
+            <li key={i}>
               <span className="annotation-code">
-                {annotation.slots[key]}
+                {slot.slot}
               </span>
+              {": "}
+              <SExpComponent sexp={slot.definition} />
             </li>)}
           </ul>
         </div>
@@ -189,9 +188,9 @@ const MorphismDiagramCouchDB = displayCouchDocument(MorphismDiagram);
 
 class SExpComponent extends React.Component<{sexp: SExp}> {
   render() {
-    return <div className="s-expression">
+    return <span className="s-expression">
       {this.renderSExp(this.props.sexp)}
-    </div>;
+    </span>;
   }
   
   renderSExp(sexp: SExp): JSX.Element {
