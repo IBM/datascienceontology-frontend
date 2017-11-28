@@ -18,17 +18,12 @@ export const ConceptPage = (props: ConceptPageProps) => {
 
 export const ConceptDisplay = (props: {doc: Concept}) => {
   const concept = props.doc;
-  const superconcepts = concept.subconcept === undefined ? null :
-    <div className="subconcept-list">
-      <ul>{concept.subconcept.map((id,i) =>
-        <li key={i}>
-          <Router.Link key={id} to={`/concept/${id}`}>{id}</Router.Link>
-        </li>)}
-      </ul>
-    </div>;
-  const kindDisplay = concept.kind == "morphism" ?
-    <MorphismDisplay concept={concept as MorphismConcept} /> : null;
-  
+  const elements = ConceptDefList({ concept });
+  if (concept.kind === "morphism") {
+    elements.push(...MorphismDefList({
+      concept: concept as MorphismConcept,
+    }));
+  }
   return (
     <div className="concept">
       <h3>
@@ -37,32 +32,52 @@ export const ConceptDisplay = (props: {doc: Concept}) => {
         </span>
         {concept.name}
       </h3>
-      <dl className="dl-horizontal" style={{marginBottom: 0}}>
-        <dt>ID</dt>
-        <dd>{concept.id}</dd>
-        <dt>Kind</dt>
-        <dd>{concept.kind}</dd>
-        <dt>Name</dt>
-        <dd>{concept.name}</dd>
-        {concept.description && <dt>Description</dt>}
-        {concept.description && <dd>{concept.description}</dd>}
-        {superconcepts && <dt>Is</dt>}
-        {superconcepts && <dd>{superconcepts}</dd>}
+      <dl className="dl-horizontal">
+        {elements}
       </dl>
-      {kindDisplay}
     </div>
   );
 }
 const ConceptDisplayCouchDB = displayCouchDocument(ConceptDisplay);
 
-const MorphismDisplay = (props: {concept: MorphismConcept}) => {
+
+const ConceptDefList = (props: {concept: Concept}) => {
   const concept = props.concept;
-  return <dl className="dl-horizontal">
-    <dt>Domain</dt>
-    <dd><DomainObjectsDisplay objects={concept.domain} /></dd>
-    <dt>Codomain</dt>
-    <dd><DomainObjectsDisplay objects={concept.codomain} /></dd>
-  </dl>;
+  const superconcepts = concept.subconcept === undefined ? null :
+    <div className="subconcept-list">
+      <ul>{concept.subconcept.map((id,i) =>
+        <li key={i}>
+          <Router.Link key={id} to={`/concept/${id}`}>{id}</Router.Link>
+        </li>)}
+      </ul>
+    </div>;
+  const elements = [
+    <dt key="id-dt">ID</dt>,
+    <dd key="id-dd">{concept.id}</dd>,
+    <dt key="kind-dt">Kind</dt>,
+    <dd key="kind-dd">{concept.kind}</dd>,
+    <dt key="name-dt">Name</dt>,
+    <dd key="name-dd">{concept.name}</dd>,
+  ];
+  if (concept.description) { elements.push(
+    <dt key="description-dt">Description</dt>,
+    <dd key="description-dd">{concept.description}</dd>,
+  ); }
+  if (superconcepts) { elements.push(
+    <dt key="sub-dt">Is</dt>,
+    <dd key="sub-dd">{superconcepts}</dd>,
+  ); }
+  return elements;
+}
+
+const MorphismDefList = (props: {concept: MorphismConcept}) => {
+  const concept = props.concept;
+  return [
+    <dt key="dom-dt">Domain</dt>,
+    <dd key="dom-dd"><DomainObjectsDisplay objects={concept.domain} /></dd>,
+    <dt key="codom-dt">Codomain</dt>,
+    <dd key="codom-dd"><DomainObjectsDisplay objects={concept.codomain} /></dd>,
+  ];
 }
 
 const DomainObjectsDisplay = (props: {objects: DomainObject[]}) => {

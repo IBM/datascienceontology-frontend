@@ -49,131 +49,145 @@ const AnnotationDisplayCouchDB = displayCouchDocument(AnnotationDisplay);
 
 const PythonAnnotationDisplay = (props: {annotation: PythonAnnotation}) => {
   const annotation = props.annotation;
-  const pythonDisplay = <dl className="dl-horizontal" style={{marginBottom: 0}}>
-    <dt>Language</dt>
-    <dd>
+  const elements = PythonBaseDefList(props);
+  if (annotation.kind === "object") {
+    elements.push(...PythonObjectDefList({
+      annotation: annotation as PythonObject,
+    }));
+  } else if (annotation.kind === "morphism") {
+    elements.push(...PythonMorphismDefList({
+      annotation: annotation as PythonMorphism,
+    }));
+  }
+  return <dl className="dl-horizontal">
+    {elements}
+  </dl>;
+}
+
+const PythonBaseDefList = (props: {annotation: PythonAnnotation}) => {
+  const annotation = props.annotation;
+  const elements = [
+    <dt key="language-dt">Language</dt>,
+    <dd key="language-dd">
       <a href="https://www.python.org" target="_blank">{annotation.language}</a>
-    </dd>
-    <dt>Package</dt>
-    <dd>
+    </dd>,
+    <dt key="package-dt">Package</dt>,
+    <dd key="package-dd">
       <a href={`https://pypi.python.org/pypi/${annotation.package}`} target="_blank">
         {annotation.package}
       </a>
-    </dd>
-    <dt>ID</dt>
-    <dd>{annotation.id}</dd>
-    <dt>Kind</dt>
-    <dd>{annotation.kind}</dd>
-    {annotation.name && <dt>Name</dt>}
-    {annotation.name && <dd>{annotation.name}</dd>}
-    {annotation.description && <dt>Description</dt>}
-    {annotation.description && <dd>{annotation.description}</dd>}
-  </dl>;
-  
-  let kindDisplay = null;
-  if (annotation.kind == "object") {
-    kindDisplay = <PythonObjectDisplay annotation={annotation as PythonObject} />;
-  } else if (annotation.kind == "morphism") {
-    kindDisplay = <PythonMorphismDisplay annotation={annotation as PythonMorphism} />;
-  }
-  
-  return <div className="python-annotation">
-    {pythonDisplay}
-    {kindDisplay}
-  </div>;
+    </dd>,
+    <dt key="id-dt">ID</dt>,
+    <dd key="id-dd">{annotation.id}</dd>,
+    <dt key="kind-dt">Kind</dt>,
+    <dd key="kind-dd">{annotation.kind}</dd>,
+  ];
+  if (annotation.name) { elements.push(
+    <dt key="name-dt">Name</dt>,
+    <dd key="name-dd">{annotation.name}</dd>,
+  ); }
+  if (annotation.description) { elements.push(
+    <dt key="description-dt">Description</dt>,
+    <dd key="description-dd">{annotation.description}</dd>,
+  ); }
+  return elements;
 }
 
-const PythonObjectDisplay = (props: {annotation: PythonObject}) => {
+const PythonObjectDefList = (props: {annotation: PythonObject}) => {
   const annotation = props.annotation;
   const classes = typeof annotation.class === "string" ?
     [ annotation.class ] : annotation.class;
   const slots = annotation.slots || [];
-  return (
-    <dl className="dl-horizontal">
-      <dt>Python class</dt>
-      <dd>
-        <div className="annotation-class-list">
-          <ul>{classes.map((className, i) =>
-            <li key={i}>{className}</li>)}
-          </ul>
-        </div>
-      </dd>
-      <dt>Definition</dt>
-      <dd>
-        <Router.Link to={`/concept/${annotation.definition}`}>
-          {annotation.definition}
-        </Router.Link>
-      </dd>
-      <dt>Slots</dt>
-      <dd>
-        <div className="slot-list">
-          <ul>{slots.map((slot, i) =>
-            <li key={i}>
-              <span className="annotation-code">
-                {slot.slot}
-              </span>
-              {": "}
-              <SExpComponent sexp={slot.definition} />
-            </li>)}
-          </ul>
-        </div>
-      </dd>
-    </dl>
-  );
+  return [
+    <dt key="class-dt">Python class</dt>,
+    <dd key="class-dd">
+      <div className="annotation-class-list">
+        <ul>{classes.map((className, i) =>
+          <li key={i}>{className}</li>)}
+        </ul>
+      </div>
+    </dd>,
+    <dt key="def-dt">Definition</dt>,
+    <dd key="def-dd">
+      <Router.Link to={`/concept/${annotation.definition}`}>
+        {annotation.definition}
+      </Router.Link>
+    </dd>,
+    <dt key="slots-dt">Slots</dt>,
+    <dd key="slots-dd">
+      <div className="slot-list">
+        <ul>{slots.map((slot, i) =>
+          <li key={i}>
+            <span className="annotation-code">
+              {slot.slot}
+            </span>
+            {": "}
+            <SExpComponent sexp={slot.definition} />
+          </li>)}
+        </ul>
+      </div>
+    </dd>,
+  ];
 }
 
-const PythonMorphismDisplay = (props: {annotation: PythonMorphism}) => {
+const PythonMorphismDefList = (props: {annotation: PythonMorphism}) => {
   const annotation = props.annotation;
   const classes = typeof annotation.class === "string" ?
     [ annotation.class ] : annotation.class;
   const cacheId = `annotation/${annotation.language}/${annotation.package}/${annotation.id}`;
-  return (
-    <dl className="dl-horizontal">
-      {annotation.function && <dt>Python function</dt>}
-      {annotation.function && <dd>
-        <span className="annotation-code">{annotation.function}</span>
-      </dd>}
-      {classes && <dt>Python class</dt>}
-      {classes && <dd>
-        <div className="annotation-class-list">
-          <ul>{classes.map((className, i) =>
-            <li key={i}>{className}</li>)}
-          </ul>
-        </div>
-      </dd>}
-      {annotation.method && <dt>Python method</dt>}
-      {annotation.method && <dd>
-        <span className="annotation-code">{annotation.method}</span>
-      </dd>}
-      <dt>Domain</dt>
-      <dd>
-        <div className="domain-list">
-          <ol>{annotation.domain.map((ob, i) =>
-            <li key={i}>{ob.slot}</li>)}
-          </ol>
-        </div>
-      </dd>
-      <dt>Codomain</dt>
-      <dd>
-        <div className="domain-list">
-          <ol>{annotation.codomain.map((ob, i) =>
-            <li key={i}>{ob.slot}</li>)}
-          </ol>
-        </div>
-      </dd>
-      <dt>Definition</dt>
-      <dd>
-        <Grid>
-          <Col md={4}>
-            <SExpComponent sexp={annotation.definition} />
-          </Col>
-          <Col md={8}>
-            <MorphismDiagramCouchDB db={Config.app_db_url} docId={cacheId} />
-          </Col>
-        </Grid>
-      </dd>
-    </dl>
+  const elements: JSX.Element[] = [];
+  if (annotation.function) { elements.push(
+    <dt key="function-dt">Python function</dt>,
+    <dd key="function-dd">
+      <span className="annotation-code">{annotation.function}</span>
+    </dd>,
+  ); }
+  if (classes) { elements.push(
+    <dt key="class-dt">Python class</dt>,
+    <dd key="class-dd">
+      <div className="annotation-class-list">
+        <ul>{classes.map((className, i) =>
+          <li key={i}>{className}</li>)}
+        </ul>
+      </div>
+    </dd>,
+  ); }
+  if (annotation.method) { elements.push(
+    <dt key="method-dt">Python method</dt>,
+    <dd key="method-dd">
+      <span className="annotation-code">{annotation.method}</span>
+    </dd>,
+  ); }
+  elements.push(
+    <dt key="dom-dt">Domain</dt>,
+    <dd key="dom-dd">
+      <div className="domain-list">
+        <ol>{annotation.domain.map((ob, i) =>
+          <li key={i}>{ob.slot}</li>)}
+        </ol>
+      </div>
+    </dd>,
+    <dt key="codom-dt">Codomain</dt>,
+    <dd key="codom-dd">
+      <div className="domain-list">
+        <ol>{annotation.codomain.map((ob, i) =>
+          <li key={i}>{ob.slot}</li>)}
+        </ol>
+      </div>
+    </dd>,
+    <dt key="def-dt">Definition</dt>,
+    <dd key="def-dd">
+      <Grid>
+        <Col md={4}>
+          <SExpComponent sexp={annotation.definition} />
+        </Col>
+        <Col md={8}>
+          <MorphismDiagramCouchDB db={Config.app_db_url} docId={cacheId} />
+        </Col>
+      </Grid>
+    </dd>,
   );
+  return elements;
 }
 
 const MorphismDiagram = (props: {doc: AnnotationCache}) => {
