@@ -191,9 +191,11 @@ const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) =
 
 const MorphismDiagram = (props: {doc: AnnotationCache}) => {
   const cache = props.doc;
-  const cytoscape = Object.assign({}, cache.definition.cytoscape, {
-    style: CytoscapeStyle
-  });
-  return <CytoscapeComponent cytoscape={cytoscape} height="600px" />
+  return <CytoscapeComponent cytoscape={{
+    ...cache.definition.cytoscape,
+    style: CytoscapeStyle as any,
+    maxZoom: 2,
+    autolock: true,
+  }} height="600px" />
 }
 const MorphismDiagramCouchDB = displayCouchDocument(MorphismDiagram);
