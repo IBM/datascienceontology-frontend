@@ -3,10 +3,9 @@ import * as React from "react";
 import * as Router from "react-router-dom";
 import { Grid, Col } from "react-bootstrap";
 
-import { Annotation, PythonAnnotation, PythonObject, PythonMorphism, 
-  Cytoscape, SExp } from "open-discovery";
-import { CytoscapeComponent,
-  displayCouchDocument } from "open-discovery-components";
+import { Annotation, PythonAnnotation, PythonObject, PythonMorphism } from "open-discovery";
+import { CytoscapeComponent, displayCouchDocument } from "open-discovery-components";
+import { SExpComponent } from "../components/sexp";
 import { AnnotationCache } from "../interfaces/annotation_cache";
 import * as Config from "../config";
 
@@ -185,29 +184,3 @@ const MorphismDiagram = (props: {doc: AnnotationCache}) => {
   return <CytoscapeComponent cytoscape={cytoscape} height="400px" />
 }
 const MorphismDiagramCouchDB = displayCouchDocument(MorphismDiagram);
-
-
-class SExpComponent extends React.Component<{sexp: SExp}> {
-  render() {
-    return <span className="s-expression">
-      {this.renderSExp(this.props.sexp)}
-    </span>;
-  }
-  
-  renderSExp(sexp: SExp): JSX.Element {
-    if (typeof sexp === "string") {
-      return <Router.Link to={`/concept/${sexp}`}>{sexp}</Router.Link>;
-    }
-    return <ol>
-      {sexp.map((term,i) => {
-        let content: JSX.Element = null;
-        if (i === 0) {
-          content = <span className="s-expression-head">{term}</span>;
-        } else {
-          content = this.renderSExp(term);
-        }
-        return <li key={i}>{content}</li>;
-      })}
-    </ol>;
-  }
-}
