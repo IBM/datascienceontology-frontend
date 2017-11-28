@@ -49,22 +49,18 @@ const AnnotationDisplayCouchDB = displayCouchDocument(AnnotationDisplay);
 
 const PythonAnnotationDisplay = (props: {annotation: PythonAnnotation}) => {
   const annotation = props.annotation;
-  const elements = PythonBaseDefList(props);
-  if (annotation.kind === "object") {
-    elements.push(...PythonObjectDefList({
-      annotation: annotation as PythonObject,
-    }));
-  } else if (annotation.kind === "morphism") {
-    elements.push(...PythonMorphismDefList({
-      annotation: annotation as PythonMorphism,
-    }));
-  }
   return <dl className="dl-horizontal">
-    {elements}
+    {PythonAnnotationDefList({ annotation })},
+    {annotation.kind === "object" && PythonObjectDefList({
+      annotation: annotation as PythonObject
+    })}
+    {annotation.kind === "morphism" && PythonMorphismDefList({
+      annotation: annotation as PythonMorphism
+    })}
   </dl>;
 }
 
-const PythonBaseDefList = (props: {annotation: PythonAnnotation}) => {
+const PythonAnnotationDefList = (props: {annotation: PythonAnnotation}) => {
   const annotation = props.annotation;
   const elements = [
     <dt key="language-dt">Language</dt>,

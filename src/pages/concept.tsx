@@ -18,12 +18,6 @@ export const ConceptPage = (props: ConceptPageProps) => {
 
 export const ConceptDisplay = (props: {doc: Concept}) => {
   const concept = props.doc;
-  const elements = ConceptDefList({ concept });
-  if (concept.kind === "morphism") {
-    elements.push(...MorphismDefList({
-      concept: concept as MorphismConcept,
-    }));
-  }
   return (
     <div className="concept">
       <h3>
@@ -33,7 +27,10 @@ export const ConceptDisplay = (props: {doc: Concept}) => {
         {concept.name}
       </h3>
       <dl className="dl-horizontal">
-        {elements}
+        {ConceptDefList({ concept })}
+        {concept.kind === "morphism" && MorphismDefList({
+          concept: concept as MorphismConcept,
+        })}
       </dl>
     </div>
   );
