@@ -1,8 +1,11 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
+
 module.exports = {
   entry: "./src/index.tsx",
   output: {
     filename: "bundle.js",
-    path: __dirname + "/build"
+    path: path.join(__dirname, "build")
   },
   devtool: "source-map",
   resolve: {
@@ -41,6 +44,12 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new CopyWebpackPlugin([
+      { from: "assets", to: "assets" },
+      { from: "index.html" }
+    ])
+  ],
   externals: {
     "lodash": {
       commonjs: "lodash",
