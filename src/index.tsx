@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Alert, Nav, Navbar, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
+import { MarkdownRender } from "open-discovery-components";
 import { HomePage } from "./pages/home";
 import { AnnotationPage } from "./pages/annotation";
 import { ConceptPage } from "./pages/concept";
@@ -31,12 +32,16 @@ const App = () =>
     </Navbar>
     <Switch>
       <Route exact path="/" component={HomePage} />
+      <Route path="/about" component={AboutPage} />
       <Route path="/annotation/:language/:package/:id" component={AnnotationPage} />
       <Route path="/concept/:id" component={ConceptPage} />
       <Route path="/search/:query?" component={SearchPage} />
       <Route component={Error404Page} />
     </Switch>
   </div>;
+
+const AboutPage = () =>
+  <MarkdownRender markdown="# About \n About page in Markdown" />;
 
 const Error404Page = () =>
   <Alert bsStyle="danger">
