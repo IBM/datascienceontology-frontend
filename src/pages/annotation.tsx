@@ -179,9 +179,10 @@ const PythonMorphismDisplay = (props: {annotation: PythonMorphism}) => {
 
 const MorphismDiagram = (props: {doc: AnnotationCache}) => {
   const cache = props.doc;
-  const cytoscape = cache.definition.cytoscape;
-  return <CytoscapeComponent elements={cytoscape.elements}
-          layout={cytoscape.layout} style={CytoscapeStyle as any} />
+  const cytoscape = Object.assign({}, cache.definition.cytoscape, {
+    style: CytoscapeStyle
+  });
+  return <CytoscapeComponent cytoscape={cytoscape} height="400px" />
 }
 const MorphismDiagramCouchDB = displayCouchDocument(MorphismDiagram);
 
