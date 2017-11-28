@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
 
-import { Concept, MorphismConcept, DomainObject } from "open-discovery";
+import { Concept } from "open-discovery";
 import { displayCouchDocument } from "open-discovery-components";
 import * as Config from "../config";
 
@@ -16,7 +16,7 @@ export const ConceptPage = (props: ConceptPageProps) => {
   return <ConceptDisplayCouchDB db={Config.db_url} docId={docId} />;
 }
 
-export const ConceptDisplay = (props: {doc: Concept}) => {
+export const ConceptDisplay = (props: {doc: Concept.Concept}) => {
   const concept = props.doc;
   return (
     <div className="concept">
@@ -28,9 +28,7 @@ export const ConceptDisplay = (props: {doc: Concept}) => {
       </h3>
       <dl className="dl-horizontal">
         {ConceptDefList({ concept })}
-        {concept.kind === "morphism" && MorphismDefList({
-          concept: concept as MorphismConcept,
-        })}
+        {Concept.isMorphism(concept) && MorphismDefList({ concept })}
       </dl>
     </div>
   );
@@ -38,7 +36,7 @@ export const ConceptDisplay = (props: {doc: Concept}) => {
 const ConceptDisplayCouchDB = displayCouchDocument(ConceptDisplay);
 
 
-const ConceptDefList = (props: {concept: Concept}) => {
+const ConceptDefList = (props: {concept: Concept.Concept}) => {
   const concept = props.concept;
   const superconcepts = concept.subconcept === undefined ? null :
     <div className="subconcept-list">
@@ -67,7 +65,7 @@ const ConceptDefList = (props: {concept: Concept}) => {
   return elements;
 }
 
-const MorphismDefList = (props: {concept: MorphismConcept}) => {
+const MorphismDefList = (props: {concept: Concept.Morphism}) => {
   const concept = props.concept;
   return [
     <dt key="dom-dt">Domain</dt>,
@@ -77,7 +75,7 @@ const MorphismDefList = (props: {concept: MorphismConcept}) => {
   ];
 }
 
-const DomainObjectsDisplay = (props: {objects: DomainObject[]}) => {
+const DomainObjectsDisplay = (props: {objects: Concept.DomainObject[]}) => {
   return <div className="domain-object-list">
     <ol>{props.objects.map((object,i) =>
       <li key={i}>
@@ -87,7 +85,7 @@ const DomainObjectsDisplay = (props: {objects: DomainObject[]}) => {
   </div>;
 }
 
-const DomainObjectDisplay = (props: {object: DomainObject}) => {
+const DomainObjectDisplay = (props: {object: Concept.DomainObject}) => {
   const obj = props.object;
   return <div className="domain-object">
     {obj.name !== undefined && `${obj.name}: `}

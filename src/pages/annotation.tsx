@@ -3,7 +3,7 @@ import * as React from "react";
 import * as Router from "react-router-dom";
 import { Grid, Col } from "react-bootstrap";
 
-import { Annotation, PythonAnnotation, PythonObject, PythonMorphism } from "open-discovery";
+import { Annotation } from "open-discovery";
 import { CytoscapeComponent, displayCouchDocument } from "open-discovery-components";
 import { SExpComponent } from "../components/sexp";
 import { AnnotationCache } from "../interfaces/annotation_cache";
@@ -26,12 +26,8 @@ export const AnnotationPage = (props: AnnotationPageProps) => {
   return <AnnotationDisplayCouchDB db={Config.db_url} docId={docId} />;
 }
 
-export const AnnotationDisplay = (props: {doc: Annotation}) => {
+export const AnnotationDisplay = (props: {doc: Annotation.Annotation}) => {
   const annotation = props.doc;
-  let languageDisplay = null;
-  if (annotation.language == "python") {
-    languageDisplay = <PythonAnnotationDisplay annotation={annotation as PythonAnnotation} />;
-  }
   return (
     <div className="annotation">
       <h3>
@@ -40,30 +36,31 @@ export const AnnotationDisplay = (props: {doc: Annotation}) => {
         </span>
         {annotation.name || annotation.id}
       </h3>
-      {languageDisplay}
+      {Annotation.isPythonAnnotation(annotation) &&
+        <PythonAnnotationDisplay annotation={annotation} />}
     </div>
   );
 }
 const AnnotationDisplayCouchDB = displayCouchDocument(AnnotationDisplay);
 
 
-const PythonAnnotationDisplay = (props: {annotation: PythonAnnotation}) => {
+const PythonAnnotationDisplay = (props: {annotation: Annotation.PythonAnnotation}) => {
   const annotation = props.annotation;
-  if (annotation.kind === "object") {
+  if (Annotation.isPythonObject(annotation)) {
     return (
       <dl className="dl-horizontal">
-        {PythonAnnotationDefList({ annotation })},
-        {PythonObjectDefList({ annotation: annotation as PythonObject })},
+        {PythonAnnotationDefList({ annotation })}
+        {PythonObjectDefList({ annotation })}
       </dl>
     );
-  } else if (annotation.kind === "morphism") {
+  } else if (Annotation.isPythonMorphism(annotation)) {
     const cacheId = `annotation/${annotation.language}/${annotation.package}/${annotation.id}`;
     return (
       <Grid>
         <Col md={6}>
           <dl className="dl-horizontal">
-            {PythonAnnotationDefList({ annotation })},
-            {PythonMorphismDefList({ annotation: annotation as PythonMorphism })},
+            {PythonAnnotationDefList({ annotation })}
+            {PythonMorphismDefList({ annotation })}
           </dl>
         </Col>
         <Col md={6}>
@@ -75,7 +72,7 @@ const PythonAnnotationDisplay = (props: {annotation: PythonAnnotation}) => {
   return null;
 }
 
-const PythonAnnotationDefList = (props: {annotation: PythonAnnotation}) => {
+const PythonAnnotationDefList = (props: {annotation: Annotation.PythonAnnotation}) => {
   const annotation = props.annotation;
   const elements = [
     <dt key="language-dt">Language</dt>,
@@ -104,7 +101,7 @@ const PythonAnnotationDefList = (props: {annotation: PythonAnnotation}) => {
   return elements;
 }
 
-const PythonObjectDefList = (props: {annotation: PythonObject}) => {
+const PythonObjectDefList = (props: {annotation: Annotation.PythonObject}) => {
   const annotation = props.annotation;
   const classes = typeof annotation.class === "string" ?
     [ annotation.class ] : annotation.class;
@@ -120,9 +117,7 @@ const PythonObjectDefList = (props: {annotation: PythonObject}) => {
     </dd>,
     <dt key="def-dt">Definition</dt>,
     <dd key="def-dd">
-      <Router.Link to={`/concept/${annotation.definition}`}>
-        {annotation.definition}
-      </Router.Link>
+      <SExpComponent sexp={annotation.definition} />
     </dd>,
     <dt key="slots-dt">Slots</dt>,
     <dd key="slots-dd">
@@ -141,7 +136,7 @@ const PythonObjectDefList = (props: {annotation: PythonObject}) => {
   ];
 }
 
-const PythonMorphismDefList = (props: {annotation: PythonMorphism}) => {
+const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) => {
   const annotation = props.annotation;
   const classes = typeof annotation.class === "string" ?
     [ annotation.class ] : annotation.class;
