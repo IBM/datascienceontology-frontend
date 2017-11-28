@@ -49,15 +49,30 @@ const AnnotationDisplayCouchDB = displayCouchDocument(AnnotationDisplay);
 
 const PythonAnnotationDisplay = (props: {annotation: PythonAnnotation}) => {
   const annotation = props.annotation;
-  return <dl className="dl-horizontal">
-    {PythonAnnotationDefList({ annotation })},
-    {annotation.kind === "object" && PythonObjectDefList({
-      annotation: annotation as PythonObject
-    })}
-    {annotation.kind === "morphism" && PythonMorphismDefList({
-      annotation: annotation as PythonMorphism
-    })}
-  </dl>;
+  if (annotation.kind === "object") {
+    return (
+      <dl className="dl-horizontal">
+        {PythonAnnotationDefList({ annotation })},
+        {PythonObjectDefList({ annotation: annotation as PythonObject })},
+      </dl>
+    );
+  } else if (annotation.kind === "morphism") {
+    const cacheId = `annotation/${annotation.language}/${annotation.package}/${annotation.id}`;
+    return (
+      <Grid>
+        <Col md={6}>
+          <dl className="dl-horizontal">
+            {PythonAnnotationDefList({ annotation })},
+            {PythonMorphismDefList({ annotation: annotation as PythonMorphism })},
+          </dl>
+        </Col>
+        <Col md={6}>
+          <MorphismDiagramCouchDB db={Config.app_db_url} docId={cacheId} />
+        </Col>
+      </Grid>
+    );
+  }
+  return null;
 }
 
 const PythonAnnotationDefList = (props: {annotation: PythonAnnotation}) => {
@@ -130,7 +145,6 @@ const PythonMorphismDefList = (props: {annotation: PythonMorphism}) => {
   const annotation = props.annotation;
   const classes = typeof annotation.class === "string" ?
     [ annotation.class ] : annotation.class;
-  const cacheId = `annotation/${annotation.language}/${annotation.package}/${annotation.id}`;
   const elements: JSX.Element[] = [];
   if (annotation.function) { elements.push(
     <dt key="function-dt">Python function</dt>,
@@ -173,24 +187,18 @@ const PythonMorphismDefList = (props: {annotation: PythonMorphism}) => {
     </dd>,
     <dt key="def-dt">Definition</dt>,
     <dd key="def-dd">
-      <Grid>
-        <Col md={4}>
-          <SExpComponent sexp={annotation.definition} />
-        </Col>
-        <Col md={8}>
-          <MorphismDiagramCouchDB db={Config.app_db_url} docId={cacheId} />
-        </Col>
-      </Grid>
+      <SExpComponent sexp={annotation.definition} />
     </dd>,
   );
   return elements;
 }
+
 
 const MorphismDiagram = (props: {doc: AnnotationCache}) => {
   const cache = props.doc;
   const cytoscape = Object.assign({}, cache.definition.cytoscape, {
     style: CytoscapeStyle
   });
-  return <CytoscapeComponent cytoscape={cytoscape} height="400px" />
+  return <CytoscapeComponent cytoscape={cytoscape} height="600px" />
 }
 const MorphismDiagramCouchDB = displayCouchDocument(MorphismDiagram);
