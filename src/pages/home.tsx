@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Grid, Col, Button, Jumbotron } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import * as Router from "react-router-dom";
+import { Grid, Col, Jumbotron } from "react-bootstrap";
 import Client from "davenport";
 
 import * as Config from "../config";
@@ -14,11 +14,13 @@ export const HomePage = () =>
         <Jumbotron>
           <Welcome/>
           <OntologySearchBar/>
-          <br/>
-          <LinkContainer to="/about">
-            <Button bsStyle="primary">Learn more</Button>
-          </LinkContainer>
         </Jumbotron>
+        <p>
+          The Data Science Ontology is an knowledge base about data science
+          with a focus on computer programming for data analysis.
+          {" "}
+          <Router.Link to="/page/help">Learn more</Router.Link>
+        </p>
        </Col>
     </Grid>
   </section>

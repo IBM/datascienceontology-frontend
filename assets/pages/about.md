@@ -2,6 +2,14 @@
 title: About
 ---
 
-The Data Science Ontology is an ontology (knowledge base) about data science with a focus on computer programming for data analysis. The concepts of the ontology are drawn from statistics, machine learning, and the practice of computing on data. Besides cataloging the concepts of data science, the ontology provides semantic annotations of commonly used software libraries for data science, such as [pandas](https://pandas.pydata.org/) and [scikit-learn](http://scikit-learn.org/). Annotations map the libraries' types and functions onto the ontology's universal concepts. The annotations can be used in conjunction with program analysis tools to construct semantic representations of data analyses.
+The Data Science Ontology is a research project of [IBM Research](http://www.research.ibm.com/cognitive-computing/) and the [Statistics Department](https://statistics.stanford.edu/) of [Stanford University](https://www.stanford.edu/). It belongs to the larger Open Discovery project, which aims to improve the efficiency and transparency of collaborative, data-driven science.
 
-To learn more about the Data Science Ontology, see the [Help](/help) section.
+To learn more about the ontology, see the [Help](/page/help) section.
+
+### Contributors
+
+The core project members are:
+- Evan Patterson (Stanford University)
+- [Ioana Baldini](http://researcher.watson.ibm.com/researcher/view.php?person=us-ioana) (IBM Research)
+- [Aleksandra Mojsilovic](http://researcher.watson.ibm.com/researcher/view.php?person=us-aleksand) (IBM Research)
+- [Kush R. Varshney](http://researcher.watson.ibm.com/researcher/view.php?person=us-krvarshn) (IBM Research)
