@@ -1,3 +1,8 @@
 #react-container {
   margin: 0 3em;
 }
+
+.markdown-document {
+  max-width: 960px;
+  margin: 0 auto;
+}

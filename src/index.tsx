@@ -25,6 +25,9 @@ const App = () =>
         <LinkContainer to="/search">
           <NavItem>Search</NavItem>
         </LinkContainer>
+        <LinkContainer to="/help">
+          <NavItem>Help</NavItem>
+        </LinkContainer>
         <LinkContainer to="/about">
           <NavItem>About</NavItem>
         </LinkContainer>
@@ -33,6 +36,7 @@ const App = () =>
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route path="/about" component={AboutPage} />
+      <Route path="/help" component={HelpPage} />
       <Route path="/annotation/:language/:package/:id" component={AnnotationPage} />
       <Route path="/concept/:id" component={ConceptPage} />
       <Route path="/search/:query?" component={SearchPage} />
@@ -40,8 +44,12 @@ const App = () =>
     </Switch>
   </div>;
 
+
 const AboutPage = () =>
   <MarkdownDocument docURL="/assets/pages/about.md" />;
+
+const HelpPage = () =>
+  <MarkdownDocument docURL="/assets/pages/help.md" />;
 
 const Error404Page = () =>
   <Alert bsStyle="danger">
