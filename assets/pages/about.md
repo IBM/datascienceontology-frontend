@@ -6,10 +6,18 @@ The Data Science Ontology is a research project of [IBM Research](http://www.res
 
 To learn more about the ontology, see the [Help](/page/help) section.
 
-### Contributors
+### People
 
 The core project members are:
+
 - Evan Patterson (Stanford University)
 - [Ioana Baldini](http://researcher.watson.ibm.com/researcher/view.php?person=us-ioana) (IBM Research)
 - [Aleksandra Mojsilovic](http://researcher.watson.ibm.com/researcher/view.php?person=us-aleksand) (IBM Research)
 - [Kush R. Varshney](http://researcher.watson.ibm.com/researcher/view.php?person=us-krvarshn) (IBM Research)
+
+We are grateful for the advice and ideas of:
+
+- [Julian Dolby](http://researcher.watson.ibm.com/researcher/view.php?person=us-dolby) (IBM Research)
+- [Yaoli Mao](http://www.ilt.columbia.edu/people/yaoli-mao/) (Columbia University)
+- Robert McBurney (Accelerated Cure Project for Multiple Sclerosis)
+- Hollie Schmidt (Accelerated Cure Project for Multiple Sclerosis)
