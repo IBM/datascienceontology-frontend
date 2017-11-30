@@ -1,8 +1,17 @@
 ---
-title: What is this?
+title: What is the Data Science Ontology?
 ---
 
-The Data Science Ontology (DSO) is an ontology (knowledge base) about data science with a focus on computer programming for data analysis. The concepts of the ontology are drawn from statistics, machine learning, and the engineering practice of data science. Besides cataloging and organizing data science concepts, the ontology provides semantic annotations of commonly used software libraries for data science, such as [pandas](https://pandas.pydata.org/) and [scikit-learn](http://scikit-learn.org/). Annotations map the libraries' types and functions onto the ontology's universal concepts.
+The Data Science Ontology (DSO) is an ontology (knowledge base) about data science with a focus on computer programming for data analysis. The *concepts* of the ontology are drawn from statistics, machine learning, and the practice of software engineering for data science. Besides cataloging and organizing data science concepts, the ontology provides semantic *annotations* of commonly used software libraries for data science, such as [pandas](https://pandas.pydata.org/) and [scikit-learn](http://scikit-learn.org/). Annotations map the libraries' types and functions onto the ontology's universal concepts.
+
+The purpose of the Data Science Ontology is to enable artificial intelligence (AI) capabilities for collaborative, data-driven science, such as:
+
+- automated statistical meta-analysis
+- meta-learning for machine learning
+- semantic queries on a corpus of data analyses
+- similarity measures and personal recommendations for data analyses
+
+Several of these capabilities are currently under development as part of the broader Open Discovery project. The connection between the Data Science Ontology and AI for data science is established by a suite of computer program analysis tools. Using the ontology's annotations, the program analysis tools can automatically create a machine-interpretable semantic representation of a data analysis written in a conventional programming language like Python or R. Such semantic representations serve as the raw material for AI and machine learning algorithms operating on data analyses.
 
 ## FAQ
 
