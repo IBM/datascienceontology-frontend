@@ -1,12 +1,12 @@
 ---
-title: About
+title: About the Data Science Ontology
 ---
 
-The Data Science Ontology is a research project of [IBM Research](http://www.research.ibm.com/cognitive-computing/) and the [Statistics Department](https://statistics.stanford.edu/) of [Stanford University](https://www.stanford.edu/). It belongs to the larger Open Discovery project, which aims to improve the efficiency and transparency of collaborative, data-driven science.
+The Data Science Ontology is a research project of [IBM Research](http://www.research.ibm.com/cognitive-computing/) and the [Statistics Department](https://statistics.stanford.edu/) at [Stanford University](https://www.stanford.edu/). It belongs to the larger Open Discovery project, which aims to improve the efficiency and transparency of collaborative, data-driven science.
 
 To learn more about the ontology, see the [Help](/page/help) section.
 
-## Contributors
+### Contributors
 
 The core project members are:
 - Evan Patterson (Stanford University)
