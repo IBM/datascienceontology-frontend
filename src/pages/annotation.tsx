@@ -88,7 +88,7 @@ const PythonAnnotationDefList = (props: {annotation: Annotation.PythonAnnotation
     <dt key="id-dt">ID</dt>,
     <dd key="id-dd">{annotation.id}</dd>,
     <dt key="kind-dt">Kind</dt>,
-    <dd key="kind-dd">{annotation.kind}</dd>,
+    <dd key="kind-dd">{annotation.kind === "object" ? "type" : "function"}</dd>,
   ];
   if (annotation.name) { elements.push(
     <dt key="name-dt">Name</dt>,
@@ -164,7 +164,7 @@ const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) =
     </dd>,
   ); }
   elements.push(
-    <dt key="dom-dt">Domain</dt>,
+    <dt key="dom-dt">Input</dt>,
     <dd key="dom-dd">
       <div className="domain-list">
         <ol>{annotation.domain.map((ob, i) =>
@@ -172,7 +172,7 @@ const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) =
         </ol>
       </div>
     </dd>,
-    <dt key="codom-dt">Codomain</dt>,
+    <dt key="codom-dt">Output</dt>,
     <dd key="codom-dd">
       <div className="domain-list">
         <ol>{annotation.codomain.map((ob, i) =>

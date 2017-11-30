@@ -50,7 +50,7 @@ const ConceptDefList = (props: {concept: Concept.Concept}) => {
     <dt key="id-dt">ID</dt>,
     <dd key="id-dd">{concept.id}</dd>,
     <dt key="kind-dt">Kind</dt>,
-    <dd key="kind-dd">{concept.kind}</dd>,
+    <dd key="kind-dd">{concept.kind === "object" ? "type" : "function"}</dd>,
     <dt key="name-dt">Name</dt>,
     <dd key="name-dd">{concept.name}</dd>,
   ];
@@ -68,9 +68,9 @@ const ConceptDefList = (props: {concept: Concept.Concept}) => {
 const MorphismDefList = (props: {concept: Concept.Morphism}) => {
   const concept = props.concept;
   return [
-    <dt key="dom-dt">Domain</dt>,
+    <dt key="dom-dt">Input</dt>,
     <dd key="dom-dd"><DomainObjectsDisplay objects={concept.domain} /></dd>,
-    <dt key="codom-dt">Codomain</dt>,
+    <dt key="codom-dt">Output</dt>,
     <dd key="codom-dd"><DomainObjectsDisplay objects={concept.codomain} /></dd>,
   ];
 }
