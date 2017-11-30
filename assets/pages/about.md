@@ -6,7 +6,7 @@ The Data Science Ontology is a research project of [IBM Research](http://www.res
 
 To learn more about the ontology, see the [Help](/page/help) section.
 
-### Contributors
+## Contributors
 
 The core project members are:
 - Evan Patterson (Stanford University)
