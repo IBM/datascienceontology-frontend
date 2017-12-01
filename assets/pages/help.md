@@ -4,7 +4,7 @@ title: What is the Data Science Ontology?
 
 The Data Science Ontology (DSO) is a knowledge base about data science with a focus on computer programming for data analysis. The concepts of the ontology are drawn from statistics, machine learning, and the practice of software engineering for data science. Besides cataloging and organizing data science concepts, the ontology provides semantic annotations of commonly used software libraries for data science, such as [pandas](https://pandas.pydata.org/), [scikit-learn](http://scikit-learn.org/), and [statsmodels](http://www.statsmodels.org/). Annotations map the libraries' types and functions onto the ontology's universal concepts.
 
-### Goals
+### Mission
 
 The purpose of the Data Science Ontology is to enable artificial intelligence (AI) capabilities for collaborative, data-driven science, such as:
 

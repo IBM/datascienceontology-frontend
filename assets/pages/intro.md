@@ -14,4 +14,14 @@ The Data Science Ontology is comprised of two kinds of entities: concepts and an
 
 As the last example suggests, significant modeling flexibility is required to accurately translate the diverse APIs of statistical software into a single set of universal concepts. To meet this challenge, an annotation can map a single library function or method onto an arbitrary composition of concepts. Compositions are expressed in the ontology language **Monocl** (the MONoidal Ontology and Computing Language). We think of the ontology language as a minimalistic, typed, functional programming language. Being designed for knowledge representation, rather than practical computing, it is simpler than any real-world programming language but is still moderately expressive.
 
-The bulk of the content below is dedicated to explaining the ontology language Monocl. Once that is understood, it is easy to understand the concepts and annotations in the Data Science Ontology.
+The next section develops the ontology language Monocl. Once that is understood, it is easy to understand the concepts and annotations in the Data Science Ontology.
+
+## Ontology language
+
+Concepts constitute the **basic types** and **basic functions** of the ontology. In analogy to the primitive types and functions of a real-world programming language, the basic types and functions are atomic—indecomposable into smaller parts. However, they can be combined to form more complex types and functions. The ontology language defines constructors for combining types and functions. In this section, we explain these constructors at an intuitive level. If you are so inclined, you may also read a [more formal account](/page/math) of the syntax and semantics of the ontology language.
+
+### Types
+
+Monocl's type system is about as minimalistic as they come. It supports product types, a unit type, and a simple form of subtyping.
+
+### Functions
