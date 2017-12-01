@@ -4,6 +4,8 @@ import * as Router from "react-router-dom";
 import { SExp } from "open-discovery";
 
 
+/** Display an S-expression as a term tree.
+ */
 export class SExpComponent extends React.Component<{sexp: SExp}> {
   render() {
     return <span className="s-expression">
@@ -29,6 +31,20 @@ export class SExpComponent extends React.Component<{sexp: SExp}> {
   }
   
   renderSExpHead(name: string): JSX.Element {
-    return <span className="s-expression-head">{name}</span>;
+    return <span className="s-expression-head">
+      {displayNames.hasOwnProperty(name) ?
+        displayNames[name] : name}
+    </span>;
   }
 }
+
+/** User-friendtly names to display for the head symbols of S-expressions.
+ */
+const displayNames: { [name: string]: string; } = {
+  // Type constructors
+  Ob: "Type",
+  Hom: "Function",
+  
+  // Term constructors
+  otimes: "product",
+};
