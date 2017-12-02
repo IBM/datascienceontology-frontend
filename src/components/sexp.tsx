@@ -3,6 +3,8 @@ import * as Router from "react-router-dom";
 
 import { SExp } from "open-discovery";
 
+import "../../style/components/sexp.css";
+
 
 /** Display an S-expression as a term tree.
  */
@@ -44,7 +46,10 @@ const displayNames: { [name: string]: string; } = {
   // Type constructors
   Ob: "Type",
   Hom: "Function",
+  SubOb: "Subtype",
+  SubHom: "Subfunction",
   
   // Term constructors
   otimes: "product",
+  munit: "unit",
 };

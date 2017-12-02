@@ -2,6 +2,12 @@
   margin: 0 3em;
 }
 
+#react-container code {
+  color: black;
+  background-color: transparent;
+  padding: 0;
+}
+
 .markdown-document {
   max-width: 960px;
   margin: 0 auto;

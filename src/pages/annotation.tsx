@@ -111,7 +111,9 @@ const PythonObjectDefList = (props: {annotation: Annotation.PythonObject}) => {
     <dd key="class-dd">
       <div className="annotation-class-list">
         <ul>{classes.map((className, i) =>
-          <li key={i}>{className}</li>)}
+          <li key={i}>
+            <code>{className}</code>
+          </li>)}
         </ul>
       </div>
     </dd>,
@@ -124,9 +126,7 @@ const PythonObjectDefList = (props: {annotation: Annotation.PythonObject}) => {
       <div className="slot-list">
         <ul>{slots.map((slot, i) =>
           <li key={i}>
-            <span className="annotation-code">
-              {slot.slot}
-            </span>
+            <code>{slot.slot}</code>
             {": "}
             <SExpComponent sexp={slot.definition} />
           </li>)}
@@ -152,7 +152,9 @@ const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) =
     <dd key="class-dd">
       <div className="annotation-class-list">
         <ul>{classes.map((className, i) =>
-          <li key={i}>{className}</li>)}
+          <li key={i}>
+            <code>{className}</code>
+          </li>)}
         </ul>
       </div>
     </dd>,
@@ -160,7 +162,7 @@ const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) =
   if (annotation.method) { elements.push(
     <dt key="method-dt">Python method</dt>,
     <dd key="method-dd">
-      <span className="annotation-code">{annotation.method}</span>
+      <code>{annotation.method}</code>
     </dd>,
   ); }
   elements.push(
@@ -168,7 +170,9 @@ const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) =
     <dd key="dom-dd">
       <div className="domain-list">
         <ol>{annotation.domain.map((ob, i) =>
-          <li key={i}>{ob.slot}</li>)}
+          <li key={i}>
+            <code>{ob.slot}</code>
+          </li>)}
         </ol>
       </div>
     </dd>,
@@ -176,7 +180,9 @@ const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) =
     <dd key="codom-dd">
       <div className="domain-list">
         <ol>{annotation.codomain.map((ob, i) =>
-          <li key={i}>{ob.slot}</li>)}
+          <li key={i}>
+            <code>{ob.slot}</code>
+          </li>)}
         </ol>
       </div>
     </dd>,
