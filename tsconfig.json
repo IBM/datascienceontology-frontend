@@ -5,7 +5,10 @@
     "noImplicitAny": true,
     "module": "commonjs",
     "target": "es6",
-    "jsx": "react"
+    "jsx": "react",
+    "types": [
+      "@paperist/types-remark"
+    ]
   },
   "include": [
     "./src/**/*"
