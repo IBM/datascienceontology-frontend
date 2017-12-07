@@ -41,6 +41,11 @@ module.exports = {
             }
           }
         ]
+      },
+      // Bundle fonts referenced in CSS files.
+      {
+        test: /\.(woff|woff2|eot|ttf)$/,
+        loader: 'url-loader'
       }
     ]
   },

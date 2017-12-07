@@ -2,14 +2,6 @@
 # yarn lockfile v1
 
 
-"@matejmazur/react-mathjax@^0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@matejmazur/react-mathjax/-/react-mathjax-0.1.7.tgz#d48df6dd3e0d1fe6c1f4a5ea397d270bbb8798c0"
-  dependencies:
-    load-script "^1.0.0"
-    prop-types "^15.6.0"
-    react "^16.0.0"
-
 "@paperist/types-remark@^0.1.3":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@paperist/types-remark/-/types-remark-0.1.3.tgz#a47f49d613d579630543f5cbc7736c90fbf8fde5"
@@ -27,6 +19,10 @@
 "@types/history@*":
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.0.tgz#093d67ed780d889c9543f6dca24ebee0b6b9fc45"
+
+"@types/katex@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@types/katex/-/katex-0.5.0.tgz#a7dbb981f1bc89c8b1b5e7fa8a1ce2617ab2f358"
 
 "@types/lodash@^4.14.71":
   version "4.14.74"
@@ -1212,6 +1208,12 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
+katex@^0.9.0-alpha2:
+  version "0.9.0-alpha2"
+  resolved "https://registry.yarnpkg.com/katex/-/katex-0.9.0-alpha2.tgz#f559e8bb32969082d735d949960b7df133fd5831"
+  dependencies:
+    match-at "^0.1.1"
+
 keycode@^2.1.2:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.1.9.tgz#964a23c54e4889405b4861a5c9f0480d45141dfa"
@@ -1237,10 +1239,6 @@ lazy-cache@^2.0.1, lazy-cache@^2.0.2:
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-2.0.2.tgz#b9190a4f913354694840859f8a8f7084d8822264"
   dependencies:
     set-getter "^0.1.0"
-
-load-script@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/load-script/-/load-script-1.0.0.tgz#0491939e0bee5643ee494a7e3da3d2bac70c6ca4"
 
 loader-utils@^0.2.15, loader-utils@~0.2.2:
   version "0.2.17"
@@ -1311,6 +1309,10 @@ markdown-escapes@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/markdown-escapes/-/markdown-escapes-1.0.1.tgz#1994df2d3af4811de59a6714934c2b2292734518"
 
+match-at@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/match-at/-/match-at-0.1.1.tgz#25d040d291777704d5e6556bbb79230ec2de0540"
+
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"
@@ -1349,6 +1351,10 @@ mime-types@^2.1.12, mime-types@~2.1.17:
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.17.tgz#09d7a393f03e995a79f8af857b70a9e0ab16557a"
   dependencies:
     mime-db "~1.30.0"
+
+mime@^1.4.1:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
 
 minimatch@^3.0.4:
   version "3.0.4"
@@ -1457,7 +1463,7 @@ once@^1.3.0:
     wrappy "1"
 
 "open-discovery-components@file:.yalc/open-discovery-components":
-  version "0.1.0-fcdd58c8"
+  version "0.1.0-5db4798a"
 
 "open-discovery@file:.yalc/open-discovery":
   version "0.1.0-e94522b4"
@@ -2446,6 +2452,14 @@ unset-value@^0.1.1:
 urix@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
+
+url-loader@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/url-loader/-/url-loader-0.6.2.tgz#a007a7109620e9d988d14bce677a1decb9a993f7"
+  dependencies:
+    loader-utils "^1.0.2"
+    mime "^1.4.1"
+    schema-utils "^0.3.0"
 
 use@^2.0.0:
   version "2.0.2"
