@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@matejmazur/react-mathjax@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@matejmazur/react-mathjax/-/react-mathjax-0.1.6.tgz#d6dcd296a50039bf15344d5c13cb0a3c2045977f"
+"@matejmazur/react-mathjax@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/@matejmazur/react-mathjax/-/react-mathjax-0.1.7.tgz#d48df6dd3e0d1fe6c1f4a5ea397d270bbb8798c0"
   dependencies:
     load-script "^1.0.0"
     prop-types "^15.6.0"
