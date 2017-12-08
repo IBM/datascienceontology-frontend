@@ -9,5 +9,7 @@
 }
 
 .markdown-document .s-expression-terminal {
+  /* font-family: KaTeX_Math;
+     font-size: 1.21em; */
   font-style: italic;
 }
