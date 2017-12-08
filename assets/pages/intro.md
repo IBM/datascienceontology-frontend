@@ -63,6 +63,36 @@ A **program** in Monocl is a simply function built from the basic functions usin
 
 You may be surprised to learn that both the textual and graphical syntaxes for functions are “point-free”: they do not identify variables (“points”). In fact, there are no variables at all in Monocl. In this respect, Monocl is similar to [concatenative programming languages](https://concatenative.org/) like Forth and dissimilar to most other programming languages. While it may seem counterintuitive at first, this convention greatly simplifies the algorithmic manipulation of programs by removing all issues related to free and bound variables, variable name conflicts, etc. Note that the inputs and outputs of concepts and annotations are sometimes given human-readable names. These names are for documentation purposes only; they are ignored by the ontology language.
 
+#### Graphical syntax
+
+As an alternative to the textual syntax based on expression trees, programs in Monocl can be displayed in a graphical syntax. The textual and graphical syntaxes are equally expressive. The textual syntax is the “native” format of the ontology, being more convenient for computer entry, but most people find the graphical syntax more easily interpretable. The graphical syntax is derived from the [string diagrams](https://ncatlab.org/nlab/show/string+diagram) of monoidal category theory, but in this guide we assume no knowledge of that subject. We will refer to programs in the graphical syntax as “wiring diagrams.”
+
+In a wiring diagram, functions are represented by **boxes** (aka nodes). A box has an **input port** for every input of the corresponding function and an **output port** for every output of the function. For example, a function $f$ with input type $X \times Y$ and output type $W \times Z$, declared by the expression tree
+
+sexp: Function definition
+:::
+["Hom", "f", ["otimes", "X", "Y"], ["otimes", "W", "Z"]]
+:::
+
+is represented as the box:
+
+**TODO**: DIAGRAM
+
+As we have said, the unit type is useful for defining functions with no inputs or no outputs. For example, a function $c$ with input type $1$ and output type $X$, declared by the expression tree
+
+sexp: Constant definition
+:::
+["Hom", "c", ["munit"], "X"]
+:::
+
+is represented as a box with no input ports:
+
+**TODO**: DIAGRAM
+
+We think of the function $c$ as a “constant” of type $X$.
+
+A **wiring diagram** consists of a collection of boxes whose ports are connected by **wires** (aka edges or strings), plus an **outer box** that defines the inputs and outputs of the whole diagram. The configuration of the boxes and wires in the diagram determines the meaning of the program. Let us now see how this works.
+
 #### Constructors
 
 ##### Composition
@@ -75,5 +105,9 @@ sexp: Composition of functions
 :::
 
 In “point-full” mathematical notation, this composition defines the function $x \mapsto g(f(x))$.
+
+**TODO**: DIAGRAM
+
+**TODO**: Domain compatibility and implicit conversion
 
 #### Subfunctions
