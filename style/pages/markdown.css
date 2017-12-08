@@ -2,3 +2,12 @@
   max-width: 960px;
   margin: 0 auto;
 }
+
+.markdown-document div.s-expression {
+  display: table;
+  margin: 0 auto;
+}
+
+.markdown-document .s-expression-terminal {
+  font-style: italic;
+}
