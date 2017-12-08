@@ -62,7 +62,8 @@ module.exports = {
       root: "_"
     },
     "react": "React",
-    "react-dom": "ReactDOM"
+    "react-dom": "ReactDOM",
+    "katex": "katex"
   },
   devServer: {
     // Route 404's back to index.html to be handled by React Router.
