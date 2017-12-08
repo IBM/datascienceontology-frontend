@@ -119,7 +119,7 @@ const PythonObjectDefList = (props: {annotation: Annotation.PythonObject}) => {
     </dd>,
     <dt key="def-dt">Definition</dt>,
     <dd key="def-dd">
-      <SExpComponent sexp={annotation.definition} />
+      <SExpComponent ontology sexp={annotation.definition} />
     </dd>,
     <dt key="slots-dt">Slots</dt>,
     <dd key="slots-dd">
@@ -128,7 +128,7 @@ const PythonObjectDefList = (props: {annotation: Annotation.PythonObject}) => {
           <li key={i}>
             <code>{slot.slot}</code>
             {": "}
-            <SExpComponent sexp={slot.definition} />
+            <SExpComponent ontology sexp={slot.definition} />
           </li>)}
         </ul>
       </div>
@@ -188,7 +188,7 @@ const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) =
     </dd>,
     <dt key="def-dt">Definition</dt>,
     <dd key="def-dd">
-      <SExpComponent sexp={annotation.definition} />
+      <SExpComponent ontology sexp={annotation.definition} />
     </dd>,
   );
   return elements;

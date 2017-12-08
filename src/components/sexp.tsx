@@ -6,9 +6,17 @@ import { SExp } from "open-discovery";
 import "../../style/components/sexp.css";
 
 
+interface SExpProps {
+  /* S-expression to display. */
+  sexp: SExp;
+  
+  /* Whether the terminals refer to concepts in the ontology (default false). */
+  ontology?: boolean;
+}
+
 /** Display an S-expression as a term tree.
  */
-export class SExpComponent extends React.Component<{sexp: SExp}> {
+export class SExpComponent extends React.Component<SExpProps> {
   render() {
     return <span className="s-expression">
       {this.renderSExp(this.props.sexp)}
@@ -17,7 +25,7 @@ export class SExpComponent extends React.Component<{sexp: SExp}> {
   
   renderSExp(sexp: SExp): JSX.Element {
     if (typeof sexp === "string") {
-      return <Router.Link to={`/concept/${sexp}`}>{sexp}</Router.Link>;
+      return this.renderSExpTerminal(sexp);
     }
     return <ol>
       {sexp.map((term,i) => {
@@ -34,8 +42,15 @@ export class SExpComponent extends React.Component<{sexp: SExp}> {
   
   renderSExpHead(name: string): JSX.Element {
     return <span className="s-expression-head">
-      {displayNames.hasOwnProperty(name) ?
-        displayNames[name] : name}
+      {displayNames.hasOwnProperty(name) ? displayNames[name] : name}
+    </span>;
+  }
+  
+  renderSExpTerminal(value: string): JSX.Element {
+    return <span className="s-expression-terminal">
+      {this.props.ontology ?
+        <Router.Link to={`/concept/${value}`}>{value}</Router.Link> :
+        value}
     </span>;
   }
 }
