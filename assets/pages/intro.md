@@ -21,7 +21,7 @@ The next section develops the ontology language Monocl. Once that is understood,
 
 The concepts of the ontology constitute the **basic types** and **basic functions** of the ontology language. In analogy to the primitive types and functions of a real-world programming language, the basic types and functions are atomic—indecomposable into smaller parts. However, they can be combined to form more complex types and functions. The ontology language defines **constructors** for combining types and functions. In this section, we explain these constructors at an intuitive level. If you are so inclined, you may also read a [more formal account](/page/math) of the syntax and semantics of the ontology language.
 
-Syntactic expressions for types and functions are displayed as expression trees. The terminal nodes are concepts and the non-terminal nodes are constructors. Besides the textual syntax, function expressions may also displayed in a more intuitive graphical syntax. We will present both the textual and graphical syntaxes.
+Syntactic expressions for types and functions are displayed as expression trees. The terminal nodes are concepts and the non-terminal nodes are constructors. Besides the textual syntax, function expressions also admit a more intuitive graphical syntax. We will present both the textual and graphical syntaxes below.
 
 ### Types
 
@@ -33,19 +33,17 @@ The **product** of two types $X$ and $Y$ is another type $X \times Y$. The inter
 
 sexp: Product of types
 :::
-["product", "X", "Y"]
+["otimes", "X", "Y"]
 :::
 
 The **unit type** $1$ is a type inhabited by a single element. It is analogous to the `void` type in C and Java, the `NoneType` type in Python (whose sole inhabitant is `None`), and the `NULL` type in R. By itself, the unit type is not of much use. However, once functions are in play, it becomes useful for defining functions with no inputs (i.e., constants) or no outputs. The unit type has the simple expression tree:
 
 sexp: Unit type
 :::
-["unit"]
+["munit"]
 :::
 
 Every type in a Monocl is either a basic type, the unit type, or a product of basic types. Therefore, you can think of a general type as a finite (possibly empty) list of basic types. The empty list corresponds to the unit type.
-
-
 
 #### Subtypes
 
@@ -53,7 +51,7 @@ A basic type can be declared a **subtype** of one or more other basic types. To 
 
 As this example illustrates, subtyping in Monocl is *not* like inheritance in a typical object-oriented programming language. Inheritance is a design pattern that combines—arguably conflates—subtyping with a mechanism for implementation sharing (code reuse). Because Monocl concepts are not implemented at all, implementation sharing is irrelevant and the usual problems related to multiple inheritance do not arise.
 
-Instead, subtyping should be understood in terms of *implicit conversion*, also known as *coercion*. The idea is that if a type $X_0$ is a subtype of $X$, then there is a canonical way of converting elements of type $X_0$ into elements of type $X$.  Elaborating the example above, a matrix simply *is* an array (of rank 2), hence can be trivially converted into an array. Meanwhile, a matrix can be converted into a data table (of homogeneous data type) by assigning numerical names to the columns, as accomplished by the function `as.data.frame` in R. Notice that the set of matrices is not, strictly speaking, a subset of the set of data tables, hence the slogan in programming language theory that [types are not sets](https://doi.org/10.1145/512927.512938).
+Instead, subtyping should be understood in terms of *implicit conversion*, also known as *coercion*. The idea is that if a type $X_0$ is a subtype of $X$, then there is a canonical way of converting elements of type $X_0$ into elements of type $X$.  Elaborating the example above, a matrix simply *is* an array (of rank 2), hence can be trivially converted into an array. Meanwhile, a matrix can be converted into a data table (of homogeneous data type) by assigning numerical names to the columns, as accomplished by the function `as.data.frame` in R. Notice that the set of matrices is *not* a subset of the set of data tables, hence the slogan in programming language theory that [types are not sets](https://doi.org/10.1145/512927.512938).
 
 Besides playing the role of the ubiquitous “is-a” relation in knowledge representation systems, subtyping enables a form of ad hoc polymorphism: a function taking input of type $X$ can, via implicit conversion, automatically take input of any subtype $X_0$ of $X$. What this means should become more clear when we discuss functions below.
 
@@ -61,7 +59,9 @@ Besides playing the role of the ubiquitous “is-a” relation in knowledge repr
 
 Every function has an input type (aka *domain*) and an output type (aka *codomain*). These types may be basic or compound. Thus a function may have zero, one, or many basic types as inputs, and likewise for outputs. In contrast to many programming languages, there is a perfect symmetry between inputs and outputs, even at the syntactic level.
 
-A program in Monocl is a simply function built from the basic functions using a set of predefined constructors. There are several constructors for making new functions out of existing functions or types. The most important is composition. The language also has a notion of “generic function” that extends the idea of subtyping from types to functions.
+A **program** in Monocl is a simply function built from the basic functions using a set of predefined constructors. There are several constructors for making new functions out of existing functions or types. The most important is composition. The language also has a notion of “generic function” that extends the idea of subtyping from types to functions.
+
+You may be surprised to learn that both the textual and graphical syntaxes for functions are *point-free*: they do not identify variables (“points”). In fact, there are no variables at all in Monocl. In this respect, Monocl is similar to [concatenative programming languages](https://concatenative.org/) like Forth and dissimilar to most other programming languages. While it may seem counterintuitive at first, this convention greatly simplifies the algorithmic manipulation of programs by removing all issues related to free and bound variables, variable renaming, variable name clashes, etc. Note that the inputs and outputs of concepts and annotations are sometimes given human-readable names. These names are for documentation purposes only; they are ignored by the ontology language.
 
 #### Constructors
 

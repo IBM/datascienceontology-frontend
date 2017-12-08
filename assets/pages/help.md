@@ -15,7 +15,7 @@ The purpose of the Data Science Ontology is to enable artificial intelligence (A
 
 Several of these capabilities are currently under development as part of the broader Open Discovery project.
 
-The connection between the Data Science Ontology and AI for data science is established by a suite of tools for computer program analysis. Using the ontology's annotations, our tools can automatically construct a machine-interpretable semantic representation of a data analysis that is written in a conventional programming language like Python or R. Such semantic representations serve as the raw material for machine learning algorithms operating on data analyses.
+The connection between the Data Science Ontology and AI for data science is established by a suite of tools for computer program analysis. Using the ontology's annotations, our tools can automatically construct a machine-interpretable semantic representation of a data analysis that is written in a conventional programming language like Python or R. Such semantic representations serve as raw material for machine learning algorithms operating on data analyses.
 
 ## Learning more
 
