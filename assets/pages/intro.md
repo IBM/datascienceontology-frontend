@@ -61,8 +61,19 @@ Every function has an input type (aka *domain*) and an output type (aka *codomai
 
 A **program** in Monocl is a simply function built from the basic functions using a set of predefined constructors. There are several constructors for making new functions out of existing functions or types. The most important is composition. The language also has a notion of “generic function” that extends the idea of subtyping from types to functions.
 
-You may be surprised to learn that both the textual and graphical syntaxes for functions are *point-free*: they do not identify variables (“points”). In fact, there are no variables at all in Monocl. In this respect, Monocl is similar to [concatenative programming languages](https://concatenative.org/) like Forth and dissimilar to most other programming languages. While it may seem counterintuitive at first, this convention greatly simplifies the algorithmic manipulation of programs by removing all issues related to free and bound variables, variable renaming, variable name clashes, etc. Note that the inputs and outputs of concepts and annotations are sometimes given human-readable names. These names are for documentation purposes only; they are ignored by the ontology language.
+You may be surprised to learn that both the textual and graphical syntaxes for functions are “point-free”: they do not identify variables (“points”). In fact, there are no variables at all in Monocl. In this respect, Monocl is similar to [concatenative programming languages](https://concatenative.org/) like Forth and dissimilar to most other programming languages. While it may seem counterintuitive at first, this convention greatly simplifies the algorithmic manipulation of programs by removing all issues related to free and bound variables, variable name conflicts, etc. Note that the inputs and outputs of concepts and annotations are sometimes given human-readable names. These names are for documentation purposes only; they are ignored by the ontology language.
 
 #### Constructors
+
+##### Composition
+
+The most important function constructor is **composition**: it composes two or more functions *in sequence*, so that the outputs of the first function become the inputs of the second function. The expression tree for the composition of functions $f$ and $g$ is
+
+sexp: Composition of functions
+:::
+["compose", "f", "g"]
+:::
+
+In “point-full” mathematical notation, this composition defines the function $x \mapsto g(f(x))$.
 
 #### Subfunctions
