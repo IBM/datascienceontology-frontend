@@ -5,6 +5,8 @@ import { SExp } from "open-discovery";
 import { MarkdownDocument } from "open-discovery-components";
 import { SExpComponent } from "../components/sexp";
 
+import "../../style/pages/markdown.css";
+
 
 type MarkdownPageProps = Router.RouteComponentProps<{page: string}>;
 

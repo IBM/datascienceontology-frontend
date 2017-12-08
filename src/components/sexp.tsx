@@ -10,6 +10,9 @@ interface SExpProps {
   /* S-expression to display. */
   sexp: SExp;
   
+  /* Whether to display inline (instead of as block) (default false). */
+  inline?: boolean;
+  
   /* Whether the terminals refer to concepts in the ontology (default false). */
   ontology?: boolean;
 }
@@ -18,9 +21,10 @@ interface SExpProps {
  */
 export class SExpComponent extends React.Component<SExpProps> {
   render() {
-    return <span className="s-expression">
-      {this.renderSExp(this.props.sexp)}
-    </span>;
+    const content = this.renderSExp(this.props.sexp);
+    return this.props.inline?
+      <span className="s-expression">{content}</span> :
+      <div className="s-expression">{content}</div>;
   }
   
   renderSExp(sexp: SExp): JSX.Element {
