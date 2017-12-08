@@ -17,7 +17,7 @@ export const MarkdownPage = (props: MarkdownPageProps) => {
     renderers: {
       sexp: (props: {value: string, children: string[]}) => {
         const sexp = JSON.parse(props.children[0]) as SExp;
-        return <SExpComponent sexp={sexp} />;
+        return <p><SExpComponent sexp={sexp} /></p>;
       }
     },
   }} />;

@@ -3,7 +3,7 @@ title: Introduction to the Data Science Ontology
 math: true
 ---
 
-In this introductory guide, we explain the two basic entities comprising the Data Science Ontology, *concepts* and *annotations*. We also explain the ontology language by which concepts and annotations are specified, including both its textual syntax and graphical syntax. After completing this guide, you should be able to interpret the concept and annotation entries found on this website, as well as the semantic representations of data analyses produced by the Open Discovery project. The intended audience is working data scientists, authors of statistical software, and other practitioners of data-driven science.
+In this introductory guide, we explain the two basic entities comprising the Data Science Ontology, concepts and annotations. We also explain the ontology language by which concepts and annotations are specified, including both its textual syntax and graphical syntax. After completing this guide, you should be able to interpret the concept and annotation entries found on this website, as well as the semantic representations of data analyses produced by the Open Discovery project. The intended audience is working data scientists, authors of statistical software, and other practitioners of data-driven science. To make sense of this guide, you should be familiar with at least one programming language. Any language will do.
 
 ### Overview
 
@@ -19,7 +19,9 @@ The next section develops the ontology language Monocl. Once that is understood,
 
 ## Ontology language
 
-Concepts constitute the **basic types** and **basic functions** of the ontology. In analogy to the primitive types and functions of a real-world programming language, the basic types and functions are atomic—indecomposable into smaller parts. However, they can be combined to form more complex types and functions. The ontology language defines constructors for combining types and functions. In this section, we explain these constructors at an intuitive level. If you are so inclined, you may also read a [more formal account](/page/math) of the syntax and semantics of the ontology language.
+The concepts of the ontology constitute the **basic types** and **basic functions** of the ontology language. In analogy to the primitive types and functions of a real-world programming language, the basic types and functions are atomic—indecomposable into smaller parts. However, they can be combined to form more complex types and functions. The ontology language defines **constructors** for combining types and functions. In this section, we explain these constructors at an intuitive level. If you are so inclined, you may also read a [more formal account](/page/math) of the syntax and semantics of the ontology language.
+
+Syntactic expressions for types and functions are displayed as expression trees. The terminal nodes are concepts and the non-terminal nodes are constructors. Besides the textual syntax, function expressions may also displayed in a more intuitive graphical syntax. We will present both the textual and graphical syntaxes.
 
 ### Types
 
@@ -27,11 +29,23 @@ Monocl's type system is about as minimalistic as they come. It has product types
 
 #### Constructors
 
-The **product** of two types $X$ and $Y$ is another type $X \times Y$. The interpretation is that an element of type $X \times Y$ consists of an element of type $X$ *and* an element of type $Y$. Thus, if $x$ has type $X$ and $y$ has type $Y$, then the pair $\langle x, y \rangle$ has type $X \times Y$. Products of three or more types are defined in the same manner.
+The **product** of two types $X$ and $Y$ is another type $X \times Y$. The interpretation is that an element of type $X \times Y$ consists of an element of type $X$ *and* an element of type $Y$. Thus, if $x$ has type $X$ and $y$ has type $Y$, then the pair $\langle x, y \rangle$ has type $X \times Y$. Products of three or more types are defined similarly. Product types are often supported as tuples or record types in real-world programming languages, for example as `struct` types in C. As an expression tree, the product type $X \times Y$ appears as:
 
-The **unit type** $I$ is a type inhabited by a single element. It is analogous to the `void` type in C and Java, the `NoneType` type in Python (whose sole inhabitant is `None`), and the `NULL` type in R. By itself, the unit type is not of much use. However, once functions are in play, it becomes useful for defining functions with no inputs (i.e., constants) or no outputs.
+sexp: Product of types
+:::
+["product", "X", "Y"]
+:::
 
-Every type in a Monocl is either a basic type, the unit type, or a product of basic types. Equivalently, you can think of a general type as a finite (possibly empty) list of basic types. The empty list corresponds to the unit type.
+The **unit type** $1$ is a type inhabited by a single element. It is analogous to the `void` type in C and Java, the `NoneType` type in Python (whose sole inhabitant is `None`), and the `NULL` type in R. By itself, the unit type is not of much use. However, once functions are in play, it becomes useful for defining functions with no inputs (i.e., constants) or no outputs. The unit type has the simple expression tree:
+
+sexp: Unit type
+:::
+["unit"]
+:::
+
+Every type in a Monocl is either a basic type, the unit type, or a product of basic types. Therefore, you can think of a general type as a finite (possibly empty) list of basic types. The empty list corresponds to the unit type.
+
+
 
 #### Subtypes
 
@@ -39,7 +53,7 @@ A basic type can be declared a **subtype** of one or more other basic types. To 
 
 As this example illustrates, subtyping in Monocl is *not* like inheritance in a typical object-oriented programming language. Inheritance is a design pattern that combines—arguably conflates—subtyping with a mechanism for implementation sharing (code reuse). Because Monocl concepts are not implemented at all, implementation sharing is irrelevant and the usual problems related to multiple inheritance do not arise.
 
-Instead, subtyping should be understood in terms of *implicit conversion*, also known as *coercion*. The idea is that if a type $X_0$ is a subtype of $X$, then there is a canonical way of converting elements of type $X_0$ into elements of type $X$.  Elaborating the example above, a matrix simply *is* an array (of rank 2), while a matrix can be *converted* into a data table whose columns are named, say, numerically (and are of homogeneous data type). Notice that the set of matrices is not, strictly speaking, a subset of the set of data tables, hence the slogan in programming language theory that [types are not sets](https://doi.org/10.1145/512927.512938).
+Instead, subtyping should be understood in terms of *implicit conversion*, also known as *coercion*. The idea is that if a type $X_0$ is a subtype of $X$, then there is a canonical way of converting elements of type $X_0$ into elements of type $X$.  Elaborating the example above, a matrix simply *is* an array (of rank 2), hence can be trivially converted into an array. Meanwhile, a matrix can be converted into a data table (of homogeneous data type) by assigning numerical names to the columns, as accomplished by the function `as.data.frame` in R. Notice that the set of matrices is not, strictly speaking, a subset of the set of data tables, hence the slogan in programming language theory that [types are not sets](https://doi.org/10.1145/512927.512938).
 
 Besides playing the role of the ubiquitous “is-a” relation in knowledge representation systems, subtyping enables a form of ad hoc polymorphism: a function taking input of type $X$ can, via implicit conversion, automatically take input of any subtype $X_0$ of $X$. What this means should become more clear when we discuss functions below.
 
