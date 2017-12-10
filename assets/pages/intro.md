@@ -5,7 +5,7 @@ math: true
 
 In this introductory guide, we explain the two basic entities comprising the Data Science Ontology, concepts and annotations. We also explain the ontology language by which concepts and annotations are specified, including both its textual syntax and graphical syntax. After completing this guide, you should be able to interpret the concept and annotation entries found on this website, as well as the semantic representations of data analyses produced by the Open Discovery project. The intended audience is working data scientists, authors of statistical software, and other practitioners of data-driven science. To make sense of this guide, you should be familiar with at least one programming language. Any language will do.
 
-### Overview
+## Overview
 
 The Data Science Ontology is comprised of two kinds of entities: concepts and annotations.
 
@@ -78,14 +78,14 @@ is represented as the box:
 
 **TODO**: DIAGRAM
 
-As we have said, the unit type is useful for defining functions with no inputs or no outputs. For example, a function $c$ with input type $1$ and output type $X$, declared by the expression tree
+As we have said, the unit type is useful for defining functions with no inputs or no outputs. For example, a function $c$ with input type $1$ and output type $X$, is declared by the expression tree
 
 sexp: Constant definition
 :::
 ["Hom", "c", ["munit"], "X"]
 :::
 
-is represented as a box with no input ports:
+and is represented as a box with no input ports:
 
 **TODO**: DIAGRAM
 
@@ -97,17 +97,17 @@ A **wiring diagram** consists of a collection of boxes whose ports are connected
 
 ##### Composition
 
-The most important function constructor is **composition**: it composes two or more functions *in sequence*, so that the outputs of the first function become the inputs of the second function. The expression tree for the composition of functions $f$ and $g$ is
+The most important function constructor is **composition**: it composes two or more functions *in sequence*, so that the outputs of the first function become the inputs of the second function. In “point-full” mathematical notation, the composition of a function $f$ with another function $g$ is the function $x \mapsto g(f(x))$. That is, the function $f$ is applied, followed by $g$. The expression tree for this composition is
 
 sexp: Composition of functions
 :::
 ["compose", "f", "g"]
 :::
 
-In “point-full” mathematical notation, this composition defines the function $x \mapsto g(f(x))$.
+In the graphical syntax, composition is represented by wires:
 
 **TODO**: DIAGRAM
 
-**TODO**: Domain compatibility and implicit conversion
+In order for a composition to be well-defined, the input and output types must be compatible. Specifically, there must be the same number of output types of $f$ as input types of $g$ and, moreover, each output type of $f$ must be a subtype of the corresponding input type of $g$. The interpretation is that outputs of $f$ are *implicitly converted* to the input types of $g$ before being passed as inputs to $g$. Diagrammatically, this means that the source port type of any wire must be a subtype of the target port type of the wire.
 
 #### Subfunctions
