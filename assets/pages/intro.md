@@ -59,9 +59,9 @@ Besides playing the role of the ubiquitous “is-a” relation in knowledge repr
 
 Every function has an input type (aka *domain*) and an output type (aka *codomain*). These types may be basic or compound. Thus a function may have zero, one, or many basic types as inputs, and likewise for outputs. In contrast to many programming languages, there is a perfect symmetry between inputs and outputs, even at the syntactic level.
 
-A **program** in Monocl is a simply function built from the basic functions using a set of predefined constructors. There are several constructors for making new functions out of existing functions or types. The most important is composition. The language also has a notion of “generic function” that extends the idea of subtyping from types to functions.
+A **program** in Monocl is a simply function built from the basic functions using a set of predefined constructors. There are several constructors for making new functions out of existing functions or types. The most important are composition and products. The language also has a notion of “generic function” that extends the idea of subtyping from types to functions.
 
-You may be surprised to learn that both the textual and graphical syntaxes for functions are “point-free”: they do not identify variables (“points”). In fact, there are no variables at all in Monocl. In this respect, Monocl is similar to [concatenative programming languages](https://concatenative.org/) like Forth and dissimilar to most other programming languages. While it may seem counterintuitive at first, this convention greatly simplifies the algorithmic manipulation of programs by removing all issues related to free and bound variables, variable name conflicts, etc. Note that the inputs and outputs of concepts and annotations are sometimes given human-readable names. These names are for documentation purposes only; they are ignored by the ontology language.
+You may be surprised to learn that both the textual and graphical syntaxes for functions are “point-free”: they do not identify variables (“points”). In fact, there are no variables at all in Monocl. In this respect, Monocl is similar to [concatenative programming languages](https://concatenative.org/) like Forth and dissimilar to most other programming languages. While it may seem counterintuitive at first, this convention greatly simplifies the algorithmic manipulation of programs by removing all issues related to free and bound variables, variable renaming, etc. Note that the inputs and outputs of concepts and annotations are sometimes given human-readable names. These names are for documentation purposes only; they are ignored by the ontology language.
 
 #### Graphical syntax
 
@@ -97,7 +97,7 @@ A **wiring diagram** consists of a collection of boxes whose ports are connected
 
 ##### Composition
 
-The most important function constructor is **composition**: it composes two or more functions *in sequence*, so that the outputs of the first function become the inputs of the second function. In “point-full” mathematical notation, the composition of a function $f$ with another function $g$ is the function $x \mapsto g(f(x))$. That is, the function $f$ is applied, followed by $g$. The expression tree for this composition is
+The most fundamental function constructor is **composition**: it composes two or more functions *in sequence*, so that the outputs of the first function become the inputs of the second function, the outputs of the second become the inputs of the third, and so on. The input type of the composition is the input type of the first function and the output type is the output type of the last function. In “point-full” mathematical notation, the composition of a function $f$ with another function $g$ is the function $x \mapsto g(f(x))$. That is, the function $f$ is applied, followed by $g$. The expression tree for this composition is
 
 sexp: Composition of functions
 :::
@@ -108,6 +108,25 @@ In the graphical syntax, composition is represented by wires:
 
 **TODO**: DIAGRAM
 
-In order for a composition to be well-defined, the input and output types must be compatible. Specifically, there must be the same number of output types of $f$ as input types of $g$ and, moreover, each output type of $f$ must be a subtype of the corresponding input type of $g$. The interpretation is that outputs of $f$ are *implicitly converted* to the input types of $g$ before being passed as inputs to $g$. Diagrammatically, this means that the source port type of any wire must be a subtype of the target port type of the wire.
+In order for a composition to be well-defined, the input and output types must be compatible. There must be the same number of output types of $f$ as input types of $g$ and, moreover, each output type of $f$ must be a subtype of the corresponding input type of $g$. The interpretation is that outputs of $f$ are *implicitly converted* to the input types of $g$ before being passed as inputs to $g$. Diagrammatically, this means that the source port type of any wire must be a subtype of the target port type of the wire.
+
+##### Products
+
+Another fundamental function constructor is the **product**: it composes two or more functions *in parallel*, concatenating both the inputs and the outputs. It extends the product constructor from types to function. Thus, if $f$ is a function with input type $X$ and output type $W$, and if $g$ is a function with input type $Y$ and output type $Z$, then product of $f$ and $g$ is a function $f \times g$ whose input type is $X \times Y$ and output type is $W \times Z$. In “point-full” mathematical notation, $f \times g$ is the function $\langle x,y \rangle \mapsto \langle f(x),g(y) \rangle$. Products of three or more functions are defined similarly.
+
+*Warning*: Do not confuse the notation $f \times g$ with pointwise multiplication! For most types, the operation of multiplication does not even make sense.
+
+The product $f \times g$ is represented textually by the expression tree
+
+sexp: Product of functions
+:::
+["otimes", "f", "g"]
+:::
+
+and diagrammatically by juxtaposition:
+
+**TODO**: DIAGRAM
+
+**TODO**: Interaction between products and composition
 
 #### Subfunctions
