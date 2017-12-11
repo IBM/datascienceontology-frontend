@@ -18,3 +18,7 @@ a.external-link:after {
   text-decoration: none;
   padding-left: 3px;
 }
+
+a.nav-link {
+  cursor: pointer;
+}

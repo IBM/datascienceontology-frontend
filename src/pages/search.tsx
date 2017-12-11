@@ -132,14 +132,16 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
     return <section className="search-results">
       <Nav tabs>
         <NavItem>
-          <NavLink disabled={this.state.totalConcepts === 0}
-                   onClick={() => this.setState({activeTab: "concepts"})}>
+          <NavLink onClick={() => this.setState({activeTab: "concepts"})}
+                   active={this.state.activeTab === "concepts"}
+                   disabled={this.state.totalConcepts === 0}>
             {`Concepts (${this.state.totalConcepts})`}
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink disabled={this.state.totalAnnotations === 0}
-                   onClick={() => this.setState({activeTab: "annotations"})}>
+          <NavLink onClick={() => this.setState({activeTab: "annotations"})}
+                   active={this.state.activeTab === "annotations"}
+                   disabled={this.state.totalAnnotations === 0}>
             {`Annotations (${this.state.totalAnnotations})`}
           </NavLink>
         </NavItem>
