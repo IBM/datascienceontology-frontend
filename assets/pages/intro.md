@@ -76,7 +76,7 @@ sexp: Function definition
 
 is represented as the box:
 
-**TODO**: DIAGRAM
+**DIAGRAM**
 
 As we have said, the unit type is useful for defining functions with no inputs or no outputs. For example, a function $c$ with input type $1$ and output type $X$, is declared by the expression tree
 
@@ -87,7 +87,7 @@ sexp: Constant definition
 
 and is represented as a box with no input ports:
 
-**TODO**: DIAGRAM
+**DIAGRAM**
 
 We think of the function $c$ as a “constant” of type $X$.
 
@@ -106,7 +106,7 @@ sexp: Composition of functions
 
 In the graphical syntax, composition is represented by wires:
 
-**TODO**: DIAGRAM
+**DIAGRAM**
 
 In order for a composition to be well-defined, the input and output types must be compatible. There must be the same number of output types of $f$ as input types of $g$ and, moreover, each output type of $f$ must be a subtype of the corresponding input type of $g$. The interpretation is that outputs of $f$ are *implicitly converted* to the input types of $g$ before being passed as inputs to $g$. Diagrammatically, this means that the source port type of any wire must be a subtype of the target port type of the wire.
 
@@ -125,8 +125,34 @@ sexp: Product of functions
 
 and diagrammatically by juxtaposition:
 
-**TODO**: DIAGRAM
+**DIAGRAM**
 
-**TODO**: Interaction between products and composition
+Already with composition and products, we have enough structure to define some interesting programs. Suppose we have functions $f$, $g$, $h$, and $k$ such that it makes sense to compose $f$ with $g$ and compose $h$ with $k$ (the input and output types are compatible). There are two ways we can combine all four functions into a single program. We can take a product of compositions:
+
+sexp: Product of compositions
+:::
+[
+    "otimes",
+    ["compose", "f", "g"],
+    ["compose", "h", "k"]
+]
+:::
+
+Or we can take a composition of products:
+
+sexp: Composition of products
+:::
+[
+    "compose",
+    ["otimes", "f", "h"],
+    ["otimes", "g", "k"]
+]
+:::
+
+You should convince yourself that both expressions actually define the same function. In graphical syntax, that function is:
+
+**DIAGRAM**
+
+This situation illustrates an important point: the graphical syntax is “coarser” than the textual syntax. In general, there may be many different expression trees corresponding to a given wiring diagram. We consider this feature to be another advantage of the graphical syntax over the textual syntax. It is why most of our program analysis tools operate on wiring diagrams, not expressions. Now there may, in turn, be many different wiring diagrams corresponding to the same function. That should not be surprising. In any programming language (graphical or textual), there will be syntactically distinct programs that are semantically equivalent. To summarize: an expression trees uniquely determines a wiring diagram, and a wiring diagram uniquely determines a function, but not conversely.
 
 #### Subfunctions
