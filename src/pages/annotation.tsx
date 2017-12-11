@@ -29,7 +29,7 @@ export const AnnotationPage = (props: AnnotationPageProps) => {
 export const AnnotationDisplay = (props: {doc: Annotation.Annotation}) => {
   const annotation = props.doc;
   return (
-    <div className="annotation">
+    <section id="annotation">
       <h3>
         <span className="text-muted" style={{paddingRight: "2em"}}>
           Annotation
@@ -38,7 +38,7 @@ export const AnnotationDisplay = (props: {doc: Annotation.Annotation}) => {
       </h3>
       {Annotation.isPythonAnnotation(annotation) &&
         <PythonAnnotationDisplay annotation={annotation} />}
-    </div>
+    </section>
   );
 }
 const AnnotationDisplayCouchDB = displayCouchDocument(AnnotationDisplay);

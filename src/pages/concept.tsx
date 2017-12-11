@@ -19,7 +19,7 @@ export const ConceptPage = (props: ConceptPageProps) => {
 export const ConceptDisplay = (props: {doc: Concept.Concept}) => {
   const concept = props.doc;
   return (
-    <div className="concept">
+    <section id="concept">
       <h3>
         <span className="text-muted" style={{paddingRight: "2em"}}>
           Concept
@@ -30,7 +30,7 @@ export const ConceptDisplay = (props: {doc: Concept.Concept}) => {
         {ConceptDefList({ concept })}
         {Concept.isMorphism(concept) && MorphismDefList({ concept })}
       </dl>
-    </div>
+    </section>
   );
 }
 const ConceptDisplayCouchDB = displayCouchDocument(ConceptDisplay);

@@ -6,9 +6,11 @@ import Client from "davenport";
 import * as Config from "../config";
 import { OntologySearchBar } from "./search";
 
+import "../../style/pages/home.css";
+
 
 export const HomePage = () => 
-  <section className="home">
+  <section id="home">
     <Jumbotron>
       <Welcome/>
       <OntologySearchBar/>

@@ -16,7 +16,7 @@ type SearchPageProps = Router.RouteComponentProps<{query?: string}>;
 export const SearchPage = (props: SearchPageProps) => {
   const query = props.match.params.query;
   return (
-    <section className="search">
+    <section id="search">
       <OntologySearchBar/>
       {query && <OntologyResults query={query} />}
     </section>
