@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Alert, Nav, Navbar, NavItem } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { Alert, Nav, Navbar, NavbarBrand, NavItem, NavLink } from "reactstrap";
 
 import { HomePage } from "./pages/home";
 import { AnnotationPage } from "./pages/annotation";
@@ -16,21 +15,27 @@ import "../style/main.css";
 const App = () =>
   <div id="app">
     <Navbar>
-      <Navbar.Header>
-        <LinkContainer to="/" style={{ cursor: "pointer" }}>
-          <Navbar.Brand>Data Science Ontology</Navbar.Brand>
-        </LinkContainer>
-      </Navbar.Header>
+      <NavbarBrand>
+        <NavLink tag={Link} {...{to: "/"}}>
+          Data Science Ontology
+        </NavLink>
+      </NavbarBrand>
       <Nav>
-        <LinkContainer to="/search">
-          <NavItem>Search</NavItem>
-        </LinkContainer>
-        <LinkContainer to="/page/help">
-          <NavItem>Help</NavItem>
-        </LinkContainer>
-        <LinkContainer to="/page/about">
-          <NavItem>About</NavItem>
-        </LinkContainer>
+        <NavItem>
+          <NavLink tag={Link} {...{to: "/search"}}>
+            Search
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink tag={Link} {...{to: "/page/help"}}>
+            Help
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink tag={Link} {...{to: "/page/about"}}>
+            About
+          </NavLink>
+        </NavItem>
       </Nav>
     </Navbar>
     <Switch>
@@ -44,7 +49,7 @@ const App = () =>
   </div>;
 
 const Error404Page = () =>
-  <Alert bsStyle="danger">
+  <Alert color="danger">
     <h4>Whoops</h4>
     <p>The page you are looking for does not exist.</p>
   </Alert>;

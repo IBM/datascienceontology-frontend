@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import * as React from "react";
 import * as Router from "react-router-dom";
-import { Grid, Col } from "react-bootstrap";
+import { Container, Row, Col } from "reactstrap";
 
 import { Annotation } from "open-discovery";
 import { CytoscapeComponent, displayCouchDocument } from "open-discovery-components";
@@ -56,17 +56,19 @@ const PythonAnnotationDisplay = (props: {annotation: Annotation.PythonAnnotation
   } else if (Annotation.isPythonMorphism(annotation)) {
     const cacheId = `annotation/${annotation.language}/${annotation.package}/${annotation.id}`;
     return (
-      <Grid>
-        <Col md={6}>
-          <dl className="dl-horizontal">
-            {PythonAnnotationDefList({ annotation })}
-            {PythonMorphismDefList({ annotation })}
-          </dl>
-        </Col>
-        <Col md={6}>
-          <MorphismDiagramCouchDB db={Config.app_db_url} docId={cacheId} />
-        </Col>
-      </Grid>
+      <Container>
+        <Row>
+          <Col>
+            <dl className="dl-horizontal">
+              {PythonAnnotationDefList({ annotation })}
+              {PythonMorphismDefList({ annotation })}
+            </dl>
+          </Col>
+          <Col>
+            <MorphismDiagramCouchDB db={Config.app_db_url} docId={cacheId} />
+          </Col>
+        </Row>
+      </Container>
     );
   }
   return null;

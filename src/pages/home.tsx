@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
-import { Grid, Col, Jumbotron } from "react-bootstrap";
+import { Jumbotron } from "reactstrap";
 import Client from "davenport";
 
 import * as Config from "../config";
@@ -9,20 +9,16 @@ import { OntologySearchBar } from "./search";
 
 export const HomePage = () => 
   <section className="home">
-    <Grid>
-      <Col sm={8} smOffset={2}>
-        <Jumbotron>
-          <Welcome/>
-          <OntologySearchBar/>
-        </Jumbotron>
-        <p>
-          The Data Science Ontology is an knowledge base about data science
-          with a focus on computer programming for data analysis.
-          {" "}
-          <Router.Link to="/page/help">Learn more</Router.Link>
-        </p>
-       </Col>
-    </Grid>
+    <Jumbotron>
+      <Welcome/>
+      <OntologySearchBar/>
+    </Jumbotron>
+    <p>
+      The Data Science Ontology is an knowledge base about data science
+      with a focus on computer programming for data analysis.
+      {" "}
+      <Router.Link to="/page/help">Learn more</Router.Link>
+    </p>
   </section>
 
 

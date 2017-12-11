@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
-import { Tabs, Tab } from "react-bootstrap";
+import { Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
 import FontAwesome = require("react-fontawesome");
 
 import { Concept, Annotation } from "open-discovery";
@@ -47,10 +47,11 @@ interface OntologyResultsProps {
 }
 interface OntologyResultsState {
   loading: boolean;
+  activeTab: string;
   concepts: Concept.Concept[];
-  total_concepts: number;
   annotations: Annotation.Annotation[];
-  total_annotations: number;
+  totalConcepts: number;
+  totalAnnotations: number;
 }
 
 export class OntologyResults extends React.Component<OntologyResultsProps,OntologyResultsState> {
@@ -58,10 +59,11 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
     super(props);
     this.state = {
       loading: false,
+      activeTab: "concepts",
       concepts: [],
-      total_concepts: 0,
       annotations: [],
-      total_annotations: 0
+      totalConcepts: 0,
+      totalAnnotations: 0,
     }
   }
   
@@ -98,7 +100,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
     }).then(response => {
       this.setState({
         concepts: response.rows.map(row => row.fields),
-        total_concepts: response.total_rows,
+        totalConcepts: response.total_rows,
       });
     });
   }
@@ -117,7 +119,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
     }).then(response => {
       this.setState({
         annotations: response.rows.map(row => row.fields),
-        total_annotations: response.total_rows,
+        totalAnnotations: response.total_rows,
       });
     });
   }
@@ -128,26 +130,38 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
     }
         
     return <section className="search-results">
-      <Tabs>
-        <Tab eventKey={1} disabled={this.state.total_concepts === 0}
-             title={`Concepts (${this.state.total_concepts})`}>
+      <Nav tabs>
+        <NavItem>
+          <NavLink disabled={this.state.totalConcepts === 0}
+                   onClick={() => this.setState({activeTab: "concepts"})}>
+            {`Concepts (${this.state.totalConcepts})`}
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink disabled={this.state.totalAnnotations === 0}
+                   onClick={() => this.setState({activeTab: "annotations"})}>
+            {`Annotations (${this.state.totalAnnotations})`}
+          </NavLink>
+        </NavItem>
+      </Nav>
+      <TabContent activeTab={this.state.activeTab}>
+        <TabPane tabId="concepts">
           <ul>
             {this.state.concepts.map(concept =>
               <li key={concept.id} >
                 <ConceptResult concept={concept} />
               </li>)}
           </ul>
-        </Tab>
-        <Tab eventKey={2} disabled={this.state.total_annotations === 0}
-             title={`Annotations (${this.state.total_annotations})`}>
+        </TabPane>
+        <TabPane tabId="annotations">
           <ul>
             {this.state.annotations.map((annotation,i) =>
               <li key={i} >
                 <AnnotationResult annotation={annotation} />
               </li>)}
           </ul>
-        </Tab>
-      </Tabs>
+        </TabPane>
+      </TabContent>
     </section>;
   }
 }
