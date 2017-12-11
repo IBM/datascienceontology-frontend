@@ -160,8 +160,14 @@ This situation illustrates an important point: the graphical syntax is “coarse
 ##### Other constructors
 
 TODO
+- identity
 - braid
 - copy
 - delete
+- construct
 
 #### Subfunctions
+
+## Concepts
+
+## Annotations
