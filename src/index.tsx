@@ -10,6 +10,7 @@ import { MarkdownPage } from "./pages/markdown";
 import { SearchPage } from "./pages/search";
 
 import "../style/main.css";
+import "../style/bootstrap.css";
 
 
 const App = () =>

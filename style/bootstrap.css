@@ -1,0 +1,27 @@
+/* Force Bootstrap navigation links to show the pointer cursor.
+
+By default, the cursor is only shown if the `href` attribute is set.
+*/
+a.nav-link {
+  cursor: pointer;
+}
+
+/* Port horizontal description lists from Bootstrap 3.
+
+The `dl-horizontal` class was removed in Bootstrap 4 in favor of grid classes;
+however, the grid classes force proportional widths, which I do not want.
+*/
+@media (min-width: 768px) {
+  .dl-horizontal dt {
+    float: left;
+    width: 160px;
+    clear: left;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .dl-horizontal dd {
+    margin-left: 180px;
+  }
+}
