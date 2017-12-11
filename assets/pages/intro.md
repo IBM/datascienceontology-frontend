@@ -19,9 +19,9 @@ The next section develops the ontology language Monocl. Once that is understood,
 
 ## Ontology language
 
-The concepts of the ontology constitute the **basic types** and **basic functions** of the ontology language. In analogy to the primitive types and functions of a real-world programming language, the basic types and functions are atomic—indecomposable into smaller parts. However, they can be combined to form more complex types and functions. The ontology language defines **constructors** for combining types and functions. In this section, we explain these constructors at an intuitive level. If you are so inclined, you may also read a [more formal account](/page/math) of the syntax and semantics of the ontology language.
+The concepts of the ontology constitute the **basic types** and **basic functions** of the ontology language. In analogy to the primitive types and functions of a real-world programming language, the basic types and functions are atomic—indecomposable into smaller parts. However, they can be combined to form more complex types and functions. The ontology language defines a set of **constructors** for combining types and functions. In this section, we explain these constructors at an intuitive level. If you are so inclined, you may also read a [more formal account](/page/math) of the syntax and semantics of the ontology language.
 
-Syntactic expressions for types and functions are displayed as expression trees. The terminal nodes are concepts and the non-terminal nodes are constructors. Besides the textual syntax, function expressions also admit a more intuitive graphical syntax. We will present both the textual and graphical syntaxes below.
+Syntactic expressions for types and functions are displayed as expression trees. The terminal nodes are concepts and the non-terminal nodes are constructors. Besides the textual syntax, function expressions also admit a more intuitive graphical syntax. We will develop the textual and graphical syntaxes in parallel.
 
 ### Types
 
@@ -59,7 +59,9 @@ Besides playing the role of the ubiquitous “is-a” relation in knowledge repr
 
 Every function has an input type (aka *domain*) and an output type (aka *codomain*). These types may be basic or compound. Thus a function may have zero, one, or many basic types as inputs, and likewise for outputs. In contrast to many programming languages, there is a perfect symmetry between inputs and outputs, even at the syntactic level.
 
-A **program** in Monocl is a simply function built from the basic functions using a set of predefined constructors. There are several constructors for making new functions out of existing functions or types. The most important are composition and products. The language also has a notion of “generic function” that extends the idea of subtyping from types to functions.
+A **program** in Monocl is a function built from the basic functions using a set of predefined constructors. There are several constructors for making new functions out of existing functions or types. The most important are composition and products. The ontology language also has a notion of “generic function” that extends the idea of subtyping from types to functions.
+
+Because a program is a simply a function, in the mathematical sense, you can think of Monocl as a [purely functional programming language](https://en.wikipedia.org/wiki/Purely_functional_programming). There are no mutations and no side effects. Some implications of this restriction are discussed later in this guide and in the [FAQ](/page/faq).
 
 You may be surprised to learn that both the textual and graphical syntaxes for functions are “point-free”: they do not identify variables (“points”). In fact, there are no variables at all in Monocl. In this respect, Monocl is similar to [concatenative programming languages](https://concatenative.org/) like Forth and dissimilar to most other programming languages. While it may seem counterintuitive at first, this convention greatly simplifies the algorithmic manipulation of programs by removing all issues related to free and bound variables, variable renaming, etc. Note that the inputs and outputs of concepts and annotations are sometimes given human-readable names. These names are for documentation purposes only; they are ignored by the ontology language.
 
@@ -154,5 +156,12 @@ You should convince yourself that both expressions actually define the same func
 **DIAGRAM**
 
 This situation illustrates an important point: the graphical syntax is “coarser” than the textual syntax. In general, there may be many different expression trees corresponding to a given wiring diagram. We consider this feature to be another advantage of the graphical syntax over the textual syntax. It is why most of our program analysis tools operate on wiring diagrams, not expressions. Now there may, in turn, be many different wiring diagrams corresponding to the same function. That should not be surprising. In any programming language (graphical or textual), there will be syntactically distinct programs that are semantically equivalent. To summarize: an expression trees uniquely determines a wiring diagram, and a wiring diagram uniquely determines a function, but not conversely.
+
+##### Other constructors
+
+TODO
+- braid
+- copy
+- delete
 
 #### Subfunctions
