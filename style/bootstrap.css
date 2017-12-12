@@ -2,7 +2,7 @@
 
 By default, the cursor is only shown if the `href` attribute is set.
 */
-a.nav-link {
+.nav-link {
   cursor: pointer;
 }
 

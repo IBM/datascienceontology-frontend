@@ -1,5 +1,6 @@
-#react-container {
-  margin: 0 3em;
+#react-container main {
+  margin: 0 48px;
+  padding-top: 16px;
 }
 
 #react-container code {

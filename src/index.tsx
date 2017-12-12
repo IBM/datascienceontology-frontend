@@ -15,7 +15,7 @@ import "../style/bootstrap.css";
 
 const App = () =>
   <div id="app">
-    <Navbar>
+    <Navbar light color="light">
       <NavbarBrand>
         <NavLink tag={Link} {...{to: "/"}}>
           Data Science Ontology
@@ -39,14 +39,16 @@ const App = () =>
         </NavItem>
       </Nav>
     </Navbar>
-    <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route path="/annotation/:language/:package/:id" component={AnnotationPage} />
-      <Route path="/concept/:id" component={ConceptPage} />
-      <Route path="/search/:query?" component={SearchPage} />
-      <Route path="/page/:page" component={MarkdownPage} />
-      <Route component={Error404Page} />
-    </Switch>
+    <main>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/annotation/:language/:package/:id" component={AnnotationPage} />
+        <Route path="/concept/:id" component={ConceptPage} />
+        <Route path="/search/:query?" component={SearchPage} />
+        <Route path="/page/:page" component={MarkdownPage} />
+        <Route component={Error404Page} />
+      </Switch>
+    </main>
   </div>;
 
 const Error404Page = () =>
