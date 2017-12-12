@@ -133,22 +133,14 @@ Already with composition and products, we have enough structure to define some i
 
 sexp: Product of compositions
 :::
-[
-    "otimes",
-    ["compose", "f", "g"],
-    ["compose", "h", "k"]
-]
+["otimes", ["compose", "f", "g"], ["compose", "h", "k"]]
 :::
 
 Or we can take a composition of products:
 
 sexp: Composition of products
 :::
-[
-    "compose",
-    ["otimes", "f", "h"],
-    ["otimes", "g", "k"]
-]
+["compose", ["otimes", "f", "h"], ["otimes", "g", "k"]]
 :::
 
 You should convince yourself that both expressions actually define the same function. In graphical syntax, that function is:
@@ -159,12 +151,56 @@ This situation illustrates an important point: the graphical syntax is “coarse
 
 ##### Other constructors
 
-TODO
-- identity
-- braid
-- copy
-- delete
-- construct
+There are numerous other function constructors besides composition and products. They are less conceptually significant but are practically important. We'll describe them briefly in this section. On a first reading, you may wish to skip this section, referring to it later as needed. Much of the graphical syntax should be fairly obvious.
+
+For each type $X$, there is an **identity** function $1_{X}$ that maps every element of type $X$ to itself. It is represented by the expression
+
+sexp: Identity function
+:::
+["id", "X"]
+:::
+
+and diagrammatically as nothing but a wire:
+
+**DIAGRAM**
+
+It is often useful to reorder the component types of a product type. This is accomplished by the swap functions (also known as braidings). For each pair of types $X$ and $Y$, there is a **swap** function $\sigma_{X,Y}$ from $X \times Y$ to $Y \times X$ that exchanges the two input elements. In point-full notation, it is the function $\langle x,y \rangle \mapsto \langle y,x \rangle$. It is represented by
+
+sexp: Braid
+:::
+["braid", "X", "Y"]
+:::
+
+in the textual syntax and by crossed wires in the graphical syntax:
+
+**DIAGRAM**
+
+By composing swap functions, it is possible to define arbitrary permutations on products of three or more types. Diagrammatically this means that arbitrary crossings of wires are allowed.
+
+There are constructors for copying and deleting data. For each type $X$, there is a **copy** function from $X$ to $X \times X$, defined by $x \mapsto \langle x,x \rangle$, and a **delete** function from $X$ to $1$, defined by $x \mapsto *$. The delete function effectively “discards” data by mapping it to the unit type. These functions are represented by the expressions
+
+sexp: Copy
+:::
+["mcopy", "X"]
+:::
+
+and
+
+sexp: Delete
+:::
+["delete", "X"]
+:::
+
+respectively. Arbitrarily many copies can be made by repeatedly applying the copy function. As a convenience, the $n$-fold copy function can be expressed directly as
+
+sexp: n-fold copy
+:::
+["mcopy", "X", "n"]
+:::
+
+In the graphical syntax, a copy is represented by multiple wires emanating from a single output port and a deletion is represented by the output port with no outgoing wires. Thus any output port is allow to have zero, one, or many outgoing wires. The same is *not* true of input ports: in a valid wiring diagram, every input port has exactly one incoming wire. This restriction holds because there is no natural way to **merge** multiple elements or **create** new elements of an arbitrary data type.
+
+**TODO**: construct, coerce
 
 #### Subfunctions
 

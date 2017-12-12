@@ -71,4 +71,6 @@ const displayNames: { [name: string]: string; } = {
   // Term constructors
   otimes: "product",
   munit: "unit",
+  braid: "swap",
+  mcopy: "copy",
 };
