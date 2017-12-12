@@ -15,13 +15,11 @@ import "../style/bootstrap.css";
 
 const App = () =>
   <div id="app">
-    <Navbar light color="light">
-      <NavbarBrand>
-        <NavLink tag={Link} {...{to: "/"}}>
-          Data Science Ontology
-        </NavLink>
+    <Navbar expand dark color="dark">
+      <NavbarBrand tag={Link} {...{to: "/"}}>
+        Data Science Ontology
       </NavbarBrand>
-      <Nav>
+      <Nav navbar>
         <NavItem>
           <NavLink tag={Link} {...{to: "/search"}}>
             Search
