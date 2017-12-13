@@ -1,0 +1,16 @@
+{
+  "expression": [
+    "Hom",
+    "f",
+    [
+      "otimes",
+       ["Ob", "X"],
+       ["Ob", "Y"]
+    ],
+    [
+      "otimes",
+      ["Ob", "W"],
+      ["Ob", "Z"]
+    ]
+  ]
+}

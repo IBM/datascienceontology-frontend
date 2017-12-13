@@ -1,5 +1,7 @@
-[
+{
+  "expression": [
     "braid",
     ["Ob", "X"],
     ["Ob", "Y"]
-]
+  ]
+}

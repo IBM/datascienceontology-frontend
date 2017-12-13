@@ -1,0 +1,7 @@
+{
+  "expression": [
+    "product",
+    ["Hom", "f", ["Ob", "X"], ["Ob", "W"]],
+    ["Hom", "g", ["Ob", "Y"], ["Ob", "Z"]]
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "expression": [
+    "compose",
+    ["Hom", "f", ["Ob", "X"], ["Ob", "Y"]],
+    ["Hom", "g", ["Ob", "Y"], ["Ob", "Z"]]
+  ]
+}
