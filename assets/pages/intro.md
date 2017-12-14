@@ -147,7 +147,7 @@ You should convince yourself that both expressions actually define the same func
 
 **DIAGRAM**
 
-This situation illustrates an important point: the graphical syntax is “coarser” than the textual syntax. In general, there may be many different expression trees corresponding to a given wiring diagram. We consider this feature to be another advantage of the graphical syntax over the textual syntax. It is why most of our program analysis tools operate on wiring diagrams, not expressions. Now there may, in turn, be many different wiring diagrams corresponding to the same function. That should not be surprising. In any programming language (graphical or textual), there will be syntactically distinct programs that are semantically equivalent. To summarize: an expression trees uniquely determines a wiring diagram, and a wiring diagram uniquely determines a function, but not conversely.
+This situation illustrates an important point: the graphical syntax is “coarser” than the textual syntax. In general, there may be many different expression trees corresponding to a given wiring diagram. We consider this feature to be another advantage of the graphical syntax over the textual syntax. It is why most of our program analysis tools operate on wiring diagrams, not expressions. Now there may, in turn, be many different wiring diagrams corresponding to the same function. That should not be surprising. In any programming language (graphical or textual), there will be syntactically distinct programs that are semantically equivalent. To summarize: an expression uniquely determines a wiring diagram, and a wiring diagram uniquely determines a function, but not conversely.
 
 ##### Other constructors
 
@@ -198,12 +198,38 @@ sexp: n-fold copy
 ["mcopy", "X", "n"]
 :::
 
-In the graphical syntax, a copy is represented by multiple wires emanating from a single output port and a deletion is represented by the output port with no outgoing wires. Thus any output port is allow to have zero, one, or many outgoing wires. The same is *not* true of input ports: in a valid wiring diagram, every input port has exactly one incoming wire. This restriction holds because there is no natural way to **merge** multiple elements or **create** new elements of an arbitrary data type.
+In the graphical syntax, a copy is implicitly represented by an output port with multiple outgoing wires and a deletion is implicitly represented by an output port with no outgoing wires. Thus any output port is allow to have zero, one, or many outgoing wires. The same is *not* true of input ports: in a valid wiring diagram, every input port has exactly one incoming wire. This restriction holds because there is no natural way to **merge** multiple elements or **create** new elements of an arbitrary data type.
 
 **TODO**: construct, coerce
 
 #### Subfunctions
 
+**TODO**
+
 ## Concepts
+
+The concepts of the Data Science Ontology constitute the basic types and functions of the data science domain. Annotations express the classes and functions of data science libraries in terms of the concepts, using the ontology language. In this and the next section, we describe the format of the concept and annotation entries appearing on this website.
+
+Every concept is uniquely identified among all concepts in the ontology by an **ID** field. The **kind** field marks the concept as a type or a function. Most concepts also have a **name** and a **description**. These fields document the concept for human readers but have no formal content. The other fields are determined by whether the concept is a type or a function.
+
+### Type concepts
+
+Examples of type concepts include [SQL queries](/concept/sql-query), [data tables](/concept/table), [clustering models](/concept/clustering-model), and [linear regression models](/concept/linear-regression).
+
+The **is** field lists the types of which the concept is an (immediate) subtype. We say “immediate” because the relation of being a subtype is *transitive*: if $X_0$ is a subtype of $X$ and $X$ is a subtype of $X_1$, then $X_0$ is a subtype of $X_1$. (Why? Because if $X_0$ is implicitly convertible to $X$ and $X$ is implicitly convertible to $X_1$, then $X_0$ is implicitly convertible to $X_1$ by composing the two implicit conversion functions.) The **is** field lists only the immediate supertypes of the concept, not those implied by reflexivity or transitivity.
+
+### Function concepts
+
+Examples of function concepts include [reading a data table](/concept/read-table), [fitting a predictive model](/concept/fit-supervised), and [getting clusters from a clustering model](/concept/clustering-model-clusters). Generally speaking, function concepts can be grouped into three categories.
+
+1. The most obvious are functions that tangibly “do something”: read data from a data source, fit a statistical model, make predictions, etc. These often correspond to the public functions and methods in data science libraries.
+
+2. Some functions access “properties” or “slots” of an object. Typically the input type is a complex object and the output type is an [array](/concept/array) or a [scalar](/concept/scalar) type, such as a [number](/concept/number) or [string](/concept/string). Examples of such functions are the shape of an array, the clusters of a clustering model, and the coefficients of a linear model. These often correspond to the attributes and accessor methods of classes in data science libraries.
+
+3. Finally, some functions in the ontology exist purely for knowledge representation purposes and are unlikely to be reified in source code. An example is the class of the [kernelized](/concept/kernelized) functions, such as [kernelized PCA](/concept/pca-kernelized), mapping models to their kernelizations (where Euclidean inner products are replaced by arbitrary kernels, via the so-called [“kernel trick”](https://en.wikipedia.org/wiki/Kernel_method)). Kernelization defines a valid functional relation but most machine learning libraries will not make this relation explicit.
+
+The taxonomy of functions is informal. Function concepts in the ontology are *not* marked as belonging to one of these categories; in some cases, there is no single category that obviously applies.
+
+Entries for function concepts have several additional fields. The **input** and **ouput** fields state the input and output types of the functions, presented as a finite list of basic types. The **is** field lists the functions of which the concept is an (immediate) subfunction. The remark
 
 ## Annotations
