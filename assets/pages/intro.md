@@ -224,12 +224,22 @@ Examples of function concepts include [reading a data table](/concept/read-table
 
 1. The most obvious are functions that tangibly “do something”: read data from a data source, fit a statistical model, make predictions, etc. These often correspond to the public functions and methods in data science libraries.
 
-2. Some functions access “properties” or “slots” of an object. Typically the input type is a complex object and the output type is an [array](/concept/array) or a [scalar](/concept/scalar) type, such as a [number](/concept/number) or [string](/concept/string). Examples of such functions are the shape of an array, the clusters of a clustering model, and the coefficients of a linear model. These often correspond to the attributes and accessor methods of classes in data science libraries.
+2. Other functions access the “properties” or “slots” of an object. Typically the input type is a complex object and the output type is an [array](/concept/array) or [scalar](/concept/scalar) type, such as a [number](/concept/number) or [string](/concept/string). Examples of such functions are the shape of an array, the clusters of a clustering model, and the coefficients of a linear model. These often correspond to the attributes and accessor methods of classes in data science libraries.
 
-3. Finally, some functions in the ontology exist purely for knowledge representation purposes and are unlikely to be reified in source code. An example is the class of the [kernelized](/concept/kernelized) functions, such as [kernelized PCA](/concept/pca-kernelized), mapping models to their kernelizations (where Euclidean inner products are replaced by arbitrary kernels, via the so-called [“kernel trick”](https://en.wikipedia.org/wiki/Kernel_method)). Kernelization defines a valid functional relation but most machine learning libraries will not make this relation explicit.
+3. Finally, some functions in the ontology exist purely for knowledge representation purposes and are unlikely to be reified in source code. An example is the class of the [kernelized](/concept/kernelized) functions, such as [kernelized PCA](/concept/pca-kernelized), mapping models to their kernelizations (where Euclidean inner products are replaced by arbitrary kernels, via the so-called [“kernel trick”](https://en.wikipedia.org/wiki/Kernel_method)). Kernelization defines a valid functional relation but most machine learning libraries do not make this relation explicit.
 
 The taxonomy of functions is informal. Function concepts in the ontology are *not* marked as belonging to one of these categories; in some cases, there is no single category that obviously applies.
 
 Entries for function concepts have several additional fields. The **input** and **ouput** fields state the input and output types of the functions, presented as a finite list of basic types. The **is** field lists the functions of which the concept is an (immediate) subfunction. The remark
 
 ## Annotations
+
+Annotations map the concrete types and functions of data science libraries onto the abstract types and functions of the ontology. Annotation entries are more complicated than concept entries because real-world data science libraries are inherently diverse and complex. We expect that the annotation system will evolve over time to achieve greater accuracy and fidelity in the face of this complexity.
+
+The format and interpretation of an annotation will vary slightly depending on the language features supported by the target programming language. In this introductory guide, we will occasionally point out such differences, but we will not dwell on the implementation details of the annotation system for a particular programming language. The word “type” will refer to anything that can be construed as a type in the target language, such as primitive or builtin types, as well as classes in languages that support object orientation. Likewise, the word “function” encompasses not only functions and methods but also the access and assignment of object attributes (which are not conventionally regarded as functions).
+
+An annotation is uniquely identified by three fields: its **language**, a programming language like Python or R; its **package**, a library or package written in the given language; and its **ID**, an official identifier unique among all annotations for the given language and package. The **kind** field marks the annotation as a type or function. The optional **name** and **description** provide human-readable documentation, just as with concepts.
+
+### Type annotations
+
+### Function annotations
