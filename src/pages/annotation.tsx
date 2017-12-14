@@ -4,7 +4,8 @@ import * as Router from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 
 import { Annotation } from "open-discovery";
-import { CytoscapeComponent, displayCouchDocument } from "open-discovery-components";
+import { CytoscapeComponent, Link, displayCouchDocument }
+  from "open-discovery-components";
 import { SExpComponent } from "../components/sexp";
 import { AnnotationCache } from "../interfaces/annotation_cache";
 import * as Config from "../config";
@@ -79,13 +80,20 @@ const PythonAnnotationDefList = (props: {annotation: Annotation.PythonAnnotation
   const elements = [
     <dt key="language-dt">Language</dt>,
     <dd key="language-dd">
-      <a href="https://www.python.org" target="_blank">{annotation.language}</a>
+      {annotation.language}
+      {" "}
+      <a href="https://www.python.org/" target="_blank">
+        <img src="/assets/images/logo-python.svg" width="24" height="24" />
+      </a>
     </dd>,
     <dt key="package-dt">Package</dt>,
     <dd key="package-dd">
-      <a href={`https://pypi.python.org/pypi/${annotation.package}`} target="_blank">
-        {annotation.package}
-      </a>
+      {annotation.package}
+      {" ["}
+      <Link to={`https://pypi.python.org/pypi/${annotation.package}`} target="_blank">
+        PyPI
+      </Link>
+      {"]"}
     </dd>,
     <dt key="id-dt">ID</dt>,
     <dd key="id-dd">{annotation.id}</dd>,
