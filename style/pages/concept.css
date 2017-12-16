@@ -18,20 +18,20 @@
   content: "";
 }
 
-.domain-object-list ol {
+.concept-domain-list ol {
   padding-left: 1em;
   margin: 0;
 }
-.domain-object-list ol:empty {
+.concept-domain-list ol:empty {
   padding: 0;
 }
-.domain-object-list ol:empty::after {
+.concept-domain-list ol:empty::after {
   content: "(empty)";
 }
-.domain-object-list li:only-child {
+.concept-domain-list li:only-child {
   list-style: none;
   margin-left: -1em;
 }
-.domain-object-list p {
+.concept-domain-list p {
   margin: 0;
 }

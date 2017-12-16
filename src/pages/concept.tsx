@@ -79,7 +79,7 @@ const MorphismDefList = (props: {concept: Concept.Morphism}) => {
 }
 
 const DomainObjectsDisplay = (props: {objects: Concept.DomainObject[]}) => {
-  return <div className="domain-object-list">
+  return <div className="concept-domain-list">
     <ol>{props.objects.map((object,i) =>
       <li key={i}>
         <DomainObjectDisplay object={object} />
@@ -90,7 +90,7 @@ const DomainObjectsDisplay = (props: {objects: Concept.DomainObject[]}) => {
 
 const DomainObjectDisplay = (props: {object: Concept.DomainObject}) => {
   const obj = props.object;
-  return <div className="domain-object">
+  return <div className="concept-domain-object">
     {obj.name !== undefined && `${obj.name}: `}
     <Router.Link to={`/concept/${obj.object}`}>{obj.object}</Router.Link>
     {obj.description !== undefined && <p className="text-muted">

@@ -136,7 +136,7 @@ const PythonObjectDefList = (props: {annotation: Annotation.PythonObject}) => {
     </dd>,
     <dt key="slots-dt">Slots</dt>,
     <dd key="slots-dd">
-      <div className="slot-list">
+      <div className="annotation-slot-list">
         <ul>{slots.map((slot, i) =>
           <li key={i}>
             <code>{slot.slot}</code>
@@ -181,7 +181,7 @@ const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) =
   elements.push(
     <dt key="dom-dt">Input</dt>,
     <dd key="dom-dd">
-      <div className="domain-list">
+      <div className="annotation-domain-list">
         <ol>{annotation.domain.map((ob, i) =>
           <li key={i}>
             <code>{ob.slot}</code>
@@ -191,7 +191,7 @@ const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) =
     </dd>,
     <dt key="codom-dt">Output</dt>,
     <dd key="codom-dd">
-      <div className="domain-list">
+      <div className="annotation-domain-list">
         <ol>{annotation.codomain.map((ob, i) =>
           <li key={i}>
             <code>{ob.slot}</code>
