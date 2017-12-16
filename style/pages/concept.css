@@ -1,3 +1,7 @@
+.concept-description p:last-of-type {
+  margin-bottom: 0;
+}
+
 .subconcept-list ul {
   display: inline;
   list-style: none;

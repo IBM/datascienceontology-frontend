@@ -1,3 +1,7 @@
+.annotation-description p:last-of-type {
+  margin-bottom: 0;
+}
+
 .annotation-class-list ul {
   display: inline;
   list-style: none;

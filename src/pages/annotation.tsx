@@ -1,6 +1,7 @@
 import * as _ from "lodash";
 import * as React from "react";
 import * as Router from "react-router-dom";
+import * as ReactMarkdown from "react-markdown";
 import { Container, Row, Col } from "reactstrap";
 
 import { Annotation } from "open-discovery";
@@ -106,7 +107,9 @@ const PythonAnnotationDefList = (props: {annotation: Annotation.PythonAnnotation
   ); }
   if (annotation.description) { elements.push(
     <dt key="description-dt">Description</dt>,
-    <dd key="description-dd">{annotation.description}</dd>,
+    <dd key="description-dd" className="annotation-description">
+      <ReactMarkdown source={annotation.description}/>
+    </dd>,
   ); }
   return elements;
 }
@@ -154,7 +157,7 @@ const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) =
   if (annotation.function) { elements.push(
     <dt key="function-dt">Python function</dt>,
     <dd key="function-dd">
-      <span className="annotation-code">{annotation.function}</span>
+      <code>{annotation.function}</code>
     </dd>,
   ); }
   if (classes) { elements.push(

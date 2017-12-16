@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
+import * as ReactMarkdown from "react-markdown";
 
 import { Concept } from "open-discovery";
 import { displayCouchDocument } from "open-discovery-components";
@@ -56,7 +57,9 @@ const ConceptDefList = (props: {concept: Concept.Concept}) => {
   ];
   if (concept.description) { elements.push(
     <dt key="description-dt">Description</dt>,
-    <dd key="description-dd">{concept.description}</dd>,
+    <dd key="description-dd" className="concept-description">
+      <ReactMarkdown source={concept.description}/>
+    </dd>,
   ); }
   if (superconcepts) { elements.push(
     <dt key="sub-dt">Is</dt>,
