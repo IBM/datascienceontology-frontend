@@ -78,7 +78,7 @@ sexp: Function definition
 
 is represented as the box:
 
-**DIAGRAM**
+!cytoscape[Function definition](intro/function.json)
 
 As we have said, the unit type is useful for defining functions with no inputs or no outputs. For example, a function $c$ with input type $1$ and output type $X$, is declared by the expression tree
 
@@ -89,7 +89,7 @@ sexp: Constant definition
 
 and is represented as a box with no input ports:
 
-**DIAGRAM**
+!cytoscape[Constant definition](intro/constant.json)
 
 We think of the function $c$ as a “constant” of type $X$.
 
@@ -108,7 +108,7 @@ sexp: Composition of functions
 
 In the graphical syntax, composition is represented by wires:
 
-**DIAGRAM**
+!cytoscape[Composition of functions](intro/compose.json)
 
 In order for a composition to be well-defined, the input and output types must be compatible. There must be the same number of output types of $f$ as input types of $g$ and, moreover, each output type of $f$ must be a subtype of the corresponding input type of $g$. The interpretation is that outputs of $f$ are *implicitly converted* to the input types of $g$ before being passed as inputs to $g$. Diagrammatically, this means that the source port type of any wire must be a subtype of the target port type of the wire.
 
@@ -127,7 +127,7 @@ sexp: Product of functions
 
 and diagrammatically by juxtaposition:
 
-**DIAGRAM**
+!cytoscape[Product of functions](intro/product.json)
 
 Already with composition and products, we have enough structure to define some interesting programs. Suppose we have functions $f$, $g$, $h$, and $k$ such that it makes sense to compose $f$ with $g$ and compose $h$ with $k$ (the input and output types are compatible). There are two ways we can combine all four functions into a single program. We can take a product of compositions:
 
@@ -145,9 +145,9 @@ sexp: Composition of products
 
 You should convince yourself that both expressions actually define the same function. In graphical syntax, that function is:
 
-**DIAGRAM**
+!cytoscape[Product of compositions](intro/compose-products.json)
 
-This situation illustrates an important point: the graphical syntax is “coarser” than the textual syntax. In general, there may be many different expression trees corresponding to a given wiring diagram. We consider this feature to be another advantage of the graphical syntax over the textual syntax. It is why most of our program analysis tools operate on wiring diagrams, not expressions. Now there may, in turn, be many different wiring diagrams corresponding to the same function. That should not be surprising. In any programming language (graphical or textual), there will be syntactically distinct programs that are semantically equivalent. To summarize: an expression uniquely determines a wiring diagram, and a wiring diagram uniquely determines a function, but not conversely.
+This situation illustrates an important point: the graphical syntax is “coarser” than the textual syntax. In general, there may be many different expression trees corresponding to a given wiring diagram. We consider this feature to be another advantage of the graphical syntax over the textual syntax. It is why most of our program analysis tools operate on wiring diagrams, not expressions. There may, in turn, be many different wiring diagrams corresponding to the same function. That should not be surprising. In any programming language (graphical or textual), there will be syntactically distinct programs that are semantically equivalent. To summarize: an expression uniquely determines a wiring diagram, and a wiring diagram uniquely determines a function, but not conversely.
 
 ##### Other constructors
 
@@ -162,7 +162,7 @@ sexp: Identity function
 
 and diagrammatically as nothing but a wire:
 
-**DIAGRAM**
+!cytoscape[Identity function](intro/identity.json)
 
 It is often useful to reorder the component types of a product type. This is accomplished by the swap functions (also known as braidings). For each pair of types $X$ and $Y$, there is a **swap** function $\sigma_{X,Y}$ from $X \times Y$ to $Y \times X$ that exchanges the two input elements. In point-full notation, it is the function $\langle x,y \rangle \mapsto \langle y,x \rangle$. It is represented by
 
@@ -173,7 +173,7 @@ sexp: Braid
 
 in the textual syntax and by crossed wires in the graphical syntax:
 
-**DIAGRAM**
+!cytoscape[Braid](intro/braid.json)
 
 By composing swap functions, it is possible to define arbitrary permutations on products of three or more types. Diagrammatically this means that arbitrary crossings of wires are allowed.
 
@@ -258,7 +258,7 @@ There are several different ways to attach a function annotation to a concrete f
 
 #### Inputs and outputs
 
-Function annotations, unlike type annotations, most also account for inputs and outputs. The **input** and **output** fields map the inputs and outputs of the concrete function onto the inputs and outputs of the abstract function, respectively. Both fields are ordered lists. Every concrete input in the **input** list is mapped to the corresponding input of the abstract function (viewing its input type as a finite list of basic types). The **output** list works similarly. As a first example, in the [read data frame from SQL table](annotation/python/pandas/read-sql-table) annotation, the second argument of the pandas `read_sql_table` function is mapped to the first abstract input and the first argument is mapped to the second input. (Note the zero-based indexing in Python.)
+Function annotations, unlike type annotations, most also account for inputs and outputs. The **input** and **output** fields map the inputs and outputs of the concrete function onto the inputs and outputs of the abstract function, respectively. Both fields are ordered lists. Every concrete input in the **input** list is mapped to the corresponding input of the abstract function (viewing its input type as a finite list of basic types). The **output** list works similarly. As a first example, in the [read data frame from SQL table](/annotation/python/pandas/read-sql-table) annotation, the second argument of the pandas `read_sql_table` function is mapped to the first abstract input and the first argument is mapped to the second input. (Note the zero-based indexing in Python.)
 
 Importantly, in order to have a valid function annotation, there should also be type annotations mapping the concrete types of the inputs and outputs to the corresponding abstract types. This condition ensures that type and function annotations are logically compatible. In the jargon, we say that the annotation system is [functorial](https://en.wikipedia.org/wiki/Functor), an idea pursued further in the [advanced guide](/page/math).
 

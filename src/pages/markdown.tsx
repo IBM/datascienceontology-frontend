@@ -17,10 +17,14 @@ export const MarkdownPage = (props: MarkdownPageProps) => {
   return <MarkdownDocument docURL={pageURL} options={{
     renderers: {
       cytoscape: (props: {value: string, children: string[]}) => {
-        const docURL = `/assets/pages/${props.value}.json`;
+        const docURL = `/assets/pages/${props.value}`;
         return <p>
           <CytoscapeDocument docURL={docURL}
             defaults={{
+              layout: {
+                name: "preset",
+                padding: 0,
+              },
               style: CytoscapeStyle as any,
               autolock: true,
               userPanningEnabled: false,

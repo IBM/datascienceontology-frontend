@@ -1,6 +1,68 @@
 {
   "expression": [
     "id",
-    ["Ob", "X"]
-  ]
+    [
+      "Ob",
+      "X"
+    ]
+  ],
+  "height": "75px",
+  "cytoscape": {
+    "elements": [
+      {
+        "group": "nodes",
+        "classes": "graphviz graphviz-invis",
+        "data": {
+          "id": "n1p1",
+          "label": "",
+          "width": 24,
+          "height": 1
+        },
+        "position": {
+          "x": 12,
+          "y": 0.5
+        }
+      },
+      {
+        "group": "nodes",
+        "classes": "graphviz graphviz-invis",
+        "data": {
+          "id": "n2p1",
+          "label": "",
+          "width": 24,
+          "height": 1
+        },
+        "position": {
+          "x": 12,
+          "y": 37.5
+        }
+      },
+      {
+        "group": "edges",
+        "classes": "graphviz",
+        "data": {
+          "name": "X",
+          "source": "n1p1",
+          "label": "X",
+          "targetEndpoint": [
+            0,
+            -0.5
+          ],
+          "controlPointWeights": [
+            0.23,
+            0.77
+          ],
+          "target": "n2p1",
+          "sourceEndpoint": [
+            0,
+            0.5
+          ],
+          "controlPointDistances": [
+            0,
+            0
+          ]
+        }
+      }
+    ]
+  }
 }
