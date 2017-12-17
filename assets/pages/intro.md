@@ -214,13 +214,13 @@ Every concept is uniquely identified among all concepts in the ontology by an **
 
 ### Type concepts
 
-Examples of type concepts include [SQL queries](/concept/sql-query), [data tables](/concept/table), [clustering models](/concept/clustering-model), and [linear regression models](/concept/linear-regression).
+Type concepts of the Data Science Ontology include [SQL queries](/concept/sql-query), [data tables](/concept/table), [clustering models](/concept/clustering-model), and [linear regression models](/concept/linear-regression).
 
 The **is** field lists the types of which the concept is a (direct) subtype. We say “direct” because the relation of being a subtype is *transitive*: if $X_0$ is a subtype of $X$ and $X$ is a subtype of $X_1$, then $X_0$ is a subtype of $X_1$. (Why? Because if $X_0$ is implicitly convertible to $X$ and $X$ is implicitly convertible to $X_1$, then $X_0$ is implicitly convertible to $X_1$ by composing the two implicit conversion functions.) The subtype relation is also *reflexive*: every type is a subtype of itself. (Why? Because every type is implictly convertible to itself by applying the identity function.) The **is** field lists only the direct supertypes of the concept, not those implied by reflexivity or transitivity.
 
 ### Function concepts
 
-Examples of function concepts include [reading a data table](/concept/read-table), [fitting a predictive model](/concept/fit-supervised), and [getting clusters from a clustering model](/concept/clustering-model-clusters). Generally speaking, function concepts can be grouped into three categories.
+Function concepts of the ontology include [reading a data table](/concept/read-table), [fitting a predictive model](/concept/fit-supervised), and [getting clusters from a clustering model](/concept/clustering-model-clusters). Generally speaking, function concepts can be grouped into three categories.
 
 1. The most obvious are functions that tangibly “do something”: read data from a data source, fit a statistical model, make predictions, etc. These often correspond to the public functions and methods in data science libraries.
 
@@ -246,8 +246,26 @@ Some examples of type annotations are the [numpy array](/annotation/python/numpy
 
 The **definition** of a type annotation is the abstract type to which the concrete type is mapped. For now we require the definition to be a basic type of the ontology, although we may relax that restriction in the future. As an example, the [pandas data frame](/annotation/python/pandas/data-frame) annotation maps the pandas `DataFrame` class to the [data table](/concept/table) concept.
 
-A type annotation applies to the concrete type given by its **class** field. The assignment of annotations to concrete types respects class inheritance. When multiple annotations match, the annotation with the most specific class is assigned. The “most specific class” is unambiguous in languages with single inheritance, such as R. When multiple inheritance is allowed, ambiguities are settled in a language-specific manner, e.g., by the [method resolution order (MRO)](https://www.python.org/download/releases/2.3/mro/) in Python. Under multiple inheritance, the **class** field may also list multiple classes. In this case the annotation matches any class inheriting from *all* the listed classes. For example, the annotation for [clusterers in scikit-learn](/annotation/python/sklearn/base-clusterer) matches all classes that inherit from both `BaseEstimator` and `ClusterMixin`, which is how clustering models are represented in scikit-learn.
+A type annotation applies to the concrete type given by its **class** field. The assignment of annotations to concrete types respects class inheritance. When multiple annotations match, the annotation with the most specific class is assigned. The “most specific class” is unambiguous in languages with single inheritance, such as R. When multiple inheritance is allowed, ambiguities are settled in a language-specific manner, e.g., by the [method resolution order (MRO)](https://www.python.org/download/releases/2.3/mro/) in Python. Under multiple inheritance, the **class** field may also list multiple classes. In this case the annotation matches any class inheriting from *all* the listed classes. Here's an example. The annotation for [clusterers in scikit-learn](/annotation/python/sklearn/base-clusterer) matches all classes that inherit from both `BaseEstimator` and `ClusterMixin`, which is how clustering models are represented in scikit-learn. However, for the `KMeans` class, which inherits from both `BaseEstimator` and `ClusterMixin`, the more specific [k-means clustering](/annotation/python/sklearn/k-means) annotation takes precedence over the [clusterers](/annotation/python/sklearn/base-clusterer) annotation.
 
-The properties of a concrete type are annotated by the **slots** field. Slots are essentially a shorthand for function annotations. A slot annotation maps a slot of the concrete type to an abstract function whose input type is the annotation's definition type (or a supertype thereof). For example, the annotation for [k-means clustering in scikit-learn](/annotation/python/sklearn/k-means) has slots for the number of clusters, the cluster assignments, and the centroids of the clusters. As usual, what constitutes a “slot” depends on the target language. Object attributes, methods with no arguments, and compositions thereof are all slots.
+The properties of a concrete type are annotated by the **slots** field. Slots are essentially a shorthand for function annotations. A slot annotation maps a slot on the concrete type to an abstract function whose input type is the **definition** type (or a supertype thereof). For example, the annotation of [k-means clustering in scikit-learn](/annotation/python/sklearn/k-means) has slots for the number of clusters, the cluster assignments, and the centroids of the clusters. As usual, what constitutes a “slot” depends on the target language. Object attributes, methods with no arguments, and compositions thereof are all slots.
 
 ### Function annotations
+
+The **definition** of a function annotation is the abstract function to which the concrete function is mapped. It can be any program written in the ontology language. The definition is displayed in both the textual and graphical syntax on the annotation page.
+
+There are several different ways to attach a function annotation to a concrete function. The **function** field identifies a standalone function. Alternatively, a method is identified by the name of the method, via the **method** field, and its **class**, interpreted exactly as in type annotations.
+
+#### Inputs and outputs
+
+Function annotations, unlike type annotations, most also account for inputs and outputs. The **input** and **output** fields map the inputs and outputs of the concrete function onto the inputs and outputs of the abstract function, respectively. Both fields are ordered lists. Every concrete input in the **input** list is mapped to the corresponding input of the abstract function (viewing its input type as a finite list of basic types). The **output** list works similarly. As a first example, in the [read data frame from SQL table](annotation/python/pandas/read-sql-table) annotation, the second argument of the pandas `read_sql_table` function is mapped to the first abstract input and the first argument is mapped to the second input. (Note the zero-based indexing in Python.)
+
+Importantly, in order to have a valid function annotation, there should also be type annotations mapping the concrete types of the inputs and outputs to the corresponding abstract types. This condition ensures that type and function annotations are logically compatible. In the jargon, we say that the annotation system is [functorial](https://en.wikipedia.org/wiki/Functor), an idea pursued further in the [advanced guide](/page/math).
+
+Let us expand on how concrete inputs and outputs are specified. A concrete input is a just function argument, identified by position (a number) or name (a string). with a large number of inessential keyword arguments.
+
+#### Examples
+
+To illustrate these ideas, let's look at the annotations for k-means clustering in several different packages.
+
+## What's next? 
