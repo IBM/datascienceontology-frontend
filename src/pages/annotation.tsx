@@ -12,7 +12,7 @@ import { AnnotationCache } from "../interfaces/annotation_cache";
 import * as Config from "../config";
 
 import "../../style/pages/annotation.css";
-import * as CytoscapeStyle from "../../style/cytoscape.json";
+import * as CytoscapeStyle from "../../style/pages/annotation.cytoscape.json";
 
 
 interface AnnotationKey {

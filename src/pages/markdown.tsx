@@ -6,7 +6,7 @@ import { CytoscapeDocument, MarkdownDocument } from "open-discovery-components";
 import { SExpComponent } from "../components/sexp";
 
 import "../../style/pages/markdown.css";
-import * as CytoscapeStyle from "../../style/cytoscape.json";
+import * as CytoscapeStyle from "../../style/pages/markdown.cytoscape.json";
 
 
 type MarkdownPageProps = Router.RouteComponentProps<{page: string}>;
