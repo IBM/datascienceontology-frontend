@@ -254,18 +254,20 @@ The properties of a concrete type are annotated by the **slots** field. Slots ar
 
 The **definition** of a function annotation is the abstract function to which the concrete function is mapped. It can be any program written in the ontology language. The definition is displayed in both the textual and graphical syntax on the annotation page.
 
-There are several different ways to attach a function annotation to a concrete function. The **function** field identifies a standalone function. Alternatively, a method is identified by the name of the method, via the **method** field, and its **class**, interpreted exactly as in type annotations.
+There are several different ways to attach a function annotation to a concrete function. The **function** field identifies a standalone function. Alternatively, a method of an object is identified by its name, via the **method** field, and the object's class, via the **class** field. Classes are specified exactly as in type annotations.
 
 #### Inputs and outputs
 
 Function annotations, unlike type annotations, most also account for inputs and outputs. The **input** and **output** fields map the inputs and outputs of the concrete function onto the inputs and outputs of the abstract function, respectively. Both fields are ordered lists. Every concrete input in the **input** list is mapped to the corresponding input of the abstract function (viewing its input type as a finite list of basic types). The **output** list works similarly. As a first example, in the [read data frame from SQL table](/annotation/python/pandas/read-sql-table) annotation, the second argument of the pandas `read_sql_table` function is mapped to the first abstract input and the first argument is mapped to the second input. (Note the zero-based indexing in Python.)
 
-Importantly, in order to have a valid function annotation, there should also be type annotations mapping the concrete types of the inputs and outputs to the corresponding abstract types. This condition ensures that type and function annotations are logically compatible. In the jargon, we say that the annotation system is [functorial](https://en.wikipedia.org/wiki/Functor), an idea pursued further in the [advanced guide](/page/math).
+Importantly, in order to have a valid function annotation, there should also be type annotations mapping the concrete types of the inputs and outputs to the corresponding abstract types. This condition ensures that type and function annotations are logically compatible. Continuing the previous example, there are type annotations mapping the SQLAlchemy “connectables,” namely [connections](/annotation/python/sqlalchemy/connection) and [engines](/annotation/python/sqlalchemy/engine), to the [SQL database](/concept/sql-database) concept. In the jargon, we say that annotations are [functorial](https://en.wikipedia.org/wiki/Functor), an idea pursued further in the [advanced guide](/page/math).
 
-Let us expand on how concrete inputs and outputs are specified. A concrete input is a just function argument, identified by position (a number) or name (a string). with a large number of inessential keyword arguments.
+Let us expand on how concrete inputs and outputs are specified. A concrete input is a just function argument, identified by position (a number) or name (a string). Not every argument must be annotated. Unannotated arguments are simply ignored for the purposes of knowledge representation. Omitting arguments is a practical necessity for functions with dozens of inessential keyword arguments, a popular design pattern in data science libraries. A prime example is the [`read_csv`](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_csv.html) function in pandas.
+
+A concrete output is either the function's return value, identified by the special name `__return__`, or a function argument, identified as above. Marking a function argument as an output means that the argument is passed by reference and mutated within the function. Because the ontology language is purely functional, mutated arguments are represented as extra outputs. For example, when [fitting a regression model in scikit-learn](/annotation/python/sklearn/fit-regression), the `self` argument is both an input and an output. The method is reinterpreted as taking an unfitted regression model as input and yielding a fitted regression model as output.
 
 #### Examples
 
-To illustrate these ideas, let's look at the annotations for k-means clustering in several different packages.
+To illustrate these ideas, let's look at the annotations for k-means clustering in several different packages. **TODO**
 
 ## What's next? 
