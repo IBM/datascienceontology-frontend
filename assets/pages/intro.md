@@ -200,7 +200,36 @@ sexp: n-fold copy
 
 In the graphical syntax, a copy is implicitly represented by an output port with multiple outgoing wires and a deletion is implicitly represented by an output port with no outgoing wires. Thus any output port is allow to have zero, one, or many outgoing wires. The same is *not* true of input ports: in a valid wiring diagram, every input port has exactly one incoming wire. This restriction holds because there is no natural way to **merge** multiple elements or **create** new elements of an arbitrary data type.
 
-**TODO**: construct, coerce
+There is, however, a family of functions to **construct** elements of a given data type satisfying certain properties. In the simplest case, the construct function take no inputs and creates an element of type $X$ that does not necessarily satisfy any properties:
+
+sexp: Construct by type
+:::
+["construct", "X"]
+:::
+
+Diagrammatically, it is a box labeled by the type name:
+
+!cytoscape[Construct by type](/intro/construct-type.json)
+
+Now suppose $f$ is a function from $X$ to $Y$, which we think of as a “property” of $X$, named $f$ and of data type $Y$. There is a construct function from $Y$ to $X$ that creates elements of type $X$ with property $f$:
+
+sexp: Construct by function
+:::
+["construct", "f"]
+:::
+
+Or, diagrammatically:
+
+!cytoscape[Construct by function](/intro/construct-function.json)
+
+(The name $f$ is omitted in the graphical syntax, a defect we may rectify in the future.) To be more precise, the defining property of this construct function is that its composition with $f$ is $1_Y$, the identity function on $Y$.
+
+Finally, although implicit conversions (aka, coercions) are usually implicit—hence the name—it is occasionally useful to explicitly reference the coercion functions. That's what the **coerce** constructor does. If $X$ is a subtype of $Y$, then the coercion function from $X$ to $Y$ is represented by the expression:
+
+sexp: coercion
+:::
+["coerce", ["SubOb", "X", "Y"]]
+:::
 
 #### Subfunctions
 
@@ -271,3 +300,5 @@ A concrete output is either the function's return value, identified by the speci
 To illustrate these ideas, let's look at the annotations for k-means clustering in several different packages. **TODO**
 
 ## What's next? 
+
+You should now have a working knowledge of the Data Science Ontology, sufficient to read and understand the content of this website. If you'd like to contribute to the ontology, you should also read the short [contribution guide](/page/contributing). The [advanced guide](/page/math) presents the ontology language with greater mathematical rigor and references to the research literature.

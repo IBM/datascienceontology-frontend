@@ -1,0 +1,117 @@
+{
+  "expression": [
+    "construct",
+    [
+      "Hom",
+      "f",
+      [
+        "Ob",
+        "X"
+      ],
+      [
+        "Ob",
+        "Y"
+      ]
+    ]
+  ],
+  "height": "200px",
+  "cytoscape": {
+    "elements": [
+      {
+        "group": "nodes",
+        "classes": "graphviz graphviz-invis",
+        "data": {
+          "id": "n1p1",
+          "label": "",
+          "width": 24,
+          "height": 1
+        },
+        "position": {
+          "x": 12,
+          "y": 0.5
+        }
+      },
+      {
+        "group": "nodes",
+        "classes": "graphviz graphviz-invis",
+        "data": {
+          "id": "n2p1",
+          "label": "",
+          "width": 24,
+          "height": 1
+        },
+        "position": {
+          "x": 12,
+          "y": 96.5
+        }
+      },
+      {
+        "group": "nodes",
+        "classes": "graphviz",
+        "data": {
+          "name": ":construct",
+          "label": "X",
+          "height": 23,
+          "id": "n3",
+          "width": 24
+        },
+        "position": {
+          "x": 12,
+          "y": 48.5
+        }
+      },
+      {
+        "group": "edges",
+        "classes": "graphviz",
+        "data": {
+          "name": "Y",
+          "source": "n1p1",
+          "label": "Y",
+          "targetEndpoint": [
+            0,
+            -11
+          ],
+          "controlPointWeights": [
+            0.179,
+            0.602
+          ],
+          "target": "n3",
+          "sourceEndpoint": [
+            0,
+            0.5
+          ],
+          "controlPointDistances": [
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "group": "edges",
+        "classes": "graphviz",
+        "data": {
+          "name": "X",
+          "source": "n3",
+          "label": "X",
+          "targetEndpoint": [
+            0,
+            -0.5
+          ],
+          "controlPointWeights": [
+            0.406,
+            0.823
+          ],
+          "target": "n2p1",
+          "sourceEndpoint": [
+            0,
+            11.5
+          ],
+          "controlPointDistances": [
+            0,
+            0
+          ]
+        }
+      }
+    ]
+  }
+}
