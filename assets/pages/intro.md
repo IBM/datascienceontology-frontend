@@ -222,7 +222,7 @@ Or, diagrammatically:
 
 !cytoscape[Construct by function](/intro/construct-function.json)
 
-(The name $f$ is omitted in the graphical syntax, a defect we may rectify in the future.) To be more precise, the defining property of this construct function is that its composition with $f$ is $1_Y$, the identity function on $Y$.
+(The name $f$ is omitted in the graphical syntax, a defect we hope to rectify in the future.) To be more precise, the defining property of this construct function is that its composition with $f$ is $1_Y$, the identity function on $Y$.
 
 Finally, although implicit conversions (aka, coercions) are usually implicit—hence the name—it is occasionally useful to explicitly reference the coercion functions. That's what the **coerce** constructor does. If $X$ is a subtype of $Y$, then the coercion function from $X$ to $Y$ is represented by the expression:
 
@@ -302,3 +302,5 @@ To illustrate these ideas, let's look at the annotations for k-means clustering 
 ## What's next? 
 
 You should now have a working knowledge of the Data Science Ontology, sufficient to read and understand the content of this website. If you'd like to contribute to the ontology, you should also read the short [contribution guide](/page/contributing). The [advanced guide](/page/math) presents the ontology language with greater mathematical rigor and references to the research literature.
+
+Finally, a few words about what's next for the Data Science Ontology itself. You may have noticed that the ontology language is not expressive enough to capture some very fundamental programming idioms, such as looping. In the future we will likely extend the ontology language and program analysis tools to support **function types** (enabling higher-order functions), **lambda abstraction** (defining new functions), and **recursion** (looping). Nonetheless we believe that the Data Science Ontology should already be useful for many purposes in its present, nascent state.
