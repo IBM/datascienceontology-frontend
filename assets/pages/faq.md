@@ -12,7 +12,7 @@ Existing ontologies and schemas in this space include [STATO](http://stato-ontol
 
 **Why doesn't the DSO use the Semantic Web standards?**
 
-The DSO is written in a bespoke ontology language instead of the Semantic Web languages (RDF, RDFS, OWL). Description logics, including the [Web Ontology Language (OWL)](https://www.w3.org/TR/owl-primer/), are designed to express *taxonomic* knowledge, namely hierarchies of concepts and relations between concepts. They are ill-suited to expressing *procedural* or *algorithmic* knowledge. An ontology language based on the lambda calculus is therefore a better fit for this project than a description logic like OWL. Nevertheless, to support interoperation with other knowledge-based systems, we regularly export the ontology to the [Resource Description Framework (RDF)](https://www.w3.org/TR/rdf11-primer/) format.
+The DSO is written in a bespoke ontology language, the MONoidal Ontology and Computing Language (Monocl), instead of the Semantic Web languages (RDF, RDFS, OWL). Description logics, including the [Web Ontology Language (OWL)](https://www.w3.org/TR/owl-primer/), are designed to express *taxonomic* knowledge, namely hierarchies of concepts and relations between concepts. They are ill-suited to expressing *procedural* or *algorithmic* knowledge. An ontology language based on the lambda calculus is therefore a better fit for this project than a description logic like OWL. Nevertheless, to support interoperation with other knowledge-based systems, we regularly export the ontology to the [Resource Description Framework (RDF)](https://www.w3.org/TR/rdf11-primer/) format.
 
 **Can I run programs written in the ontology language?**
 
