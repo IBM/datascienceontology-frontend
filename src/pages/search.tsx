@@ -5,7 +5,7 @@ import FontAwesome = require("react-fontawesome");
 
 import { Concept, Annotation } from "open-discovery";
 import { SearchBar } from "open-discovery-components";
-import { KindGlyph, LanguageGlyph } from "../components/glyphs";
+import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import * as Cloudant from "../cloudant";
 import * as Config from "../config";
 
@@ -136,7 +136,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
           <NavLink onClick={() => this.setState({activeTab: "concepts"})}
                    active={this.state.activeTab === "concepts"}
                    disabled={this.state.totalConcepts === 0}>
-            <FontAwesome name="cloud" />
+            <SchemaGlyph schema="concept" />
             {" "}
             {`Concepts (${this.state.totalConcepts})`}
           </NavLink>
@@ -145,7 +145,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
           <NavLink onClick={() => this.setState({activeTab: "annotations"})}
                    active={this.state.activeTab === "annotations"}
                    disabled={this.state.totalAnnotations === 0}>
-            <FontAwesome name="pencil" />
+            <SchemaGlyph schema="annotation" />
             {" "}
             {`Annotations (${this.state.totalAnnotations})`}
           </NavLink>

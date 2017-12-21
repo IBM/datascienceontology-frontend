@@ -3,12 +3,11 @@ import * as React from "react";
 import * as Router from "react-router-dom";
 import * as ReactMarkdown from "react-markdown";
 import { Container, Row, Col } from "reactstrap";
-import FontAwesome = require("react-fontawesome");
 
 import { Annotation } from "open-discovery";
 import { CytoscapeComponent, Link, displayCouchDocument }
   from "open-discovery-components";
-import { KindGlyph, LanguageGlyph } from "../components/glyphs";
+import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import { SExpComponent } from "../components/sexp";
 import { AnnotationCache } from "../interfaces/annotation_cache";
 import * as Config from "../config";
@@ -36,7 +35,7 @@ export const AnnotationDisplay = (props: {doc: Annotation.Annotation}) => {
     <section id="annotation">
       <h3>
         <span className="text-muted" style={{paddingRight: "2em"}}>
-          <FontAwesome name="pencil" />
+          <SchemaGlyph schema="annotation" />
           {" "}
           Annotation
         </span>

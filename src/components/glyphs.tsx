@@ -4,6 +4,17 @@ import FontAwesome = require("react-fontawesome");
 import "../../style/components/glyphs.css";
 
 
+/** Glyph for document schema.
+ */
+export const SchemaGlyph = (props: {schema: string}) => {
+  if (props.schema === "concept") {
+    return <FontAwesome name="cloud" />;
+  } else if (props.schema === "annotation") {
+    return <FontAwesome name="pencil" />;
+  }
+  return null;
+}
+
 /** Glyph for kind of concept or annotation.
  */
 export const KindGlyph = (props: {kind: string}) => {
@@ -15,8 +26,9 @@ export const KindGlyph = (props: {kind: string}) => {
   return null;
 }
 
-/** Glyph for programming language.
+/** Glyph for programming language of annotation.
  */
 export const LanguageGlyph = (props: {language: string}) =>
   <img src={`/assets/images/logo-${props.language}.svg`}
-       alt={props.language} className="language-glyph" />;
+       alt={props.language}
+       className="language-glyph" />;
