@@ -38,32 +38,31 @@ export const AnnotationDisplay = (props: {doc: Annotation.Annotation}) => {
         </span>
         {annotation.name || annotation.id}
       </h3>
-      {Annotation.isPythonAnnotation(annotation) &&
-        <PythonAnnotationDisplay annotation={annotation} />}
+      <AnnotationContent annotation={annotation} />
     </section>
   );
 }
 const AnnotationDisplayCouchDB = displayCouchDocument(AnnotationDisplay);
 
 
-const PythonAnnotationDisplay = (props: {annotation: Annotation.PythonAnnotation}) => {
+const AnnotationContent = (props: {annotation: Annotation.Annotation}) => {
   const annotation = props.annotation;
-  if (Annotation.isPythonObject(annotation)) {
+  if (Annotation.isObject(annotation)) {
     return (
       <dl className="dl-horizontal">
-        {PythonAnnotationDefList({ annotation })}
-        {PythonObjectDefList({ annotation })}
+        {BaseDefList({ annotation })}
+        {ObjectDefList({ annotation })}
       </dl>
     );
-  } else if (Annotation.isPythonMorphism(annotation)) {
+  } else if (Annotation.isMorphism(annotation)) {
     const cacheId = `annotation/${annotation.language}/${annotation.package}/${annotation.id}`;
     return (
       <Container>
         <Row>
           <Col>
             <dl className="dl-horizontal">
-              {PythonAnnotationDefList({ annotation })}
-              {PythonMorphismDefList({ annotation })}
+              {BaseDefList({ annotation })}
+              {MorphismDefList({ annotation })}
             </dl>
           </Col>
           <Col>
@@ -76,24 +75,21 @@ const PythonAnnotationDisplay = (props: {annotation: Annotation.PythonAnnotation
   return null;
 }
 
-const PythonAnnotationDefList = (props: {annotation: Annotation.PythonAnnotation}) => {
+const BaseDefList = (props: {annotation: Annotation.Annotation}) => {
   const annotation = props.annotation;
   const elements = [
     <dt key="language-dt">Language</dt>,
     <dd key="language-dd">
       {annotation.language}
       {" "}
-      <a href="https://www.python.org/" target="_blank">
-        <img src="/assets/images/logo-python.svg" width="24" height="24" />
-      </a>
+      <img src={`/assets/images/logo-${annotation.language}.svg`} 
+           width="24" height="24" />
     </dd>,
     <dt key="package-dt">Package</dt>,
     <dd key="package-dd">
       {annotation.package}
       {" ["}
-      <Link to={`https://pypi.python.org/pypi/${annotation.package}`} target="_blank">
-        PyPI
-      </Link>
+      <PackageRepositoryLink annotation={annotation} />
       {"]"}
     </dd>,
     <dt key="id-dt">ID</dt>,
@@ -114,11 +110,31 @@ const PythonAnnotationDefList = (props: {annotation: Annotation.PythonAnnotation
   return elements;
 }
 
+const ObjectDefList = (props: {annotation: Annotation.ObjectAnnotation}) => {
+  const annotation = props.annotation;
+  if (Annotation.isPythonObject(annotation)) {
+    return PythonObjectDefList({annotation});
+  } else if (Annotation.isRObject(annotation)) {
+    return RObjectDefList({annotation});
+  }
+  return [];
+}
+
+const MorphismDefList = (props: {annotation: Annotation.MorphismAnnotation}) => {
+  const annotation = props.annotation;
+  if (Annotation.isPythonMorphism(annotation)) {
+    return PythonMorphismDefList({annotation});
+  } else if (Annotation.isRMorphism(annotation)) {
+    return RMorphismDefList({annotation});
+  }
+  return [];
+}
+
+
 const PythonObjectDefList = (props: {annotation: Annotation.PythonObject}) => {
   const annotation = props.annotation;
   const classes = typeof annotation.class === "string" ?
     [ annotation.class ] : annotation.class;
-  const slots = annotation.slots || [];
   return [
     <dt key="class-dt">Python class</dt>,
     <dd key="class-dd">
@@ -136,15 +152,7 @@ const PythonObjectDefList = (props: {annotation: Annotation.PythonObject}) => {
     </dd>,
     <dt key="slots-dt">Slots</dt>,
     <dd key="slots-dd">
-      <div className="annotation-slot-list">
-        <ul>{slots.map((slot, i) =>
-          <li key={i}>
-            <code>{slot.slot}</code>
-            {": "}
-            <SExpComponent inline ontology sexp={slot.definition} />
-          </li>)}
-        </ul>
-      </div>
+      <SlotList slots={annotation.slots || []} />
     </dd>,
   ];
 }
@@ -181,23 +189,11 @@ const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) =
   elements.push(
     <dt key="dom-dt">Input</dt>,
     <dd key="dom-dd">
-      <div className="annotation-domain-list">
-        <ol>{annotation.domain.map((ob, i) =>
-          <li key={i}>
-            <code>{ob.slot}</code>
-          </li>)}
-        </ol>
-      </div>
+      <DomainObjectList objects={annotation.domain} />
     </dd>,
     <dt key="codom-dt">Output</dt>,
     <dd key="codom-dd">
-      <div className="annotation-domain-list">
-        <ol>{annotation.codomain.map((ob, i) =>
-          <li key={i}>
-            <code>{ob.slot}</code>
-          </li>)}
-        </ol>
-      </div>
+      <DomainObjectList objects={annotation.codomain} />
     </dd>,
     <dt key="def-dt">Definition</dt>,
     <dd key="def-dd">
@@ -207,6 +203,100 @@ const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) =
   return elements;
 }
 
+
+const RObjectDefList = (props: {annotation: Annotation.RObject}) => {
+  const annotation = props.annotation;
+  const slots = annotation.slots || [];
+  return [
+    <dt key="class-dt">{annotation.system} class</dt>,
+    <dd key="class-dd">
+      <code>{annotation.class}</code>
+    </dd>,
+    <dt key="def-dt">Definition</dt>,
+    <dd key="def-dd">
+      <SExpComponent inline ontology sexp={annotation.definition} />
+    </dd>,
+    <dt key="slots-dt">Slots</dt>,
+    <dd key="slots-dd">
+      <SlotList slots={annotation.slots || []} />
+    </dd>,
+  ];
+}
+
+const RMorphismDefList = (props: {annotation: Annotation.RMorphism}) => {
+  const annotation = props.annotation;
+  const elements: JSX.Element[] = [];
+  if (annotation.function) { elements.push(
+    <dt key="function-dt">R function</dt>,
+    <dd key="function-dd">
+      <code>{annotation.function}</code>
+    </dd>,
+  ); }
+  if (annotation.method) { elements.push(
+    <dt key="class-dt">{annotation.system} class</dt>,
+    <dd key="class-dd">
+      <code>{annotation.class}</code>
+    </dd>,
+    <dt key="method-dt">R method</dt>,
+    <dd key="method-dd">
+      <code>{annotation.method}</code>
+    </dd>,
+  ); }
+  elements.push(
+    <dt key="dom-dt">Input</dt>,
+    <dd key="dom-dd">
+      <DomainObjectList objects={annotation.domain} />
+    </dd>,
+    <dt key="codom-dt">Output</dt>,
+    <dd key="codom-dd">
+      <DomainObjectList objects={annotation.codomain} />
+    </dd>,
+    <dt key="def-dt">Definition</dt>,
+    <dd key="def-dd">
+      <SExpComponent inline ontology sexp={annotation.definition} />
+    </dd>,
+  );
+  return elements;
+}
+
+
+const DomainObjectList = (props: {objects: Annotation.DomainObject[]}) =>
+  <div className="annotation-domain-list">
+    <ol>{props.objects.map((ob, i) =>
+      <li key={i}>
+        <code>{ob.slot}</code>
+      </li>)}
+    </ol>
+  </div>;
+
+const SlotList = (props: {slots: Annotation.Slot[]}) =>
+  <div className="annotation-slot-list">
+    <ul>{props.slots.map((slot, i) =>
+      <li key={i}>
+        <code>{slot.slot}</code>
+        {": "}
+        <SExpComponent inline ontology sexp={slot.definition} />
+      </li>)}
+    </ul>
+  </div>;
+
+const PackageRepositoryLink = (props: {annotation: Annotation.Annotation}) => {
+  const annotation = props.annotation;
+  if (Annotation.isPython(annotation)) {
+    return (
+      <Link to={`https://pypi.python.org/pypi/${annotation.package}`} target="_blank">
+        PyPI
+      </Link>
+    );
+  } else if (Annotation.isR(annotation)) {
+    return (
+      <Link to={`https://cran.r-project.org/package=${annotation.package}`} target="_blank">
+        CRAN
+      </Link>
+    );
+  }
+  return null;
+}
 
 const MorphismDiagram = (props: {doc: AnnotationCache}) => {
   const cache = props.doc;
