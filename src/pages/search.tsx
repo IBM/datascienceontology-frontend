@@ -135,6 +135,8 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
           <NavLink onClick={() => this.setState({activeTab: "concepts"})}
                    active={this.state.activeTab === "concepts"}
                    disabled={this.state.totalConcepts === 0}>
+            <FontAwesome name="cloud" />
+            {" "}
             {`Concepts (${this.state.totalConcepts})`}
           </NavLink>
         </NavItem>
@@ -142,6 +144,8 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
           <NavLink onClick={() => this.setState({activeTab: "annotations"})}
                    active={this.state.activeTab === "annotations"}
                    disabled={this.state.totalAnnotations === 0}>
+            <FontAwesome name="pencil" />
+            {" "}
             {`Annotations (${this.state.totalAnnotations})`}
           </NavLink>
         </NavItem>

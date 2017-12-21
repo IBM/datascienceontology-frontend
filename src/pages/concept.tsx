@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
 import * as ReactMarkdown from "react-markdown";
+import FontAwesome = require("react-fontawesome");
 
 import { Concept } from "open-discovery";
 import { displayCouchDocument } from "open-discovery-components";
@@ -23,6 +24,8 @@ export const ConceptDisplay = (props: {doc: Concept.Concept}) => {
     <section id="concept">
       <h3>
         <span className="text-muted" style={{paddingRight: "2em"}}>
+          <FontAwesome name="cloud" />
+          {" "}
           Concept
         </span>
         {concept.name}

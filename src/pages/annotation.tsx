@@ -3,6 +3,7 @@ import * as React from "react";
 import * as Router from "react-router-dom";
 import * as ReactMarkdown from "react-markdown";
 import { Container, Row, Col } from "reactstrap";
+import FontAwesome = require("react-fontawesome");
 
 import { Annotation } from "open-discovery";
 import { CytoscapeComponent, Link, displayCouchDocument }
@@ -34,6 +35,8 @@ export const AnnotationDisplay = (props: {doc: Annotation.Annotation}) => {
     <section id="annotation">
       <h3>
         <span className="text-muted" style={{paddingRight: "2em"}}>
+          <FontAwesome name="pencil" />
+          {" "}
           Annotation
         </span>
         {annotation.name || annotation.id}
