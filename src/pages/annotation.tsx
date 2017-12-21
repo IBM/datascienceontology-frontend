@@ -77,6 +77,7 @@ const AnnotationContent = (props: {annotation: Annotation.Annotation}) => {
 
 const BaseDefList = (props: {annotation: Annotation.Annotation}) => {
   const annotation = props.annotation;
+  const packageLink = PackageRepositoryLink({annotation});
   const elements = [
     <dt key="language-dt">Language</dt>,
     <dd key="language-dd">
@@ -88,9 +89,9 @@ const BaseDefList = (props: {annotation: Annotation.Annotation}) => {
     <dt key="package-dt">Package</dt>,
     <dd key="package-dd">
       {annotation.package}
-      {" ["}
-      <PackageRepositoryLink annotation={annotation} />
-      {"]"}
+      {packageLink && " ["}
+      {packageLink}
+      {packageLink && "]"}
     </dd>,
     <dt key="id-dt">ID</dt>,
     <dd key="id-dd">{annotation.id}</dd>,
@@ -282,15 +283,16 @@ const SlotList = (props: {slots: Annotation.Slot[]}) =>
 
 const PackageRepositoryLink = (props: {annotation: Annotation.Annotation}) => {
   const annotation = props.annotation;
-  if (Annotation.isPython(annotation)) {
+  const pkg = annotation.package;
+  if (Annotation.isPython(annotation) && pkg != "builtins") {
     return (
-      <Link to={`https://pypi.python.org/pypi/${annotation.package}`} target="_blank">
+      <Link to={`https://pypi.python.org/pypi/${pkg}`} target="_blank">
         PyPI
       </Link>
     );
-  } else if (Annotation.isR(annotation)) {
+  } else if (Annotation.isR(annotation) && rStdLib.indexOf(pkg) == -1) {
     return (
-      <Link to={`https://cran.r-project.org/package=${annotation.package}`} target="_blank">
+      <Link to={`https://cran.r-project.org/package=${pkg}`} target="_blank">
         CRAN
       </Link>
     );
@@ -308,3 +310,27 @@ const MorphismDiagram = (props: {doc: AnnotationCache}) => {
   }} height="600px" />
 }
 const MorphismDiagramCouchDB = displayCouchDocument(MorphismDiagram);
+
+
+/** List of packages in r-base (the R standard library).
+
+  <https://github.com/wch/r-source/tree/trunk/src/library>
+ */
+const rStdLib = [
+  "base",
+  "compiler",
+  "datasets",
+  "grDevices",
+  "graphics",
+  "grid",
+  "methods",
+  "parallel",
+  "profile",
+  "splines",
+  "stats",
+  "stats4",
+  "tcltk",
+  "tools",
+  "translations",
+  "utils",
+];
