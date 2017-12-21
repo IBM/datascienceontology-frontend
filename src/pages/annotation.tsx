@@ -8,6 +8,7 @@ import FontAwesome = require("react-fontawesome");
 import { Annotation } from "open-discovery";
 import { CytoscapeComponent, Link, displayCouchDocument }
   from "open-discovery-components";
+import { KindGlyph } from "../components/glyphs";
 import { SExpComponent } from "../components/sexp";
 import { AnnotationCache } from "../interfaces/annotation_cache";
 import * as Config from "../config";
@@ -84,22 +85,26 @@ const BaseDefList = (props: {annotation: Annotation.Annotation}) => {
   const elements = [
     <dt key="language-dt">Language</dt>,
     <dd key="language-dd">
-      {annotation.language}
+      <img src={`/assets/images/logo-${annotation.language}.svg`}
+           alt={annotation.language} width="24" height="24" />
       {" "}
-      <img src={`/assets/images/logo-${annotation.language}.svg`} 
-           width="24" height="24" />
+      {annotation.language}
     </dd>,
     <dt key="package-dt">Package</dt>,
     <dd key="package-dd">
       {annotation.package}
-      {packageLink && " ["}
+      {packageLink && " ("}
       {packageLink}
-      {packageLink && "]"}
+      {packageLink && ")"}
     </dd>,
     <dt key="id-dt">ID</dt>,
     <dd key="id-dd">{annotation.id}</dd>,
     <dt key="kind-dt">Kind</dt>,
-    <dd key="kind-dd">{annotation.kind === "object" ? "type" : "function"}</dd>,
+    <dd key="kind-dd">
+      <KindGlyph kind={annotation.kind} />
+      {" "}
+      {annotation.kind === "object" ? "type" : "function"}
+    </dd>,
   ];
   if (annotation.name) { elements.push(
     <dt key="name-dt">Name</dt>,

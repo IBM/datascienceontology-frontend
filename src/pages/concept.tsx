@@ -5,6 +5,7 @@ import FontAwesome = require("react-fontawesome");
 
 import { Concept } from "open-discovery";
 import { displayCouchDocument } from "open-discovery-components";
+import { KindGlyph } from "../components/glyphs";
 import * as Config from "../config";
 
 import "../../style/pages/concept.css";
@@ -54,7 +55,11 @@ const ConceptDefList = (props: {concept: Concept.Concept}) => {
     <dt key="id-dt">ID</dt>,
     <dd key="id-dd">{concept.id}</dd>,
     <dt key="kind-dt">Kind</dt>,
-    <dd key="kind-dd">{concept.kind === "object" ? "type" : "function"}</dd>,
+    <dd key="kind-dd">
+      <KindGlyph kind={concept.kind} />
+      {" "}
+      {concept.kind === "object" ? "type" : "function"}
+    </dd>,
     <dt key="name-dt">Name</dt>,
     <dd key="name-dd">{concept.name}</dd>,
   ];

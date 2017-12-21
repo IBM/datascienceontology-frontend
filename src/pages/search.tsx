@@ -5,6 +5,7 @@ import FontAwesome = require("react-fontawesome");
 
 import { Concept, Annotation } from "open-discovery";
 import { SearchBar } from "open-discovery-components";
+import { KindGlyph } from "../components/glyphs";
 import * as Cloudant from "../cloudant";
 import * as Config from "../config";
 
@@ -204,13 +205,4 @@ export const AnnotationResult = (props: {annotation: Annotation.Annotation}) => 
     </span>
     {note.description !== undefined && <p>{note.description}</p>}
   </div>;
-}
-
-const KindGlyph = (props: {kind: string}) => {
-  if (props.kind === "object") {
-    return <FontAwesome name="circle-o" />;
-  } else if (props.kind === "morphism") {
-    return <FontAwesome name="long-arrow-right" />;
-  }
-  return null;
 }
