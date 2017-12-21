@@ -5,7 +5,7 @@ import FontAwesome = require("react-fontawesome");
 
 import { Concept, Annotation } from "open-discovery";
 import { SearchBar } from "open-discovery-components";
-import { KindGlyph } from "../components/glyphs";
+import { KindGlyph, LanguageGlyph } from "../components/glyphs";
 import * as Cloudant from "../cloudant";
 import * as Config from "../config";
 
@@ -195,6 +195,8 @@ export const AnnotationResult = (props: {annotation: Annotation.Annotation}) => 
   const key = `${note.language}/${note.package}/${note.id}`;
   return <div className="search-result">
     <KindGlyph kind={note.kind} />
+    {" "}
+    <LanguageGlyph language={note.language} />
     {" "}
     <Router.Link to={`/annotation/${key}`}>
       {note.name !== undefined ? note.name : note.id}

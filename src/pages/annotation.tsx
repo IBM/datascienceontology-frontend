@@ -8,7 +8,7 @@ import FontAwesome = require("react-fontawesome");
 import { Annotation } from "open-discovery";
 import { CytoscapeComponent, Link, displayCouchDocument }
   from "open-discovery-components";
-import { KindGlyph } from "../components/glyphs";
+import { KindGlyph, LanguageGlyph } from "../components/glyphs";
 import { SExpComponent } from "../components/sexp";
 import { AnnotationCache } from "../interfaces/annotation_cache";
 import * as Config from "../config";
@@ -85,8 +85,7 @@ const BaseDefList = (props: {annotation: Annotation.Annotation}) => {
   const elements = [
     <dt key="language-dt">Language</dt>,
     <dd key="language-dd">
-      <img src={`/assets/images/logo-${annotation.language}.svg`}
-           alt={annotation.language} width="24" height="24" />
+      <LanguageGlyph language={annotation.language} />
       {" "}
       {annotation.language}
     </dd>,
