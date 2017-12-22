@@ -59,7 +59,8 @@ module.exports = {
     "lodash": {
       commonjs: "lodash",
       amd: "lodash",
-      root: "_"
+      root: "_",
+      var: "_"
     },
     "react": "React",
     "react-dom": "ReactDOM",

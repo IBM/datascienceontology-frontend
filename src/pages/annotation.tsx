@@ -86,7 +86,7 @@ const BaseDefList = (props: {annotation: Annotation.Annotation}) => {
     <dd key="language-dd">
       <LanguageGlyph language={annotation.language} />
       {" "}
-      {annotation.language}
+      {_.capitalize(annotation.language)}
     </dd>,
     <dt key="package-dt">Package</dt>,
     <dd key="package-dd">
