@@ -10,7 +10,7 @@ export const SchemaGlyph = (props: {schema: string}) => {
   if (props.schema === "concept") {
     return <FontAwesome name="cloud" />;
   } else if (props.schema === "annotation") {
-    return <FontAwesome name="pencil" />;
+    return <FontAwesome name="pencil-square-o" />;
   }
   return null;
 }
@@ -19,7 +19,7 @@ export const SchemaGlyph = (props: {schema: string}) => {
  */
 export const KindGlyph = (props: {kind: string}) => {
   if (props.kind === "object") {
-    return <FontAwesome name="circle-o" />;
+    return <FontAwesome name="cube" />;
   } else if (props.kind === "morphism") {
     return <FontAwesome name="long-arrow-right" />;
   }
