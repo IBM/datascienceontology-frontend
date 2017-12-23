@@ -15,12 +15,12 @@ The Data Science Ontology is comprised of two kinds of entities: concepts and an
 
 In summary, the entities comprising the ontology are classified by the two-by-two table:
 
-|          | Concept          | Annotation          |
-|----------|------------------|---------------------|
-| Type     | Type concept     | Type annotation     |
-| Function | Function concept | Function annotation |
+|                                | !glyph_schema(concept) Concept | !glyph_schema(annotation) Annotation |
+|--------------------------------|--------------------------------|--------------------------------------|
+| !glyph_kind(object) Type       | Type concept                   | Type annotation                      |
+| !glyph_kind(morphism) Function | Function concept               | Function annotation                  |
 
-We explicate all four notions at length in this guide.
+We explicate all four notions at length in this guide. The pictograms in the table are used throughout the Data Science Ontology website as a visual shorthand.
 
 Significant modeling flexibility is required to accurately translate the diverse APIs of statistical software into a single set of universal concepts. To meet this challenge, an annotation can map a single library function or method onto an arbitrary composition of concepts. Compositions are expressed in **Monocl** (the MONoidal Ontology and Computing Language), a new ontology language created specifically for this project. We think of the ontology language as a minimalistic, typed, functional programming language. Being designed for knowledge representation, rather than practical computing, it is simpler than any real-world programming language but is still moderately expressive.
 

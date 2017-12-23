@@ -3,6 +3,7 @@ import * as Router from "react-router-dom";
 
 import { SExp } from "open-discovery";
 import { CytoscapeDocument, MarkdownDocument } from "open-discovery-components";
+import { SchemaGlyph, KindGlyph } from "../components/glyphs";
 import { SExpComponent } from "../components/sexp";
 
 import "../../style/pages/markdown.css";
@@ -36,7 +37,11 @@ export const MarkdownPage = (props: MarkdownPageProps) => {
       sexp: (props: {value: string, children: string[]}) => {
         const sexp = JSON.parse(props.children[0]) as SExp;
         return <p><SExpComponent sexp={sexp} /></p>;
-      }
+      },
+      glyph_schema: (props: {value: string}) =>
+        <SchemaGlyph schema={props.value} />,
+      glyph_kind: (props: {value: string}) =>
+        <KindGlyph kind={props.value} />,
     },
   }} />;
 }
