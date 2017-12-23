@@ -13,7 +13,16 @@ The Data Science Ontology is comprised of two kinds of entities: concepts and an
 
 2. As a modeling assumption, we suppose that the programs implemented by statistical software packages, such as [scikit-learn](http://scikit-learn.org/) or [glmnet](https://cran.r-project.org/web/packages/glmnet/), instantiate the universal concepts of the ontology. **Annotations** map the types and functions defined in software packages onto the types and functions of the ontology, respectively. For instance, the [pandas data frame](/annotation/python/pandas/data-frame) annotation maps the [DataFrame](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html) class in pandas onto the [data table](/concept/table) concept. A unit of source code does not necessarily map onto a single concept. For example, the [fit sklearn clustering model](/annotation/python/sklearn/fit-predict-clustering) annotation maps the [fit_predict](http://scikit-learn.org/stable/modules/generated/sklearn.base.ClusterMixin.html#sklearn.base.ClusterMixin.fit_predict) method of clustering estimators in scikit-learn onto a composition of two concepts, [fitting a model](/concept/fit) and [getting clusters from a clustering model](/concept/clustering-model-clusters). More elaborate compositions are possible.
 
-As the last example suggests, significant modeling flexibility is required to accurately translate the diverse APIs of statistical software into a single set of universal concepts. To meet this challenge, an annotation can map a single library function or method onto an arbitrary composition of concepts. Compositions are expressed in **Monocl** (the MONoidal Ontology and Computing Language), a new ontology language created specifically for this project. We think of the ontology language as a minimalistic, typed, functional programming language. Being designed for knowledge representation, rather than practical computing, it is simpler than any real-world programming language but is still moderately expressive.
+In summary, the entities comprising the ontology are classified by the two-by-two table:
+
+|          | Concept          | Annotation          |
+|----------|------------------|---------------------|
+| Type     | Type concept     | Type annotation     |
+| Function | Function concept | Function annotation |
+
+We explicate all four notions at length in this guide.
+
+Significant modeling flexibility is required to accurately translate the diverse APIs of statistical software into a single set of universal concepts. To meet this challenge, an annotation can map a single library function or method onto an arbitrary composition of concepts. Compositions are expressed in **Monocl** (the MONoidal Ontology and Computing Language), a new ontology language created specifically for this project. We think of the ontology language as a minimalistic, typed, functional programming language. Being designed for knowledge representation, rather than practical computing, it is simpler than any real-world programming language but is still moderately expressive.
 
 The next section develops the ontology language Monocl. Once that is understood, it is easy to understand the concepts and annotations in the Data Science Ontology.
 
