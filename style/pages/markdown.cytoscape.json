@@ -8,6 +8,7 @@
       "shape": "roundrectangle",
       "border-width": 1,
       "background-color": "#eeeeee",
+      "font-family": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
       "font-size": 12,
       "text-halign": "center",
       "text-valign": "center"
@@ -35,6 +36,7 @@
       "edge-distances": "node-position",
       "width": 1,
       "line-color": "black",
+      "font-family": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
       "font-size": 8
     }
   },
