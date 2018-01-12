@@ -60,9 +60,9 @@ A basic type can be declared a **subtype** of one or more other basic types. To 
 
 As this example illustrates, subtyping in Monocl is *not* like inheritance in a typical object-oriented programming language. Inheritance is a design pattern that combines—arguably conflates—subtyping with a mechanism for implementation sharing (code reuse). Because Monocl concepts are not implemented at all, implementation sharing is irrelevant and the usual problems related to multiple inheritance do not arise.
 
-Instead, subtyping should be understood in terms of *implicit conversion*, also known as *coercion*. The idea is that if a type $X_0$ is a subtype of $X$, then there is a canonical way of converting elements of type $X_0$ into elements of type $X$.  Elaborating the example above, a matrix simply *is* an array (of rank 2), hence can be trivially converted into an array. Meanwhile, a matrix can be converted into a data table (of homogeneous data type) by assigning numerical names to the columns, as accomplished by the function `as.data.frame` in R. Notice that the set of matrices is *not* a subset of the set of data tables, hence the slogan in programming language theory that [types are not sets](https://doi.org/10.1145/512927.512938).
+Instead, subtyping should be understood in terms of *implicit conversion*, also known as *coercion*. The idea is that if a type $X$ is a subtype of $X'$, then there is a canonical way to convert elements of type $X$ into elements of type $X'$.  Elaborating the example above, a matrix simply *is* an array (of rank 2), hence can be trivially converted into an array. Meanwhile, a matrix can be converted into a data table (of homogeneous data type) by assigning numerical names to the columns, as accomplished by the function `as.data.frame` in R. Notice that the set of matrices is *not* a subset of the set of data tables, hence the slogan in programming language theory that [types are not sets](https://doi.org/10.1145/512927.512938).
 
-Besides playing the role of the ubiquitous “is-a” relation in knowledge representation systems, subtyping enables a form of [ad hoc polymorphism](https://en.wikipedia.org/wiki/Ad_hoc_polymorphism): a function taking input of type $X$ can, via implicit conversion, automatically take input of any subtype $X_0$ of $X$. What this means should become more clear when we discuss functions below.
+Besides playing the role of the ubiquitous “is-a” relation in knowledge representation systems, subtyping enables a form of [ad hoc polymorphism](https://en.wikipedia.org/wiki/Ad_hoc_polymorphism): a function taking input of type $X'$ can, via implicit conversion, automatically take input of any subtype $X$ of $X'$. What this means should become more clear when we discuss functions below.
 
 ### Functions
 
@@ -244,10 +244,10 @@ A basic function can be declared a **subfunction** of one or more other basic fu
 
 As an example, the concept of [reading a tabular file](/concept/read-tabular-file) is a subfunction of [reading data](/concept/read-data) from a generic data source. That seems intuitively plausible but what does it really mean? Consider two possible computational paths. Given a [tabular file](/concept/tabular-file) (a file containing tabular data), we could [read the tabular file](/concept/read-tabular-file), then coerce the resulting [table](/concept/table) to generic [data](/concept/data). Alternatively, we could coerce the [tabular file](/concept/tabular-file) to a generic [data source](/concept/data-source), then [read data](/concept/read-data) from it. Both paths take a [tabular file](/concept/tabular-file) as input and return [data](/concept/data) as output. We expect them to be equivalent and that's exactly what the subfunction relation guarantees.
 
-The general definition is perfectly analogous. Suppose $X_0$ is a subtype of $X$, $Y_0$ is a subtype of $Y$, and $f_0$ and $f$ are functions with input types $X_0$ and $X$ and output types $Y_0$ and $Y$, respectively. Then $f_0$ is a subfunction of $f$ if the [naturality](https://ncatlab.org/nlab/show/natural+transformation) condition is satisfied: the two functions from $X_0$ to $Y$ defined by
+The general definition is perfectly analogous. Suppose $X$ is a subtype of $X'$, $Y$ is a subtype of $Y'$, and $f$ and $f'$ are functions with input types $X$ and $X'$ and output types $Y$ and $Y'$, respectively. Then $f$ is a subfunction of $f'$ if the [naturality](https://ncatlab.org/nlab/show/natural+transformation) condition is satisfied: the two functions from $X$ to $Y'$ defined by
 
-1. applying $f_0$, then coercing the output from type $Y_0$ to $Y$
-2. coercing the input from type $X_0$ to $X$, then applying $f$
+1. applying $f$, then coercing the output from type $Y$ to $Y'$
+2. coercing the input from type $X$ to $X'$, then applying $f'$
 
 are the same.
 
@@ -255,17 +255,17 @@ are the same.
 
 The concepts of the Data Science Ontology constitute the basic types and functions of the data science domain. Annotations express the classes and functions of data science libraries in terms of the concepts, using the ontology language. In this and the next section, we describe the format of the concept and annotation entries appearing on this website.
 
-Every concept is uniquely identified among all concepts in the ontology by an **ID** field. The **kind** field marks the concept as a type or a function. Most concepts also have a **name** and a **description**. These fields document the concept for human readers but have no formal content. The other fields are determined by whether the concept is a type or a function.
+Every concept is uniquely identified among all concepts in the ontology by an **ID** field. The **kind** field marks the concept as a type or a function. Most concepts also have a **name** and a **description**. These fields document the concept for human readers but have no formal meaning. The other fields are determined by whether the concept is a type or a function.
 
 ### Type concepts
 
-Type concepts of the Data Science Ontology include [SQL queries](/concept/sql-query), [data tables](/concept/table), [clustering models](/concept/clustering-model), and [linear regression models](/concept/linear-regression).
+Type concepts in the Data Science Ontology include [SQL queries](/concept/sql-query), [data tables](/concept/table), [clustering models](/concept/clustering-model), and [linear regression models](/concept/linear-regression).
 
-The **is** field lists the types of which the concept is a (direct) subtype. We say “direct” because the relation of being a subtype is *transitive*: if $X_0$ is a subtype of $X$ and $X$ is a subtype of $X_1$, then $X_0$ is a subtype of $X_1$. (Why? Because if $X_0$ is implicitly convertible to $X$ and $X$ is implicitly convertible to $X_1$, then $X_0$ is implicitly convertible to $X_1$ by composing the two implicit conversion functions.) The subtype relation is also *reflexive*: every type is a subtype of itself. (Why? Because every type is implictly convertible to itself by applying the identity function.) The **is** field lists only the direct supertypes of the concept, not those implied by reflexivity or transitivity.
+The **is** field lists the types of which the concept is a direct subtype. We say “direct” because the relation of being a subtype is *transitive*: if $X$ is a subtype of $X'$ and $X'$ is a subtype of $X''$, then $X$ is a subtype of $X''$. (Why? Because if $X$ is implicitly convertible to $X'$ and $X'$ is implicitly convertible to $X''$, then $X$ is implicitly convertible to $X''$ by composing the two implicit conversion functions.) The subtype relation is also *reflexive*: every type is a subtype of itself. (Why? Because every type is implictly convertible to itself by applying the identity function.) The **is** field lists only the direct supertypes of the concept, not those implied by reflexivity or transitivity.
 
 ### Function concepts
 
-Function concepts of the ontology include [reading a data table](/concept/read-table), [fitting a predictive model](/concept/fit-supervised), and [getting clusters from a clustering model](/concept/clustering-model-clusters). Generally speaking, function concepts can be grouped into three categories:
+Function concepts in the ontology include [reading a data table](/concept/read-table), [fitting a predictive model](/concept/fit-supervised), and [getting clusters from a clustering model](/concept/clustering-model-clusters). Generally speaking, function concepts can be grouped into three categories:
 
 1. The most obvious are functions that tangibly “do something”: read data from a data source, fit a statistical model, make predictions, etc. These often correspond to the public functions and methods in data science libraries.
 
@@ -275,7 +275,7 @@ Function concepts of the ontology include [reading a data table](/concept/read-t
 
 The taxonomy of functions is informal. Function concepts in the ontology are *not* marked as belonging to one of these categories; in some cases, there is no single category that obviously applies.
 
-Entries for function concepts have several additional fields. The **input** and **ouput** fields state the input and output types of the functions, presented as a finite list of basic types. The **is** field lists the functions of which the concept is a (direct) subfunction. We say “direct” subfunction for the same reason we said “direct” subtype above.
+Entries for function concepts have several additional fields. The **input** and **ouput** fields state the input and output types of the functions, presented as a finite list of basic types. The **is** field lists the functions of which the concept is a direct subfunction. We say “direct” subfunction for the same reason we said “direct” subtype above.
 
 ## Annotations
 
