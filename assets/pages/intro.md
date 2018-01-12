@@ -56,13 +56,13 @@ Every type in a Monocl is either a basic type, the unit type, or a product of ba
 
 #### Subtypes
 
-A basic type can be declared a **subtype** of one or more other basic types. To a first approximation, subtyping establishes an “is-a” relationship between types. For instance, the [matrix](/concept/matrix) concept is subtype of both [array](/concept/array) (being an array of rank 2) and [data table](/concept/table) (being a table whose columns all have the same data type).
+A basic type can be declared a **subtype** of one or more other basic types. To a first approximation, subtyping establishes an “is-a” relationship between types. For instance, the [matrix](/concept/matrix) concept is a subtype of both [array](/concept/array) (being an array of rank 2) and [data table](/concept/table) (being a table whose columns all have the same data type).
 
 As this example illustrates, subtyping in Monocl is *not* like inheritance in a typical object-oriented programming language. Inheritance is a design pattern that combines—arguably conflates—subtyping with a mechanism for implementation sharing (code reuse). Because Monocl concepts are not implemented at all, implementation sharing is irrelevant and the usual problems related to multiple inheritance do not arise.
 
 Instead, subtyping should be understood in terms of *implicit conversion*, also known as *coercion*. The idea is that if a type $X_0$ is a subtype of $X$, then there is a canonical way of converting elements of type $X_0$ into elements of type $X$.  Elaborating the example above, a matrix simply *is* an array (of rank 2), hence can be trivially converted into an array. Meanwhile, a matrix can be converted into a data table (of homogeneous data type) by assigning numerical names to the columns, as accomplished by the function `as.data.frame` in R. Notice that the set of matrices is *not* a subset of the set of data tables, hence the slogan in programming language theory that [types are not sets](https://doi.org/10.1145/512927.512938).
 
-Besides playing the role of the ubiquitous “is-a” relation in knowledge representation systems, subtyping enables a form of ad hoc polymorphism: a function taking input of type $X$ can, via implicit conversion, automatically take input of any subtype $X_0$ of $X$. What this means should become more clear when we discuss functions below.
+Besides playing the role of the ubiquitous “is-a” relation in knowledge representation systems, subtyping enables a form of [ad hoc polymorphism](https://en.wikipedia.org/wiki/Ad_hoc_polymorphism): a function taking input of type $X$ can, via implicit conversion, automatically take input of any subtype $X_0$ of $X$. What this means should become more clear when we discuss functions below.
 
 ### Functions
 
@@ -240,7 +240,16 @@ sexp: coercion
 
 #### Subfunctions
 
-**TODO**
+A basic function can be declared a **subfunction** of one or more other basic functions. Subfunctions extend the idea of subtyping from types to functions: they establish “is-a” relations between functions, loosely speaking. In programming jargon, subfunctions enable an “ad hoc” form of [generic functions](https://en.wikipedia.org/wiki/Generic_function).
+
+As an example, the concept of [reading a tabular file](/concept/read-tabular-file) is a subfunction of [reading data](/concept/read-data) from a generic data source. That seems intuitively plausible but what does it really mean? Consider two possible computational paths. Given a [file](/concept/file) containing tabular data, we could [read the tabular file](/concept/read-tabular-file), then coerce the resulting [table](/concept/table) to generic [data](/concept/data). Alternatively, we could coerce the file to a generic [data source](/concept/data-source), then [read data](/concept/read-data) from it. Both paths take a [file](/concept/file) as input and return [data](/concept/data) as output. We expect them to be equivalent and that's exactly what the subfunction relation guarantees.
+
+The general definition is perfectly analogous. Suppose $X_0$ is a subtype of $X$, $Y_0$ is a subtype of $Y$, and $f_0$ and $f$ are functions with input types $X_0$ and $X$ and output types $Y_0$ and $Y$, respectively. Then $f_0$ is a subfunction of $f$ if the [naturality](https://ncatlab.org/nlab/show/natural+transformation) condition holds: the two functions
+
+1. apply $f_0$, then coerce the result from type $Y_0$ to $Y$
+2. coerce the input from type $X_0$ to $X$, then apply $f$
+
+from $X_0$ to $Y$ are the same.
 
 ## Concepts
 

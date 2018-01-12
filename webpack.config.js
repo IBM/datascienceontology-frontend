@@ -25,7 +25,7 @@ module.exports = {
         test: /\.js$/,
         loader: "source-map-loader",
         exclude: [
-          __dirname + "/node_modules/davenport"
+          path.join(__dirname, "node_modules", "davenport")
         ]
       },
       // Bundle all imported '.css' files.
