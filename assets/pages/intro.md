@@ -242,14 +242,14 @@ sexp: coercion
 
 A basic function can be declared a **subfunction** of one or more other basic functions. Subfunctions extend the idea of subtyping from types to functions: they establish “is-a” relations between functions, loosely speaking. In programming jargon, subfunctions enable an “ad hoc” form of [generic functions](https://en.wikipedia.org/wiki/Generic_function).
 
-As an example, the concept of [reading a tabular file](/concept/read-tabular-file) is a subfunction of [reading data](/concept/read-data) from a generic data source. That seems intuitively plausible but what does it really mean? Consider two possible computational paths. Given a [file](/concept/file) containing tabular data, we could [read the tabular file](/concept/read-tabular-file), then coerce the resulting [table](/concept/table) to generic [data](/concept/data). Alternatively, we could coerce the file to a generic [data source](/concept/data-source), then [read data](/concept/read-data) from it. Both paths take a [file](/concept/file) as input and return [data](/concept/data) as output. We expect them to be equivalent and that's exactly what the subfunction relation guarantees.
+As an example, the concept of [reading a tabular file](/concept/read-tabular-file) is a subfunction of [reading data](/concept/read-data) from a generic data source. That seems intuitively plausible but what does it really mean? Consider two possible computational paths. Given a [tabular file](/concept/tabular-file) (a file containing tabular data), we could [read the tabular file](/concept/read-tabular-file), then coerce the resulting [table](/concept/table) to generic [data](/concept/data). Alternatively, we could coerce the [tabular file](/concept/tabular-file) to a generic [data source](/concept/data-source), then [read data](/concept/read-data) from it. Both paths take a [tabular file](/concept/tabular-file) as input and return [data](/concept/data) as output. We expect them to be equivalent and that's exactly what the subfunction relation guarantees.
 
-The general definition is perfectly analogous. Suppose $X_0$ is a subtype of $X$, $Y_0$ is a subtype of $Y$, and $f_0$ and $f$ are functions with input types $X_0$ and $X$ and output types $Y_0$ and $Y$, respectively. Then $f_0$ is a subfunction of $f$ if the [naturality](https://ncatlab.org/nlab/show/natural+transformation) condition holds: the two functions
+The general definition is perfectly analogous. Suppose $X_0$ is a subtype of $X$, $Y_0$ is a subtype of $Y$, and $f_0$ and $f$ are functions with input types $X_0$ and $X$ and output types $Y_0$ and $Y$, respectively. Then $f_0$ is a subfunction of $f$ if the [naturality](https://ncatlab.org/nlab/show/natural+transformation) condition is satisfied: the two functions from $X_0$ to $Y$ defined by
 
-1. apply $f_0$, then coerce the result from type $Y_0$ to $Y$
-2. coerce the input from type $X_0$ to $X$, then apply $f$
+1. applying $f_0$, then coercing the output from type $Y_0$ to $Y$
+2. coercing the input from type $X_0$ to $X$, then applying $f$
 
-from $X_0$ to $Y$ are the same.
+are the same.
 
 ## Concepts
 
