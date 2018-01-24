@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
 import { Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
-import FontAwesome = require("react-fontawesome");
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/fontawesome-free-solid";
 
 import { Concept, Annotation } from "open-discovery";
 import { SearchBar } from "open-discovery-components";
@@ -48,7 +49,7 @@ interface OntologyResultsProps {
 }
 interface OntologyResultsState {
   loading: boolean;
-  activeTab: string;
+  activeTab: "concepts" | "annotations";
   concepts: Concept.Concept[];
   annotations: Annotation.Annotation[];
   totalConcepts: number;
@@ -127,7 +128,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
   
   render() {
     if (this.state.loading) {
-      return <FontAwesome name="spinner" spin/>;
+      return <FontAwesomeIcon icon={faSpinner} spin/>;
     }
         
     return <section className="search-results">

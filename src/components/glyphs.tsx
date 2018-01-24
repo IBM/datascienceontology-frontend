@@ -1,5 +1,7 @@
 import * as React from "react";
-import FontAwesome = require("react-fontawesome");
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCloud, faCube, faEdit, faLongArrowAltRight } from 
+  "@fortawesome/fontawesome-free-solid";
 
 import "../../style/components/glyphs.css";
 
@@ -8,9 +10,9 @@ import "../../style/components/glyphs.css";
  */
 export const SchemaGlyph = (props: {schema: string}) => {
   if (props.schema === "concept") {
-    return <FontAwesome name="cloud" />;
+    return <FontAwesomeIcon icon={faCloud} />;
   } else if (props.schema === "annotation") {
-    return <FontAwesome name="pencil-square-o" />;
+    return <FontAwesomeIcon icon={faEdit} />;
   }
   return null;
 }
@@ -19,9 +21,9 @@ export const SchemaGlyph = (props: {schema: string}) => {
  */
 export const KindGlyph = (props: {kind: string}) => {
   if (props.kind === "object") {
-    return <FontAwesome name="cube" />;
+    return <FontAwesomeIcon icon={faCube} />;
   } else if (props.kind === "morphism") {
-    return <FontAwesome name="long-arrow-right" />;
+    return <FontAwesomeIcon icon={faLongArrowAltRight} />;
   }
   return null;
 }
