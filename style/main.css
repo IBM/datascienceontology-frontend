@@ -8,14 +8,3 @@
   background-color: transparent;
   padding: 0;
 }
-
-a.external-link:after {
-  content: "\f08e";
-  font-family: FontAwesome;
-  font-weight: normal;
-  font-size: smaller;
-  font-style: normal;
-  display: inline-block;
-  text-decoration: none;
-  padding-left: 3px;
-}
