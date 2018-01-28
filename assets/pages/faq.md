@@ -4,7 +4,7 @@ title: FAQ
 
 **Why are “obvious” concepts and packages missing from the ontology?**
 
-The ontology is at an early stage of development and many important data science concepts and software packages are missing. We welcome contributions of all kinds. [Learn how to contribute](/page/contributing)
+The ontology is at an early stage of development and many important data science concepts and software packages are missing. We welcome contributions of all kinds. [Learn how to contribute](/page/contribute)
 
 **How is the DSO different from existing ontologies for data science?**
 
