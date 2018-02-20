@@ -15,8 +15,15 @@ export const HomePage = () =>
       <Welcome/>
       <hr className="my-4"/>
       <p>
-        The Data Science Ontology is an knowledge base about data science
-        with a focus on computer programming for data analysis.
+        The Data Science Ontology is a knowledge base about data science that
+        aims to
+        <ul>
+          <li> <strong>formalize</strong> the concepts of data science </li>
+          <li> semantically <strong>annotate</strong> popular software packages
+            for data science </li>
+          <li> power new <strong>AI</strong> assistants
+            for data scientists </li>
+        </ul>
       </p>
       <p>
         <Router.Link to="/page/help">
