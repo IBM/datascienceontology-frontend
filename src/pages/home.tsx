@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
-import { Jumbotron } from "reactstrap";
+import { Button, Jumbotron } from "reactstrap";
 import Client from "davenport";
 
 import * as Config from "../config";
@@ -12,15 +12,19 @@ import "../../style/pages/home.css";
 export const HomePage = () => 
   <section id="home">
     <Jumbotron>
+      <h1 className="display-4">Data Science Ontology</h1>
       <Welcome/>
-      <OntologySearchBar/>
+      <p><OntologySearchBar/></p>
+      <p>
+        The Data Science Ontology is an knowledge base about data science
+        with a focus on computer programming for data analysis.
+      </p>
+      <p>
+        <Router.Link to="/page/help">
+          <Button color="primary" size="sm">Learn more</Button>
+        </Router.Link>
+      </p>
     </Jumbotron>
-    <p>
-      The Data Science Ontology is an knowledge base about data science
-      with a focus on computer programming for data analysis.
-      {" "}
-      <Router.Link to="/page/help">Learn more</Router.Link>
-    </p>
   </section>
 
 
@@ -56,13 +60,13 @@ export class Welcome extends React.Component<{},IWelcomeState> {
   render() {
     const { nannotations, nconcepts } = this.state;
     return (
-      <section className="welcome">
+      <p className="lead">
         {nannotations && nconcepts ?
-          <p>Welcome to the Data Science Ontology,
-            with {nconcepts} data science concepts
-            and {nannotations} code annotations</p> :
-          <p>Welcome to the Data Science Ontology</p>}
-      </section>
-    )
+        `Welcome to the Data Science Ontology,
+         with ${nconcepts} data science concepts
+         and ${nannotations} code annotations` :
+        'Welcome to the Data Science Ontology'}
+      </p>
+    );
   }
 }
