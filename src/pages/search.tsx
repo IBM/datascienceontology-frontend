@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/fontawesome-free-solid";
 
 import { Concept, Annotation } from "open-discovery";
-import { SearchBar } from "open-discovery-components";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import * as Cloudant from "../cloudant";
 import * as Config from "../config";
@@ -19,35 +18,16 @@ export const SearchPage = (props: SearchPageProps) => {
   const query = props.match.params.query;
   return (
     <section id="search">
-      <OntologySearchBar/>
-      {query && <OntologyResults query={query} />}
+      {query && <SearchResults query={query} />}
     </section>
   );
 }
 
 
-type OntologySearchBarProps = Router.RouteComponentProps<{query?: string}>;
-
-class OntologySearchBarWithoutRouter extends React.Component<OntologySearchBarProps,{}> {
-  onSearch = (query: string) => {
-    this.props.history.push(`/search/${query}`);
-  }
-  
-  render() {
-    return (
-      <SearchBar defaultQuery={this.props.match.params.query}
-                 placeholder="Search the ontology"
-                 onSearch={this.onSearch}/>
-    );
-  }
-}
-export const OntologySearchBar = Router.withRouter<{}>(OntologySearchBarWithoutRouter);
-
-
-interface OntologyResultsProps {
+interface SearchResultsProps {
   query: string;
 }
-interface OntologyResultsState {
+interface SearchResultsState {
   loading: boolean;
   activeTab: "concepts" | "annotations";
   concepts: Concept.Concept[];
@@ -56,8 +36,8 @@ interface OntologyResultsState {
   totalAnnotations: number;
 }
 
-export class OntologyResults extends React.Component<OntologyResultsProps,OntologyResultsState> {
-  constructor(props: OntologyResultsProps) {
+export class SearchResults extends React.Component<SearchResultsProps,SearchResultsState> {
+  constructor(props: SearchResultsProps) {
     super(props);
     this.state = {
       loading: false,
@@ -72,7 +52,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
   componentWillMount() {
     this.search(this.props.query);
   }
-  componentWillReceiveProps(nextProps: OntologyResultsProps) {
+  componentWillReceiveProps(nextProps: SearchResultsProps) {
     if (nextProps.query !== this.props.query) {
       this.search(nextProps.query);
     }
@@ -133,7 +113,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
         
     return <section className="search-results">
       <Nav tabs>
-        <NavItem>
+        <NavItem className="mt-0">
           <NavLink onClick={() => this.setState({activeTab: "concepts"})}
                    active={this.state.activeTab === "concepts"}
                    disabled={this.state.totalConcepts === 0}>
@@ -142,7 +122,7 @@ export class OntologyResults extends React.Component<OntologyResultsProps,Ontolo
             {`Concepts (${this.state.totalConcepts})`}
           </NavLink>
         </NavItem>
-        <NavItem>
+        <NavItem className="mt-0">
           <NavLink onClick={() => this.setState({activeTab: "annotations"})}
                    active={this.state.activeTab === "annotations"}
                    disabled={this.state.totalAnnotations === 0}>

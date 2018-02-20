@@ -4,7 +4,6 @@ import { Button, Jumbotron } from "reactstrap";
 import Client from "davenport";
 
 import * as Config from "../config";
-import { OntologySearchBar } from "./search";
 
 import "../../style/pages/home.css";
 
@@ -14,7 +13,7 @@ export const HomePage = () =>
     <Jumbotron>
       <h1 className="display-4">Data Science Ontology</h1>
       <Welcome/>
-      <p><OntologySearchBar/></p>
+      <hr className="my-4"/>
       <p>
         The Data Science Ontology is an knowledge base about data science
         with a focus on computer programming for data analysis.
