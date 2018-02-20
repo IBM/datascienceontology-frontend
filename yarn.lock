@@ -1220,9 +1220,9 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-katex@^0.9.0-alpha2:
-  version "0.9.0-alpha2"
-  resolved "https://registry.yarnpkg.com/katex/-/katex-0.9.0-alpha2.tgz#f559e8bb32969082d735d949960b7df133fd5831"
+katex@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/katex/-/katex-0.9.0.tgz#26a7d082c21d53725422d2d71da9b2d8455fbd4a"
   dependencies:
     match-at "^0.1.1"
 
@@ -1483,7 +1483,7 @@ once@^1.3.0:
     wrappy "1"
 
 "open-discovery-components@file:.yalc/open-discovery-components":
-  version "0.1.0-1cc6c07b"
+  version "0.1.0-c806e708"
 
 "open-discovery@file:.yalc/open-discovery":
   version "0.1.0-0fa7592d"
