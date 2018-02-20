@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch,
+  NavLink as RouterNavLink} from "react-router-dom";
 import { Alert, Nav, Navbar, NavbarBrand, NavItem, NavLink } from "reactstrap";
 
 import { HomePage } from "./pages/home";
@@ -16,24 +17,24 @@ import "../style/bootstrap.css";
 const App = () =>
   <div id="app">
     <Navbar expand dark color="dark">
-      <NavbarBrand tag={Link} {...{to: "/"}}>
+      <NavbarBrand tag={RouterNavLink} {...{to: "/"}}>
         Data Science Ontology
       </NavbarBrand>
       <Nav navbar>
         <NavItem>
-          <NavLink tag={Link} {...{to: "/search"}}>
+          <NavLink tag={RouterNavLink} {...{to: "/search"}}>
             Search
           </NavLink>
         </NavItem>
       </Nav>
       <Nav navbar className="ml-auto">
         <NavItem>
-          <NavLink tag={Link} {...{to: "/page/help"}}>
+          <NavLink tag={RouterNavLink} {...{to: "/page/help"}}>
             Help
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink tag={Link} {...{to: "/page/about"}}>
+          <NavLink tag={RouterNavLink} {...{to: "/page/about"}}>
             About
           </NavLink>
         </NavItem>
