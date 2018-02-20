@@ -25,6 +25,8 @@ const App = () =>
             Search
           </NavLink>
         </NavItem>
+      </Nav>
+      <Nav navbar className="ml-auto">
         <NavItem>
           <NavLink tag={Link} {...{to: "/page/help"}}>
             Help
