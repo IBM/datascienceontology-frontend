@@ -4,12 +4,15 @@ import { BrowserRouter as Router, Route, RouteComponentProps, Switch, Link,
   NavLink as RouterNavLink} from "react-router-dom";
 import { Alert, Button, Form, Input, InputGroup,
   Nav, Navbar, NavbarBrand, NavItem, NavLink } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { HomePage } from "./pages/home";
 import { AnnotationPage } from "./pages/annotation";
 import { ConceptPage } from "./pages/concept";
 import { MarkdownPage } from "./pages/markdown";
 import { SearchPage } from "./pages/search";
+
+import { faSearch } from "@fortawesome/fontawesome-free-solid";
 
 import "../style/main.css";
 import "../style/bootstrap.css";
@@ -18,7 +21,7 @@ import "../style/bootstrap.css";
 const App = () =>
   <div id="app">
     <Navbar expand dark color="dark">
-      <NavbarBrand tag={Link} {...{to: "/"}}>
+      <NavbarBrand className="mr-4" tag={Link} {...{to: "/"}}>
         Data Science Ontology
       </NavbarBrand>
       <Switch>
@@ -84,10 +87,12 @@ class SearchBar extends React.Component<SearchBarProps, {query: string}> {
     return (
       <Form inline onSubmit={(e) => this.onSubmit(e)}>
         <InputGroup>
-          <Input type="search" value={this.state.query}
-                 placeholder="Search the ontology"
+          <Input type="search" placeholder="Search"
+                 value={this.state.query}
                  onChange={(e) => this.onChange(e)} />
-          <Button type="submit">Search</Button>
+          <Button type="submit" title="Search">
+            <FontAwesomeIcon icon={faSearch} />
+          </Button>
         </InputGroup>
       </Form>
     );
