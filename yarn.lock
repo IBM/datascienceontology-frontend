@@ -619,12 +619,12 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-davenport@^2.8.0-beta1:
-  version "2.8.0-beta1"
-  resolved "https://registry.yarnpkg.com/davenport/-/davenport-2.8.0-beta1.tgz#52e7f5a17ba671a75c6b1f0dcbda10d6e9ec1a0f"
+davenport@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/davenport/-/davenport-2.8.0.tgz#c2643b346cec4f549c736d00d2e8b7cf861370e8"
   dependencies:
     axios "^0.15.3"
-    logspect "^1.0.2"
+    logspect "^1.3.0"
 
 debug@^2.2.0, debug@^2.3.3:
   version "2.6.8"
@@ -1071,10 +1071,6 @@ is-hexadecimal@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-hexadecimal/-/is-hexadecimal-1.0.1.tgz#6e084bbc92061fbb0971ec58b6ce6d404e24da69"
 
-is-in-browser@^1.0.2:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/is-in-browser/-/is-in-browser-1.1.3.tgz#56ff4db683a078c6082eb95dad7dc62e1d04f835"
-
 is-number@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-3.0.0.tgz#24fd6201a4782cf50561c810276afc7d12d71195"
@@ -1297,12 +1293,11 @@ lodash@^4.13.1, lodash@^4.17.4, lodash@^4.3.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
-logspect@^1.0.2:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/logspect/-/logspect-1.0.3.tgz#d98ecd29aa827f90f33479ef0d262470b3d0a63a"
+logspect@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/logspect/-/logspect-1.3.0.tgz#d20a28fd322adf03b42cd51cf56919589d3371fd"
   dependencies:
     chalk "^1.1.3"
-    is-in-browser "^1.0.2"
 
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3.1:
   version "1.3.1"

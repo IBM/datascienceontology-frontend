@@ -23,7 +23,7 @@
     "@types/react-router-dom": "^4.0.8",
     "@types/reactstrap": "^5.0.12",
     "cytoscape": "^3.2.5",
-    "davenport": "^2.8.0-beta1",
+    "davenport": "^2.8.0",
     "gray-matter": "^3.1.1",
     "katex": "^0.9.0",
     "lodash": "^4.17.4",
