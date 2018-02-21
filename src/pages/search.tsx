@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
-import { Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
+import { Badge, Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/fontawesome-free-solid";
 
@@ -119,7 +119,10 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
                    disabled={this.state.totalConcepts === 0}>
             <SchemaGlyph schema="concept" />
             {" "}
-            {`Concepts (${this.state.totalConcepts})`}
+            Concepts
+            <Badge color="light" className="ml-2">
+              {this.state.totalConcepts}
+            </Badge>
           </NavLink>
         </NavItem>
         <NavItem className="mt-0">
@@ -128,7 +131,10 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
                    disabled={this.state.totalAnnotations === 0}>
             <SchemaGlyph schema="annotation" />
             {" "}
-            {`Annotations (${this.state.totalAnnotations})`}
+            Annotations
+            <Badge color="light" className="ml-2">
+              {this.state.totalAnnotations}
+            </Badge>
           </NavLink>
         </NavItem>
       </Nav>
