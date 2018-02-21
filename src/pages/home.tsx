@@ -31,7 +31,7 @@ export const HomePage = () =>
         </Router.Link>
       </p>
     </Jumbotron>
-  </section>
+  </section>;
 
 
 interface IWelcomeState {
@@ -50,7 +50,7 @@ export class Welcome extends React.Component<{},IWelcomeState> {
   
   componentWillMount() {
     const client = new Client(Config.db_origin, Config.db_name);
-    client.view<number>("query", "schema_index", {
+    client.view<number>("schema", "schema_index", {
       group: true,
       reduce: true,
     }).then(result => {

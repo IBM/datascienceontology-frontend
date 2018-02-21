@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, RouteComponentProps, Switch, Link,
-  NavLink as RouterNavLink} from "react-router-dom";
+  NavLink as RouterNavLink } from "react-router-dom";
 import { Alert, Button, Form, Input, InputGroup,
   Nav, Navbar, NavbarBrand, NavItem, NavLink } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
