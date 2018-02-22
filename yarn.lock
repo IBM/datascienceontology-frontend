@@ -619,9 +619,9 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-davenport@^2.8.1:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/davenport/-/davenport-2.8.1.tgz#ac9c3093362a6a96e2c62251136b19dc19237c15"
+davenport@^2.8.2:
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/davenport/-/davenport-2.8.2.tgz#5cabe3703d154dfd77caf78dfe89f70a6d1931fa"
   dependencies:
     axios "^0.15.3"
     logspect "1.3.1"
