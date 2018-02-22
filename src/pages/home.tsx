@@ -34,12 +34,12 @@ export const HomePage = () =>
   </section>;
 
 
-interface IWelcomeState {
+interface WelcomeState {
   nannotations: number;
   nconcepts: number;
 }
 
-export class Welcome extends React.Component<{},IWelcomeState> {
+export class Welcome extends React.Component<{},WelcomeState> {
   constructor() {
     super();
     this.state = {
@@ -50,7 +50,7 @@ export class Welcome extends React.Component<{},IWelcomeState> {
   
   componentWillMount() {
     const client = new Client(Config.db_origin, Config.db_name);
-    client.view<number>("schema", "schema_index", {
+    client.view<number>("query", "schema_index", {
       group: true,
       reduce: true,
     }).then(result => {
