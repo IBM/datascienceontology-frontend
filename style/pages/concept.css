@@ -2,7 +2,24 @@
   margin-bottom: 0;
 }
 
-.subconcept-list ul {
+.external-link-list {
+  display: inline;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.external-link-list li {
+  display: inline;
+  padding-right: 1ex;
+}
+.external-link-list li:after {
+  content: ",";
+}
+.external-link-list li:last-child::after {
+  content: "";
+}
+
+.subconcept-list {
   display: inline;
   list-style: none;
   padding: 0;

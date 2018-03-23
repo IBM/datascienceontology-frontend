@@ -3,11 +3,13 @@ import * as Router from "react-router-dom";
 import * as ReactMarkdown from "react-markdown";
 
 import { Concept } from "open-discovery";
-import { displayCouchDocument } from "open-discovery-components";
+import { displayCouchDocument, Link } from "open-discovery-components";
 import { KindGlyph, SchemaGlyph } from "../components/glyphs";
 import * as Config from "../config";
 
 import "../../style/pages/concept.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWikipediaW } from "@fortawesome/fontawesome-free-brands";
 
 
 type ConceptPageProps = Router.RouteComponentProps<{id: string}>;
@@ -42,14 +44,31 @@ const ConceptDisplayCouchDB = displayCouchDocument(ConceptDisplay);
 
 const ConceptDefList = (props: {concept: Concept.Concept}) => {
   const concept = props.concept;
+  const external = concept.external;
+  const externalLinks = external === undefined ? null :
+    <ul className="external-link-list">
+      {external.wikipedia &&
+        <li>
+          <FontAwesomeIcon icon={faWikipediaW} className="mr-1" />
+          <Link to={`https://en.wikipedia.org/wiki/${external.wikipedia}`} target="_blank">
+            {external.wikipedia.replace(/_/g, " ")}
+          </Link>
+        </li>}
+      {external.wikidata &&
+        <li>
+          <img src="/assets/images/logo-wikidata.svg" alt="Wikidata logo"
+               style={{height: "1.2em"}} />
+          <Link to={`https://www.wikidata.org/wiki/${external.wikidata}`} target="_blank">
+            {external.wikidata}
+          </Link>
+        </li>}
+    </ul>;
   const superconcepts = concept.subconcept === undefined ? null :
-    <div className="subconcept-list">
-      <ul>{concept.subconcept.map((id,i) =>
-        <li key={i}>
-          <Router.Link key={id} to={`/concept/${id}`}>{id}</Router.Link>
-        </li>)}
-      </ul>
-    </div>;
+    <ul className="subconcept-list">{concept.subconcept.map((id,i) =>
+      <li key={i}>
+        <Router.Link key={id} to={`/concept/${id}`}>{id}</Router.Link>
+      </li>)}
+    </ul>;
   const elements = [
     <dt key="id-dt">ID</dt>,
     <dd key="id-dd">{concept.id}</dd>,
@@ -71,6 +90,10 @@ const ConceptDefList = (props: {concept: Concept.Concept}) => {
   if (superconcepts) { elements.push(
     <dt key="sub-dt">Is</dt>,
     <dd key="sub-dd">{superconcepts}</dd>,
+  ); }
+  if (externalLinks) { elements.push(
+    <dt key="external-dt">External links</dt>,
+    <dd key="external-dd">{externalLinks}</dd>,
   ); }
   return elements;
 }

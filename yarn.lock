@@ -2,27 +2,33 @@
 # yarn lockfile v1
 
 
-"@fortawesome/fontawesome-common-types@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.1.1.tgz#28c78607ffd2d246abfcc09bacd28490952280af"
+"@fortawesome/fontawesome-common-types@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.1.3.tgz#8475e0f2d1ad1f858c4ec2e76ed9a2456a09ad83"
 
-"@fortawesome/fontawesome-free-regular@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free-regular/-/fontawesome-free-regular-5.0.4.tgz#29b6aba73c5288461526e4c5f2151464b3cef7a0"
+"@fortawesome/fontawesome-free-brands@^5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free-brands/-/fontawesome-free-brands-5.0.8.tgz#dd234982bd958b48ab1108570831d2b41bc8f73b"
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.1.1"
+    "@fortawesome/fontawesome-common-types" "^0.1.3"
 
-"@fortawesome/fontawesome-free-solid@^5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free-solid/-/fontawesome-free-solid-5.0.4.tgz#6f4eef5a624b086aec359aa7e41c0eb3dd4e44c5"
+"@fortawesome/fontawesome-free-regular@^5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free-regular/-/fontawesome-free-regular-5.0.8.tgz#feaa96ee230e7f0d685ede3ae512aa6a1dca2480"
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.1.1"
+    "@fortawesome/fontawesome-common-types" "^0.1.3"
 
-"@fortawesome/fontawesome@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome/-/fontawesome-1.1.2.tgz#ddc83c2a747ebd83eb5970eaebfb257aa41c8bb4"
+"@fortawesome/fontawesome-free-solid@^5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free-solid/-/fontawesome-free-solid-5.0.8.tgz#2890639d57dc16e2a90bb847c41770e38f72e432"
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.1.1"
+    "@fortawesome/fontawesome-common-types" "^0.1.3"
+
+"@fortawesome/fontawesome@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome/-/fontawesome-1.1.4.tgz#03065638046206c2226e103b550196934c75be9b"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.1.3"
 
 "@fortawesome/react-fontawesome@0.1.0-1":
   version "0.1.0-1"
@@ -47,6 +53,10 @@
 "@types/history@*":
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.6.0.tgz#093d67ed780d889c9543f6dca24ebee0b6b9fc45"
+
+"@types/html-entities@^1.2.16":
+  version "1.2.16"
+  resolved "https://registry.yarnpkg.com/@types/html-entities/-/html-entities-1.2.16.tgz#4d1fe208c4c33727ac4657e6f5d92bfe52427023"
 
 "@types/katex@^0.5.0":
   version "0.5.0"
@@ -941,6 +951,10 @@ html-comment-regex@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/html-comment-regex/-/html-comment-regex-1.1.1.tgz#668b93776eaae55ebde8f3ad464b307a4963625e"
 
+html-entities@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
+
 http-signature@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/http-signature/-/http-signature-1.2.0.tgz#9aecd925114772f3d95b65a60abb8f7c18fbace1"
@@ -1481,15 +1495,17 @@ once@^1.3.0:
   version "0.1.0-c806e708"
 
 "open-discovery@file:.yalc/open-discovery":
-  version "0.1.0-0fa7592d"
+  version "0.1.0-9f0226ef"
   dependencies:
+    "@types/html-entities" "^1.2.16"
     "@types/lodash" "^4.14.72"
     "@types/request" "^2.0.7"
     "@types/request-promise" "^4.1.39"
+    html-entities "^1.2.1"
     lodash "^4.17.4"
     request "^2.83.0"
     request-promise "^4.2.2"
-    striptags "^3.0.1"
+    striptags "^3.1.1"
 
 os-homedir@^1.0.1:
   version "1.0.2"
@@ -2268,9 +2284,9 @@ strip-bom-string@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/strip-bom-string/-/strip-bom-string-1.0.0.tgz#e5211e9224369fbb81d633a2f00044dc8cedad92"
 
-striptags@^3.0.1:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/striptags/-/striptags-3.1.0.tgz#763e534338d9cf542f004a4b1eb099e32d295e44"
+striptags@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/striptags/-/striptags-3.1.1.tgz#c8c3e7fdd6fb4bb3a32a3b752e5b5e3e38093ebd"
 
 style-loader@^0.18.2:
   version "0.18.2"
