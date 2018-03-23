@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
-import { Button, Jumbotron } from "reactstrap";
+import { Button } from "reactstrap";
 import Client from "davenport";
 
 import * as Config from "../config";
@@ -10,36 +10,34 @@ import "../../style/pages/home.css";
 
 export const HomePage = () => 
   <section id="home">
-    <Jumbotron>
-      <h1 className="display-4">Data Science Ontology</h1>
-      <Welcome/>
-      <hr className="my-4"/>
-      <p>
-        The Data Science Ontology is a knowledge base about data science that
-        aims to
-        <ul>
-          <li> <strong>formalize</strong> the concepts of data science </li>
-          <li> semantically <strong>annotate</strong> popular software packages
-            for data science </li>
-          <li> power new <strong>AI</strong> assistants
-            for data scientists </li>
-        </ul>
-      </p>
-      <p>
-        <Router.Link to="/page/help">
-          <Button color="primary" size="sm">Learn more</Button>
-        </Router.Link>
-      </p>
-    </Jumbotron>
+    <h1 className="display-4">Data Science Ontology</h1>
+    <WelcomeBanner/>
+    <hr className="my-4"/>
+    <p>
+      The Data Science Ontology is a knowledge base about data science that
+      aims to
+      <ul>
+        <li> catalog the <strong>concepts</strong> of data science </li>
+        <li> semantically <strong>annotate</strong> popular software packages
+          for data science </li>
+        <li> power new <strong>AI</strong> assistants
+          for data scientists </li>
+      </ul>
+    </p>
+    <p>
+      <Router.Link to="/page/help">
+        <Button color="primary" size="sm">Learn more</Button>
+      </Router.Link>
+    </p>
   </section>;
 
 
-interface WelcomeState {
+interface WelcomeBannerState {
   nannotations: number;
   nconcepts: number;
 }
 
-export class Welcome extends React.Component<{},WelcomeState> {
+export class WelcomeBanner extends React.Component<{},WelcomeBannerState> {
   constructor() {
     super();
     this.state = {
