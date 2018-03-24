@@ -170,7 +170,7 @@ export const ConceptResult = (props: {concept: Concept.Concept}) => {
       {concept.name}
     </Router.Link>
     {" "}
-    <span className="text-muted">
+    <span className="text-muted text-nowrap">
       ({concept.id})
     </span>
     {concept.description !== undefined && <p>{concept.description}</p>}
@@ -189,7 +189,7 @@ export const AnnotationResult = (props: {annotation: Annotation.Annotation}) => 
       {note.name !== undefined ? note.name : note.id}
     </Router.Link>
     {" "}
-    <span className="text-muted">
+    <span className="text-muted text-nowrap">
       ({key})
     </span>
     {note.description !== undefined && <p>{note.description}</p>}
