@@ -10,7 +10,7 @@ To learn more about the ontology, see the [Help](/page/help) section.
 
 The core project members are:
 
-- Evan Patterson (Stanford University)
+- [Evan Patterson](https://www.epatters.org/) (Stanford University)
 - [Ioana Baldini](http://researcher.watson.ibm.com/researcher/view.php?person=us-ioana) (IBM Research)
 - [Aleksandra Mojsilovic](http://researcher.watson.ibm.com/researcher/view.php?person=us-aleksand) (IBM Research)
 - [Kush R. Varshney](http://researcher.watson.ibm.com/researcher/view.php?person=us-krvarshn) (IBM Research)
