@@ -3,10 +3,19 @@
   margin: 0 auto;
 }
 
-#home .random-doc-list {
-  list-style: none;
-  padding: 0;
+#home dt {
+  display: inline;
+  font-weight: 600;
 }
-#home .random-doc-list li {
-  margin: 3ex 0;
+#home dt:before {
+  content: "";
+  display: block;
+}
+#home dt:after {
+  content: ":";
+  font-weight: normal;
+}
+#home dd {
+  display: inline;
+  margin-left: 0.5em;
 }

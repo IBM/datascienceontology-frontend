@@ -5,12 +5,10 @@ import { Button, Container, Row, Col } from "reactstrap";
 import Client from "davenport";
 
 import { Concept, Annotation } from "open-discovery";
-import { ConceptResult, AnnotationResult } from "./search";
+import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import * as Config from "../config";
 
 import "../../style/pages/home.css";
-import { faRandom } from "@fortawesome/fontawesome-free-solid";
-import { SchemaGlyph } from "../components/glyphs";
 
 
 interface HomePageState {
@@ -69,7 +67,7 @@ export class HomePage extends React.Component<{},HomePageState> {
         </p>
         <p>
           <Router.Link to="/page/help">
-            <Button color="primary" size="sm">Learn more</Button>
+            <Button color="secondary" size="sm">Learn more</Button>
           </Router.Link>
         </p>
         {nconcepts && nannotations && <hr className="my-4"/>}
@@ -99,11 +97,7 @@ const RandomDocs = (props: RandomDocsProps) => {
               Concepts
             </h5>
           </p>
-          <ul className="random-doc-list">
-            <li><RandomConcept nconcepts={nconcepts}/></li>
-            <li><RandomConcept nconcepts={nconcepts}/></li>
-            <li><RandomConcept nconcepts={nconcepts}/></li>
-          </ul>
+          <RandomConcept nconcepts={nconcepts}/>
         </Col>
         <Col md>
           <p>
@@ -113,11 +107,7 @@ const RandomDocs = (props: RandomDocsProps) => {
               Annotations
             </h5>
           </p>
-          <ul className="random-doc-list">
-            <li><RandomAnnotation nannotations={nannotations}/></li>
-            <li><RandomAnnotation nannotations={nannotations}/></li>
-            <li><RandomAnnotation nannotations={nannotations}/></li>
-          </ul>
+          <RandomAnnotation nannotations={nannotations}/>
         </Col>
       </Row>
     </Container>
@@ -125,67 +115,134 @@ const RandomDocs = (props: RandomDocsProps) => {
 }
 
 
-interface RandomDocProps {
-  schema: "concept" | "annotation";
-  ndocs: number;
+interface RandomConceptProps {
+  nconcepts: number;
 }
-interface RandomDocState {
-  doc: Concept.Concept | Annotation.Annotation;
+interface RandomConceptState {
+  concept: Concept.Concept;
 }
 
-export class RandomDoc extends React.Component<RandomDocProps, RandomDocState> {
-  constructor(props: RandomDocProps) {
-    super(props);
-    this.state = { doc: null };
-  }
-
+export class RandomConcept extends React.Component<RandomConceptProps, RandomConceptState> {
   componentWillMount() {
-    this.loadRandomDocument(this.props);
+    this.loadRandomConcept(this.props);
   }
-  componentWillReceiveProps(nextProps: RandomDocProps) {
-    if (nextProps.ndocs != this.props.ndocs) {
-     this.loadRandomDocument(nextProps);
+  componentWillReceiveProps(nextProps: RandomConceptProps) {
+    if (nextProps.nconcepts != this.props.nconcepts) {
+     this.loadRandomConcept(nextProps);
     }
   }
 
-  loadRandomDocument(props: RandomDocProps) {
-    if (!props.ndocs) {
-      this.setState({ doc: null });
+  loadRandomConcept(props: RandomConceptProps) {
+    if (!props.nconcepts) {
+      this.setState({ concept: null });
       return;
     }
-    const client = new Client<any>(Config.db_origin, Config.db_name);
+    const client = new Client<Concept.Concept>(Config.db_origin, Config.db_name);
     client.find({
-      selector: {
-        schema: props.schema,
-      },
-      fields: [
-        "schema",
-        "package",
-        "language",
-        "id", 
-        "name",
-        "description",
-        "kind",
-      ],
+      selector: { schema: "concept" },
+      fields: [ "id", "name", "description", "kind" ],
       limit: 1,
-      skip: _.random(props.ndocs),
-    }).then(docs => {
-      this.setState({ doc: docs[0] });
+      skip: _.random(props.nconcepts),
+    }).then(concepts => {
+      this.setState({ concept: concepts[0] });
     });
   }
 
   render() {
-    const { doc } = this.state;
-    if (doc && doc.schema === "concept")
-      return <ConceptResult concept={doc as Concept.Concept} />;
-    if (doc && doc.schema === "annotation")
-      return <AnnotationResult annotation={doc as Annotation.Annotation} />;
-    return null;
+    const concept = this.state && this.state.concept;
+    if (!concept) {
+      return null;
+    }
+    return (
+      <dl>
+        <dt>Name</dt>
+        <dd>
+          <Router.Link to={`/concept/${concept.id}`}>
+            {concept.name}
+          </Router.Link>
+          {" "}
+          <span className="text-muted text-nowrap">({concept.id})</span>
+        </dd>
+        <dt>Kind</dt>
+        <dd>
+          <KindGlyph kind={concept.kind} />
+          {" "}
+          {concept.kind === "object" ? "type" : "function"}
+        </dd>
+        {concept.description && <dt>Description</dt>}
+        {concept.description && <dd>{concept.description}</dd>}
+      </dl>
+    );
   }
 }
 
-const RandomConcept = (props: {nconcepts: number}) =>
-  <RandomDoc schema="concept" ndocs={props.nconcepts} />;
 
-const RandomAnnotation = (props: {nannotations: number}) =>
-  <RandomDoc schema="annotation" ndocs={props.nannotations} />;
+interface RandomAnnotationProps {
+  nannotations: number;
+}
+interface RandomAnnotationState {
+  annotation: Annotation.Annotation;
+}
+
+export class RandomAnnotation extends React.Component<RandomAnnotationProps, RandomAnnotationState> {
+  componentWillMount() {
+    this.loadRandomAnnotation(this.props);
+  }
+  componentWillReceiveProps(nextProps: RandomAnnotationProps) {
+    if (nextProps.nannotations != this.props.nannotations) {
+     this.loadRandomAnnotation(nextProps);
+    }
+  }
+
+  loadRandomAnnotation(props: RandomAnnotationProps) {
+    if (!props.nannotations) {
+      this.setState({ annotation: null });
+      return;
+    }
+    const client = new Client<Annotation.Annotation>(Config.db_origin, Config.db_name);
+    client.find({
+      selector: { schema: "annotation" },
+      fields: [ "language", "package", "id", "name", "description", "kind" ],
+      limit: 1,
+      skip: _.random(props.nannotations),
+    }).then(annotations => {
+      this.setState({ annotation: annotations[0] });
+    });
+  }
+
+  render() {
+    const note = this.state && this.state.annotation;
+    if (!note) {
+      return null;
+    }
+    const key = `${note.language}/${note.package}/${note.id}`;
+    return (
+      <dl>
+        <dt>Name</dt>
+        <dd>
+          <Router.Link to={`/annotation/${key}`}>
+            {note.name !== undefined ? note.name : note.id}
+          </Router.Link>
+          {" "}
+          <span className="text-muted text-nowrap">({key})</span>
+        </dd>
+        <dt>Kind</dt>
+        <dd>
+          <KindGlyph kind={note.kind} />
+          {" "}
+          {note.kind === "object" ? "type" : "function"}
+        </dd>
+        <dt>Language</dt>
+        <dd>
+          <LanguageGlyph language={note.language} />
+          {" "}
+          {_.capitalize(note.language)}
+        </dd>
+        <dt>Package</dt>
+        <dd>{note.package}</dd>
+        {note.description && <dt>Description</dt>}
+        {note.description && <dd>{note.description}</dd>}
+      </dl>
+    );
+  }
+}
