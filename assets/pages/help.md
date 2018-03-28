@@ -2,24 +2,22 @@
 title: What is the Data Science Ontology?
 ---
 
-The Data Science Ontology (DSO) is a knowledge base about data science with a focus on computer programming for data analysis. The concepts of the ontology are drawn from statistics, machine learning, and the practice of software engineering for data science. Besides cataloging and organizing data science concepts, the ontology provides semantic annotations of commonly used software libraries for data science, such as [pandas](https://pandas.pydata.org/), [scikit-learn](http://scikit-learn.org/), and [statsmodels](http://www.statsmodels.org/). Annotations map the libraries' types and functions onto the ontology's universal concepts.
+The Data Science Ontology (DSO) is a knowledge base about data science with a focus on computer programming. The **concepts** of the ontology are drawn from statistics, machine learning, and the practice of software engineering for data science. Besides cataloging and organizing data science concepts, the ontology provides semantic **annotations** of commonly used software libraries for data science, such as [pandas](https://pandas.pydata.org/), [scikit-learn](http://scikit-learn.org/), and [statsmodels](http://www.statsmodels.org/). Annotations map the libraries' types and functions onto the ontology's universal concepts.
 
 ### Mission
 
-The purpose of the Data Science Ontology is to enable artificial intelligence (AI) capabilities for collaborative, data-driven science, such as:
+The purpose of the Data Science Ontology is to enable **artificial intelligence (AI)** capabilities for data science, such as:
 
+- semantic queries on data analyses
+- comparison of semantic similarity between data analyses
 - automated statistical meta-analysis
 - meta-learning for machine learning
-- semantic queries on a corpus of data analyses
-- similarity measures on data analyses and personal recommendations for data scientists
 
 Several of these capabilities are currently under development as part of the broader Open Discovery project.
 
-The connection between the Data Science Ontology and AI for data science is established by a suite of tools for computer program analysis. Using the ontology's annotations, our tools can automatically construct a machine-interpretable semantic representation of a data analysis that is written in a conventional programming language like Python or R. Such semantic representations serve as raw material for machine learning algorithms operating on data analyses.
-
 ## Learning more
 
-If you'd like to learn more about the Data Science Ontology, keep reading along one of the following tracks.
+If you'd like to learn more about the Data Science Ontology, keep reading along one of these tracks:
 
 1. [Introduction to the Data Science Ontology](/help/intro)  
    After reading this informal introduction, you will understand the basics of the ontology language and know how to interpret the concept and annotation entries found on this website.
