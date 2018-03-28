@@ -18,6 +18,6 @@ The core project members are:
 We are grateful for the advice and ideas of:
 
 - [Julian Dolby](http://researcher.watson.ibm.com/researcher/view.php?person=us-dolby) (IBM Research)
-- [Yaoli Mao](http://www.ilt.columbia.edu/people/yaoli-mao/) (Columbia University)
+- Yaoli Mao (Columbia University)
 - Robert McBurney (Accelerated Cure Project for Multiple Sclerosis)
 - Hollie Schmidt (Accelerated Cure Project for Multiple Sclerosis)
