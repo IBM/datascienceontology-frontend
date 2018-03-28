@@ -14,7 +14,12 @@ type MarkdownPageProps = Router.RouteComponentProps<{page: string}>;
 
 export const MarkdownPage = (props: MarkdownPageProps) => {
   const page = props.match.params.page;
-  const pageURL = `/assets/pages/${page}.md`;
+  return <MarkdownDisplay page={page} />;
+}
+
+
+export const MarkdownDisplay = (props: {page: string}) => {
+  const pageURL = `/assets/pages/${props.page}.md`;
   return <MarkdownDocument docURL={pageURL} options={{
     renderers: {
       cytoscape: (props: {value: string, children: string[]}) => {

@@ -66,7 +66,7 @@ export class HomePage extends React.Component<{},HomePageState> {
           </ul>
         </p>
         <p>
-          <Router.Link to="/page/help">
+          <Router.Link to="/help">
             <Button color="secondary" size="sm">Learn more</Button>
           </Router.Link>
         </p>

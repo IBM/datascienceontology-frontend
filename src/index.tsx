@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HomePage } from "./pages/home";
 import { AnnotationPage } from "./pages/annotation";
 import { ConceptPage } from "./pages/concept";
-import { MarkdownPage } from "./pages/markdown";
+import { MarkdownPage, MarkdownDisplay } from "./pages/markdown";
 import { SearchPage } from "./pages/search";
 
 import { faSearch } from "@fortawesome/fontawesome-free-solid";
@@ -30,12 +30,12 @@ const App = () =>
       </Switch>
       <Nav navbar className="ml-auto">
         <NavItem>
-          <NavLink tag={RouterNavLink} {...{to: "/page/help"}}>
+          <NavLink tag={RouterNavLink} {...{to: "/help"}}>
             Help
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink tag={RouterNavLink} {...{to: "/page/about"}}>
+          <NavLink tag={RouterNavLink} {...{to: "/about"}}>
             About
           </NavLink>
         </NavItem>
@@ -47,7 +47,9 @@ const App = () =>
         <Route path="/annotation/:language/:package/:id" component={AnnotationPage} />
         <Route path="/concept/:id" component={ConceptPage} />
         <Route path="/search/:query?" component={SearchPage} />
-        <Route path="/page/:page" component={MarkdownPage} />
+        <Route exact path="/about" component={() => <MarkdownDisplay page="about"/>} />
+        <Route exact path="/help" component={() => <MarkdownDisplay page="help"/>} />
+        <Route path="/help/:page" component={MarkdownPage} />
         <Route component={Error404Page} />
       </Switch>
     </main>
