@@ -95,8 +95,8 @@ const RandomDocs = (props: RandomDocsProps) => {
             Concepts
           </h4>
           <p>Concepts formalize the abstract ideas of data science.</p>
-          <Card body>
-            <CardTitle>Concept at random</CardTitle>
+          <Card body className="random-card">
+            <CardTitle>Concept</CardTitle>
             <RandomConcept nconcepts={nconcepts} />
           </Card>
         </Col>
@@ -107,8 +107,8 @@ const RandomDocs = (props: RandomDocsProps) => {
             Annotations
           </h4>
           <p>Annotations translate data science code into concepts.</p>
-          <Card body>
-            <CardTitle>Annotation at random</CardTitle>
+          <Card body className="random-card">
+            <CardTitle>Annotation</CardTitle>
             <RandomAnnotation nannotations={nannotations} />
           </Card>
         </Col>

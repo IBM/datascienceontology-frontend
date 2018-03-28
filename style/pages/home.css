@@ -19,3 +19,12 @@
   display: inline;
   margin-left: 0.5em;
 }
+
+.random-card {
+  background-image: url('/assets/images/mdi-dice.svg');
+  background-blend-mode: overlay;
+  background-color: hsla(0,0%,100%,0.95);
+  background-repeat: no-repeat;
+  background-position: right 0.5em top 0.5em;
+  background-size: 3em;
+}
