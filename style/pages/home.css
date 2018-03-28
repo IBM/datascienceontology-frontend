@@ -5,7 +5,7 @@
 
 #home dt {
   display: inline;
-  font-weight: 600;
+  font-weight: 500;
 }
 #home dt:before {
   content: "";

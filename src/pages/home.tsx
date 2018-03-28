@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import * as React from "react";
 import * as Router from "react-router-dom";
-import { Button, Container, Row, Col } from "reactstrap";
+import { Button, Card, CardTitle, Container, Row, Col } from "reactstrap";
 import Client from "davenport";
 
 import { Concept, Annotation } from "open-discovery";
@@ -70,7 +70,6 @@ export class HomePage extends React.Component<{},HomePageState> {
             <Button color="secondary" size="sm">Learn more</Button>
           </Router.Link>
         </p>
-        {nconcepts && nannotations && <hr className="my-4"/>}
         {nconcepts && nannotations &&
           <RandomDocs nconcepts={nconcepts} nannotations={nannotations} />}
       </section>
@@ -90,24 +89,28 @@ const RandomDocs = (props: RandomDocsProps) => {
     <Container>
       <Row>
         <Col md>
-          <p>
-            <h5 className="text-center">
-              <SchemaGlyph schema="concept" />
-              {" "}
-              Concepts
-            </h5>
-          </p>
-          <RandomConcept nconcepts={nconcepts}/>
+          <h4 className="text-center">
+            <SchemaGlyph schema="concept" />
+            {" "}
+            Concepts
+          </h4>
+          <p>Concepts formalize the abstract ideas of data science.</p>
+          <Card body>
+            <CardTitle>Concept at random</CardTitle>
+            <RandomConcept nconcepts={nconcepts} />
+          </Card>
         </Col>
         <Col md>
-          <p>
-            <h5 className="text-center">
-              <SchemaGlyph schema="annotation" />
-              {" "}
-              Annotations
-            </h5>
-          </p>
-          <RandomAnnotation nannotations={nannotations}/>
+          <h4 className="text-center">
+            <SchemaGlyph schema="annotation" />
+            {" "}
+            Annotations
+          </h4>
+          <p>Annotations translate data science code into concepts.</p>
+          <Card body>
+            <CardTitle>Annotation at random</CardTitle>
+            <RandomAnnotation nannotations={nannotations} />
+          </Card>
         </Col>
       </Row>
     </Container>
