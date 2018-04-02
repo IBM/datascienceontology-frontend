@@ -30,9 +30,9 @@ export const AnnotationPage = (props: AnnotationPageProps) => {
     dbName={Config.dbName} docId={docId} />;
 }
 
-export const AnnotationDisplay = (props: {doc: Annotation.Annotation}) => {
+export const AnnotationDisplay = (props: {doc?: Annotation.Annotation}) => {
   const annotation = props.doc;
-  return (
+  return annotation && (
     <section id="annotation">
       <h3>
         <span className="text-muted" style={{paddingRight: "2em"}}>
@@ -308,14 +308,16 @@ const PackageRepositoryLink = (props: {annotation: Annotation.Annotation}) => {
   return null;
 }
 
-const MorphismDiagram = (props: {doc: AnnotationCache}) => {
+const MorphismDiagram = (props: {doc?: AnnotationCache}) => {
   const cache = props.doc;
-  return <CytoscapeComponent cytoscape={{
-    ...cache.definition.cytoscape,
-    style: CytoscapeStyle as any,
-    maxZoom: 2,
-    autolock: true,
-  }} height="600px" />
+  return cache && (
+    <CytoscapeComponent height="600px" cytoscape={{
+      ...cache.definition.cytoscape,
+      style: CytoscapeStyle as any,
+      maxZoom: 2,
+      autolock: true,
+    }} />
+  );
 }
 const MorphismDiagramCouchDB = displayCouchDocument(MorphismDiagram);
 

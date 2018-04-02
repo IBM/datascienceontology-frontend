@@ -21,9 +21,9 @@ export const ConceptPage = (props: ConceptPageProps) => {
     docId={docId} />;
 }
 
-export const ConceptDisplay = (props: {doc: Concept.Concept}) => {
+export const ConceptDisplay = (props: {doc?: Concept.Concept}) => {
   const concept = props.doc;
-  return (
+  return concept && (
     <section id="concept">
       <h3>
         <span className="text-muted" style={{paddingRight: "2em"}}>
