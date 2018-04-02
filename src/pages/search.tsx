@@ -74,7 +74,7 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
       `name:(${text})^3`,      // Inexact match on name
       `description:(${text})`, // Inexact match on description
     ].join(" ");
-    const endpoint = `${Config.db_url}/_design/search/_search/concept`;
+    const endpoint = `${Config.dbURL}/${Config.dbName}/_design/search/_search/concept`;
     
     return Cloudant.search<Concept.Concept>(endpoint, {
       query: query,
@@ -93,7 +93,7 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
       `name:(${text})^3`, `description:(${text})`,
       `class:(${text})`, `function:(${text})`, `method:(${text})`
     ].join(" ");
-    const endpoint = `${Config.db_url}/_design/search/_search/annotation`;
+    const endpoint = `${Config.dbURL}/${Config.dbName}/_design/search/_search/annotation`;
 
     return Cloudant.search<Annotation.Annotation>(endpoint, {
       query: query,

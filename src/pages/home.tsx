@@ -26,7 +26,7 @@ export class HomePage extends React.Component<{},HomePageState> {
   }
 
   componentWillMount() {
-    const client = new Client(Config.db_origin, Config.db_name);
+    const client = new Client(Config.dbURL, Config.dbName);
     client.view<number>("query", "schema_index", {
       group: true,
       reduce: true,
@@ -140,7 +140,7 @@ export class RandomConcept extends React.Component<RandomConceptProps, RandomCon
       this.setState({ concept: null });
       return;
     }
-    const client = new Client<Concept.Concept>(Config.db_origin, Config.db_name);
+    const client = new Client<Concept.Concept>(Config.dbURL, Config.dbName);
     client.find({
       selector: { schema: "concept" },
       fields: [ "id", "name", "description", "kind" ],
@@ -202,7 +202,7 @@ export class RandomAnnotation extends React.Component<RandomAnnotationProps, Ran
       this.setState({ annotation: null });
       return;
     }
-    const client = new Client<Annotation.Annotation>(Config.db_origin, Config.db_name);
+    const client = new Client<Annotation.Annotation>(Config.dbURL, Config.dbName);
     client.find({
       selector: { schema: "annotation" },
       fields: [ "language", "package", "id", "name", "description", "kind" ],

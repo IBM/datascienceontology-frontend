@@ -17,8 +17,8 @@ type ConceptPageProps = Router.RouteComponentProps<{id: string}>;
 export const ConceptPage = (props: ConceptPageProps) => {
   const id = props.match.params.id;
   const docId = `concept/data-science/${id}`;
-  return <ConceptDisplayCouchDB
-    dbURL={Config.db_origin} dbName={Config.db_name} docId={docId} />;
+  return <ConceptDisplayCouchDB dbURL={Config.dbURL} dbName={Config.dbName}
+    docId={docId} />;
 }
 
 export const ConceptDisplay = (props: {doc: Concept.Concept}) => {
