@@ -26,7 +26,8 @@ type AnnotationPageProps = Router.RouteComponentProps<AnnotationKey>;
 export const AnnotationPage = (props: AnnotationPageProps) => {
   const key = props.match.params;
   const docId = `annotation/${key.language}/${key.package}/${key.id}`;
-  return <AnnotationDisplayCouchDB db={Config.db_url} docId={docId} />;
+  return <AnnotationDisplayCouchDB
+    dbURL={Config.db_origin} dbName={Config.db_name} docId={docId} />;
 }
 
 export const AnnotationDisplay = (props: {doc: Annotation.Annotation}) => {
@@ -69,7 +70,8 @@ const AnnotationContent = (props: {annotation: Annotation.Annotation}) => {
             </dl>
           </Col>
           <Col>
-            <MorphismDiagramCouchDB db={Config.app_db_url} docId={cacheId} />
+            <MorphismDiagramCouchDB dbURL={Config.db_origin}
+              dbName={Config.app_db_name} docId={cacheId} />
           </Col>
         </Row>
       </Container>
