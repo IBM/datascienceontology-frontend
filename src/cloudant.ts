@@ -55,15 +55,34 @@ export interface SearchResponseRow<Content extends {} = {}> {
   fields: Content;
 }
 
-/* Make a request to the Cloudant Search API.
+
+interface SearchProps {
+  /* Base URL of CouchDB deployment. */
+  dbURL: string;
+
+  /* Name of CouchDB database. */
+  dbName: string;
+
+  /* Name of design document containing search index. */
+  ddoc: string;
+
+  /* Index to search. */
+  index: string;
+
+  /* Request data for search. */
+  request: SearchRequest;
+}
+
+/** Make a request to the Cloudant Search API.
 
   Not supported by vanilla CouchDB or PouchDB.
  */
-export function search<Content extends {} = {}>(
-    endpoint: string, data: SearchRequest): Promise<SearchResponse<Content>> {
+export function search<Content extends {} = {}>(props: SearchProps):
+    Promise<SearchResponse<Content>> {
+  const endpoint = `${props.dbURL}/${props.dbName}/_design/${props.ddoc}/_search/${props.index}`;
   return fetch(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
+    body: JSON.stringify(props.request),
   }).then(response => response.json() as Promise<SearchResponse<Content>>);
 }

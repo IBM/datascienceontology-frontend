@@ -74,11 +74,15 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
       `name:(${text})^3`,      // Inexact match on name
       `description:(${text})`, // Inexact match on description
     ].join(" ");
-    const endpoint = `${Config.dbURL}/${Config.dbName}/_design/search/_search/concept`;
-    
-    return Cloudant.search<Concept.Concept>(endpoint, {
-      query: query,
-      limit: 10
+    return Cloudant.search<Concept.Concept>({
+      dbURL: Config.dbURL,
+      dbName: Config.dbName,
+      ddoc: "search",
+      index: "concept",
+      request: {
+        query: query,
+        limit: 10,
+      },
     }).then(response => {
       this.setState({
         concepts: response.rows.map(row => row.fields),
@@ -93,11 +97,15 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
       `name:(${text})^3`, `description:(${text})`,
       `class:(${text})`, `function:(${text})`, `method:(${text})`
     ].join(" ");
-    const endpoint = `${Config.dbURL}/${Config.dbName}/_design/search/_search/annotation`;
-
-    return Cloudant.search<Annotation.Annotation>(endpoint, {
-      query: query,
-      limit: 10
+    return Cloudant.search<Annotation.Annotation>({
+      dbURL: Config.dbURL,
+      dbName: Config.dbName,
+      ddoc: "search",
+      index: "annotation",
+      request: {
+        query: query,
+        limit: 10,
+      },
     }).then(response => {
       this.setState({
         annotations: response.rows.map(row => row.fields),
