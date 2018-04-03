@@ -8,6 +8,8 @@ import { displayCouchQuery } from "open-discovery-components";
 import { ConceptFullName } from "./concept";
 import * as Config from "../config";
 
+import "../../style/pages/concept_index.css";
+
 
 export const ConceptIndexPage = (props: {}) =>
   <Container>
@@ -31,8 +33,12 @@ const ConceptIndexDisplay = (props: {docs?: Concept.Concept[]}) => {
   return (
     <ul id="concept-index">
       {_.keys(index).sort().map(letter => 
-        <li id={letter}>
-          <h2>{letter.toUpperCase()}</h2>
+        <li>
+          <h2>
+            <a id={letter} href={`#${letter}`}>
+              {letter.toUpperCase()}
+            </a>
+          </h2>
           <ul>
             {index[letter].map(concept => 
               <li>

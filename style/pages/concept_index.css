@@ -1,0 +1,9 @@
+#concept-index {
+  padding: 0;
+}
+#concept-index li {
+  list-style: none;
+}
+#concept-index h2 a {
+  color: initial;
+}
