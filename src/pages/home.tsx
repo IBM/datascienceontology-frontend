@@ -15,16 +15,16 @@ import "../../style/pages/home.css";
 
 
 interface HomePageState {
-  nconcepts: number;
-  nannotations: number;
+  nconcepts?: number;
+  nannotations?: number;
 }
 
 export class HomePage extends React.Component<{},HomePageState> {
   constructor() {
     super();
     this.state = {
-      nconcepts: 0,
-      nannotations: 0,
+      nconcepts: null,
+      nannotations: null,
     };
   }
 
@@ -109,11 +109,6 @@ const RandomDocs = (props: RandomDocsProps) => {
             <CardTitle>Concept</CardTitle>
             <RandomConcept nconcepts={nconcepts} />
           </Card>
-          <Router.Link to="/browse/concepts">
-            <Button color="secondary" size="sm">
-              More concepts
-            </Button>
-          </Router.Link>
         </Col>
         <Col md>
           <h4 className="text-center">
@@ -126,11 +121,6 @@ const RandomDocs = (props: RandomDocsProps) => {
             <CardTitle>Annotation</CardTitle>
             <RandomAnnotation nannotations={nannotations} />
           </Card>
-          <Router.Link to="/browse/annotations">
-            <Button color="secondary" size="sm">
-              More annotations
-            </Button>
-          </Router.Link>
         </Col>
       </Row>
     </Container>
