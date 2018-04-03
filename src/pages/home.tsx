@@ -69,8 +69,15 @@ export class HomePage extends React.Component<{},HomePageState> {
           </ul>
         </p>
         <p>
+          <Router.Link to="/browse">
+            <Button color="primary" size="sm" className="mr-2">
+              Browse
+            </Button>
+          </Router.Link>
           <Router.Link to="/help">
-            <Button color="secondary" size="sm">Learn more</Button>
+            <Button color="secondary" size="sm">
+              Learn more
+            </Button>
           </Router.Link>
         </p>
         {nconcepts && nannotations &&
@@ -98,10 +105,15 @@ const RandomDocs = (props: RandomDocsProps) => {
             Concepts
           </h4>
           <p>Concepts formalize the abstract ideas of data science.</p>
-          <Card body className="random-card">
+          <Card body className="random-card mb-3">
             <CardTitle>Concept</CardTitle>
             <RandomConcept nconcepts={nconcepts} />
           </Card>
+          <Router.Link to="/browse/concepts">
+            <Button color="secondary" size="sm">
+              More concepts
+            </Button>
+          </Router.Link>
         </Col>
         <Col md>
           <h4 className="text-center">
@@ -110,10 +122,15 @@ const RandomDocs = (props: RandomDocsProps) => {
             Annotations
           </h4>
           <p>Annotations translate data science code into concepts.</p>
-          <Card body className="random-card">
+          <Card body className="random-card mb-3">
             <CardTitle>Annotation</CardTitle>
             <RandomAnnotation nannotations={nannotations} />
           </Card>
+          <Router.Link to="/browse/annotations">
+            <Button color="secondary" size="sm">
+              More annotations
+            </Button>
+          </Router.Link>
         </Col>
       </Row>
     </Container>
