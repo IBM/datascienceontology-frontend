@@ -129,3 +129,17 @@ const DomainObjectDisplay = (props: {object: Concept.DomainObject}) => {
     </p>}
   </div>;
 }
+
+
+export const ConceptFullName = (props: {concept: Concept.Concept}) => {
+  const concept = props.concept;
+  return <span>
+    <Router.Link to={`/concept/${concept.id}`}>
+      {concept.name}
+    </Router.Link>
+    {" "}
+    <span className="text-muted text-nowrap">
+      ({concept.id})
+    </span>
+  </span>;
+}

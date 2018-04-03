@@ -6,6 +6,8 @@ import { faSpinner } from "@fortawesome/fontawesome-free-solid";
 
 import { Concept, Annotation } from "open-discovery";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
+import { ConceptFullName } from "./concept";
+import { AnnotationFullName } from "./annotation";
 import * as Cloudant from "../cloudant";
 import * as Config from "../config";
 
@@ -174,32 +176,19 @@ export const ConceptResult = (props: {concept: Concept.Concept}) => {
   return <div className="search-result">
     <KindGlyph kind={concept.kind} />
     {" "}
-    <Router.Link to={`/concept/${concept.id}`}>
-      {concept.name}
-    </Router.Link>
-    {" "}
-    <span className="text-muted text-nowrap">
-      ({concept.id})
-    </span>
-    {concept.description !== undefined && <p>{concept.description}</p>}
+    <ConceptFullName concept={concept} />
+    {concept.description && <p>{concept.description}</p>}
   </div>;
 }
 
 export const AnnotationResult = (props: {annotation: Annotation.Annotation}) => {
   const note = props.annotation;
-  const key = `${note.language}/${note.package}/${note.id}`;
   return <div className="search-result">
     <KindGlyph kind={note.kind} />
     {" "}
     <LanguageGlyph language={note.language} />
     {" "}
-    <Router.Link to={`/annotation/${key}`}>
-      {note.name !== undefined ? note.name : note.id}
-    </Router.Link>
-    {" "}
-    <span className="text-muted text-nowrap">
-      ({key})
-    </span>
-    {note.description !== undefined && <p>{note.description}</p>}
+    <AnnotationFullName annotation={note} />
+    {note.description && <p>{note.description}</p>}
   </div>;
 }

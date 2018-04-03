@@ -322,6 +322,21 @@ const MorphismDiagram = (props: {doc?: AnnotationCache}) => {
 const MorphismDiagramCouchDB = displayCouchDocument(MorphismDiagram);
 
 
+export const AnnotationFullName = (props: {annotation: Annotation.Annotation}) => {
+  const note = props.annotation;
+  const key = `${note.language}/${note.package}/${note.id}`;
+  return <span>
+    <Router.Link to={`/annotation/${key}`}>
+      {note.name !== undefined ? note.name : note.id}
+    </Router.Link>
+    {" "}
+    <span className="text-muted text-nowrap">
+      ({key})
+    </span>
+  </span>;
+}
+
+
 /** List of packages in r-base (the R standard library).
 
   <https://github.com/wch/r-source/tree/trunk/src/library>

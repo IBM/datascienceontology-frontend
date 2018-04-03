@@ -7,6 +7,8 @@ import Client from "davenport";
 import { Concept, Annotation } from "open-discovery";
 import { displayCouchQuery } from "open-discovery-components";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
+import { AnnotationFullName } from "./annotation";
+import { ConceptFullName } from "./concept";
 import * as Config from "../config";
 
 import "../../style/pages/home.css";
@@ -125,11 +127,7 @@ const RandomConceptDisplay = (props: {concept: Concept.Concept}) => {
     <dl>
       <dt>Name</dt>
       <dd>
-        <Router.Link to={`/concept/${concept.id}`}>
-          {concept.name}
-        </Router.Link>
-        {" "}
-        <span className="text-muted text-nowrap">({concept.id})</span>
+        <ConceptFullName concept={concept} />
       </dd>
       <dt>Kind</dt>
       <dd>
@@ -164,19 +162,11 @@ const RandomConcept = (props: {nconcepts: number}) => {
 
 const RandomAnnotationDisplay = (props: {annotation: Annotation.Annotation}) => {
   const note = props.annotation;
-  if (!note) {
-    return null;
-  }
-  const key = `${note.language}/${note.package}/${note.id}`;
-  return (
+  return note && (
     <dl>
       <dt>Name</dt>
       <dd>
-        <Router.Link to={`/annotation/${key}`}>
-          {note.name !== undefined ? note.name : note.id}
-        </Router.Link>
-        {" "}
-        <span className="text-muted text-nowrap">({key})</span>
+        <AnnotationFullName annotation={note} />
       </dd>
       <dt>Kind</dt>
       <dd>
