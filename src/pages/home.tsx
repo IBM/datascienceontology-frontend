@@ -45,7 +45,7 @@ export class HomePage extends React.Component<{},HomePageState> {
   
   render() {
     const { nannotations, nconcepts } = this.state;
-    return (
+    return <Container>
       <section id="home">
         <h1 className="display-4 text-center">
           Data Science Ontology
@@ -76,7 +76,7 @@ export class HomePage extends React.Component<{},HomePageState> {
         {nconcepts && nannotations &&
           <RandomDocs nconcepts={nconcepts} nannotations={nannotations} />}
       </section>
-    );
+    </Container>;
   }
 }
 
