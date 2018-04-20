@@ -294,7 +294,7 @@ const PackageRepositoryLink = (props: {annotation: Annotation.Annotation}) => {
   const pkg = annotation.package;
   if (Annotation.isPython(annotation) && pkg != "builtins") {
     return (
-      <Link to={`https://pypi.python.org/pypi/${pkg}`} target="_blank">
+      <Link to={`https://pypi.org/project/${pkg}`} target="_blank">
         PyPI
       </Link>
     );
