@@ -234,21 +234,16 @@ const RObjectDefList = (props: {annotation: Annotation.RObject}) => {
 
 const RMorphismDefList = (props: {annotation: Annotation.RMorphism}) => {
   const annotation = props.annotation;
-  const elements: JSX.Element[] = [];
-  if (annotation.function) { elements.push(
+  const elements: JSX.Element[] = [
     <dt key="function-dt">R function</dt>,
     <dd key="function-dd">
       <code>{annotation.function}</code>
     </dd>,
-  ); }
-  if (annotation.method) { elements.push(
-    <dt key="class-dt">{annotation.system} class</dt>,
+  ];
+  if (annotation.class) { elements.push(
+    <dt key="class-dt">{annotation.system} method of</dt>,
     <dd key="class-dd">
       <code>{annotation.class}</code>
-    </dd>,
-    <dt key="method-dt">R method</dt>,
-    <dd key="method-dd">
-      <code>{annotation.method}</code>
     </dd>,
   ); }
   elements.push(
