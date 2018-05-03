@@ -16,7 +16,7 @@ type ConceptPageProps = Router.RouteComponentProps<{id: string}>;
 
 export const ConceptPage = (props: ConceptPageProps) => {
   const id = props.match.params.id;
-  const docId = `concept/data-science/${id}`;
+  const docId = `concept/${id}`;
   return <ConceptDisplayCouchDB dbURL={Config.dbURL} dbName={Config.dbName}
     docId={docId} />;
 }
@@ -45,31 +45,10 @@ const ConceptDisplayCouchDB = displayCouchDocument(ConceptDisplay);
 
 const ConceptDefList = (props: {concept: Concept.Concept}) => {
   const concept = props.concept;
+  const superconcept = concept["is-a"];
+  const superconcepts = superconcept === undefined ? null :
+    (typeof superconcept === "string" ? [ superconcept ] : superconcept);
   const external = concept.external;
-  const externalLinks = external === undefined ? null :
-    <ul className="external-link-list">
-      {external.wikipedia &&
-        <li>
-          <FontAwesomeIcon icon={faWikipediaW} className="mr-1" />
-          <Link to={`https://en.wikipedia.org/wiki/${external.wikipedia}`} target="_blank">
-            {external.wikipedia.replace(/_/g, " ")}
-          </Link>
-        </li>}
-      {external.wikidata &&
-        <li>
-          <img src="/assets/images/logo-wikidata.svg" alt="Wikidata logo"
-               style={{height: "1.2em"}} />
-          <Link to={`https://www.wikidata.org/wiki/${external.wikidata}`} target="_blank">
-            {external.wikidata}
-          </Link>
-        </li>}
-    </ul>;
-  const superconcepts = concept.subconcept === undefined ? null :
-    <ul className="subconcept-list">{concept.subconcept.map((id,i) =>
-      <li key={i}>
-        <Router.Link key={id} to={`/concept/${id}`}>{id}</Router.Link>
-      </li>)}
-    </ul>;
   const elements = [
     <dt key="id-dt">ID</dt>,
     <dd key="id-dd">{concept.id}</dd>,
@@ -90,11 +69,35 @@ const ConceptDefList = (props: {concept: Concept.Concept}) => {
   ); }
   if (superconcepts) { elements.push(
     <dt key="sub-dt">Is</dt>,
-    <dd key="sub-dd">{superconcepts}</dd>,
+    <dd key="sub-dd">
+      <ul className="subconcept-list">{superconcepts.map((id,i) =>
+        <li key={i}>
+          <Router.Link key={id} to={`/concept/${id}`}>{id}</Router.Link>
+        </li>)}
+      </ul>
+    </dd>,
   ); }
-  if (externalLinks) { elements.push(
+  if (external) { elements.push(
     <dt key="external-dt">External links</dt>,
-    <dd key="external-dd">{externalLinks}</dd>,
+    <dd key="external-dd">
+      <ul className="external-link-list">
+      {external.wikipedia &&
+        <li>
+          <FontAwesomeIcon icon={faWikipediaW} className="mr-1" />
+          <Link to={`https://en.wikipedia.org/wiki/${external.wikipedia}`} target="_blank">
+            {external.wikipedia.replace(/_/g, " ")}
+          </Link>
+        </li>}
+      {external.wikidata &&
+        <li>
+          <img src="/assets/images/logo-wikidata.svg" alt="Wikidata logo"
+               style={{height: "1.2em"}} />
+          <Link to={`https://www.wikidata.org/wiki/${external.wikidata}`} target="_blank">
+            {external.wikidata}
+          </Link>
+        </li>}
+      </ul>
+    </dd>,
   ); }
   return elements;
 }
