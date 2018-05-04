@@ -83,7 +83,6 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
       index: "concept",
       request: {
         query: query,
-        limit: 10,
       },
     }).then(response => {
       this.setState({
@@ -106,7 +105,6 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
       index: "annotation",
       request: {
         query: query,
-        limit: 10,
       },
     }).then(response => {
       this.setState({
