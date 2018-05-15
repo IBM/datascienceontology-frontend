@@ -217,7 +217,7 @@ const RObjectDefList = (props: {annotation: Annotation.RObject}) => {
   const annotation = props.annotation;
   const slots = annotation.slots || [];
   return [
-    <dt key="class-dt">{annotation.system} class</dt>,
+    <dt key="class-dt">{annotation.system || "S3"} class</dt>,
     <dd key="class-dd">
       <code>{annotation.class}</code>
     </dd>,
@@ -241,7 +241,7 @@ const RMorphismDefList = (props: {annotation: Annotation.RMorphism}) => {
     </dd>,
   ];
   if (annotation.class) { elements.push(
-    <dt key="class-dt">{annotation.system} method of</dt>,
+    <dt key="class-dt">{annotation.system || "S3"} method of</dt>,
     <dd key="class-dd">
       <code>{annotation.class}</code>
     </dd>,
