@@ -1,6 +1,5 @@
 import * as _ from "lodash";
 import * as React from "react";
-import * as Router from "react-router-dom";
 import { Container } from "reactstrap";
 
 import { Concept } from "open-discovery";
@@ -14,10 +13,18 @@ import "../../style/pages/concept_index.css";
 export const ConceptIndexPage = (props: {}) =>
   <Container>
     <section id="concepts">
-      <h1>Index of concepts</h1>
+      <h1>Index of Concepts</h1>
       <ConceptIndex/>
     </section>
   </Container>;
+
+export const ConceptIndex = (props: {}) =>
+  <ConceptIndexQuery dbURL={Config.dbURL} dbName={Config.dbName} options={{
+    selector: {
+      schema: "concept",
+    },
+    fields: ["id", "name", "kind"],
+  }} />;
 
 
 const ConceptIndexDisplay = (props: {docs?: Concept.Concept[]}) => {
@@ -52,11 +59,3 @@ const ConceptIndexDisplay = (props: {docs?: Concept.Concept[]}) => {
   );
 }
 const ConceptIndexQuery = displayCouchQuery(ConceptIndexDisplay);
-
-export const ConceptIndex = (props: {}) =>
-  <ConceptIndexQuery dbURL={Config.dbURL} dbName={Config.dbName} options={{
-    selector: {
-      schema: "concept",
-    },
-    fields: ["id", "name", "kind"],
-  }} />;

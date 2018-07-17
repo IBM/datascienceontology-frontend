@@ -1,0 +1,9 @@
+#annotation-index {
+  padding: 0;
+}
+#annotation-index li {
+  list-style: none;
+}
+#annotation-index h3 a, h4 a {
+  color: initial;
+}

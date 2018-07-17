@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { HomePage } from "./pages/home";
 import { AnnotationPage } from "./pages/annotation";
+import { AnnotationIndexPage } from "./pages/annotation_index";
 import { ConceptPage } from "./pages/concept";
 import { ConceptIndexPage } from "./pages/concept_index";
 import { MarkdownPage, MarkdownDisplay } from "./pages/markdown";
@@ -52,6 +53,7 @@ const App = () =>
         <Route exact path="/" component={HomePage} />
         <Route path="/annotation/:language/:package/:id" component={AnnotationPage} />
         <Route path="/concept/:id" component={ConceptPage} />
+        <Route exact path="/browse/annotations" component={AnnotationIndexPage} />
         <Route exact path="/browse/concepts" component={ConceptIndexPage} />
         <Route path="/search/:query?" component={SearchPage} />
         <Route exact path="/about" component={() => <MarkdownDisplay page="about"/>} />
