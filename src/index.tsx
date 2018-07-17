@@ -53,6 +53,7 @@ const App = () =>
         <Route exact path="/" component={HomePage} />
         <Route path="/annotation/:language/:package/:id" component={AnnotationPage} />
         <Route path="/concept/:id" component={ConceptPage} />
+        <Route exact path="/browse" component={() => <MarkdownDisplay page="browse"/>} />
         <Route exact path="/browse/annotations" component={AnnotationIndexPage} />
         <Route exact path="/browse/concepts" component={ConceptIndexPage} />
         <Route path="/search/:query?" component={SearchPage} />
