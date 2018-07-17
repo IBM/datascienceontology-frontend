@@ -13,7 +13,7 @@ The purpose of the Data Science Ontology is to enable **artificial intelligence 
 - automated statistical meta-analysis
 - meta-learning for machine learning
 
-Several of these capabilities are currently under development as part of the broader Open Discovery project.
+Several of these capabilities are currently under development by the Data Science Ontology team.
 
 ## Learning more
 
