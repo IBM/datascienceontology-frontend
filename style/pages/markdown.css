@@ -1,3 +1,7 @@
+.markdown-document pre {
+  margin-left: 2rem;
+}
+
 .markdown-document table {
   display: table;
   margin: 0 auto 1rem auto;
