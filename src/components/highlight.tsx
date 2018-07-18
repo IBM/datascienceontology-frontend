@@ -1,7 +1,8 @@
 import * as React from "react";
 
 import { highlightBlock } from "highlight.js/lib/highlight";
-import "highlight.js/styles/default.css";
+//import "highlight.js/styles/color-brewer.css";
+import "highlight.js/styles/github.css";
 
 
 interface HighlightProps {
