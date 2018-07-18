@@ -1,8 +1,9 @@
 ---
 title: Contributing to the Data Science Ontology
+math: true
 ---
 
-From this short guide, you will learn how to contribute new concepts and annotations to the Data Science Ontology. We assume you already understand the basic ideas behind the ontology, as explained in the [introductory guide](/help/intro). We explain here the internal data format for concepts and annotations and the contribution process.
+From this short guide, you will learn how to contribute new concepts and annotations to the Data Science Ontology. We assume you already understand the basic ideas behind the ontology, as explained in the [introductory guide](/help/intro). Here we explain the data format for concepts and annotations and the contribution process.
 
 ## Data format
 
@@ -10,7 +11,7 @@ Concepts and annotations are expressed in [YAML](http://yaml.org), a markup lang
 
 #### Concepts
 
-YAML defines a simple syntax for expressing key-value pairs, reminiscent of the [OBO file format](https://owlcollab.github.io/oboformat/doc/GO.format.obo-1_4.html) popular among biomedical ontologists. For example, the concept [reading a data table](/concept/read-table) is expressed in YAML as:
+YAML defines a simple syntax for expressing key-value pairs, reminiscent of the [OBO file format](https://owlcollab.github.io/oboformat/doc/GO.format.obo-1_4.html) popular among biomedical ontologists. For example, the concept [read a data table](/concept/read-table) is expressed in YAML as:
 
 ```yaml
 schema: concept
@@ -37,7 +38,7 @@ The correspondence between the concept page and this file should be clear enough
 
 #### Annotations
 
-Annotations are expressed in YAML similarly, with a twist provided by the **definition** field. An annotation defines a chunk of code by an expression in the ontology language. We represent expression trees, as shown in the introductory guide, as [S-expressions](https://en.wikipedia.org/wiki/S-expression) in JSON or YAML. For instance, the product of function compositions
+Annotations are expressed in YAML similarly, with a twist provided by the **definition** field. Recall that an annotation defines a chunk of code by an expression written in the ontology language and built out of the ontology's concepts. The expression trees depicted in the introductory guide are represented as [S-expressions](https://en.wikipedia.org/wiki/S-expression) in JSON or YAML. For instance, the product of function compositions
 
 sexp: Product of compositions
 :::
@@ -46,10 +47,38 @@ sexp: Product of compositions
 
 is represented as the S-expression
 
-```yaml
+```
 [ otimes,
   [ compose, f, g],
   [ compose, h, k] ]
+```
+
+(In another terminological difference, the data format uses the symbol `otimes` for products, a mnemonic for the monoidal product $\otimes$. It also uses `braid` for the swap functions.)
+
+As a complete example, here is the YAML source for the annotation [read data frame from SQL table](/annotation/python/pandas/read-sql-table):
+
+```yaml
+schema: annotation
+language: python
+package: pandas
+id: read-sql-table
+name: read data frame from SQL table
+description: read pandas data frame from table in SQL databsase
+function: pandas.io.sql.read_sql_table
+kind: morphism
+definition: [
+  compose,
+  [ construct, [ pair, sql-table-database, sql-table-name ] ],
+  read-table
+]
+domain:
+  - slot: 1
+    name: database
+  - slot: 0
+    name: table-name
+    description: name of SQL table
+codomain:
+  - slot: __return__
 ```
 
 ## Making contributions
