@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { highlightBlock } from "highlight.js";
+import { highlightBlock } from "highlight.js/lib/highlight";
 import "highlight.js/styles/default.css";
 
 

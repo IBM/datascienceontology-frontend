@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
 import { Container } from "reactstrap";
-import { registerLanguage } from "highlight.js";
-import * as yaml from "highlight.js/lib/languages/yaml";
+import { registerLanguage } from "highlight.js/lib/highlight";
 
 import { SExp } from "open-discovery";
 import { CytoscapeDocument, MarkdownDocument } from "open-discovery-components";
@@ -13,6 +12,7 @@ import { SExpComponent } from "../components/sexp";
 import "../../style/pages/markdown.css";
 import * as CytoscapeStyle from "../../style/pages/markdown.cytoscape.json";
 
+import * as yaml from "highlight.js/lib/languages/yaml";
 registerLanguage("yaml", yaml);
 
 
