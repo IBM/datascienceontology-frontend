@@ -13,7 +13,7 @@ To submit a new concept or annotation, or improve an existing one, you should:
 2. Run the validation script, to ensure it conforms to the schema.
 3. Open a pull request on GitHub.
 
-We will make every effort to give each pull request a fair and timely review. Please understand that the Data Science Ontology is a new project and we are still learning what processes will be most effective.
+We welcome contributions of all kinds and we will make every effort to give each pull request a fair and timely review. Please understand that the Data Science Ontology is a new project. We are still learning what processes will be most effective.
 
 ## Data format
 
@@ -90,3 +90,7 @@ domain:
 codomain:
   - slot: __return__
 ```
+
+#### Other resources
+
+We hope this brief introduction to the data format is helpful, but it's not an exhaustive reference. The definitive definitions of the data format are the [JSON schemas](http://json-schema.org) for [concepts](https://github.com/epatters/datascienceontology/blob/master/tools/schemas/concept.json) and [annotations](https://github.com/epatters/datascienceontology/blob/master/tools/schemas/annotation.json). Perhaps the easiest way to get started is to look at existing examples of concepts and annotations and adapt them to your purposes. If you get stuck, feel free to ask us questions by opening a GitHub issue.
