@@ -3,7 +3,17 @@ title: Contributing to the Data Science Ontology
 math: true
 ---
 
-From this short guide, you will learn how to contribute new concepts and annotations to the Data Science Ontology. We assume you already understand the basic ideas behind the ontology, as explained in the [introductory guide](/help/intro). Here we explain the data format for concepts and annotations and the contribution process.
+From this short guide, you will learn how to contribute new concepts and annotations to the Data Science Ontology. We assume you already understand the basic ideas behind the ontology, as explained in the [introductory guide](/help/intro). Here we explain the contribution process and the data format for concepts and annotations.
+
+## How to contribute
+
+To submit a new concept or annotation, or improve an existing one, you should:
+
+1. Write the concept or annotation, in the data format described below.
+2. Run the validation script, to ensure it conforms to the schema.
+3. Open a pull request on GitHub.
+
+We will make every effort to give each pull request a fair and timely review. Please understand that the Data Science Ontology is a new project and we are still learning what processes will be most effective.
 
 ## Data format
 
@@ -80,5 +90,3 @@ domain:
 codomain:
   - slot: __return__
 ```
-
-## Making contributions
