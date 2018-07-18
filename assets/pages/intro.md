@@ -311,12 +311,8 @@ Let us expand on how concrete inputs and outputs are specified. A concrete input
 
 A concrete output is either the function's return value, identified by the special name `__return__`, or a function argument, identified as above. Marking a function argument as an output means that the argument is passed by reference and mutated within the function. Because the ontology language is purely functional, mutated arguments are represented as extra outputs. For example, when [fitting a regression model in scikit-learn](/annotation/python/sklearn/fit-regression), the `self` argument is both an input and an output. The method is reinterpreted as taking an unfitted regression model as input and yielding a fitted regression model as output.
 
-#### Examples
-
-To illustrate these ideas, let's look at the annotations for k-means clustering in several different packages. **TODO**
-
 ## What's next? 
 
-You should now have a working knowledge of the Data Science Ontology, sufficient to read and understand the content of this website. If you'd like to contribute to the ontology, you should also read the short [contribution guide](/help/contributing). The [advanced guide](/help/math) presents the ontology language with greater mathematical rigor and references to the research literature.
+You should now have a working knowledge of the Data Science Ontology, sufficient to read and understand the content of this website. If you'd like to contribute to the ontology, you should also read the short [contribution guide](/help/contribute). The [advanced guide](/help/math) presents the ontology language with greater mathematical rigor and references to the research literature.
 
 Finally, a few words about what's next for the Data Science Ontology itself. You may have noticed that the ontology language is not expressive enough to capture some very fundamental programming idioms, such as looping. In the future we will likely extend the ontology language and program analysis tools to support **function types** (enabling higher-order functions), **lambda abstraction** (defining new functions), and **recursion** (looping). Nonetheless we believe that the Data Science Ontology should already be useful for many purposes in its present, nascent state.

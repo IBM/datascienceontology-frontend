@@ -1,5 +1,5 @@
 ---
-title: How to contribute
+title: Contributing to the Data Science Ontology
 ---
 
-**TODO**
+*To be written.*

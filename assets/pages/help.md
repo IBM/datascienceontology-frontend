@@ -23,7 +23,7 @@ If you'd like to learn more about the Data Science Ontology, keep reading along 
    After reading this informal introduction, you will understand the basics of the ontology language and know how to interpret the concept and annotation entries found on this website.
 
 2. [Contributing to the Data Science Ontology](/help/contribute)  
-   This document is a guide to the JSON data format used internally for concepts and annotations. After reading it, you will know how to contribute new concepts and annotations to the ontology.
+   This document is a guide to the internal data format for concepts and annotations. After reading it, you will know how to contribute new concepts and annotations to the ontology.
 
 3. [Mathematics of the Data Science Ontology](/help/math)  
    For the mathematically inclined or merely curious, this document explains the category-theoretic underpinnings of the ontology language and its connection to the typed lambda calculus. References for further reading are provided. Users and contributors need not understand this material, but it is recommended for researchers who wish to extend the ontology language or the program analysis tools.
