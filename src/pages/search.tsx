@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/fontawesome-free-solid";
 
 import { Concept, Annotation } from "open-discovery";
+import { searchCloudant } from "open-discovery-components";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import { ConceptFullName } from "./concept";
 import { AnnotationFullName } from "./annotation";
-import * as Cloudant from "../cloudant";
 import * as Config from "../config";
 
 import "../../style/pages/search.css";
@@ -76,7 +76,7 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
       `name:(${text})^3`,      // Inexact match on name
       `description:(${text})`, // Inexact match on description
     ].join(" ");
-    return Cloudant.search<Concept.Concept>({
+    return searchCloudant<Concept.Concept>({
       dbURL: Config.dbURL,
       dbName: Config.dbName,
       ddoc: "search",
@@ -98,7 +98,7 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
       `name:(${text})^3`, `description:(${text})`,
       `class:(${text})`, `function:(${text})`, `method:(${text})`
     ].join(" ");
-    return Cloudant.search<Annotation.Annotation>({
+    return searchCloudant<Annotation.Annotation>({
       dbURL: Config.dbURL,
       dbName: Config.dbName,
       ddoc: "search",
