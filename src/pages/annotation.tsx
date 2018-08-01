@@ -10,7 +10,7 @@ import { CytoscapeComponent, Link, displayCouchDocument }
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import { SExpComponent } from "../components/sexp";
 import { AnnotationCache } from "../interfaces/annotation_cache";
-import * as Config from "../config";
+import * as CouchDB from "../couchdb";
 
 import "../../style/pages/annotation.css";
 import * as CytoscapeStyle from "../../style/pages/annotation.cytoscape.json";
@@ -26,8 +26,7 @@ type AnnotationPageProps = Router.RouteComponentProps<AnnotationKey>;
 export const AnnotationPage = (props: AnnotationPageProps) => {
   const key = props.match.params;
   const docId = `annotation/${key.language}/${key.package}/${key.id}`;
-  return <AnnotationDisplayCouchDB dbURL={Config.dbURL}
-    dbName={Config.dbName} docId={docId} />;
+  return <AnnotationDisplayCouchDB client={CouchDB.client} docId={docId} />;
 }
 
 export const AnnotationDisplay = (props: {doc?: Annotation.Annotation}) => {
@@ -70,8 +69,7 @@ const AnnotationContent = (props: {annotation: Annotation.Annotation}) => {
             </dl>
           </Col>
           <Col>
-            <MorphismDiagramCouchDB dbURL={Config.dbURL}
-              dbName={Config.appDbName} docId={cacheId} />
+            <MorphismDiagramCouchDB client={CouchDB.webappClient} docId={cacheId} />
           </Col>
         </Row>
       </Container>

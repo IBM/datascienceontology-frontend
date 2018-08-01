@@ -5,7 +5,7 @@ import { Container } from "reactstrap";
 import { Annotation } from "open-discovery";
 import { displayCouchQuery } from "open-discovery-components";
 import { AnnotationFullName } from "./annotation";
-import * as Config from "../config";
+import * as CouchDB from "../couchdb";
 
 import "../../style/pages/annotation_index.css";
 
@@ -19,7 +19,7 @@ export const AnnotationIndexPage = (props: {}) =>
   </Container>;
 
 export const AnnotationIndex = (props: {}) =>
-  <AnnotationIndexQuery dbURL={Config.dbURL} dbName={Config.dbName} options={{
+  <AnnotationIndexQuery client={CouchDB.client} options={{
     selector: {
       schema: "annotation",
     },

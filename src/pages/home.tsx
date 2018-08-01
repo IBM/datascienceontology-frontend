@@ -2,14 +2,13 @@ import * as _ from "lodash";
 import * as React from "react";
 import * as Router from "react-router-dom";
 import { Button, Card, CardTitle, Container, Row, Col } from "reactstrap";
-import Client from "davenport";
 
 import { Concept, Annotation } from "open-discovery";
 import { displayCouchQuery } from "open-discovery-components";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import { AnnotationFullName } from "./annotation";
 import { ConceptFullName } from "./concept";
-import * as Config from "../config";
+import * as CouchDB from "../couchdb";
 
 import "../../style/pages/home.css";
 
@@ -29,8 +28,7 @@ export class HomePage extends React.Component<{},HomePageState> {
   }
 
   componentWillMount() {
-    const client = new Client(Config.dbURL, Config.dbName);
-    client.view<number>("query", "schema_index", {
+    CouchDB.client.view<number>("query", "schema_index", {
       group: true,
       reduce: true,
     }).then(result => {
@@ -156,7 +154,7 @@ const RandomConcept = (props: {nconcepts: number}) => {
   if (!props.nconcepts) {
     return null;
   }
-  return <RandomConceptQuery dbURL={Config.dbURL} dbName={Config.dbName} options={{
+  return <RandomConceptQuery client={CouchDB.client} options={{
     selector: {
       schema: "concept",
     },
@@ -203,7 +201,7 @@ const RandomAnnotation = (props: {nannotations: number}) => {
   if (!props.nannotations) {
     return null;
   }
-  return <RandomAnnotationQuery dbURL={Config.dbURL} dbName={Config.dbName} options={{
+  return <RandomAnnotationQuery client={CouchDB.client} options={{
     selector: {
       schema: "annotation",
     },

@@ -5,7 +5,7 @@ import { Container } from "reactstrap";
 import { Concept } from "open-discovery";
 import { displayCouchQuery } from "open-discovery-components";
 import { ConceptFullName } from "./concept";
-import * as Config from "../config";
+import * as CouchDB from "../couchdb";
 
 import "../../style/pages/concept_index.css";
 
@@ -19,7 +19,7 @@ export const ConceptIndexPage = (props: {}) =>
   </Container>;
 
 export const ConceptIndex = (props: {}) =>
-  <ConceptIndexQuery dbURL={Config.dbURL} dbName={Config.dbName} options={{
+  <ConceptIndexQuery client={CouchDB.client} options={{
     selector: {
       schema: "concept",
     },

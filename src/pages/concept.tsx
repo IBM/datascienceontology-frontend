@@ -5,7 +5,7 @@ import * as ReactMarkdown from "react-markdown";
 import { Concept } from "open-discovery";
 import { displayCouchDocument, Link } from "open-discovery-components";
 import { KindGlyph, SchemaGlyph } from "../components/glyphs";
-import * as Config from "../config";
+import * as CouchDB from "../couchdb";
 
 import "../../style/pages/concept.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,8 +17,7 @@ type ConceptPageProps = Router.RouteComponentProps<{id: string}>;
 export const ConceptPage = (props: ConceptPageProps) => {
   const id = props.match.params.id;
   const docId = `concept/${id}`;
-  return <ConceptDisplayCouchDB dbURL={Config.dbURL} dbName={Config.dbName}
-    docId={docId} />;
+  return <ConceptDisplayCouchDB client={CouchDB.client} docId={docId} />;
 }
 
 export const ConceptDisplay = (props: {doc?: Concept.Concept}) => {

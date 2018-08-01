@@ -5,11 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/fontawesome-free-solid";
 
 import { Concept, Annotation } from "open-discovery";
-import { searchCloudant } from "open-discovery-components";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import { ConceptFullName } from "./concept";
 import { AnnotationFullName } from "./annotation";
-import * as Config from "../config";
+import * as CouchDB from "../couchdb";
 
 import "../../style/pages/search.css";
 
@@ -76,9 +75,7 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
       `name:(${text})^3`,      // Inexact match on name
       `description:(${text})`, // Inexact match on description
     ].join(" ");
-    return searchCloudant<Concept.Concept>({
-      dbURL: Config.dbURL,
-      dbName: Config.dbName,
+    return CouchDB.client.search<Concept.Concept>({
       ddoc: "search",
       index: "concept",
       request: {
@@ -98,9 +95,7 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
       `name:(${text})^3`, `description:(${text})`,
       `class:(${text})`, `function:(${text})`, `method:(${text})`
     ].join(" ");
-    return searchCloudant<Annotation.Annotation>({
-      dbURL: Config.dbURL,
-      dbName: Config.dbName,
+    return CouchDB.client.search<Annotation.Annotation>({
       ddoc: "search",
       index: "annotation",
       request: {
