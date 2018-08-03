@@ -5,12 +5,12 @@ import * as ReactMarkdown from "react-markdown";
 import { Container, Row, Col } from "reactstrap";
 
 import { Annotation } from "open-discovery";
-import { CytoscapeComponent, Link, displayCouchDocument }
+import { CytoscapeComponent, Link, displayResponseData }
   from "open-discovery-components";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import { SExpComponent } from "../components/sexp";
 import { AnnotationCache } from "../interfaces/annotation_cache";
-import * as CouchDB from "../couchdb";
+import { apiUrl } from "../config";
 
 import "../../style/pages/annotation.css";
 import * as CytoscapeStyle from "../../style/pages/annotation.cytoscape.json";
@@ -25,12 +25,12 @@ type AnnotationPageProps = Router.RouteComponentProps<AnnotationKey>;
 
 export const AnnotationPage = (props: AnnotationPageProps) => {
   const key = props.match.params;
-  const docId = `annotation/${key.language}/${key.package}/${key.id}`;
-  return <AnnotationDisplayCouchDB client={CouchDB.client} docId={docId} />;
+  const endpoint = `annotation/${key.language}/${key.package}/${key.id}`;
+  return <AnnotationRequest url={`${apiUrl}/${endpoint}`} />;
 }
 
-export const AnnotationDisplay = (props: {doc?: Annotation.Annotation}) => {
-  const annotation = props.doc;
+export const AnnotationDisplay = (props: {data?: Annotation.Annotation}) => {
+  const annotation = props.data;
   return annotation && (
     <section id="annotation">
       <h3>
@@ -45,7 +45,7 @@ export const AnnotationDisplay = (props: {doc?: Annotation.Annotation}) => {
     </section>
   );
 }
-const AnnotationDisplayCouchDB = displayCouchDocument(AnnotationDisplay);
+const AnnotationRequest = displayResponseData(AnnotationDisplay);
 
 
 const AnnotationContent = (props: {annotation: Annotation.Annotation}) => {
@@ -69,7 +69,7 @@ const AnnotationContent = (props: {annotation: Annotation.Annotation}) => {
             </dl>
           </Col>
           <Col>
-            <MorphismDiagramCouchDB client={CouchDB.webappClient} docId={cacheId} />
+            <MorphismDiagramRequest url={`${apiUrl}/_cache/${cacheId}`} />
           </Col>
         </Row>
       </Container>
@@ -301,8 +301,8 @@ const PackageRepositoryLink = (props: {annotation: Annotation.Annotation}) => {
   return null;
 }
 
-const MorphismDiagram = (props: {doc?: AnnotationCache}) => {
-  const cache = props.doc;
+const MorphismDiagram = (props: {data?: AnnotationCache}) => {
+  const cache = props.data;
   return cache && (
     <CytoscapeComponent height="600px" cytoscape={{
       ...cache.definition.cytoscape,
@@ -312,7 +312,7 @@ const MorphismDiagram = (props: {doc?: AnnotationCache}) => {
     }} />
   );
 }
-const MorphismDiagramCouchDB = displayCouchDocument(MorphismDiagram);
+const MorphismDiagramRequest = displayResponseData(MorphismDiagram);
 
 
 export const AnnotationFullName = (props: {annotation: Annotation.Annotation}) => {

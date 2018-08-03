@@ -3,9 +3,9 @@ import * as React from "react";
 import { Container } from "reactstrap";
 
 import { Annotation } from "open-discovery";
-import { displayCouchQuery } from "open-discovery-components";
+import { displayResponseData } from "open-discovery-components";
 import { AnnotationFullName } from "./annotation";
-import * as CouchDB from "../couchdb";
+import { apiUrl } from "../config";
 
 import "../../style/pages/annotation_index.css";
 
@@ -14,27 +14,19 @@ export const AnnotationIndexPage = (props: {}) =>
   <Container>
     <section id="annotations">
       <h1>Index of Annotations</h1>
-      <AnnotationIndex/>
+      <AnnotationIndexRequest url={`${apiUrl}/annotations`} />
     </section>
   </Container>;
 
-export const AnnotationIndex = (props: {}) =>
-  <AnnotationIndexQuery client={CouchDB.client} options={{
-    selector: {
-      schema: "annotation",
-    },
-    fields: ["language", "package", "id", "name", "kind"],
-  }} />;
 
-
-const AnnotationIndexDisplay = (props: {docs?: Annotation.Annotation[]}) => {
+const AnnotationIndexDisplay = (props: {data?: Annotation.Annotation[]}) => {
   const index: { [lang: string]: { [pkg: string]: 
     Annotation.Annotation[] }} = {};
-  (props.docs || []).map(doc => {
-    _.update(index, [doc.language,doc.package],
+  (props.data || []).map(note => {
+    _.update(index, [note.language, note.package],
       (list: Annotation.Annotation[]) => {
         if (list === undefined) list = [];
-        list.push(doc);
+        list.push(note);
         return list;
       });
   });
@@ -70,4 +62,4 @@ const AnnotationIndexDisplay = (props: {docs?: Annotation.Annotation[]}) => {
     </ul>
   );
 }
-const AnnotationIndexQuery = displayCouchQuery(AnnotationIndexDisplay);
+const AnnotationIndexRequest = displayResponseData(AnnotationIndexDisplay);

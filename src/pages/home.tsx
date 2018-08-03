@@ -4,130 +4,103 @@ import * as Router from "react-router-dom";
 import { Button, Card, CardTitle, Container, Row, Col } from "reactstrap";
 
 import { Concept, Annotation } from "open-discovery";
-import { displayCouchQuery } from "open-discovery-components";
+import { displayResponseData } from "open-discovery-components";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import { AnnotationFullName } from "./annotation";
 import { ConceptFullName } from "./concept";
-import * as CouchDB from "../couchdb";
+import { apiUrl } from "../config";
 
 import "../../style/pages/home.css";
 
 
-interface HomePageState {
-  nconcepts?: number;
-  nannotations?: number;
+export const HomePage = () =>
+  <HomePageRequest url={`${apiUrl}/counts`} />;
+
+
+interface HomePageProps {
+  concept?: number;
+  annotation?: number;
 }
 
-export class HomePage extends React.Component<{},HomePageState> {
-  constructor() {
-    super();
-    this.state = {
-      nconcepts: null,
-      nannotations: null,
-    };
-  }
-
-  componentWillMount() {
-    CouchDB.client.view<number>("query", "schema_index", {
-      group: true,
-      reduce: true,
-    }).then(result => {
-      const getCount = (schema: string) =>
-        result.rows.find(row => row.key[0] === schema).value;
-      this.setState({
-        nconcepts: getCount("concept"),
-        nannotations: getCount("annotation"),
-      });
-    });
-  }
-  
-  render() {
-    const { nannotations, nconcepts } = this.state;
-    return <Container>
-      <section id="home">
-        <h1 className="display-4 text-center">
-          Data Science Ontology
-        </h1>
-        <p className="lead">
-          {nannotations && nconcepts ?
-          `Welcome to the Data Science Ontology, with
-           ${nconcepts} data science concepts and 
-           ${nannotations} code annotations` :
-          'Welcome to the Data Science Ontology'}
-        </p>
-        <p>
-          The Data Science Ontology is a knowledge base about data science that
-          aims to
-          <ul>
-            <li> catalog the <strong>concepts</strong> of data science </li>
-            <li> semantically <strong>annotate</strong> popular software packages
-              for data science </li>
-            <li> power new <strong>AI</strong> assistants
-              for data scientists </li>
-          </ul>
-        </p>
-        <p>
-          <Router.Link to="/browse">
-            <Button color="primary" size="sm" className="mr-2">
-              Browse
-            </Button>
-          </Router.Link>
-          <Router.Link to="/help">
-            <Button color="secondary" size="sm">
-              Learn more
-            </Button>
-          </Router.Link>
-        </p>
-        {nconcepts && nannotations &&
-          <RandomDocs nconcepts={nconcepts} nannotations={nannotations} />}
-      </section>
-    </Container>;
-  }
+const HomePageDisplay = (props: {data?: HomePageProps}) => {
+  const counts = props.data || {};
+  const nconcepts = counts.concept || 0
+  const nannotations = counts.annotation || 0;
+  return <Container>
+    <section id="home">
+      <h1 className="display-4 text-center">
+        Data Science Ontology
+      </h1>
+      <p className="lead">
+        {nannotations && nconcepts ?
+        `Welcome to the Data Science Ontology, with
+          ${nconcepts} data science concepts and 
+          ${nannotations} code annotations` :
+        'Welcome to the Data Science Ontology'}
+      </p>
+      <p>
+        The Data Science Ontology is a knowledge base about data science that
+        aims to
+        <ul>
+          <li> catalog the <strong>concepts</strong> of data science </li>
+          <li> semantically <strong>annotate</strong> popular software packages
+            for data science </li>
+          <li> power new <strong>AI</strong> assistants
+            for data scientists </li>
+        </ul>
+      </p>
+      <p>
+        <Router.Link to="/browse">
+          <Button color="primary" size="sm" className="mr-2">
+            Browse
+          </Button>
+        </Router.Link>
+        <Router.Link to="/help">
+          <Button color="secondary" size="sm">
+            Learn more
+          </Button>
+        </Router.Link>
+      </p>
+      <RandomDocs/>
+    </section>
+  </Container>;
 }
+const HomePageRequest = displayResponseData(HomePageDisplay);
 
 
-interface RandomDocsProps {
-  nconcepts: number;
-  nannotations: number;
-}
-
-const RandomDocs = (props: RandomDocsProps) => {
-  const { nconcepts, nannotations } = props;
-  return (
-    <Container>
-      <Row>
-        <Col md>
-          <h4 className="text-center">
-            <SchemaGlyph schema="concept" />
-            {" "}
-            Concepts
-          </h4>
-          <p>Concepts formalize the abstract ideas of data science.</p>
-          <Card body className="random-card mb-3">
-            <CardTitle>Concept</CardTitle>
-            <RandomConcept nconcepts={nconcepts} />
-          </Card>
-        </Col>
-        <Col md>
-          <h4 className="text-center">
-            <SchemaGlyph schema="annotation" />
-            {" "}
-            Annotations
-          </h4>
-          <p>Annotations translate data science code into concepts.</p>
-          <Card body className="random-card mb-3">
-            <CardTitle>Annotation</CardTitle>
-            <RandomAnnotation nannotations={nannotations} />
-          </Card>
-        </Col>
-      </Row>
-    </Container>
-  );
-}
+const RandomDocs = () =>
+  <Container>
+    <Row>
+      <Col md>
+        <h4 className="text-center">
+          <SchemaGlyph schema="concept" />
+          {" "}
+          Concepts
+        </h4>
+        <p>Concepts formalize the abstract ideas of data science.</p>
+        <Card body className="random-card mb-3">
+          <CardTitle>Concept</CardTitle>
+          <RandomConceptRequest url={`${apiUrl}/concept/_random`} />
+        </Card>
+      </Col>
+      <Col md>
+        <h4 className="text-center">
+          <SchemaGlyph schema="annotation" />
+          {" "}
+          Annotations
+        </h4>
+        <p>Annotations translate data science code into concepts.</p>
+        <Card body className="random-card mb-3">
+          <CardTitle>Annotation</CardTitle>
+          <RandomAnnotationRequest url={`${apiUrl}/annotation/_random`} />
+        </Card>
+      </Col>
+    </Row>
+  </Container>;
 
 
-const RandomConceptDisplay = (props: {concept: Concept.Concept}) => {
-  const concept = props.concept;
+const RandomConceptDisplay = (props: {data?: Concept.Concept}) => {
+  const concept = props.data;
   return concept && (
     <dl>
       <dt>Name</dt>
@@ -145,28 +118,11 @@ const RandomConceptDisplay = (props: {concept: Concept.Concept}) => {
     </dl>
   );
 }
-
-const RandomConceptQuery = displayCouchQuery(
-  (props: {docs?: Concept.Concept[]}) =>
-    <RandomConceptDisplay concept={props.docs && props.docs[0]} />
-);
-const RandomConcept = (props: {nconcepts: number}) => {
-  if (!props.nconcepts) {
-    return null;
-  }
-  return <RandomConceptQuery client={CouchDB.client} options={{
-    selector: {
-      schema: "concept",
-    },
-    fields: [ "id", "name", "description", "kind" ],
-    limit: 1,
-    skip: _.random(props.nconcepts),
-  }} />;
-}
+const RandomConceptRequest = displayResponseData(RandomConceptDisplay);
 
 
-const RandomAnnotationDisplay = (props: {annotation: Annotation.Annotation}) => {
-  const note = props.annotation;
+const RandomAnnotationDisplay = (props: {data?: Annotation.Annotation}) => {
+  const note = props.data;
   return note && (
     <dl>
       <dt>Name</dt>
@@ -192,21 +148,4 @@ const RandomAnnotationDisplay = (props: {annotation: Annotation.Annotation}) => 
     </dl>
   );
 }
-
-const RandomAnnotationQuery = displayCouchQuery(
-  (props: {docs?: Annotation.Annotation[]}) =>
-    <RandomAnnotationDisplay annotation={props.docs && props.docs[0]} />
-);
-const RandomAnnotation = (props: {nannotations: number}) => {
-  if (!props.nannotations) {
-    return null;
-  }
-  return <RandomAnnotationQuery client={CouchDB.client} options={{
-    selector: {
-      schema: "annotation",
-    },
-    fields: [ "language", "package", "id", "name", "description", "kind" ],
-    limit: 1,
-    skip: _.random(props.nannotations),
-  }} />;
-}
+const RandomAnnotationRequest = displayResponseData(RandomAnnotationDisplay);

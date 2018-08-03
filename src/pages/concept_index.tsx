@@ -3,9 +3,9 @@ import * as React from "react";
 import { Container } from "reactstrap";
 
 import { Concept } from "open-discovery";
-import { displayCouchQuery } from "open-discovery-components";
+import { displayResponseData } from "open-discovery-components";
 import { ConceptFullName } from "./concept";
-import * as CouchDB from "../couchdb";
+import { apiUrl } from "../config";
 
 import "../../style/pages/concept_index.css";
 
@@ -14,26 +14,18 @@ export const ConceptIndexPage = (props: {}) =>
   <Container>
     <section id="concepts">
       <h1>Index of Concepts</h1>
-      <ConceptIndex/>
+      <ConceptIndexRequest url={`${apiUrl}/concepts`} />
     </section>
   </Container>;
 
-export const ConceptIndex = (props: {}) =>
-  <ConceptIndexQuery client={CouchDB.client} options={{
-    selector: {
-      schema: "concept",
-    },
-    fields: ["id", "name", "kind"],
-  }} />;
 
-
-const ConceptIndexDisplay = (props: {docs?: Concept.Concept[]}) => {
+const ConceptIndexDisplay = (props: {data?: Concept.Concept[]}) => {
   const index: {[key: string]: Concept.Concept[]} = {};
-  (props.docs || []).map(doc => {
-    _.update(index, doc.name.charAt(0).toLowerCase(),
+  (props.data || []).map(concept => {
+    _.update(index, concept.name.charAt(0).toLowerCase(),
       (list: Concept.Concept[]) => {
         if (list === undefined) list = [];
-        list.push(doc);
+        list.push(concept);
         return list;
       });
   });
@@ -58,4 +50,4 @@ const ConceptIndexDisplay = (props: {docs?: Concept.Concept[]}) => {
     </ul>
   );
 }
-const ConceptIndexQuery = displayCouchQuery(ConceptIndexDisplay);
+const ConceptIndexRequest = displayResponseData(ConceptIndexDisplay);

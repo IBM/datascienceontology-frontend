@@ -3,9 +3,9 @@ import * as Router from "react-router-dom";
 import * as ReactMarkdown from "react-markdown";
 
 import { Concept } from "open-discovery";
-import { displayCouchDocument, Link } from "open-discovery-components";
+import { displayResponseData, Link } from "open-discovery-components";
 import { KindGlyph, SchemaGlyph } from "../components/glyphs";
-import * as CouchDB from "../couchdb";
+import { apiUrl } from "../config";
 
 import "../../style/pages/concept.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,12 +16,11 @@ type ConceptPageProps = Router.RouteComponentProps<{id: string}>;
 
 export const ConceptPage = (props: ConceptPageProps) => {
   const id = props.match.params.id;
-  const docId = `concept/${id}`;
-  return <ConceptDisplayCouchDB client={CouchDB.client} docId={docId} />;
+  return <ConceptDisplayRequest url={`${apiUrl}/concept/${id}`} />;
 }
 
-export const ConceptDisplay = (props: {doc?: Concept.Concept}) => {
-  const concept = props.doc;
+export const ConceptDisplay = (props: {data?: Concept.Concept}) => {
+  const concept = props.data;
   return concept && (
     <section id="concept">
       <h3>
@@ -39,7 +38,7 @@ export const ConceptDisplay = (props: {doc?: Concept.Concept}) => {
     </section>
   );
 }
-const ConceptDisplayCouchDB = displayCouchDocument(ConceptDisplay);
+const ConceptDisplayRequest = displayResponseData(ConceptDisplay);
 
 
 const ConceptDefList = (props: {concept: Concept.Concept}) => {

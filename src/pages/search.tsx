@@ -5,10 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/fontawesome-free-solid";
 
 import { Concept, Annotation } from "open-discovery";
+import { displayResponseData } from "open-discovery-components";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import { ConceptFullName } from "./concept";
 import { AnnotationFullName } from "./annotation";
-import * as CouchDB from "../couchdb";
+import { apiUrl } from "../config";
 
 import "../../style/pages/search.css";
 
@@ -70,43 +71,25 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
   }
   
   searchConcepts(text: string): Promise<void> {
-    const query = [
-      `id:(${text})^100`,      // Exact match on ID due to `keyword` analyzer
-      `name:(${text})^3`,      // Inexact match on name
-      `description:(${text})`, // Inexact match on description
-    ].join(" ");
-    return CouchDB.client.search<Concept.Concept>({
-      ddoc: "search",
-      index: "concept",
-      request: {
-        query: query,
-      },
-    }).then(response => {
-      this.setState({
-        concepts: response.rows.map(row => row.fields),
-        totalConcepts: response.total_rows,
+    return fetch(`${apiUrl}/search/concept/${encodeURIComponent(text)}`)
+      .then(response => response.json() as Promise<Concept.Concept[]>)
+      .then(concepts => {
+        this.setState({
+          concepts,
+          totalConcepts: concepts.length,
+        });
       });
-    });
   }
-  
+
   searchAnnotations(text: string): Promise<void> {
-    const query = [
-      `language:(${text})`, `package:(${text})^3`, `id:(${text})^100`,
-      `name:(${text})^3`, `description:(${text})`,
-      `class:(${text})`, `function:(${text})`, `method:(${text})`
-    ].join(" ");
-    return CouchDB.client.search<Annotation.Annotation>({
-      ddoc: "search",
-      index: "annotation",
-      request: {
-        query: query,
-      },
-    }).then(response => {
-      this.setState({
-        annotations: response.rows.map(row => row.fields),
-        totalAnnotations: response.total_rows,
+    return fetch(`${apiUrl}/search/annotation/${encodeURIComponent(text)}`)
+      .then(response => response.json() as Promise<Annotation.Annotation[]>)
+      .then(annotations => {
+        this.setState({
+          annotations,
+          totalAnnotations: annotations.length,
+        });
       });
-    });
   }
   
   render() {
