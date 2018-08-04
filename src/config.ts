@@ -1,1 +1,1 @@
-export const apiUrl = "http://api.datascienceontology.org";
+export const apiUrl = "https://api.datascienceontology.org";
