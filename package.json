@@ -39,8 +39,8 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "reactstrap": "^5.0.0",
-    "remark-math": "^1.0.3",
-    "remark-parse": "^4.0.0"
+    "remark-math": "^1.0.4",
+    "remark-parse": "^5.0.0"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.2.1",
