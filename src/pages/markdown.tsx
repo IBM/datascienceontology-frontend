@@ -50,8 +50,8 @@ export const MarkdownDisplay = (props: {page: string}) => {
             />
           </p>;
         },
-        sexp: (props: {value: string, children: string[]}) => {
-          const sexp = JSON.parse(props.children[0]) as SExp;
+        sexp: (props: {value: string}) => {
+          const sexp = JSON.parse(props.value) as SExp;
           return <p><SExpComponent sexp={sexp} /></p>;
         },
         glyph_schema: (props: {value: string}) =>
