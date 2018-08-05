@@ -36,7 +36,7 @@ Syntactic expressions for types and functions are displayed as expression trees.
 
 Monocl's type system is about as minimalistic as they come. It has product types, a unit type, and a simple form of subtyping.
 
-#### Constructors
+#### Type constructors
 
 The **product** of two types $X$ and $Y$ is another type $X \times Y$. The interpretation is that an element of type $X \times Y$ consists of an element of type $X$ *and* an element of type $Y$. Thus, if $x$ has type $X$ and $y$ has type $Y$, then the pair $\langle x, y \rangle$ has type $X \times Y$. Products of three or more types are defined similarly. Product types are often supported as tuples or record types in real-world programming languages, for example as `struct` types in C. As an expression tree, the product type $X \times Y$ appears as:
 
@@ -102,7 +102,7 @@ We think of the function $c$ as a “constant” of type $X$.
 
 A **wiring diagram** consists of a collection of boxes whose ports are connected by **wires** (aka edges or strings), plus an **outer box** that defines the inputs and outputs of the whole diagram. The configuration of the boxes and wires in the diagram determines the meaning of the program. Let us now see how this works.
 
-#### Constructors
+#### Function constructors
 
 ##### Composition
 
@@ -156,7 +156,7 @@ You should convince yourself that both expressions actually define the same func
 
 This situation illustrates an important point: the graphical syntax is “coarser” than the textual syntax. In general, there may be many different expression trees corresponding to a given wiring diagram. We consider this feature to be another advantage of the graphical syntax over the textual syntax. It is why most of our program analysis tools operate on wiring diagrams, not expressions. There may, in turn, be many different wiring diagrams corresponding to the same function. That should not be surprising. In any programming language (graphical or textual), there will be syntactically distinct programs that are semantically equivalent. To summarize: an expression uniquely determines a wiring diagram, and a wiring diagram uniquely determines a function, but not conversely.
 
-##### Other constructors
+##### Other function constructors
 
 There are numerous other function constructors besides composition and products. They are less conceptually significant but are practically important. We'll describe them briefly in this section. On a first reading, you may wish to skip this section, referring to it later as needed. Much of the graphical syntax should be fairly obvious.
 
