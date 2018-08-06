@@ -25,7 +25,7 @@
     "@types/react-dom": "^16.0.1",
     "@types/react-router": "^4.0.15",
     "@types/react-router-dom": "^4.0.8",
-    "@types/reactstrap": "^5.0.12",
+    "@types/reactstrap": "^6.0.2",
     "cytoscape": "^3.2.5",
     "gray-matter": "^3.1.1",
     "highlight.js": "^9.12.0",
@@ -39,7 +39,7 @@
     "react-markdown": "^3.4.1",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "reactstrap": "^5.0.0",
+    "reactstrap": "^6.3.1",
     "remark-math": "^1.0.4",
     "remark-parse": "^5.0.0"
   },
