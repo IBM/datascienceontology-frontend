@@ -9,7 +9,7 @@ import { apiUrl } from "../config";
 
 import "../../style/pages/concept.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWikipediaW } from "@fortawesome/fontawesome-free-brands";
+import { faWikipediaW } from "@fortawesome/free-brands-svg-icons";
 
 
 type ConceptPageProps = Router.RouteComponentProps<{id: string}>;

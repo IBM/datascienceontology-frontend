@@ -2,7 +2,7 @@ import * as React from "react";
 import * as Router from "react-router-dom";
 import { Badge, Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/fontawesome-free-solid";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 import { Concept, Annotation } from "open-discovery";
 import { displayResponseData } from "open-discovery-components";

@@ -14,7 +14,7 @@ import { ConceptIndexPage } from "./pages/concept_index";
 import { MarkdownPage, MarkdownDisplay } from "./pages/markdown";
 import { SearchPage } from "./pages/search";
 
-import { faSearch } from "@fortawesome/fontawesome-free-solid";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import "../style/main.css";
 import "../style/bootstrap.css";
