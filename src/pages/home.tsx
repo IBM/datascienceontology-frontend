@@ -69,7 +69,7 @@ const HomePageRequest = displayResponseData(HomePageDisplay);
 
 
 const RandomDocs = () =>
-  <Container>
+  <Container fluid>
     <Row>
       <Col md>
         <h4 className="text-center">

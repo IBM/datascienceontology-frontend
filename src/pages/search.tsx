@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 import { Concept, Annotation } from "open-discovery";
-import { displayResponseData } from "open-discovery-components";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import { ConceptFullName } from "./concept";
 import { AnnotationFullName } from "./annotation";

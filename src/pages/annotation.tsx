@@ -60,7 +60,7 @@ const AnnotationContent = (props: {annotation: Annotation.Annotation}) => {
   } else if (Annotation.isMorphism(annotation)) {
     const cacheId = `annotation/${annotation.language}/${annotation.package}/${annotation.id}`;
     return (
-      <Container>
+      <Container fluid>
         <Row>
           <Col>
             <dl className="dl-horizontal">

@@ -6,6 +6,14 @@ By default, the cursor is only shown if the `href` attribute is set.
   cursor: pointer;
 }
 
+/* Reduce maximum width of responsive container.
+*/
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
 /* Port horizontal description lists from Bootstrap 3.
 
 The `dl-horizontal` class was removed in Bootstrap 4 in favor of grid classes;
