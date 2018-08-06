@@ -1,6 +1,7 @@
 ---
 title: Mathematics of the Data Science Ontology
 math: true
+number-headings: true
 ---
 
 In this guide, we explain the mathematical underpinnings of the Data Science Ontology. To make sense of it, you should first read the beginning of the [introductory guide](/help/intro), to learn informally what we mean by “concepts” and “annotations”. You should also have a working knowledge of [monoidal categories](https://ncatlab.org/nlab/show/monoidal+category) and their [graphical languages](https://ncatlab.org/nlab/show/string+diagram). There are now several excellent introductions to these ideas, pitched at nonspecialists and focusing on applications beyond pure math [[BS10], [CP10], [Sel10]]. The math described here belongs to a small but growing line of work on categorical knowledge representation [[SK12], [Pat17]].
