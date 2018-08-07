@@ -3,9 +3,14 @@ title: Introduction to the Data Science Ontology
 math: true
 number-headings: true
 number-headings-depth: 4
+toc: true
+toc-depth: 4
 ---
 
 In this introductory guide, we explain the two basic entities comprising the Data Science Ontology, concepts and annotations. We also explain the ontology language by which concepts and annotations are specified, including both its textual syntax and graphical syntax. After reading this guide, you should be able to interpret the concept and annotation entries found on this website, as well as the semantic representations of data analyses produced by the Open Discovery project. The intended audience is working data scientists, authors of statistical software, and other practitioners of data-driven science. To make sense of this guide, you should be familiar with at least one programming language. Any language will do.
+
+**Contents**  
+!toc
 
 ## Overview
 
@@ -22,7 +27,7 @@ In summary, the entities comprising the ontology are classified by the two-by-tw
 | !glyph_kind(object) Type       | Type concept                   | Type annotation                      |
 | !glyph_kind(morphism) Function | Function concept               | Function annotation                  |
 
-We explicate all four notions at length in this guide. The pictograms in the table are used throughout the Data Science Ontology website as a visual shorthand.
+We explain all four notions at length in this guide. The pictograms in the table are used throughout the Data Science Ontology website as a visual shorthand.
 
 Significant modeling flexibility is required to accurately translate the diverse APIs of statistical software into a single set of universal concepts. To meet this challenge, an annotation can map a single library function or method onto an arbitrary composition of concepts. Compositions are expressed in **Monocl** (the MONoidal Ontology and Computing Language), a new ontology language created specifically for this project. We think of the ontology language as a minimalistic, typed, functional programming language. Being designed for knowledge representation, rather than practical computing, it is simpler than any real-world programming language but is still moderately expressive.
 
