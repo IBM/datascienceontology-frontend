@@ -14,7 +14,7 @@ export const AnnotationIndexPage = (props: {}) =>
   <Container>
     <section id="annotations">
       <h1>Index of Annotations</h1>
-      <AnnotationIndexRequest url={`${apiUrl}/annotations`} />
+      <AnnotationIndexRequest url={`${apiUrl}/annotations?short=true`} />
     </section>
   </Container>;
 

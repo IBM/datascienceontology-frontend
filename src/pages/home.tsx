@@ -14,7 +14,7 @@ import "../../style/pages/home.css";
 
 
 export const HomePage = () =>
-  <HomePageRequest url={`${apiUrl}/counts`} />;
+  <HomePageRequest url={`${apiUrl}/count`} />;
 
 
 interface HomePageProps {

@@ -14,7 +14,7 @@ export const ConceptIndexPage = (props: {}) =>
   <Container>
     <section id="concepts">
       <h1>Index of Concepts</h1>
-      <ConceptIndexRequest url={`${apiUrl}/concepts`} />
+      <ConceptIndexRequest url={`${apiUrl}/concepts?short=true`} />
     </section>
   </Container>;
 
