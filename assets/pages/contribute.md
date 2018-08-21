@@ -7,11 +7,11 @@ From this short guide, you will learn how to contribute new concepts and annotat
 
 ## How to contribute
 
-To submit a new concept or annotation, or improve an existing one, you should:
+The Data Science Ontology source is hosted on [GitHub](https://github.com/ibm/datascienceontology). To submit a new concept or annotation, or improve an existing one, you should:
 
 1. Write the concept or annotation, in the data format described below.
 2. Run the validation script, to ensure it conforms to the schema.
-3. Open a pull request on GitHub.
+3. Open a [pull request](https://github.com/ibm/datascienceontology/pulls) on GitHub.
 
 We welcome contributions of all kinds and we will make every effort to give each pull request a fair and timely review. Please understand that the Data Science Ontology is a new project. We are still learning what processes will be most effective.
 
