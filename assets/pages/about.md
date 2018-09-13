@@ -21,3 +21,4 @@ We are grateful for the advice and ideas of:
 - [Yaoli Mao](http://www.ilt.columbia.edu/people/yaoli-mao/) (Columbia University)
 - Robert McBurney (Accelerated Cure Project for Multiple Sclerosis)
 - Hollie Schmidt (Accelerated Cure Project for Multiple Sclerosis)
+- [Gustavo Stolovitzky](https://researcher.watson.ibm.com/researcher/view.php?person=us-gustavo) (IBM Research)
