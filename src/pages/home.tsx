@@ -56,8 +56,13 @@ const HomePageDisplay = (props: {data?: HomePageProps}) => {
           </Button>
         </Router.Link>
         <Router.Link to="/help">
-          <Button color="secondary" size="sm">
+          <Button color="secondary" size="sm" className="mr-2">
             Learn more
+          </Button>
+        </Router.Link>
+        <Router.Link to="/help/contribute">
+          <Button color="secondary" size="sm">
+            Contribute
           </Button>
         </Router.Link>
       </p>
