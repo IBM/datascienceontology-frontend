@@ -1,5 +1,7 @@
-# Data Science Ontology frontend
+# Frontend for Data Science Ontology
 
-The Data Science Ontology frontend is written in TypeScript and React.
+This repository contains the web frontend for the Data Science Ontology, written
+in TypeScript and React.
 
-The ontology itself lives in [its own repository](https://bitbucket.org/opendiscovery/data-science-ontology).
+The Data Science Ontology itself lives in its own
+[repository](https://github.com/ibm/datascienceontology).
