@@ -1,4 +1,5 @@
 import { SExp } from "./expression";
+import { Cytoscape } from "./cytoscape";
 
 /** Cached data for a code annotation.
 
@@ -25,6 +26,6 @@ export interface AnnotationCache {
     graphviz?: any;
     
     /* Definition as Cytoscape elements data. */
-    cytoscape?: any;
+    cytoscape?: Cytoscape;
   }
 }

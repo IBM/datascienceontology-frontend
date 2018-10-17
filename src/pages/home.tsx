@@ -5,8 +5,8 @@ import { Button, Card, CardTitle, Container, Row, Col } from "reactstrap";
 
 import * as Concept from "../interfaces/concept";
 import * as Annotation from "../interfaces/annotation";
-import { displayResponseData } from "open-discovery-components";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
+import { displayResponseData} from "../components/higher-order";
 import { AnnotationFullName } from "./annotation";
 import { ConceptFullName } from "./concept";
 import { apiUrl } from "../config";

@@ -4,7 +4,8 @@ import { Container } from "reactstrap";
 import { registerLanguage } from "highlight.js/lib/highlight";
 
 import { SExp } from "../interfaces/expression";
-import { CytoscapeDocument, MarkdownDocument } from "open-discovery-components";
+import { CytoscapeDocument } from "../components/cytoscape";
+import { MarkdownDocument } from "../components/markdown";
 import { SchemaGlyph, KindGlyph } from "../components/glyphs";
 import { Highlight } from "../components/highlight";
 import { SExpComponent } from "../components/sexp";

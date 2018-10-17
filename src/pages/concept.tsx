@@ -3,8 +3,9 @@ import * as Router from "react-router-dom";
 import * as ReactMarkdown from "react-markdown";
 
 import * as Concept from "../interfaces/concept";
-import { displayResponseData, Link } from "open-discovery-components";
 import { KindGlyph, SchemaGlyph } from "../components/glyphs";
+import { displayResponseData } from "../components/higher-order";
+import { Link } from "../components/link";
 import { apiUrl } from "../config";
 
 import "../../style/pages/concept.css";

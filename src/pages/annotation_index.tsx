@@ -3,7 +3,7 @@ import * as React from "react";
 import { Container } from "reactstrap";
 
 import * as Annotation from "../interfaces/annotation";
-import { displayResponseData } from "open-discovery-components";
+import { displayResponseData } from "../components/higher-order";
 import { AnnotationFullName } from "./annotation";
 import { apiUrl } from "../config";
 

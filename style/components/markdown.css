@@ -1,0 +1,42 @@
+/* Numbered headings.
+  https://philarcher.org/diary/2013/headingnumbers/
+*/
+.markdown-document {counter-reset: h2}
+.markdown-document h2 {counter-reset: h3}
+.markdown-document h3 {counter-reset: h4}
+.markdown-document h4 {counter-reset: h5}
+.markdown-document h5 {counter-reset: h6}
+
+.markdown-document h2.numbered:before {
+  counter-increment: h2;
+  content: counter(h2) ". ";
+}
+.markdown-document h3.numbered:before {
+  counter-increment: h3;
+  content: counter(h2) "." counter(h3) ". ";
+}
+.markdown-document h4.numbered:before {
+  counter-increment: h4;
+  content: counter(h2) "." counter(h3) "." counter(h4) ". ";
+}
+.markdown-document h5.numbered:before {
+  counter-increment: h5;
+  content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". ";
+}
+.markdown-document h6.numbered:before {
+  counter-increment: h6;
+  content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". ";
+}
+
+/* Numbered, nested lists for the table of contents.
+  https://stackoverflow.com/q/10405945
+*/
+.markdown-document .table-of-contents ol {
+  counter-reset: item;
+  list-style-type: none;
+  padding-left: 2rem;
+}
+.markdown-document .table-of-contents li:before {
+  content: counters(item, ".") ". ";
+  counter-increment: item;
+}

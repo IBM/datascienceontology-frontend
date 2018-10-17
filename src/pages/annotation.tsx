@@ -5,11 +5,13 @@ import * as ReactMarkdown from "react-markdown";
 import { Container, Row, Col } from "reactstrap";
 
 import * as Annotation from "../interfaces/annotation";
-import { CytoscapeComponent, Link, displayResponseData }
-  from "open-discovery-components";
-import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
-import { SExpComponent } from "../components/sexp";
 import { AnnotationCache } from "../interfaces/annotation_cache";
+import { CytoscapeComponent} from "../components/cytoscape";
+import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
+import { displayResponseData } from "../components/higher-order";
+import { Link } from "../components/link";
+import { SExpComponent } from "../components/sexp";
+
 import { apiUrl } from "../config";
 
 import "../../style/pages/annotation.css";
