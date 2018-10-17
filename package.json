@@ -5,7 +5,7 @@
   "description": "Frontend for the Data Science Ontology",
   "main": "index.js",
   "author": "Evan Patterson",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "scripts": {
     "serve": "webpack-dev-server --content-base build/"
   },
