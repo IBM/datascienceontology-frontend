@@ -2,7 +2,7 @@ import * as _ from "lodash";
 import * as React from "react";
 import { Container } from "reactstrap";
 
-import { Concept } from "open-discovery";
+import * as Concept from "../interfaces/concept";
 import { displayResponseData } from "open-discovery-components";
 import { ConceptFullName } from "./concept";
 import { apiUrl } from "../config";

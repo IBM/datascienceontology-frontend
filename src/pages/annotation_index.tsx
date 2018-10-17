@@ -2,7 +2,7 @@ import * as _ from "lodash";
 import * as React from "react";
 import { Container } from "reactstrap";
 
-import { Annotation } from "open-discovery";
+import * as Annotation from "../interfaces/annotation";
 import { displayResponseData } from "open-discovery-components";
 import { AnnotationFullName } from "./annotation";
 import { apiUrl } from "../config";

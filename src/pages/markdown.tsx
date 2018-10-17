@@ -3,7 +3,7 @@ import * as Router from "react-router-dom";
 import { Container } from "reactstrap";
 import { registerLanguage } from "highlight.js/lib/highlight";
 
-import { SExp } from "open-discovery";
+import { SExp } from "../interfaces/expression";
 import { CytoscapeDocument, MarkdownDocument } from "open-discovery-components";
 import { SchemaGlyph, KindGlyph } from "../components/glyphs";
 import { Highlight } from "../components/highlight";

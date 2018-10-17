@@ -33,7 +33,6 @@
     "katex": "^0.10.0-beta",
     "lodash": "^4.17.10",
     "mdast-util-toc": "^2.0.1",
-    "open-discovery": "file:.yalc/open-discovery",
     "open-discovery-components": "file:.yalc/open-discovery-components",
     "query-string": "^6.1.0",
     "react": "^16.4.2",

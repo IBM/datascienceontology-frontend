@@ -1,4 +1,4 @@
-import { SExp, Cytoscape, Graphviz } from "open-discovery";
+import { SExp } from "./expression";
 
 /** Cached data for a code annotation.
 
@@ -22,9 +22,9 @@ export interface AnnotationCache {
     expression: SExp;
     
     /* Definition as Graphviz JSON. */
-    graphviz?: Graphviz.Graph;
+    graphviz?: any;
     
     /* Definition as Cytoscape elements data. */
-    cytoscape?: Cytoscape.Cytoscape;
+    cytoscape?: any;
   }
 }

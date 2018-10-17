@@ -4,7 +4,7 @@ import * as Router from "react-router-dom";
 import * as ReactMarkdown from "react-markdown";
 import { Container, Row, Col } from "reactstrap";
 
-import { Annotation } from "open-discovery";
+import * as Annotation from "../interfaces/annotation";
 import { CytoscapeComponent, Link, displayResponseData }
   from "open-discovery-components";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";

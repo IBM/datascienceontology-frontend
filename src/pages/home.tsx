@@ -3,7 +3,8 @@ import * as React from "react";
 import * as Router from "react-router-dom";
 import { Button, Card, CardTitle, Container, Row, Col } from "reactstrap";
 
-import { Concept, Annotation } from "open-discovery";
+import * as Concept from "../interfaces/concept";
+import * as Annotation from "../interfaces/annotation";
 import { displayResponseData } from "open-discovery-components";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import { AnnotationFullName } from "./annotation";

@@ -2,7 +2,7 @@ import * as React from "react";
 import * as Router from "react-router-dom";
 import * as ReactMarkdown from "react-markdown";
 
-import { Concept } from "open-discovery";
+import * as Concept from "../interfaces/concept";
 import { displayResponseData, Link } from "open-discovery-components";
 import { KindGlyph, SchemaGlyph } from "../components/glyphs";
 import { apiUrl } from "../config";

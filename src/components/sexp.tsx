@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
 
-import { SExp } from "open-discovery";
+import { SExp } from "../interfaces/expression";
 
 import "../../style/components/sexp.css";
 

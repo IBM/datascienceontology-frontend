@@ -4,7 +4,8 @@ import { Badge, Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-import { Concept, Annotation } from "open-discovery";
+import * as Concept from "../interfaces/concept";
+import * as Annotation from "../interfaces/annotation";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import { ConceptFullName } from "./concept";
 import { AnnotationFullName } from "./annotation";
