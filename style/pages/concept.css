@@ -35,20 +35,20 @@
   content: "";
 }
 
-.concept-domain-list ol {
+.concept-port-list ol {
   padding-left: 1em;
   margin: 0;
 }
-.concept-domain-list ol:empty {
+.concept-port-list ol:empty {
   padding: 0;
 }
-.concept-domain-list ol:empty::after {
+.concept-port-list ol:empty::after {
   content: "(empty)";
 }
-.concept-domain-list li:only-child {
+.concept-port-list li:only-child {
   list-style: none;
   margin-left: -1em;
 }
-.concept-domain-list p {
+.concept-port-list p {
   margin: 0;
 }

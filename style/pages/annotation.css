@@ -26,18 +26,18 @@
   content: "(none)";
 }
 
-.annotation-domain-list ol {
+.annotation-port-list ol {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.annotation-domain-list ol:empty::after {
+.annotation-port-list ol:empty::after {
   content: "(empty)";
 }
 
-.morphism-definition .container {
+.function-definition .container {
   padding: 0;
 }
-.morphism-definition div[class^="col"] {
+.function-definition div[class^="col"] {
   padding: 0;
 }

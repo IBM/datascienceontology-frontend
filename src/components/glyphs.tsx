@@ -21,9 +21,9 @@ export const SchemaGlyph = (props: {schema: string}) => {
 /** Glyph for kind of concept or annotation.
  */
 export const KindGlyph = (props: {kind: string}) => {
-  if (props.kind === "object") {
+  if (props.kind === "type") {
     return <FontAwesomeIcon icon={faCube} />;
-  } else if (props.kind === "morphism") {
+  } else if (props.kind === "function") {
     return <FontAwesomeIcon icon={faLongArrowAltRight} />;
   }
   return null;

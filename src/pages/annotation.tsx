@@ -52,14 +52,14 @@ const AnnotationRequest = displayResponseData(AnnotationDisplay);
 
 const AnnotationContent = (props: {annotation: Annotation.Annotation}) => {
   const annotation = props.annotation;
-  if (Annotation.isObject(annotation)) {
+  if (Annotation.isType(annotation)) {
     return (
       <dl className="dl-horizontal">
         {BaseDefList({ annotation })}
-        {ObjectDefList({ annotation })}
+        {TypeDefList({ annotation })}
       </dl>
     );
-  } else if (Annotation.isMorphism(annotation)) {
+  } else if (Annotation.isFunction(annotation)) {
     const cacheId = `annotation/${annotation.language}/${annotation.package}/${annotation.id}`;
     return (
       <Container fluid>
@@ -67,11 +67,11 @@ const AnnotationContent = (props: {annotation: Annotation.Annotation}) => {
           <Col>
             <dl className="dl-horizontal">
               {BaseDefList({ annotation })}
-              {MorphismDefList({ annotation })}
+              {FunctionDefList({ annotation })}
             </dl>
           </Col>
           <Col>
-            <MorphismDiagramRequest url={`${apiUrl}/_cache/${cacheId}`} />
+            <FunctionDiagramRequest url={`${apiUrl}/_cache/${cacheId}`} />
           </Col>
         </Row>
       </Container>
@@ -103,7 +103,7 @@ const BaseDefList = (props: {annotation: Annotation.Annotation}) => {
     <dd key="kind-dd">
       <KindGlyph kind={annotation.kind} />
       {" "}
-      {annotation.kind === "object" ? "type" : "function"}
+      {annotation.kind}
     </dd>,
   ];
   if (annotation.name) { elements.push(
@@ -119,28 +119,28 @@ const BaseDefList = (props: {annotation: Annotation.Annotation}) => {
   return elements;
 }
 
-const ObjectDefList = (props: {annotation: Annotation.ObjectAnnotation}) => {
+const TypeDefList = (props: {annotation: Annotation.TypeAnnotation}) => {
   const annotation = props.annotation;
-  if (Annotation.isPythonObject(annotation)) {
-    return PythonObjectDefList({annotation});
-  } else if (Annotation.isRObject(annotation)) {
-    return RObjectDefList({annotation});
+  if (Annotation.isPythonType(annotation)) {
+    return PythonTypeDefList({annotation});
+  } else if (Annotation.isRType(annotation)) {
+    return RTypeDefList({annotation});
   }
   return [];
 }
 
-const MorphismDefList = (props: {annotation: Annotation.MorphismAnnotation}) => {
+const FunctionDefList = (props: {annotation: Annotation.FunctionAnnotation}) => {
   const annotation = props.annotation;
-  if (Annotation.isPythonMorphism(annotation)) {
-    return PythonMorphismDefList({annotation});
-  } else if (Annotation.isRMorphism(annotation)) {
-    return RMorphismDefList({annotation});
+  if (Annotation.isPythonFunction(annotation)) {
+    return PythonFunctionDefList({annotation});
+  } else if (Annotation.isRFunction(annotation)) {
+    return RFunctionDefList({annotation});
   }
   return [];
 }
 
 
-const PythonObjectDefList = (props: {annotation: Annotation.PythonObject}) => {
+const PythonTypeDefList = (props: {annotation: Annotation.PythonType}) => {
   const annotation = props.annotation;
   const classes = typeof annotation.class === "string" ?
     [ annotation.class ] : annotation.class;
@@ -166,7 +166,7 @@ const PythonObjectDefList = (props: {annotation: Annotation.PythonObject}) => {
   ];
 }
 
-const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) => {
+const PythonFunctionDefList = (props: {annotation: Annotation.PythonFunction}) => {
   const annotation = props.annotation;
   const classes = typeof annotation.class === "string" ?
     [ annotation.class ] : annotation.class;
@@ -196,13 +196,13 @@ const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) =
     </dd>,
   ); }
   elements.push(
-    <dt key="dom-dt">Input</dt>,
+    <dt key="dom-dt">Inputs</dt>,
     <dd key="dom-dd">
-      <DomainObjectList objects={annotation.domain} />
+      <PortAnnotationList ports={annotation.inputs} />
     </dd>,
-    <dt key="codom-dt">Output</dt>,
+    <dt key="codom-dt">Outputs</dt>,
     <dd key="codom-dd">
-      <DomainObjectList objects={annotation.codomain} />
+      <PortAnnotationList ports={annotation.outputs} />
     </dd>,
     <dt key="def-dt">Definition</dt>,
     <dd key="def-dd">
@@ -213,7 +213,7 @@ const PythonMorphismDefList = (props: {annotation: Annotation.PythonMorphism}) =
 }
 
 
-const RObjectDefList = (props: {annotation: Annotation.RObject}) => {
+const RTypeDefList = (props: {annotation: Annotation.RType}) => {
   const annotation = props.annotation;
   const slots = annotation.slots || [];
   return [
@@ -232,7 +232,7 @@ const RObjectDefList = (props: {annotation: Annotation.RObject}) => {
   ];
 }
 
-const RMorphismDefList = (props: {annotation: Annotation.RMorphism}) => {
+const RFunctionDefList = (props: {annotation: Annotation.RFunction}) => {
   const annotation = props.annotation;
   const elements: JSX.Element[] = [
     <dt key="function-dt">R function</dt>,
@@ -247,13 +247,13 @@ const RMorphismDefList = (props: {annotation: Annotation.RMorphism}) => {
     </dd>,
   ); }
   elements.push(
-    <dt key="dom-dt">Input</dt>,
+    <dt key="dom-dt">Inputs</dt>,
     <dd key="dom-dd">
-      <DomainObjectList objects={annotation.domain} />
+      <PortAnnotationList ports={annotation.inputs} />
     </dd>,
-    <dt key="codom-dt">Output</dt>,
+    <dt key="codom-dt">Outputs</dt>,
     <dd key="codom-dd">
-      <DomainObjectList objects={annotation.codomain} />
+      <PortAnnotationList ports={annotation.outputs} />
     </dd>,
     <dt key="def-dt">Definition</dt>,
     <dd key="def-dd">
@@ -264,11 +264,11 @@ const RMorphismDefList = (props: {annotation: Annotation.RMorphism}) => {
 }
 
 
-const DomainObjectList = (props: {objects: Annotation.DomainObject[]}) =>
-  <div className="annotation-domain-list">
-    <ol>{props.objects.map((ob, i) =>
+const PortAnnotationList = (props: {ports: Annotation.PortAnnotation[]}) =>
+  <div className="annotation-port-list">
+    <ol>{props.ports.map((port, i) =>
       <li key={i}>
-        <code>{ob.slot}</code>
+        <code>{port.slot}</code>
       </li>)}
     </ol>
   </div>;
@@ -303,7 +303,7 @@ const PackageRepositoryLink = (props: {annotation: Annotation.Annotation}) => {
   return null;
 }
 
-const MorphismDiagram = (props: {data?: AnnotationCache}) => {
+const FunctionDiagram = (props: {data?: AnnotationCache}) => {
   const cache = props.data;
   return cache && (
     <CytoscapeComponent height="600px" cytoscape={{
@@ -314,7 +314,7 @@ const MorphismDiagram = (props: {data?: AnnotationCache}) => {
     }} />
   );
 }
-const MorphismDiagramRequest = displayResponseData(MorphismDiagram);
+const FunctionDiagramRequest = displayResponseData(FunctionDiagram);
 
 
 export const AnnotationFullName = (props: {annotation: Annotation.Annotation}) => {

@@ -34,7 +34,7 @@ export const ConceptDisplay = (props: {data?: Concept.Concept}) => {
       </h3>
       <dl className="dl-horizontal">
         {ConceptDefList({ concept })}
-        {Concept.isMorphism(concept) && MorphismDefList({ concept })}
+        {Concept.isFunction(concept) && FunctionConceptDefList({ concept })}
       </dl>
     </section>
   );
@@ -55,7 +55,7 @@ const ConceptDefList = (props: {concept: Concept.Concept}) => {
     <dd key="kind-dd">
       <KindGlyph kind={concept.kind} />
       {" "}
-      {concept.kind === "object" ? "type" : "function"}
+      {concept.kind}
     </dd>,
     <dt key="name-dt">Name</dt>,
     <dd key="name-dd">{concept.name}</dd>,
@@ -101,33 +101,33 @@ const ConceptDefList = (props: {concept: Concept.Concept}) => {
   return elements;
 }
 
-const MorphismDefList = (props: {concept: Concept.Morphism}) => {
+const FunctionConceptDefList = (props: {concept: Concept.FunctionConcept}) => {
   const concept = props.concept;
   return [
-    <dt key="dom-dt">Input</dt>,
-    <dd key="dom-dd"><DomainObjectsDisplay objects={concept.domain} /></dd>,
-    <dt key="codom-dt">Output</dt>,
-    <dd key="codom-dd"><DomainObjectsDisplay objects={concept.codomain} /></dd>,
+    <dt key="dom-dt">Inputs</dt>,
+    <dd key="dom-dd"><PortsDisplay ports={concept.inputs} /></dd>,
+    <dt key="codom-dt">Outputs</dt>,
+    <dd key="codom-dd"><PortsDisplay ports={concept.outputs} /></dd>,
   ];
 }
 
-const DomainObjectsDisplay = (props: {objects: Concept.DomainObject[]}) => {
-  return <div className="concept-domain-list">
-    <ol>{props.objects.map((object,i) =>
+const PortsDisplay = (props: {ports: Concept.Port[]}) => {
+  return <div className="concept-port-list">
+    <ol>{props.ports.map((port,i) =>
       <li key={i}>
-        <DomainObjectDisplay object={object} />
+        <PortDisplay port={port} />
       </li>)}
     </ol>
   </div>;
 }
 
-const DomainObjectDisplay = (props: {object: Concept.DomainObject}) => {
-  const obj = props.object;
-  return <div className="concept-domain-object">
-    {obj.name !== undefined && `${obj.name}: `}
-    <Router.Link to={`/concept/${obj.object}`}>{obj.object}</Router.Link>
-    {obj.description !== undefined && <p className="text-muted">
-      {obj.description}
+const PortDisplay = (props: {port: Concept.Port}) => {
+  const port = props.port;
+  return <div className="concept-port">
+    {port.name !== undefined && `${port.name}: `}
+    <Router.Link to={`/concept/${port.type}`}>{port.type}</Router.Link>
+    {port.description !== undefined && <p className="text-muted">
+      {port.description}
     </p>}
   </div>;
 }

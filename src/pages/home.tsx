@@ -117,7 +117,7 @@ const RandomConceptDisplay = (props: {data?: Concept.Concept}) => {
       <dd>
         <KindGlyph kind={concept.kind} />
         {" "}
-        {concept.kind === "object" ? "type" : "function"}
+        {concept.kind}
       </dd>
       {concept.description && <dt>Description</dt>}
       {concept.description && <dd>{concept.description}</dd>}
@@ -139,7 +139,7 @@ const RandomAnnotationDisplay = (props: {data?: Annotation.Annotation}) => {
       <dd>
         <KindGlyph kind={note.kind} />
         {" "}
-        {note.kind === "object" ? "type" : "function"}
+        {note.kind}
       </dd>
       <dt>Language</dt>
       <dd>
