@@ -20,31 +20,31 @@ export interface Annotation {
   /* Identifer for annotation, unique within language and package. */
   id: string;
   
-  /* Human-readable name of annotated code object. */
+  /* Human-readable name of annotated code entity. */
   name?: string;
   
-  /* Human-readable description of annotated code object. */
+  /* Human-readable description of annotated code entity. */
   description?: string;
   
   /* Kind of annotation. */
-  kind: "object" | "morphism";
+  kind: "type" | "function";
   
   /* Definition of annotated code as concept in ontology. */
   definition: SExp;
 }
 
-/** Object annotation in ontology.
+/** Type annotation in ontology.
  */
-export interface ObjectAnnotation extends Annotation {
+export interface TypeAnnotation extends Annotation {
   /* Kind of annotation. */
-  kind: "object";
+  kind: "type";
 }
 
-/** Morphism annotation in ontology.
+/** Function annotation in ontology.
  */
-export interface MorphismAnnotation extends Annotation {
+export interface FunctionAnnotation extends Annotation {
   /* Kind of annotation. */
-  kind: "morphism";
+  kind: "function";
 }
 
 
@@ -57,23 +57,23 @@ export interface PythonAnnotation extends Annotation {
 
 /** Annotation for a Python class.
  */
-export interface PythonObject extends PythonAnnotation {
+export interface PythonType extends PythonAnnotation {
   /* Kind of annotation. */
-  kind: "object";
+  kind: "type";
 
   /* Python class to which annotation applies. */
   class: string | Array<string>;
   
-  /* Slots corresponding to morphisms in the ontology.
+  /* Slots corresponding to functions in the ontology.
    */
   slots?: Slot[];
 }
 
 /** Annotation for a Python function or method.
  */
-export interface PythonMorphism extends Annotation {
+export interface PythonFunction extends Annotation {
   /* Kind of annotation. */
-  kind: "morphism";
+  kind: "function";
 
   /* Fully qualified name of function, if annotating a function. */
   function?: string;
@@ -84,11 +84,11 @@ export interface PythonMorphism extends Annotation {
   /* Unqualified name of method, if annotating a method. */
   method?: string;
   
-  /* Mapping of arguments (positional and named) to morphism domain/ */
-  domain: DomainObject[];
+  /* Mapping of arguments (positional and named) to function inputs. */
+  inputs: PortAnnotation[];
   
-  /* Mapping of mutated arguments and return value to morphism codomain. */
-  codomain: DomainObject[];
+  /* Mapping of mutated arguments and return value to function outputs. */
+  outputs: PortAnnotation[];
 }
 
 
@@ -101,9 +101,9 @@ export interface RAnnotation extends Annotation {
 
 /** Annotation for an R class.
  */
-export interface RObject extends RAnnotation {
+export interface RType extends RAnnotation {
   /* Kind of annotation. */
-  kind: "object";
+  kind: "type";
 
   /* R class to which annotation applies. */
   class: string;
@@ -111,16 +111,16 @@ export interface RObject extends RAnnotation {
   /* Object-oriented system to which class belongs (default S3). */
   system?: string;
   
-  /* Slots corresponding to morphisms in the ontology.
+  /* Slots corresponding to functions in the ontology.
    */
   slots?: Slot[];
 }
 
 /** Annotation for an R function.
  */
-export interface RMorphism extends RAnnotation {
+export interface RFunction extends RAnnotation {
   /* Kind of annotation. */
-  kind: "morphism";
+  kind: "function";
 
   /* Name of function. */
   function: string;
@@ -131,66 +131,66 @@ export interface RMorphism extends RAnnotation {
   /* Object-oriented system of function, if generic (default S3). */
   system?: string;
   
-  /* Mapping of arguments (positional and named) to morphism domain/ */
-  domain: DomainObject[];
+  /* Mapping of arguments (positional and named) to function inputs. */
+  inputs: PortAnnotation[];
   
-  /* Mapping of mutated arguments and return value to morphism codomain. */
-  codomain: DomainObject[];
+  /* Mapping of mutated arguments and return value to function outputs. */
+  outputs: PortAnnotation[];
 }
 
 
-/** Object belonging to the domain or codomain of a concrete function or method.
+/** Input or output of a concrete function or method.
  */
-export interface DomainObject {
+export interface PortAnnotation {
   /* Function slot (argument or return value) */
   slot: number | string;
   
-  /* Syntactic name of domain object */
+  /* Syntactic name of port */
   name?: string;
   
-  /* Human-readable description of domain object */
+  /* Human-readable description of port */
   description?: string;
 }
 
-/** Slot corresponding to a morphism in the ontology.
+/** Slot corresponding to a function in the ontology.
  */
 export interface Slot {
   /* Language-specific slot specification. */
   slot: string;
   
-  /* Definition of slot as morphism in ontology. */
+  /* Definition of slot as function in ontology. */
   definition: SExp;
 }
 
 
-export function isObject(note: Annotation): note is ObjectAnnotation {
-  return note.kind === "object";
+export function isType(note: Annotation): note is TypeAnnotation {
+  return note.kind === "type";
 }
 
-export function isMorphism(note: Annotation): note is MorphismAnnotation {
-  return note.kind === "morphism";
+export function isFunction(note: Annotation): note is FunctionAnnotation {
+  return note.kind === "function";
 }
 
 export function isPython(note: Annotation): note is PythonAnnotation {
   return note.language === "python";
 }
 
-export function isPythonObject(note: Annotation): note is PythonObject {
-  return note.language === "python" && note.kind === "object";
+export function isPythonType(note: Annotation): note is PythonType {
+  return note.language === "python" && note.kind === "type";
 }
 
-export function isPythonMorphism(note: Annotation): note is PythonMorphism {
-  return note.language === "python" && note.kind === "morphism";
+export function isPythonFunction(note: Annotation): note is PythonFunction {
+  return note.language === "python" && note.kind === "function";
 }
 
 export function isR(note: Annotation): note is RAnnotation {
   return note.language === "r";
 }
 
-export function isRObject(note: Annotation): note is RObject {
-  return note.language === "r" && note.kind === "object";
+export function isRType(note: Annotation): note is RType {
+  return note.language === "r" && note.kind === "type";
 }
 
-export function isRMorphism(note: Annotation): note is RMorphism {
-  return note.language === "r" && note.kind === "morphism";
+export function isRFunction(note: Annotation): note is RFunction {
+  return note.language === "r" && note.kind === "function";
 }

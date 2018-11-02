@@ -21,7 +21,7 @@ export interface Concept {
   description?: string;
   
   /* Kind of concept. */
-  kind: "object" | "morphism";
+  kind: "type" | "function";
   
   /* Definition of concept in terms of other concepts */
   definition?: SExp;
@@ -41,41 +41,41 @@ export interface Concept {
 
 /** Object concept in an ontology.
  */
-export interface Object extends Concept {
+export interface TypeConcept extends Concept {
   /* Kind of concept. */
-  kind: "object";
+  kind: "type";
 }
 
 /** Morphism concept in an ontology.
  */
-export interface Morphism extends Concept {
+export interface FunctionConcept extends Concept {
   /* Kind of concept. */
-  kind: "morphism";
+  kind: "function";
 
-  /* Domain of morphism. */
-  domain: DomainObject[];
+  /* Inputs of function. */
+  inputs: Port[];
   
-  /* Codomain of morphism. */
-  codomain: DomainObject[];
+  /* Outputs of function. */
+  outputs: Port[];
 }
 
-/** Object belonging to the domain or codomain of a morphism.
+/** Input or output of a function.
  */
-export interface DomainObject {
-  /* ID of an object concept */
-  object: string;
+export interface Port {
+  /* ID of a type concept */
+  type: string;
   
-  /* Syntactic name of domain object */
+  /* Syntactic name of port */
   name?: string;
   
-  /* Human-readable description of domain object */
+  /* Human-readable description of port */
   description?: string;
 }
 
-export function isObject(concept: Concept): concept is Object {
- return concept.kind === "object";
+export function isType(concept: Concept): concept is TypeConcept {
+ return concept.kind === "type";
 }
 
-export function isMorphism(concept: Concept): concept is Morphism {
- return concept.kind === "morphism";
+export function isFunction(concept: Concept): concept is FunctionConcept {
+ return concept.kind === "function";
 }
