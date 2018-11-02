@@ -16,6 +16,8 @@ import { apiUrl } from "../config";
 
 import "../../style/pages/annotation.css";
 import * as CytoscapeStyle from "../../style/pages/annotation.cytoscape.json";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 
 interface AnnotationKey {
@@ -36,12 +38,16 @@ export const AnnotationDisplay = (props: {data?: Annotation.Annotation}) => {
   return annotation && (
     <section id="annotation">
       <h3>
-        <span className="text-muted" style={{paddingRight: "2em"}}>
+        <span className="text-secondary" style={{paddingRight: "2em"}}>
           <SchemaGlyph schema="annotation" />
           {" "}
           Annotation
         </span>
         {annotation.name || annotation.id}
+        <a className="text-secondary" title="Edit on GitHub"
+           href={`https://github.com/IBM/datascienceontology/tree/master/annotation/${annotation.language}/${annotation.package}/${annotation.id}.yml`}>
+          <FontAwesomeIcon icon={faEdit} className="float-right" />
+        </a>
       </h3>
       <AnnotationContent annotation={annotation} />
     </section>

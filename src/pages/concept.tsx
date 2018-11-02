@@ -10,6 +10,7 @@ import { apiUrl } from "../config";
 
 import "../../style/pages/concept.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faWikipediaW } from "@fortawesome/free-brands-svg-icons";
 
 
@@ -25,12 +26,16 @@ export const ConceptDisplay = (props: {data?: Concept.Concept}) => {
   return concept && (
     <section id="concept">
       <h3>
-        <span className="text-muted" style={{paddingRight: "2em"}}>
+        <span className="text-secondary" style={{paddingRight: "2em"}}>
           <SchemaGlyph schema="concept" />
           {" "}
           Concept
         </span>
         {concept.name}
+        <a className="text-secondary" title="Edit on GitHub"
+           href={`https://github.com/IBM/datascienceontology/tree/master/concept/${concept.id}.yml`}>
+          <FontAwesomeIcon icon={faEdit} className="float-right" />
+        </a>
       </h3>
       <dl className="dl-horizontal">
         {ConceptDefList({ concept })}
