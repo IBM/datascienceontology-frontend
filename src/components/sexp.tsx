@@ -46,7 +46,7 @@ export class SExpComponent extends React.Component<SExpProps> {
   
   renderSExpHead(name: string): JSX.Element {
     return <span className="s-expression-head">
-      {displayNames.hasOwnProperty(name) ? displayNames[name] : name}
+      {name}
     </span>;
   }
   
@@ -58,19 +58,3 @@ export class SExpComponent extends React.Component<SExpProps> {
     </span>;
   }
 }
-
-/** User-friendtly names to display for the head symbols of S-expressions.
- */
-const displayNames: { [name: string]: string; } = {
-  // Type constructors
-  Ob: "Type",
-  Hom: "Function",
-  SubOb: "Subtype",
-  SubHom: "Subfunction",
-  
-  // Term constructors
-  otimes: "product",
-  munit: "unit",
-  braid: "swap",
-  mcopy: "copy",
-};
