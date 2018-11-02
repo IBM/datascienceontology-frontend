@@ -1,22 +1,26 @@
 ---
 title: Mathematics of the Data Science Ontology
 math: true
-number-headings: true
+#number-headings: true
 ---
 
-In this guide, we explain the mathematical underpinnings of the Data Science Ontology. To make sense of it, you should first read the beginning of the [introductory guide](/help/intro), to learn informally what we mean by “concepts” and “annotations”. You should also have a working knowledge of [monoidal categories](https://ncatlab.org/nlab/show/monoidal+category) and their [graphical languages](https://ncatlab.org/nlab/show/string+diagram). There are now several excellent introductions to these ideas, pitched at nonspecialists and focusing on applications beyond pure math [[BS10], [CP10], [Sel10]]. The math described here belongs to a small but growing line of work on categorical knowledge representation [[SK12], [Pat17]].
+_**Warning**: This document is under construction._
 
-## Overview
+In this guide, we explain the mathematical underpinnings of the Data Science Ontology. To make sense of it, you should first read the beginning of the [introductory guide](/help/intro), to learn informally what we mean by “concepts” and “annotations”. You should also have a working knowledge of [monoidal categories](https://ncatlab.org/nlab/show/monoidal+category) and their [graphical languages](https://ncatlab.org/nlab/show/string+diagram). There are now several excellent introductions to these ideas, pitched at nonspecialists and focusing on applications outside pure math [[BS10], [CP10], [Sel10]]. The math described here belongs to a small but growing line of work on categorical knowledge representation [[SK12], [Pat17]].
 
-*To be written.*
+Throughout this website and the ontology data format, we use terminology of programming language theory. Category theory has its own distinctive terminology. The following dictionary may be helpful for translating back and forth.
 
-## Concepts as category
-
-*To be written.*
-
-## Annotations as functor
-
-*To be written.*
+| | Programming | Category theory            | Notation                      |
+|-|-------------|----------------------------|-------------------------------|
+| | type        | object                     | $X$                           |
+| | function    | morphism                   | $f: X \to Y$                  |
+| | inputs      | domain                     | $\text{dom}(f)$               |
+| | outputs     | codomain                   | $\text{codom}(f)$             |
+| | composition | composition                | $f \cdot g$ or $fg$           |
+| | product     | cartesian monoidal product | $X \times Y$ and $f \times g$ |
+| | unit type   | monoidal unit              | $1$                           |
+| | copy        | internal comultiplication  | $\Delta_X: X \to X \times X$  |
+| | delete      | internal counit            | $\lozenge_X: X \to 1$         |
 
 ## References
 
