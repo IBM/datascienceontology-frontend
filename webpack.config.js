@@ -2,10 +2,15 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
+  mode: "production",
   entry: "./src/index.tsx",
   output: {
     filename: "bundle.js",
     path: path.join(__dirname, "build")
+  },
+  performance: {
+    // Don't warn about bundle size (https://github.com/webpack/webpack/issues/3486)
+    hints: false
   },
   devtool: "source-map",
   resolve: {
@@ -23,10 +28,7 @@ module.exports = {
       {
         enforce: "pre",
         test: /\.js$/,
-        loader: "source-map-loader",
-        exclude: [
-          path.join(__dirname, "node_modules", "davenport")
-        ]
+        loader: "source-map-loader"
       },
       // Bundle all imported '.css' files.
       {
