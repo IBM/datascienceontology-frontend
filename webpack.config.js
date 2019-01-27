@@ -12,7 +12,7 @@ module.exports = {
     // Don't warn about bundle size (https://github.com/webpack/webpack/issues/3486)
     hints: false
   },
-  devtool: "source-map",
+  devtool: "cheap-module-source-map",
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
     extensions: [".ts", ".tsx", ".js", ".json"]
