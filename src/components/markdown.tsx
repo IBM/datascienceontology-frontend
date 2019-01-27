@@ -112,10 +112,13 @@ export class MarkdownDocument
       ],
       renderers: {
         ...options.renderers,
-        heading: (props: {level: number, children: string[]}) => {
+        heading: (props: {
+              level: number,
+              children: React.ReactElement<{value: string, children?: any}>[]
+            }) => {
           const numbered = doc.data["number-headings"] &&
             (props.level <= (doc.data["number-headings-depth"] || 6));
-          const value = props.children.join('');
+          const value = props.children[0].props.value;
           return React.createElement(`h${props.level}`, {
             className: numbered ? "numbered" : undefined,
             id: slugger.slug(value),
