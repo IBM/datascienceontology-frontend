@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
-import { Badge, Nav, NavItem, NavLink, TabContent, TabPane } from "reactstrap";
+import { Tabs, Tag } from "react-bulma-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
@@ -98,50 +98,41 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
     }
         
     return <section className="search-results">
-      <Nav tabs>
-        <NavItem className="mt-0">
-          <NavLink onClick={() => this.setState({activeTab: "concepts"})}
-                   active={this.state.activeTab === "concepts"}
-                   disabled={this.state.totalConcepts === 0}>
-            <SchemaGlyph schema="concept" />
-            {" "}
-            Concepts
-            <Badge color="light" className="ml-2">
-              {this.state.totalConcepts}
-            </Badge>
-          </NavLink>
-        </NavItem>
-        <NavItem className="mt-0">
-          <NavLink onClick={() => this.setState({activeTab: "annotations"})}
-                   active={this.state.activeTab === "annotations"}
-                   disabled={this.state.totalAnnotations === 0}>
-            <SchemaGlyph schema="annotation" />
-            {" "}
-            Annotations
-            <Badge color="light" className="ml-2">
-              {this.state.totalAnnotations}
-            </Badge>
-          </NavLink>
-        </NavItem>
-      </Nav>
-      <TabContent activeTab={this.state.activeTab}>
-        <TabPane tabId="concepts">
-          <ul>
-            {this.state.concepts.map(concept =>
-              <li key={concept.id} >
-                <ConceptResult concept={concept} />
-              </li>)}
-          </ul>
-        </TabPane>
-        <TabPane tabId="annotations">
-          <ul>
-            {this.state.annotations.map((annotation,i) =>
-              <li key={i} >
-                <AnnotationResult annotation={annotation} />
-              </li>)}
-          </ul>
-        </TabPane>
-      </TabContent>
+      <Tabs>
+        <Tabs.Tab active={this.state.activeTab === "concepts"}
+            onClick={() => this.setState({activeTab: "concepts"})}>
+          <SchemaGlyph schema="concept" />
+          {" "}
+          Concepts
+          {" "}
+          <Tag color="light">
+            {this.state.totalConcepts}
+          </Tag>
+        </Tabs.Tab>
+        <Tabs.Tab active={this.state.activeTab === "annotations"}
+            onClick={() => this.setState({activeTab: "annotations"})}>
+          <SchemaGlyph schema="annotation" />
+          {" "}
+          Annotations
+          {" "}
+          <Tag color="light">
+            {this.state.totalAnnotations}
+          </Tag>
+        </Tabs.Tab>
+      </Tabs>
+      {this.state.activeTab === "concepts" ?
+        <ul>
+          {this.state.concepts.map(concept =>
+            <li key={concept.id} >
+              <ConceptResult concept={concept} />
+            </li>)}
+        </ul> :
+        <ul>
+          {this.state.annotations.map((annotation,i) =>
+            <li key={i} >
+              <AnnotationResult annotation={annotation} />
+            </li>)}
+        </ul>}
     </section>;
   }
 }

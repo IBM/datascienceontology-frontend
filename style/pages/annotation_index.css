@@ -4,6 +4,11 @@
 #annotation-index li {
   list-style: none;
 }
-#annotation-index h3 a, h4 a {
+#annotation-index li ul {
+  list-style: none;
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+}
+#annotation-index h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   color: initial;
 }

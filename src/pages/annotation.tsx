@@ -2,7 +2,7 @@ import * as _ from "lodash";
 import * as React from "react";
 import * as Router from "react-router-dom";
 import * as ReactMarkdown from "react-markdown";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Columns, Heading } from "react-bulma-components";
 
 import * as Annotation from "../interfaces/annotation";
 import { AnnotationCache } from "../interfaces/annotation_cache";
@@ -37,18 +37,18 @@ export const AnnotationDisplay = (props: {data?: Annotation.Annotation}) => {
   const annotation = props.data;
   return annotation && (
     <section id="annotation">
-      <h3>
-        <span className="text-secondary" style={{paddingRight: "2em"}}>
+      <Heading size={3}>
+        <span className="has-text-grey" style={{paddingRight: "2em"}}>
           <SchemaGlyph schema="annotation" />
           {" "}
           Annotation
         </span>
         {annotation.name || annotation.id}
-        <a className="text-secondary" title="Edit on GitHub"
+        <a className="has-text-grey" title="Edit on GitHub"
            href={`https://github.com/IBM/datascienceontology/tree/master/annotation/${annotation.language}/${annotation.package}/${annotation.id}.yml`}>
-          <FontAwesomeIcon icon={faEdit} className="float-right" />
+          <FontAwesomeIcon icon={faEdit} className="is-pulled-right" />
         </a>
-      </h3>
+      </Heading>
       <AnnotationContent annotation={annotation} />
     </section>
   );
@@ -68,18 +68,18 @@ const AnnotationContent = (props: {annotation: Annotation.Annotation}) => {
   } else if (Annotation.isFunction(annotation)) {
     const cacheId = `annotation/${annotation.language}/${annotation.package}/${annotation.id}`;
     return (
-      <Container fluid>
-        <Row>
-          <Col>
+      <Container>
+        <Columns>
+          <Columns.Column>
             <dl className="dl-horizontal">
               {BaseDefList({ annotation })}
               {FunctionDefList({ annotation })}
             </dl>
-          </Col>
-          <Col>
+          </Columns.Column>
+          <Columns.Column>
             <FunctionDiagramRequest url={`${apiUrl}/_cache/${cacheId}`} />
-          </Col>
-        </Row>
+          </Columns.Column>
+        </Columns>
       </Container>
     );
   }
@@ -331,7 +331,7 @@ export const AnnotationFullName = (props: {annotation: Annotation.Annotation}) =
       {note.name !== undefined ? note.name : note.id}
     </Router.Link>
     {" "}
-    <span className="text-muted text-nowrap">
+    <span className="has-text-grey text-nowrap">
       ({key})
     </span>
   </span>;

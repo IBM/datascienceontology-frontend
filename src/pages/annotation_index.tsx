@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 import * as React from "react";
-import { Container } from "reactstrap";
+import { Container, Heading } from "react-bulma-components";
 
 import * as Annotation from "../interfaces/annotation";
 import { displayResponseData } from "../components/higher-order";
@@ -13,7 +13,7 @@ import "../../style/pages/annotation_index.css";
 export const AnnotationIndexPage = (props: {}) =>
   <Container>
     <section id="annotations">
-      <h1>Index of Annotations</h1>
+      <Heading size={2}>Index of Annotations</Heading>
       <AnnotationIndexRequest url={`${apiUrl}/annotations?short=true`} />
     </section>
   </Container>;
@@ -34,19 +34,19 @@ const AnnotationIndexDisplay = (props: {data?: Annotation.Annotation[]}) => {
     <ul id="annotation-index">
       {_.keys(index).sort().map(lang =>
         <li>
-          <h3>
+          <Heading size={3}>
             <a id={`language-${lang}`} href={`#language-${lang}`}>
               {_.upperFirst(lang)}
             </a>
-          </h3>
+          </Heading>
           <ul>
             {_.keys(index[lang]).sort().map(pkg =>
               <li>
-                <h4>
+                <Heading size={4}>
                   <a id={`package-${pkg}`} href={`#package-${pkg}`}>
                     {pkg}
                   </a>
-                </h4>
+                </Heading>
                 <ul>
                   {index[lang][pkg].map(annotation =>
                     <li>

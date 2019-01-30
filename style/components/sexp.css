@@ -1,9 +1,10 @@
 .s-expression ol {
-  list-style: none;
+  list-style: none !important;
   margin: 0;
   padding: 0;
 }
 .s-expression li {
+  margin: 0 !important;
   border-left: 1px solid lightgrey;
   padding-left: 1em;
 }

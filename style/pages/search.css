@@ -1,7 +1,3 @@
-.search-results ul {
-  list-style: none;
-  padding: 0;
-}
-.search-results li {
+.search-result {
   margin: 3ex 0;
 }

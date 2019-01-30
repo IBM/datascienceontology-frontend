@@ -1,9 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, RouteComponentProps, Switch, Link,
-  NavLink as RouterNavLink } from "react-router-dom";
-import { Alert, Button, Form, Input, InputGroup,
-  Nav, Navbar, NavbarBrand, NavItem, NavLink } from "reactstrap";
+import { BrowserRouter, Route, RouteComponentProps, Switch, Link, NavLink }
+  from "react-router-dom";
+import { Button, Form, Message, Navbar, } from "react-bulma-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { HomePage } from "./pages/home";
@@ -22,31 +21,31 @@ import "../style/bootstrap.css";
 
 const App = () =>
   <div id="app">
-    <Navbar expand dark color="dark">
-      <NavbarBrand className="mr-4" tag={Link} {...{to: "/"}}>
-        Data Science Ontology
-      </NavbarBrand>
-      <Switch>
-        <Route path="/search/:query?" component={SearchBar} />
-        <Route component={SearchBar} />
-      </Switch>
-      <Nav navbar className="ml-auto">
-        <NavItem>
-          <NavLink tag={RouterNavLink} {...{to: "/browse"}}>
-            Browse
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={RouterNavLink} {...{to: "/help"}}>
-            Help
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink tag={RouterNavLink} {...{to: "/about"}}>
-            About
-          </NavLink>
-        </NavItem>
-      </Nav>
+    <Navbar color="dark">
+      <Navbar.Brand>
+        <Navbar.Item renderAs={Link} {...{to: "/"}} textSize={5}>
+          Data Science Ontology
+        </Navbar.Item>
+      </Navbar.Brand>
+      <Navbar.Container>
+        <Navbar.Item renderAs="div">
+          <Switch>
+            <Route path="/search/:query?" component={SearchBar} />
+            <Route component={SearchBar} />
+          </Switch>
+        </Navbar.Item>
+      </Navbar.Container>
+      <Navbar.Container position="end">
+        <NavbarLink to="/browse">
+          Browse
+        </NavbarLink>
+        <NavbarLink to="/help">
+          Help
+        </NavbarLink>
+        <NavbarLink to="/about">
+          About
+        </NavbarLink>
+      </Navbar.Container>
     </Navbar>
     <main>
       <Switch>
@@ -66,10 +65,19 @@ const App = () =>
   </div>;
 
 const Error404Page = () =>
-  <Alert color="danger">
-    <h4>Whoops</h4>
-    <p>The page you are looking for does not exist.</p>
-  </Alert>;
+  <Message color="danger">
+    <Message.Body>
+      <h4>Whoops</h4>
+      <p>The page you are looking for does not exist.</p>
+    </Message.Body>
+  </Message>;
+
+
+const NavbarLink = (props: {to: string, children?: any}) =>
+  <Navbar.Item renderAs={NavLink}
+      {...{to: props.to, activeClassName: "is-active"}}>
+    {props.children}
+  </Navbar.Item>
 
 
 type SearchBarProps = RouteComponentProps<{query?: string}>;
@@ -97,24 +105,28 @@ class SearchBar extends React.Component<SearchBarProps, {query: string}> {
 
   render() {
     return (
-      <Form inline onSubmit={(e) => this.onSubmit(e)}>
-        <InputGroup>
-          <Input type="search" placeholder="Search"
-                 value={this.state.query}
-                 onChange={(e) => this.onChange(e)} />
-          <Button type="submit" title="Search">
-            <FontAwesomeIcon icon={faSearch} />
-          </Button>
-        </InputGroup>
-      </Form>
+      <form onSubmit={(e) => this.onSubmit(e)}>
+        <Form.Field kind="addons">
+          <Form.Control>
+            <Form.Input type="search" placeholder="Search"
+              value={this.state.query}
+              onChange={(e) => this.onChange(e)} />
+          </Form.Control>
+          <Form.Control>
+            <Button title="Search">
+              <FontAwesomeIcon icon={faSearch} />
+            </Button>
+          </Form.Control>
+        </Form.Field>
+      </form>
     );
   }
 }
 
 
 ReactDOM.render(
-  <Router>
+  <BrowserRouter>
     <App/>
-  </Router>,
+  </BrowserRouter>,
   document.getElementById("react-container")
 );

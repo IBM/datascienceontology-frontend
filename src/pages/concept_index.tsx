@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 import * as React from "react";
-import { Container } from "reactstrap";
+import { Container, Heading } from "react-bulma-components";
 
 import * as Concept from "../interfaces/concept";
 import { displayResponseData } from "../components/higher-order";
@@ -13,7 +13,7 @@ import "../../style/pages/concept_index.css";
 export const ConceptIndexPage = (props: {}) =>
   <Container>
     <section id="concepts">
-      <h1>Index of Concepts</h1>
+      <Heading size={2}>Index of Concepts</Heading>
       <ConceptIndexRequest url={`${apiUrl}/concepts?short=true`} />
     </section>
   </Container>;
@@ -33,11 +33,11 @@ const ConceptIndexDisplay = (props: {data?: Concept.Concept[]}) => {
     <ul id="concept-index">
       {_.keys(index).sort().map(letter => 
         <li>
-          <h2>
+          <Heading subtitle size={3}>
             <a id={letter} href={`#${letter}`}>
               {letter.toUpperCase()}
             </a>
-          </h2>
+          </Heading>
           <ul>
             {index[letter].map(concept => 
               <li>

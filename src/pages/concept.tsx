@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
 import * as ReactMarkdown from "react-markdown";
+import { Heading } from "react-bulma-components";
 
 import * as Concept from "../interfaces/concept";
 import { KindGlyph, SchemaGlyph } from "../components/glyphs";
@@ -25,18 +26,18 @@ export const ConceptDisplay = (props: {data?: Concept.Concept}) => {
   const concept = props.data;
   return concept && (
     <section id="concept">
-      <h3>
-        <span className="text-secondary" style={{paddingRight: "2em"}}>
+      <Heading size={3}>
+        <span className="has-text-grey" style={{paddingRight: "2em"}}>
           <SchemaGlyph schema="concept" />
           {" "}
           Concept
         </span>
         {concept.name}
-        <a className="text-secondary" title="Edit on GitHub"
+        <a className="has-text-grey" title="Edit on GitHub"
            href={`https://github.com/IBM/datascienceontology/tree/master/concept/${concept.id}.yml`}>
-          <FontAwesomeIcon icon={faEdit} className="float-right" />
+          <FontAwesomeIcon icon={faEdit} className="is-pulled-right" />
         </a>
-      </h3>
+      </Heading>
       <dl className="dl-horizontal">
         {ConceptDefList({ concept })}
         {Concept.isFunction(concept) && FunctionConceptDefList({ concept })}
@@ -131,7 +132,7 @@ const PortDisplay = (props: {port: Concept.Port}) => {
   return <div className="concept-port">
     {port.name !== undefined && `${port.name}: `}
     <Router.Link to={`/concept/${port.type}`}>{port.type}</Router.Link>
-    {port.description !== undefined && <p className="text-muted">
+    {port.description !== undefined && <p className="has-text-grey">
       {port.description}
     </p>}
   </div>;
@@ -145,7 +146,7 @@ export const ConceptFullName = (props: {concept: Concept.Concept}) => {
       {concept.name}
     </Router.Link>
     {" "}
-    <span className="text-muted text-nowrap">
+    <span className="has-text-grey text-nowrap">
       ({concept.id})
     </span>
   </span>;

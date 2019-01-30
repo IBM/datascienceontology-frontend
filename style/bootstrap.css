@@ -1,11 +1,3 @@
-/* Force Bootstrap navigation links to show the pointer cursor.
-
-By default, the cursor is only shown if the `href` attribute is set.
-*/
-.nav-link {
-  cursor: pointer;
-}
-
 /* Reduce maximum width of responsive container.
 */
 @media (min-width: 992px) {
@@ -21,6 +13,7 @@ however, the grid classes force proportional widths, which I do not want.
 */
 @media (min-width: 768px) {
   .dl-horizontal dt {
+    font-weight: bold;
     float: left;
     width: 160px;
     clear: left;

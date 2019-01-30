@@ -1,7 +1,8 @@
 import * as _ from "lodash";
 import * as React from "react";
 import * as Router from "react-router-dom";
-import { Button, Card, CardTitle, Container, Row, Col } from "reactstrap";
+import * as ReactMarkdown from "react-markdown";
+import { Button, Card, Container, Content, Columns, Heading } from "react-bulma-components";
 
 import * as Concept from "../interfaces/concept";
 import * as Annotation from "../interfaces/annotation";
@@ -29,17 +30,17 @@ const HomePageDisplay = (props: {data?: HomePageProps}) => {
   const nannotations = counts.annotation || 0;
   return <Container>
     <section id="home">
-      <h1 className="display-4 text-center">
+      <Heading size={1} textAlignment="centered">
         Data Science Ontology
-      </h1>
-      <p className="lead">
+      </Heading>
+      <Content textSize={5}>
         {nannotations && nconcepts ?
         `Welcome to the Data Science Ontology, with
           ${nconcepts} data science concepts and 
           ${nannotations} code annotations` :
         'Welcome to the Data Science Ontology'}
-      </p>
-      <p>
+      </Content>
+      <Content>
         The Data Science Ontology is a knowledge base about data science that
         aims to
         <ul>
@@ -49,24 +50,18 @@ const HomePageDisplay = (props: {data?: HomePageProps}) => {
           <li> power new <strong>AI</strong> assistants
             for data scientists </li>
         </ul>
-      </p>
-      <p>
-        <Router.Link to="/browse">
-          <Button color="primary" size="sm" className="mr-2">
-            Browse
-          </Button>
-        </Router.Link>
-        <Router.Link to="/help">
-          <Button color="secondary" size="sm" className="mr-2">
-            Learn more
-          </Button>
-        </Router.Link>
-        <Router.Link to="/help/contribute">
-          <Button color="secondary" size="sm">
-            Contribute
-          </Button>
-        </Router.Link>
-      </p>
+      </Content>
+      <Button.Group>
+        <Button color="primary" renderAs={Router.Link} {...{to: "/browse"}}>
+          Browse
+        </Button>
+        <Button color="info" renderAs={Router.Link} {...{to: "/help"}}>
+          Learn more
+        </Button>
+        <Button color="info" renderAs={Router.Link} {...{to: "/help/contribute"}}>
+          Contribute
+        </Button>
+      </Button.Group>
       <RandomDocs/>
     </section>
   </Container>;
@@ -75,33 +70,49 @@ const HomePageRequest = displayResponseData(HomePageDisplay);
 
 
 const RandomDocs = () =>
-  <Container fluid>
-    <Row>
-      <Col md>
-        <h4 className="text-center">
+  <Container>
+    <Columns>
+      <Columns.Column>
+        <Heading size={4} textAlignment="centered">
           <SchemaGlyph schema="concept" />
           {" "}
           Concepts
-        </h4>
-        <p>Concepts formalize the abstract ideas of data science.</p>
-        <Card body className="random-card mb-3">
-          <CardTitle>Concept</CardTitle>
-          <RandomConceptRequest url={`${apiUrl}/concept/_random`} />
+        </Heading>
+        <Content>
+          Concepts formalize the abstract ideas of data science.
+        </Content>
+        <Card>
+          <Card.Header>
+            <Card.Header.Title>
+              Sample concept
+            </Card.Header.Title>
+          </Card.Header>
+          <Card.Content>
+            <RandomConceptRequest url={`${apiUrl}/concept/_random`} />
+          </Card.Content>
         </Card>
-      </Col>
-      <Col md>
-        <h4 className="text-center">
+      </Columns.Column>
+      <Columns.Column>
+        <Heading size={4} textAlignment="centered">
           <SchemaGlyph schema="annotation" />
           {" "}
           Annotations
-        </h4>
-        <p>Annotations translate data science code into concepts.</p>
-        <Card body className="random-card mb-3">
-          <CardTitle>Annotation</CardTitle>
-          <RandomAnnotationRequest url={`${apiUrl}/annotation/_random`} />
+        </Heading>
+        <Content>
+          Annotations translate data science code into concepts
+        </Content>
+        <Card>
+          <Card.Header>
+            <Card.Header.Title>
+              Sample annotation
+            </Card.Header.Title>
+          </Card.Header>
+          <Card.Content>
+            <RandomAnnotationRequest url={`${apiUrl}/annotation/_random`} />
+          </Card.Content>
         </Card>
-      </Col>
-    </Row>
+      </Columns.Column>
+    </Columns>
   </Container>;
 
 
@@ -120,7 +131,10 @@ const RandomConceptDisplay = (props: {data?: Concept.Concept}) => {
         {concept.kind}
       </dd>
       {concept.description && <dt>Description</dt>}
-      {concept.description && <dd>{concept.description}</dd>}
+      {concept.description && <dd>
+        <ReactMarkdown source={concept.description}
+          renderers={{paragraph: 'span'}} />
+      </dd>}
     </dl>
   );
 }
@@ -150,7 +164,10 @@ const RandomAnnotationDisplay = (props: {data?: Annotation.Annotation}) => {
       <dt>Package</dt>
       <dd>{note.package}</dd>
       {note.description && <dt>Description</dt>}
-      {note.description && <dd>{note.description}</dd>}
+      {note.description && <dd>
+        <ReactMarkdown source={note.description}
+          renderers={{paragraph: 'span'}} />
+      </dd>}
     </dl>
   );
 }
