@@ -15,8 +15,8 @@ import { SearchPage } from "./pages/search";
 
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
+import "react-bulma-components/dist/react-bulma-components.min.css";
 import "../style/main.css";
-import "../style/bootstrap.css";
 
 
 const App = () =>

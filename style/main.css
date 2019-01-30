@@ -8,3 +8,32 @@
   background-color: transparent;
   padding: 0;
 }
+
+/* Reduce maximum width of responsive container.
+*/
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+/* Port horizontal description lists from Bootstrap 3.
+
+The `dl-horizontal` class was removed in Bootstrap 4 in favor of grid classes;
+however, the grid classes force proportional widths, which I do not want.
+*/
+@media (min-width: 768px) {
+  .dl-horizontal dt {
+    font-weight: bold;
+    float: left;
+    width: 160px;
+    clear: left;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .dl-horizontal dd {
+    margin-left: 180px;
+  }
+}
