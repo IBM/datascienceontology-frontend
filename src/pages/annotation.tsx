@@ -59,7 +59,7 @@ const AnnotationContent = (props: {annotation: Annotation.Annotation}) => {
   const annotation = props.annotation;
   if (Annotation.isType(annotation)) {
     return (
-      <dl className="dl-horizontal">
+      <dl className="dl-inline">
         {BaseDefList({ annotation })}
         {TypeDefList({ annotation })}
       </dl>
@@ -70,7 +70,7 @@ const AnnotationContent = (props: {annotation: Annotation.Annotation}) => {
       <Container>
         <Columns>
           <Columns.Column>
-            <dl className="dl-horizontal">
+            <dl className="dl-inline">
               {BaseDefList({ annotation })}
               {FunctionDefList({ annotation })}
             </dl>
@@ -152,7 +152,7 @@ const PythonTypeDefList = (props: {annotation: Annotation.PythonType}) => {
   return [
     <dt key="class-dt">Python class</dt>,
     <dd key="class-dd">
-      <ul className="inline-list">{classes.map((className, i) =>
+      <ul className="list-inline">{classes.map((className, i) =>
         <li key={i}>
           <code>{className}</code>
         </li>)}
@@ -183,7 +183,7 @@ const PythonFunctionDefList = (props: {annotation: Annotation.PythonFunction}) =
   if (classes) { elements.push(
     <dt key="class-dt">Python class</dt>,
     <dd key="class-dd">
-      <ul className="inline-list">{classes.map((className, i) =>
+      <ul className="list-inline">{classes.map((className, i) =>
         <li key={i}>
           <code>{className}</code>
         </li>)}

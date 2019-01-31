@@ -17,42 +17,38 @@
   }
 }
 
-/* Port horizontal description lists from Bootstrap 3.
+/* A description list with inline pairs.
 
-The `dl-horizontal` class was removed in Bootstrap 4 in favor of grid classes;
-however, the grid classes force proportional widths, which I do not want.
+Similar to `dl-horiztonal` from Bootstrap 3 but implemented using CSS grid.
 */
-@media (min-width: 768px) {
-  .dl-horizontal dt {
-    font-weight: bold;
-    float: left;
-    width: 160px;
-    clear: left;
-    text-align: right;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .dl-horizontal dd {
-    margin-left: 180px;
-    margin-bottom: 5px;
-  }
+.dl-inline {
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+.dl-inline dt {
+  grid-column-start: 1;
+  justify-self: end;
+  font-weight: bold;
+  margin-right: 1em;
+}
+.dl-inline dd {
+  grid-column-start: 2;
 }
 
 /* An inline list with comma-separated values.
 */
-.inline-list {
+.list-inline {
   display: inline;
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.inline-list li {
+.list-inline li {
   display: inline;
 }
-.inline-list li:after {
+.list-inline li:after {
   content: ", ";
 }
-.inline-list li:last-child::after {
+.list-inline li:last-child::after {
   content: "";
 }

@@ -12,8 +12,6 @@ import { AnnotationFullName } from "./annotation";
 import { ConceptFullName } from "./concept";
 import { apiUrl } from "../config";
 
-import "../../style/pages/home.css";
-
 
 export const HomePage = () =>
   <HomePageRequest url={`${apiUrl}/count`} />;
@@ -119,7 +117,7 @@ const RandomDocs = () =>
 const RandomConceptDisplay = (props: {data?: Concept.Concept}) => {
   const concept = props.data;
   return concept && (
-    <dl>
+    <dl className="dl-inline">
       <dt>Name</dt>
       <dd>
         <ConceptFullName concept={concept} />
@@ -144,7 +142,7 @@ const RandomConceptRequest = displayResponseData(RandomConceptDisplay);
 const RandomAnnotationDisplay = (props: {data?: Annotation.Annotation}) => {
   const note = props.data;
   return note && (
-    <dl>
+    <dl className="dl-inline">
       <dt>Name</dt>
       <dd>
         <AnnotationFullName annotation={note} />

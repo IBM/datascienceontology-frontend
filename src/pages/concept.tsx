@@ -37,7 +37,7 @@ export const ConceptDisplay = (props: {data?: Concept.Concept}) => {
           <FontAwesomeIcon icon={faEdit} className="is-pulled-right" />
         </a>
       </Heading>
-      <dl className="dl-horizontal">
+      <dl className="dl-inline">
         {ConceptDefList({ concept })}
         {Concept.isFunction(concept) && FunctionConceptDefList({ concept })}
       </dl>
@@ -74,7 +74,7 @@ const ConceptDefList = (props: {concept: Concept.Concept}) => {
   if (superconcepts) { elements.push(
     <dt key="sub-dt">Is</dt>,
     <dd key="sub-dd">
-      <ul className="inline-list">{superconcepts.map((id,i) =>
+      <ul className="list-inline">{superconcepts.map((id,i) =>
         <li key={i}>
           <Router.Link key={id} to={`/concept/${id}`}>{id}</Router.Link>
         </li>)}
@@ -84,7 +84,7 @@ const ConceptDefList = (props: {concept: Concept.Concept}) => {
   if (external) { elements.push(
     <dt key="external-dt">External links</dt>,
     <dd key="external-dd">
-      <ul className="inline-list">
+      <ul className="list-inline">
       {external.wikipedia &&
         <li>
           <FontAwesomeIcon icon={faWikipediaW} className="has-margin-right-5" />
