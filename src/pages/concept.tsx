@@ -9,7 +9,6 @@ import { displayResponseData } from "../components/higher-order";
 import { Link } from "../components/link";
 import { apiUrl } from "../config";
 
-import "../../style/pages/concept.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { faWikipediaW } from "@fortawesome/free-brands-svg-icons";
@@ -68,14 +67,14 @@ const ConceptDefList = (props: {concept: Concept.Concept}) => {
   ];
   if (concept.description) { elements.push(
     <dt key="description-dt">Description</dt>,
-    <dd key="description-dd" className="concept-description">
+    <dd key="description-dd">
       <ReactMarkdown source={concept.description}/>
     </dd>,
   ); }
   if (superconcepts) { elements.push(
     <dt key="sub-dt">Is</dt>,
     <dd key="sub-dd">
-      <ul className="subconcept-list">{superconcepts.map((id,i) =>
+      <ul className="inline-list">{superconcepts.map((id,i) =>
         <li key={i}>
           <Router.Link key={id} to={`/concept/${id}`}>{id}</Router.Link>
         </li>)}
@@ -85,10 +84,10 @@ const ConceptDefList = (props: {concept: Concept.Concept}) => {
   if (external) { elements.push(
     <dt key="external-dt">External links</dt>,
     <dd key="external-dd">
-      <ul className="external-link-list">
+      <ul className="inline-list">
       {external.wikipedia &&
         <li>
-          <FontAwesomeIcon icon={faWikipediaW} className="mr-1" />
+          <FontAwesomeIcon icon={faWikipediaW} className="has-margin-right-5" />
           <Link to={`https://en.wikipedia.org/wiki/${external.wikipedia}`} target="_blank">
             {external.wikipedia.replace(/_/g, " ")}
           </Link>
@@ -118,13 +117,17 @@ const FunctionConceptDefList = (props: {concept: Concept.FunctionConcept}) => {
 }
 
 const PortsDisplay = (props: {ports: Concept.Port[]}) => {
-  return <div className="concept-port-list">
-    <ol>{props.ports.map((port,i) =>
-      <li key={i}>
-        <PortDisplay port={port} />
-      </li>)}
-    </ol>
-  </div>;
+  const ports = props.ports;
+  if (ports.length === 0) {
+    return <span>(empty)</span>;
+  } else if (ports.length === 1) {
+    return <PortDisplay port={ports[0]} />
+  }
+  return <ol className="has-padding-left-15">{ports.map((port,i) =>
+    <li key={i}>
+      <PortDisplay port={port} />
+    </li>)}
+  </ol>;
 }
 
 const PortDisplay = (props: {port: Concept.Port}) => {

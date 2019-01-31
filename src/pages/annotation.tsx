@@ -14,7 +14,6 @@ import { SExpComponent } from "../components/sexp";
 
 import { apiUrl } from "../config";
 
-import "../../style/pages/annotation.css";
 import * as CytoscapeStyle from "../../style/pages/annotation.cytoscape.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -118,7 +117,7 @@ const BaseDefList = (props: {annotation: Annotation.Annotation}) => {
   ); }
   if (annotation.description) { elements.push(
     <dt key="description-dt">Description</dt>,
-    <dd key="description-dd" className="annotation-description">
+    <dd key="description-dd">
       <ReactMarkdown source={annotation.description}/>
     </dd>,
   ); }
@@ -153,13 +152,11 @@ const PythonTypeDefList = (props: {annotation: Annotation.PythonType}) => {
   return [
     <dt key="class-dt">Python class</dt>,
     <dd key="class-dd">
-      <div className="annotation-class-list">
-        <ul>{classes.map((className, i) =>
-          <li key={i}>
-            <code>{className}</code>
-          </li>)}
-        </ul>
-      </div>
+      <ul className="inline-list">{classes.map((className, i) =>
+        <li key={i}>
+          <code>{className}</code>
+        </li>)}
+      </ul>
     </dd>,
     <dt key="def-dt">Definition</dt>,
     <dd key="def-dd">
@@ -186,13 +183,11 @@ const PythonFunctionDefList = (props: {annotation: Annotation.PythonFunction}) =
   if (classes) { elements.push(
     <dt key="class-dt">Python class</dt>,
     <dd key="class-dd">
-      <div className="annotation-class-list">
-        <ul>{classes.map((className, i) =>
-          <li key={i}>
-            <code>{className}</code>
-          </li>)}
-        </ul>
-      </div>
+      <ul className="inline-list">{classes.map((className, i) =>
+        <li key={i}>
+          <code>{className}</code>
+        </li>)}
+      </ul>
     </dd>,
   ); }
   if (annotation.method) { elements.push(
@@ -271,24 +266,24 @@ const RFunctionDefList = (props: {annotation: Annotation.RFunction}) => {
 
 
 const PortAnnotationList = (props: {ports: Annotation.PortAnnotation[]}) =>
-  <div className="annotation-port-list">
-    <ol>{props.ports.map((port, i) =>
+  _.isEmpty(props.ports) ?
+    <span>(empty)</span> :
+    <ul>{props.ports.map((port, i) =>
       <li key={i}>
         <code>{port.slot}</code>
       </li>)}
-    </ol>
-  </div>;
+    </ul>;
 
 const SlotList = (props: {slots: Annotation.Slot[]}) =>
-  <div className="annotation-slot-list">
+  _.isEmpty(props.slots) ?
+    <span>(none)</span> :
     <ul>{props.slots.map((slot, i) =>
       <li key={i}>
         <code>{slot.slot}</code>
         {": "}
         <SExpComponent inline ontology sexp={slot.definition} />
       </li>)}
-    </ul>
-  </div>;
+    </ul>;
 
 const PackageRepositoryLink = (props: {annotation: Annotation.Annotation}) => {
   const annotation = props.annotation;

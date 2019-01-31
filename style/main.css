@@ -11,7 +11,7 @@
 
 /* Reduce maximum width of responsive container.
 */
-@media (min-width: 992px) {
+@media (min-width: 1024px) {
   .container {
     max-width: 960px;
   }
@@ -35,5 +35,24 @@ however, the grid classes force proportional widths, which I do not want.
   }
   .dl-horizontal dd {
     margin-left: 180px;
+    margin-bottom: 5px;
   }
+}
+
+/* An inline list with comma-separated values.
+*/
+.inline-list {
+  display: inline;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.inline-list li {
+  display: inline;
+}
+.inline-list li:after {
+  content: ", ";
+}
+.inline-list li:last-child::after {
+  content: "";
 }
