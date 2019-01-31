@@ -1,27 +1,3 @@
-.markdown-document pre {
-  margin-left: 3rem;
-}
-
-.markdown-document table {
-  display: table;
-  margin: 0 auto 1rem auto;
-}
-.markdown-document table td,
-.markdown-document table th {
-  padding: 0.333em;
-}
-.markdown-document table td:first-child,
-.markdown-document table th {
-  font-weight: bold;
-}
-.markdown-document table th {
-  border-bottom: 1px solid;
-}
-.markdown-document table td:first-child,
-.markdown-document table th:first-child {
-  border-right: 1px solid;
-}
-
 .markdown-document div.s-expression {
   display: table;
   margin: 0 auto;

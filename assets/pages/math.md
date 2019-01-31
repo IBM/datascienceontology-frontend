@@ -10,17 +10,17 @@ In this guide, we explain the mathematical underpinnings of the Data Science Ont
 
 Throughout this website and the ontology data format, we use terminology of programming language theory. Category theory has its own distinctive terminology. The following dictionary may be helpful for translating back and forth.
 
-| | Programming | Category theory            | Notation                      |
-|-|-------------|----------------------------|-------------------------------|
-| | type        | object                     | $X$                           |
-| | function    | morphism                   | $f: X \to Y$                  |
-| | inputs      | domain                     | $\text{dom}(f)$               |
-| | outputs     | codomain                   | $\text{codom}(f)$             |
-| | composition | composition                | $f \cdot g$ or $fg$           |
-| | product     | cartesian monoidal product | $X \times Y$ and $f \times g$ |
-| | unit type   | monoidal unit              | $1$                           |
-| | copy        | internal comultiplication  | $\Delta_X: X \to X \times X$  |
-| | delete      | internal counit            | $\lozenge_X: X \to 1$         |
+| Programming | Category theory            | Notation                      |
+|-------------|----------------------------|-------------------------------|
+| type        | object                     | $X$                           |
+| function    | morphism                   | $f: X \to Y$                  |
+| inputs      | domain                     | $\text{dom}(f)$               |
+| outputs     | codomain                   | $\text{codom}(f)$             |
+| composition | composition                | $f \cdot g$ or $fg$           |
+| product     | cartesian monoidal product | $X \times Y$ and $f \times g$ |
+| unit type   | monoidal unit              | $1$                           |
+| copy        | internal comultiplication  | $\Delta_X: X \to X \times X$  |
+| delete      | internal counit            | $\lozenge_X: X \to 1$         |
 
 ## References
 

@@ -22,10 +22,10 @@ The Data Science Ontology is comprised of two kinds of entities: concepts and an
 
 In summary, the entities comprising the ontology are classified by the two-by-two table:
 
-|                                | !glyph_schema(concept) Concept | !glyph_schema(annotation) Annotation |
-|--------------------------------|--------------------------------|--------------------------------------|
-| !glyph_kind(object) Type       | Type concept                   | Type annotation                      |
-| !glyph_kind(morphism) Function | Function concept               | Function annotation                  |
+|                                    | !glyph_schema(concept) Concept | !glyph_schema(annotation) Annotation |
+|------------------------------------|--------------------------------|--------------------------------------|
+| !glyph_kind(type) **Type**         | Type concept                   | Type annotation                      |
+| !glyph_kind(function) **Function** | Function concept               | Function annotation                  |
 
 We explain all four notions at length in this guide. The pictograms in the table are used throughout the Data Science Ontology website as a visual shorthand.
 

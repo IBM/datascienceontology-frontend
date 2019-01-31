@@ -34,7 +34,8 @@
 .markdown-document .table-of-contents ol {
   counter-reset: item;
   list-style-type: none;
-  padding-left: 2rem;
+  margin-left: 2em;
+  margin-top: 0;
 }
 .markdown-document .table-of-contents li:before {
   content: counters(item, ".") ". ";
