@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { BrowserRouter, Route, RouteComponentProps, Switch, Link, NavLink }
   from "react-router-dom";
-import { Button, Form, Message, Navbar, } from "react-bulma-components";
+import { Button, Form, Message, Navbar } from "react-bulma-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { HomePage } from "./pages/home";
@@ -16,6 +16,7 @@ import { SearchPage } from "./pages/search";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import "react-bulma-components/dist/react-bulma-components.min.css";
+import "bulma-helpers/css/bulma-helpers.min.css";
 import "../style/main.css";
 
 

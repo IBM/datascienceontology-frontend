@@ -27,7 +27,7 @@ export const ConceptDisplay = (props: {data?: Concept.Concept}) => {
   return concept && (
     <section id="concept">
       <Heading size={3}>
-        <span className="has-text-grey" style={{paddingRight: "2em"}}>
+        <span className="has-text-grey has-margin-right-75">
           <SchemaGlyph schema="concept" />
           {" "}
           Concept
@@ -146,7 +146,7 @@ export const ConceptFullName = (props: {concept: Concept.Concept}) => {
       {concept.name}
     </Router.Link>
     {" "}
-    <span className="has-text-grey text-nowrap">
+    <span className="has-text-grey">
       ({concept.id})
     </span>
   </span>;

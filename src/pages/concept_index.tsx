@@ -7,12 +7,10 @@ import { displayResponseData } from "../components/higher-order";
 import { ConceptFullName } from "./concept";
 import { apiUrl } from "../config";
 
-import "../../style/pages/concept_index.css";
-
 
 export const ConceptIndexPage = (props: {}) =>
   <Container>
-    <section id="concepts">
+    <section id="concept-index">
       <Heading size={2}>Index of Concepts</Heading>
       <ConceptIndexRequest url={`${apiUrl}/concepts?short=true`} />
     </section>
@@ -30,11 +28,11 @@ const ConceptIndexDisplay = (props: {data?: Concept.Concept[]}) => {
       });
   });
   return (
-    <ul id="concept-index">
+    <ul>
       {_.keys(index).sort().map(letter => 
-        <li>
+        <li className="has-margin-bottom-25">
           <Heading subtitle size={3}>
-            <a id={letter} href={`#${letter}`}>
+            <a id={letter} href={`#${letter}`} className="has-text-black">
               {letter.toUpperCase()}
             </a>
           </Heading>

@@ -319,6 +319,11 @@ buffer-from@^1.0.0:
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
   integrity sha512-MQcXEUbCKtEo7bhqEs6560Hyd4XaovZlO/k9V3hjVUF/zwW7KBVdSK4gIt/bzwS9MbR5qob+F5jusZsb0YQK2A==
 
+bulma-helpers@^0.3.6:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/bulma-helpers/-/bulma-helpers-0.3.6.tgz#d6eddc59e9a3e20dd03d061bbb69ce333c5c1f28"
+  integrity sha512-i5ihHGk9iOPRAMVpijfAfjWPLXHiLBDODXMCPIuA0g885bScZekeDpvsfvHF2uH09KNhFLipTNz6Msj1Dx2GKg==
+
 bulma@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.7.1.tgz#73c2e3b2930c90cc272029cbd19918b493fca486"

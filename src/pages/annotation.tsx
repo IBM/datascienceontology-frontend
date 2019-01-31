@@ -38,7 +38,7 @@ export const AnnotationDisplay = (props: {data?: Annotation.Annotation}) => {
   return annotation && (
     <section id="annotation">
       <Heading size={3}>
-        <span className="has-text-grey" style={{paddingRight: "2em"}}>
+        <span className="has-text-grey has-margin-right-75">
           <SchemaGlyph schema="annotation" />
           {" "}
           Annotation
@@ -331,7 +331,7 @@ export const AnnotationFullName = (props: {annotation: Annotation.Annotation}) =
       {note.name !== undefined ? note.name : note.id}
     </Router.Link>
     {" "}
-    <span className="has-text-grey text-nowrap">
+    <span className="has-text-grey">
       ({key})
     </span>
   </span>;

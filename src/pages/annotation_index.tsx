@@ -7,12 +7,10 @@ import { displayResponseData } from "../components/higher-order";
 import { AnnotationFullName } from "./annotation";
 import { apiUrl } from "../config";
 
-import "../../style/pages/annotation_index.css";
-
 
 export const AnnotationIndexPage = (props: {}) =>
   <Container>
-    <section id="annotations">
+    <section id="annotation-index">
       <Heading size={2}>Index of Annotations</Heading>
       <AnnotationIndexRequest url={`${apiUrl}/annotations?short=true`} />
     </section>
@@ -31,19 +29,21 @@ const AnnotationIndexDisplay = (props: {data?: Annotation.Annotation[]}) => {
       });
   });
   return (
-    <ul id="annotation-index">
+    <ul>
       {_.keys(index).sort().map(lang =>
-        <li>
-          <Heading size={3}>
-            <a id={`language-${lang}`} href={`#language-${lang}`}>
+        <li className="has-margin-bottom-25">
+          <Heading subtitle size={3}>
+            <a id={`language-${lang}`} href={`#language-${lang}`}
+               className="has-text-black">
               {_.upperFirst(lang)}
             </a>
           </Heading>
-          <ul>
+          <ul className="has-margin-left-50">
             {_.keys(index[lang]).sort().map(pkg =>
-              <li>
-                <Heading size={4}>
-                  <a id={`package-${pkg}`} href={`#package-${pkg}`}>
+              <li className="has-margin-bottom-25">
+                <Heading subtitle size={4}>
+                  <a id={`package-${pkg}`} href={`#package-${pkg}`}
+                     className="has-text-black">
                     {pkg}
                   </a>
                 </Heading>

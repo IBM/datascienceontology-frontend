@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
-import { Tabs, Tag } from "react-bulma-components";
+import { Container, Tabs, Tag } from "react-bulma-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
@@ -11,17 +11,17 @@ import { ConceptFullName } from "./concept";
 import { AnnotationFullName } from "./annotation";
 import { apiUrl } from "../config";
 
-import "../../style/pages/search.css";
-
 
 type SearchPageProps = Router.RouteComponentProps<{query?: string}>;
 
 export const SearchPage = (props: SearchPageProps) => {
   const query = props.match.params.query;
   return (
-    <section id="search">
-      {query && <SearchResults query={query} />}
-    </section>
+    <Container>
+      <section id="search">
+        {query && <SearchResults query={query} />}
+      </section>
+    </Container>  
   );
 }
 
@@ -97,25 +97,25 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
       return <FontAwesomeIcon icon={faSpinner} spin/>;
     }
         
-    return <section className="search-results">
+    return <section id="search-results">
       <Tabs>
         <Tabs.Tab active={this.state.activeTab === "concepts"}
             onClick={() => this.setState({activeTab: "concepts"})}>
-          <SchemaGlyph schema="concept" />
-          {" "}
+          <span className="has-margin-right-5">
+            <SchemaGlyph schema="concept"/>
+          </span>
           Concepts
-          {" "}
-          <Tag color="light">
+          <Tag color="light" className="has-margin-left-10">
             {this.state.totalConcepts}
           </Tag>
         </Tabs.Tab>
         <Tabs.Tab active={this.state.activeTab === "annotations"}
             onClick={() => this.setState({activeTab: "annotations"})}>
-          <SchemaGlyph schema="annotation" />
-          {" "}
+          <span className="has-margin-right-5">
+            <SchemaGlyph schema="annotation"/>
+          </span>
           Annotations
-          {" "}
-          <Tag color="light">
+          <Tag color="light" className="has-margin-left-10">
             {this.state.totalAnnotations}
           </Tag>
         </Tabs.Tab>
@@ -123,13 +123,13 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
       {this.state.activeTab === "concepts" ?
         <ul>
           {this.state.concepts.map(concept =>
-            <li key={concept.id} >
+            <li key={concept.id} className="has-margin-bottom-20">
               <ConceptResult concept={concept} />
             </li>)}
         </ul> :
         <ul>
           {this.state.annotations.map((annotation,i) =>
-            <li key={i} >
+            <li key={i} className="has-margin-bottom-20">
               <AnnotationResult annotation={annotation} />
             </li>)}
         </ul>}
