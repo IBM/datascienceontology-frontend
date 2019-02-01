@@ -2,7 +2,7 @@ import * as _ from "lodash";
 import * as React from "react";
 import * as Router from "react-router-dom";
 import * as ReactMarkdown from "react-markdown";
-import { Button, Card, Container, Content, Columns, Heading } from "react-bulma-components";
+import { Button, Card, Content, Columns, Heading } from "react-bulma-components";
 
 import * as Concept from "../interfaces/concept";
 import * as Annotation from "../interfaces/annotation";
@@ -26,7 +26,7 @@ const HomePageDisplay = (props: {data?: HomePageProps}) => {
   const counts = props.data || {};
   const nconcepts = counts.concept || 0
   const nannotations = counts.annotation || 0;
-  return <Container>
+  return (
     <section id="home">
       <Heading size={1} textAlignment="centered">
         Data Science Ontology
@@ -62,57 +62,54 @@ const HomePageDisplay = (props: {data?: HomePageProps}) => {
       </Button.Group>
       <RandomDocs/>
     </section>
-  </Container>;
+  );
 }
 const HomePageRequest = displayResponseData(HomePageDisplay);
 
 
 const RandomDocs = () =>
-  <Container>
-    <Columns>
-      <Columns.Column>
-        <Heading size={4} textAlignment="centered">
-          <SchemaGlyph schema="concept" />
-          {" "}
-          Concepts
-        </Heading>
-        <Content>
-          Concepts formalize the abstract ideas of data science.
-        </Content>
-        <Card>
-          <Card.Header>
-            <Card.Header.Title>
-              Sample concept
-            </Card.Header.Title>
-          </Card.Header>
-          <Card.Content>
-            <RandomConceptRequest url={`${apiUrl}/concept/_random`} />
-          </Card.Content>
-        </Card>
-      </Columns.Column>
-      <Columns.Column>
-        <Heading size={4} textAlignment="centered">
-          <SchemaGlyph schema="annotation" />
-          {" "}
-          Annotations
-        </Heading>
-        <Content>
-          Annotations translate data science code into concepts
-        </Content>
-        <Card>
-          <Card.Header>
-            <Card.Header.Title>
-              Sample annotation
-            </Card.Header.Title>
-          </Card.Header>
-          <Card.Content>
-            <RandomAnnotationRequest url={`${apiUrl}/annotation/_random`} />
-          </Card.Content>
-        </Card>
-      </Columns.Column>
-    </Columns>
-  </Container>;
-
+  <Columns>
+    <Columns.Column>
+      <Heading size={4} textAlignment="centered">
+        <SchemaGlyph schema="concept" />
+        {" "}
+        Concepts
+      </Heading>
+      <Content>
+        Concepts formalize the abstract ideas of data science.
+      </Content>
+      <Card>
+        <Card.Header>
+          <Card.Header.Title>
+            Sample concept
+          </Card.Header.Title>
+        </Card.Header>
+        <Card.Content>
+          <RandomConceptRequest url={`${apiUrl}/concept/_random`} />
+        </Card.Content>
+      </Card>
+    </Columns.Column>
+    <Columns.Column>
+      <Heading size={4} textAlignment="centered">
+        <SchemaGlyph schema="annotation" />
+        {" "}
+        Annotations
+      </Heading>
+      <Content>
+        Annotations translate data science code into concepts
+      </Content>
+      <Card>
+        <Card.Header>
+          <Card.Header.Title>
+            Sample annotation
+          </Card.Header.Title>
+        </Card.Header>
+        <Card.Content>
+          <RandomAnnotationRequest url={`${apiUrl}/annotation/_random`} />
+        </Card.Content>
+      </Card>
+    </Columns.Column>
+  </Columns>;
 
 const RandomConceptDisplay = (props: {data?: Concept.Concept}) => {
   const concept = props.data;

@@ -1,14 +1,3 @@
-#react-container main {
-  margin: 0 48px;
-  padding-top: 16px;
-}
-
-#react-container code {
-  color: black;
-  background-color: transparent;
-  padding: 0;
-}
-
 /* Reduce maximum width of responsive container.
 */
 @media (min-width: 1024px) {

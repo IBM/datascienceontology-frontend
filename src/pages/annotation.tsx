@@ -2,7 +2,7 @@ import * as _ from "lodash";
 import * as React from "react";
 import * as Router from "react-router-dom";
 import * as ReactMarkdown from "react-markdown";
-import { Container, Columns, Heading } from "react-bulma-components";
+import { Columns, Heading } from "react-bulma-components";
 
 import * as Annotation from "../interfaces/annotation";
 import { AnnotationCache } from "../interfaces/annotation_cache";
@@ -67,19 +67,17 @@ const AnnotationContent = (props: {annotation: Annotation.Annotation}) => {
   } else if (Annotation.isFunction(annotation)) {
     const cacheId = `annotation/${annotation.language}/${annotation.package}/${annotation.id}`;
     return (
-      <Container>
-        <Columns>
-          <Columns.Column>
-            <dl className="dl-inline">
-              {BaseDefList({ annotation })}
-              {FunctionDefList({ annotation })}
-            </dl>
-          </Columns.Column>
-          <Columns.Column>
-            <FunctionDiagramRequest url={`${apiUrl}/_cache/${cacheId}`} />
-          </Columns.Column>
-        </Columns>
-      </Container>
+      <Columns>
+        <Columns.Column>
+          <dl className="dl-inline">
+            {BaseDefList({ annotation })}
+            {FunctionDefList({ annotation })}
+          </dl>
+        </Columns.Column>
+        <Columns.Column>
+          <FunctionDiagramRequest url={`${apiUrl}/_cache/${cacheId}`} />
+        </Columns.Column>
+      </Columns>
     );
   }
   return null;

@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
-import { Container, Tabs, Tag } from "react-bulma-components";
+import { Tabs, Tag } from "react-bulma-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
@@ -17,11 +17,9 @@ type SearchPageProps = Router.RouteComponentProps<{query?: string}>;
 export const SearchPage = (props: SearchPageProps) => {
   const query = props.match.params.query;
   return (
-    <Container>
-      <section id="search">
-        {query && <SearchResults query={query} />}
-      </section>
-    </Container>  
+    <section id="search">
+      {query && <SearchResults query={query} />}
+    </section>
   );
 }
 

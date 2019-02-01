@@ -1,6 +1,6 @@
 import * as _ from "lodash";
 import * as React from "react";
-import { Container, Heading } from "react-bulma-components";
+import { Heading } from "react-bulma-components";
 
 import * as Annotation from "../interfaces/annotation";
 import { displayResponseData } from "../components/higher-order";
@@ -9,12 +9,10 @@ import { apiUrl } from "../config";
 
 
 export const AnnotationIndexPage = (props: {}) =>
-  <Container>
-    <section id="annotation-index">
-      <Heading size={2}>Index of Annotations</Heading>
-      <AnnotationIndexRequest url={`${apiUrl}/annotations?short=true`} />
-    </section>
-  </Container>;
+  <section id="annotation-index">
+    <Heading size={2}>Index of Annotations</Heading>
+    <AnnotationIndexRequest url={`${apiUrl}/annotations?short=true`} />
+  </section>;
 
 
 const AnnotationIndexDisplay = (props: {data?: Annotation.Annotation[]}) => {

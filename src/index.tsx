@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { BrowserRouter, Route, RouteComponentProps, Switch, Link, NavLink }
-  from "react-router-dom";
-import { Button, Form, Message, Navbar } from "react-bulma-components";
+import * as Router from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import { Button, Container, Form, Message, Navbar } from "react-bulma-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { HomePage } from "./pages/home";
@@ -24,7 +24,7 @@ const App = () =>
   <div id="app">
     <Navbar color="dark">
       <Navbar.Brand>
-        <Navbar.Item renderAs={Link} {...{to: "/"}} textSize={5}>
+        <Navbar.Item renderAs={Router.Link} {...{to: "/"}} textSize={5}>
           Data Science Ontology
         </Navbar.Item>
       </Navbar.Brand>
@@ -48,7 +48,7 @@ const App = () =>
         </NavbarLink>
       </Navbar.Container>
     </Navbar>
-    <main>
+    <Container renderAs="main" className="has-margin-top-15">
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/annotation/:language/:package/:id" component={AnnotationPage} />
@@ -62,7 +62,7 @@ const App = () =>
         <Route path="/help/:page" component={MarkdownPage} />
         <Route component={Error404Page} />
       </Switch>
-    </main>
+    </Container>
   </div>;
 
 const Error404Page = () =>
@@ -75,13 +75,13 @@ const Error404Page = () =>
 
 
 const NavbarLink = (props: {to: string, children?: any}) =>
-  <Navbar.Item renderAs={NavLink}
+  <Navbar.Item renderAs={Router.NavLink}
       {...{to: props.to, activeClassName: "is-active"}}>
     {props.children}
   </Navbar.Item>
 
 
-type SearchBarProps = RouteComponentProps<{query?: string}>;
+type SearchBarProps = Router.RouteComponentProps<{query?: string}>;
 
 class SearchBar extends React.Component<SearchBarProps, {query: string}> {
   constructor(props: SearchBarProps) {
@@ -126,8 +126,8 @@ class SearchBar extends React.Component<SearchBarProps, {query: string}> {
 
 
 ReactDOM.render(
-  <BrowserRouter>
+  <Router.BrowserRouter>
     <App/>
-  </BrowserRouter>,
+  </Router.BrowserRouter>,
   document.getElementById("react-container")
 );

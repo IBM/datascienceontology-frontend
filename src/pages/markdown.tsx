@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
-import { Container, Content } from "react-bulma-components";
+import { Content } from "react-bulma-components";
 import { registerLanguage } from "highlight.js/lib/highlight";
 
 import { SExp } from "../interfaces/expression";
@@ -27,8 +27,7 @@ export const MarkdownPage = (props: MarkdownPageProps) => {
 
 export const MarkdownDisplay = (props: {page: string}) => {
   const pageURL = `/assets/pages/${props.page}.md`;
-  return <Container>
-    <Content>
+  return <Content>
     <MarkdownDocument docURL={pageURL} options={{
       renderers: {
         code: (props: {language: string, value: string}) => 
@@ -62,6 +61,5 @@ export const MarkdownDisplay = (props: {page: string}) => {
           <KindGlyph kind={props.value} />,
       },
     }} />
-    </Content>
-  </Container>;
+  </Content>;
 }
