@@ -92,7 +92,7 @@ sexp: Function definition
 
 is represented as the box:
 
-!cytoscape[Function definition](intro/function.json)
+!wiringdiagram[Function definition](intro/function.json)
 
 As we have said, the unit type is useful for defining functions with no inputs or no outputs. For example, a function $c$ with input type $1$ and output type $X$, is declared by the expression tree
 
@@ -103,7 +103,7 @@ sexp: Constant definition
 
 and is represented as a box with no input ports:
 
-!cytoscape[Constant definition](intro/constant.json)
+!wiringdiagram[Constant definition](intro/constant.json)
 
 We think of the function $c$ as a “constant” of type $X$.
 
@@ -122,7 +122,7 @@ sexp: Composition of functions
 
 In the graphical syntax, composition is represented by wires:
 
-!cytoscape[Composition of functions](intro/compose.json)
+!wiringdiagram[Composition of functions](intro/compose.json)
 
 In order for a composition to be well-defined, the input and output types must be compatible. There must be the same number of output types of $f$ as input types of $g$ and, moreover, each output type of $f$ must be a subtype of the corresponding input type of $g$. The interpretation is that outputs of $f$ are *implicitly converted* to the input types of $g$ before being passed as inputs to $g$. Diagrammatically, this means that the source port type of any wire must be a subtype of the target port type of the wire.
 
@@ -141,7 +141,7 @@ sexp: Product of functions
 
 and diagrammatically by juxtaposition:
 
-!cytoscape[Product of functions](intro/product.json)
+!wiringdiagram[Product of functions](intro/product.json)
 
 Already with composition and products, we have enough structure to define some interesting programs. Suppose we have functions $f$, $g$, $h$, and $k$ such that it makes sense to compose $f$ with $g$ and compose $h$ with $k$ (the input and output types are compatible). There are two ways we can combine all four functions into a single program. We can take a product of compositions:
 
@@ -159,7 +159,7 @@ sexp: Composition of products
 
 You should convince yourself that both expressions actually define the same function. In graphical syntax, that function is:
 
-!cytoscape[Product of compositions](intro/compose-products.json)
+!wiringdiagram[Product of compositions](intro/compose-products.json)
 
 This situation illustrates an important point: the graphical syntax is “coarser” than the textual syntax. In general, there may be many different expression trees corresponding to a given wiring diagram. We consider this feature to be another advantage of the graphical syntax over the textual syntax. It is why most of our program analysis tools operate on wiring diagrams, not expressions. There may, in turn, be many different wiring diagrams corresponding to the same function. That should not be surprising. In any programming language (graphical or textual), there will be syntactically distinct programs that are semantically equivalent. To summarize: an expression uniquely determines a wiring diagram, and a wiring diagram uniquely determines a function, but not conversely.
 
@@ -176,7 +176,7 @@ sexp: Identity function
 
 and diagrammatically as nothing but a wire:
 
-!cytoscape[Identity function](intro/identity.json)
+!wiringdiagram[Identity function](intro/identity.json)
 
 It is often useful to reorder the component types of a product type. This is accomplished by the swap functions (also known as braidings). For each pair of types $X$ and $Y$, there is a **swap** function $\sigma_{X,Y}$ from $X \times Y$ to $Y \times X$ that exchanges the two input elements. In point-full notation, it is the function $\langle x,y \rangle \mapsto \langle y,x \rangle$. It is represented by
 
@@ -187,7 +187,7 @@ sexp: Braid
 
 in the textual syntax and by crossed wires in the graphical syntax:
 
-!cytoscape[Braid](intro/braid.json)
+!wiringdiagram[Braid](intro/braid.json)
 
 By composing swap functions, it is possible to define arbitrary permutations on products of three or more types. Diagrammatically this means that arbitrary crossings of wires are allowed.
 
@@ -223,7 +223,7 @@ sexp: Construct by type
 
 Diagrammatically, it is a box labeled by the type name:
 
-!cytoscape[Construct by type](/intro/construct-type.json)
+!wiringdiagram[Construct by type](/intro/construct-type.json)
 
 Now suppose $f$ is a function from $X$ to $Y$, which we think of as a “property” of $X$, named $f$ and of data type $Y$. There is a construct function from $Y$ to $X$ that creates elements of type $X$ with property $f$:
 
@@ -234,7 +234,7 @@ sexp: Construct by function
 
 Or, diagrammatically:
 
-!cytoscape[Construct by function](/intro/construct-function.json)
+!wiringdiagram[Construct by function](/intro/construct-function.json)
 
 (The name $f$ is omitted in the graphical syntax, a defect we hope to rectify in the future.) To be more precise, the defining property of this construct function is that its composition with $f$ is $1_Y$, the identity function on $Y$.
 

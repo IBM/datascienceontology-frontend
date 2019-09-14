@@ -6,7 +6,6 @@ import { Columns, Heading } from "react-bulma-components";
 
 import * as Annotation from "../interfaces/annotation";
 import { AnnotationCache } from "../interfaces/annotation_cache";
-import { CytoscapeComponent} from "../components/cytoscape";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import { displayResponseData } from "../components/higher-order";
 import { Link } from "../components/link";
@@ -14,7 +13,6 @@ import { SExpComponent } from "../components/sexp";
 
 import { apiUrl } from "../config";
 
-import * as CytoscapeStyle from "../../style/pages/annotation.cytoscape.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
@@ -305,12 +303,7 @@ const PackageRepositoryLink = (props: {annotation: Annotation.Annotation}) => {
 const FunctionDiagram = (props: {data?: AnnotationCache}) => {
   const cache = props.data;
   return cache && (
-    <CytoscapeComponent height="600px" cytoscape={{
-      ...cache.definition.cytoscape,
-      style: CytoscapeStyle as any,
-      maxZoom: 2,
-      autolock: true,
-    }} />
+    <p>TODO</p>
   );
 }
 const FunctionDiagramRequest = displayResponseData(FunctionDiagram);

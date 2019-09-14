@@ -28,7 +28,6 @@
     "@types/react-router": "^4.4.3",
     "@types/react-router-dom": "^4.3.1",
     "bulma-helpers": "^0.3.6",
-    "cytoscape": "^3.2.5",
     "github-slugger": "^1.2.0",
     "gray-matter": "^4.0.2",
     "highlight.js": "^9.12.0",
