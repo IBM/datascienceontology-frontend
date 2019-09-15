@@ -34,7 +34,7 @@ export const MarkdownDisplay = (props: {page: string}) => {
           </Highlight>,
         sexp: (props: {value: string}) => {
           const sexp = JSON.parse(props.value) as SExp;
-          return <p><SExpComponent sexp={sexp} /></p>;
+          return <SExpComponent sexp={sexp}/>;
         },
         wiringdiagram: (props: {value: string, children: string[]}) => {
           const docURL = `/assets/pages/${props.value}`;
