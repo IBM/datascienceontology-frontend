@@ -34,12 +34,12 @@ export function displayResponseData<Props,Data>(
       this.state = { data: null, ok: true };
     }
     
-    componentWillMount() {
+    componentDidMount() {
       this.request(this.props);
     }
-    componentWillReceiveProps(nextProps: RequestProps) {
-      if (!_.isEqual(this.props, nextProps)) {
-        this.request(nextProps);
+    componentDidUpdate(prevProps: RequestProps) {
+      if (!_.isEqual(this.props, prevProps)) {
+        this.request(this.props);
       }
     }
     

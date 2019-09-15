@@ -95,12 +95,12 @@ class SearchBar extends React.Component<SearchBarProps, {query: string}> {
   }
 
   onChange(event: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({query: event.target.value});
+    this.setState({ query: event.target.value });
   }
 
-  componentWillReceiveProps(nextProps: SearchBarProps) {
-    if (nextProps.match.params.query !== this.state.query) {
-      this.setState({ query: nextProps.match.params.query || "" });
+  componentDidUpdate(prevProps: SearchBarProps) {
+    if (this.props.match.params.query !== prevProps.match.params.query) {
+      this.setState({ query: this.props.match.params.query || "" });
     }
   }
 
