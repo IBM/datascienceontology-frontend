@@ -29,7 +29,7 @@ const AnnotationIndexDisplay = (props: {data?: Annotation.Annotation[]}) => {
   return (
     <ul>
       {_.keys(index).sort().map(lang =>
-        <li className="has-margin-bottom-25">
+        <li key={lang} className="has-margin-bottom-25">
           <Heading subtitle size={3}>
             <a id={`language-${lang}`} href={`#language-${lang}`}
                className="has-text-black">
@@ -38,7 +38,7 @@ const AnnotationIndexDisplay = (props: {data?: Annotation.Annotation[]}) => {
           </Heading>
           <ul className="has-margin-left-50">
             {_.keys(index[lang]).sort().map(pkg =>
-              <li className="has-margin-bottom-25">
+              <li key={pkg} className="has-margin-bottom-25">
                 <Heading subtitle size={4}>
                   <a id={`package-${pkg}`} href={`#package-${pkg}`}
                      className="has-text-black">
@@ -47,7 +47,7 @@ const AnnotationIndexDisplay = (props: {data?: Annotation.Annotation[]}) => {
                 </Heading>
                 <ul>
                   {index[lang][pkg].map(annotation =>
-                    <li>
+                    <li key={annotation.id}>
                      <AnnotationFullName annotation={annotation} />
                     </li>
                   )}

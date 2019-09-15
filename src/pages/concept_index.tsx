@@ -28,7 +28,7 @@ const ConceptIndexDisplay = (props: {data?: Concept.Concept[]}) => {
   return (
     <ul>
       {_.keys(index).sort().map(letter => 
-        <li className="has-margin-bottom-25">
+        <li key={letter} className="has-margin-bottom-25">
           <Heading subtitle size={3}>
             <a id={letter} href={`#${letter}`} className="has-text-black">
               {letter.toUpperCase()}
@@ -36,7 +36,7 @@ const ConceptIndexDisplay = (props: {data?: Concept.Concept[]}) => {
           </Heading>
           <ul>
             {index[letter].map(concept => 
-              <li>
+              <li key={concept.id}>
                 <ConceptFullName concept={concept} />
               </li>
             )}
