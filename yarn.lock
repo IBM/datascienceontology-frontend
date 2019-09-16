@@ -1943,8 +1943,10 @@ vfile@^2.0.0:
     unist-util-stringify-position "^1.0.0"
     vfile-message "^1.0.0"
 
-"wiring-diagram-canvas@file:.yalc/wiring-diagram-canvas":
-  version "0.1.0-b8701f4c"
+wiring-diagram-canvas@^0.1.1-0:
+  version "0.1.1-0"
+  resolved "https://registry.yarnpkg.com/wiring-diagram-canvas/-/wiring-diagram-canvas-0.1.1-0.tgz#c674ebf846a2b45b94c172b3a2b9358afc08568e"
+  integrity sha512-Myf/Lrlr3wYPqjpyej4xyjv6JJz+MRQyvRUbsBiP4nJoopUMo16K0QQqS+HCwuOZzTtBazqLuyNwBQ1hzLA30w==
   dependencies:
     d3-path "^1.0.7"
 
