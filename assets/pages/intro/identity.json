@@ -1,9 +1,130 @@
 {
+  "diagram": {
+    "children": [],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "root",
+        "sourcePort": "in1",
+        "target": "root",
+        "targetPort": "out1"
+      }
+    ],
+    "id": "root",
+    "ports": [
+      {
+        "id": "in1",
+        "portkind": "input",
+        "properties": {
+          "label": {
+            "text": "X"
+          },
+          "ob": [
+            "Ob",
+            "X"
+          ]
+        }
+      },
+      {
+        "id": "out1",
+        "portkind": "output",
+        "properties": {
+          "label": {
+            "text": "X"
+          },
+          "ob": [
+            "Ob",
+            "X"
+          ]
+        }
+      }
+    ]
+  },
   "expression": [
     "id",
     [
       "Ob",
       "X"
     ]
-  ]
+  ],
+  "graphviz": {
+    "_subgraph_cnt": 2,
+    "bb": "0,0,56,24",
+    "directed": true,
+    "edges": [
+      {
+        "_gvid": 0,
+        "arrowsize": "0.5",
+        "comment": "X",
+        "fontname": "Serif",
+        "head": 3,
+        "headport": "w",
+        "id": "e1",
+        "pos": "e,55,12 1,12 23.219,12 30.01,12 49.939,12",
+        "tail": 2,
+        "tailport": "e"
+      }
+    ],
+    "fontname": "Serif",
+    "name": "G",
+    "nodesep": "0.5",
+    "objects": [
+      {
+        "_gvid": 0,
+        "fontname": "Serif",
+        "name": "%3",
+        "nodes": [
+          2
+        ],
+        "nodesep": "0.5",
+        "pad": "0.1,0.5",
+        "rank": "source",
+        "rankdir": "TB",
+        "ranksep": "0.75"
+      },
+      {
+        "_gvid": 1,
+        "fontname": "Serif",
+        "name": "%5",
+        "nodes": [
+          3
+        ],
+        "nodesep": "0.5",
+        "pad": "0.1,0.5",
+        "rank": "sink",
+        "rankdir": "TB",
+        "ranksep": "0.75"
+      },
+      {
+        "_gvid": 2,
+        "fontname": "Serif",
+        "height": "0.33333",
+        "id": "in1",
+        "label": "",
+        "margin": "0",
+        "name": "n1p1",
+        "pos": "0.5,12",
+        "shape": "none",
+        "style": "invis",
+        "width": "0.013889"
+      },
+      {
+        "_gvid": 3,
+        "fontname": "Serif",
+        "height": "0.33333",
+        "id": "out1",
+        "label": "",
+        "margin": "0",
+        "name": "n2p1",
+        "pos": "55.5,12",
+        "shape": "none",
+        "style": "invis",
+        "width": "0.013889"
+      }
+    ],
+    "pad": "0.1,0.5",
+    "rankdir": "LR",
+    "ranksep": "0.75",
+    "strict": false
+  }
 }

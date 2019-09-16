@@ -1,9 +1,138 @@
 {
+  "diagram": {
+    "children": [
+      {
+        "id": "n3",
+        "ports": [
+          {
+            "id": "out1",
+            "portkind": "output",
+            "properties": {
+              "label": {
+                "text": "X"
+              },
+              "ob": [
+                "Ob",
+                "X"
+              ]
+            }
+          }
+        ],
+        "properties": {
+          "hom": [
+            "construct",
+            [
+              "delete",
+              [
+                "Ob",
+                "X"
+              ]
+            ]
+          ],
+          "label": {
+            "text": "X"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "n3",
+        "sourcePort": "out1",
+        "target": "root",
+        "targetPort": "out1"
+      }
+    ],
+    "id": "root",
+    "ports": [
+      {
+        "id": "out1",
+        "portkind": "output",
+        "properties": {
+          "label": {
+            "text": "X"
+          },
+          "ob": [
+            "Ob",
+            "X"
+          ]
+        }
+      }
+    ]
+  },
   "expression": [
     "construct",
     [
       "Ob",
       "X"
     ]
-  ]
+  ],
+  "graphviz": {
+    "_subgraph_cnt": 1,
+    "bb": "0,0,103,24",
+    "directed": true,
+    "edges": [
+      {
+        "_gvid": 0,
+        "arrowsize": "0.5",
+        "comment": "X",
+        "fontname": "Serif",
+        "head": 1,
+        "headport": "w",
+        "id": "e1",
+        "pos": "e,102,12 48,12 70.219,12 77.01,12 96.939,12",
+        "tail": 2,
+        "tailport": "out1:e"
+      }
+    ],
+    "fontname": "Serif",
+    "name": "G",
+    "nodesep": "0.5",
+    "objects": [
+      {
+        "_gvid": 0,
+        "fontname": "Serif",
+        "name": "%3",
+        "nodes": [
+          1
+        ],
+        "nodesep": "0.5",
+        "pad": "0.1,0.5",
+        "rank": "sink",
+        "rankdir": "TB",
+        "ranksep": "0.75"
+      },
+      {
+        "_gvid": 1,
+        "fontname": "Serif",
+        "height": "0.33333",
+        "id": "out1",
+        "label": "",
+        "margin": "0",
+        "name": "n2p1",
+        "pos": "102.5,12",
+        "shape": "none",
+        "style": "invis",
+        "width": "0.013889"
+      },
+      {
+        "_gvid": 2,
+        "comment": "X",
+        "fontname": "Serif",
+        "height": "0.33333",
+        "id": "n3",
+        "label": "<TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\">\n<TR>\n<TD><TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\"><TR><TD HEIGHT=\"24\" WIDTH=\"0\"></TD></TR></TABLE></TD>\n<TD BORDER=\"1\" CELLPADDING=\"4\" WIDTH=\"48\"></TD>\n<TD><TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\"><TR><TD HEIGHT=\"24\" WIDTH=\"0\" PORT=\"out1\"></TD></TR></TABLE></TD>\n</TR>\n</TABLE>",
+        "margin": "0",
+        "name": "n3",
+        "pos": "24,12",
+        "shape": "none",
+        "width": "0.66667"
+      }
+    ],
+    "pad": "0.1,0.5",
+    "rankdir": "LR",
+    "ranksep": "0.75",
+    "strict": false
+  }
 }

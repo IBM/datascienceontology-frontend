@@ -1,4 +1,78 @@
 {
+  "diagram": {
+    "children": [],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "root",
+        "sourcePort": "in1",
+        "target": "root",
+        "targetPort": "out2"
+      },
+      {
+        "id": "e2",
+        "source": "root",
+        "sourcePort": "in2",
+        "target": "root",
+        "targetPort": "out1"
+      }
+    ],
+    "id": "root",
+    "ports": [
+      {
+        "id": "in1",
+        "portkind": "input",
+        "properties": {
+          "label": {
+            "text": "X"
+          },
+          "ob": [
+            "Ob",
+            "X"
+          ]
+        }
+      },
+      {
+        "id": "in2",
+        "portkind": "input",
+        "properties": {
+          "label": {
+            "text": "Y"
+          },
+          "ob": [
+            "Ob",
+            "Y"
+          ]
+        }
+      },
+      {
+        "id": "out1",
+        "portkind": "output",
+        "properties": {
+          "label": {
+            "text": "Y"
+          },
+          "ob": [
+            "Ob",
+            "Y"
+          ]
+        }
+      },
+      {
+        "id": "out2",
+        "portkind": "output",
+        "properties": {
+          "label": {
+            "text": "X"
+          },
+          "ob": [
+            "Ob",
+            "X"
+          ]
+        }
+      }
+    ]
+  },
   "expression": [
     "braid",
     [
@@ -9,5 +83,149 @@
       "Ob",
       "Y"
     ]
-  ]
+  ],
+  "graphviz": {
+    "_subgraph_cnt": 2,
+    "bb": "0,0,56,84",
+    "directed": true,
+    "edges": [
+      {
+        "_gvid": 0,
+        "arrowsize": "0.5",
+        "fontname": "Serif",
+        "head": 3,
+        "pos": "e,0.5,24.188 0.5,59.673 0.5,49.601 0.5,39.528 0.5,29.455",
+        "style": "invis",
+        "tail": 2
+      },
+      {
+        "_gvid": 1,
+        "arrowsize": "0.5",
+        "comment": "X",
+        "fontname": "Serif",
+        "head": 5,
+        "headport": "w",
+        "id": "e1",
+        "pos": "e,55,12 1,72 35.054,72 20.788,17.939 49.935,12.448",
+        "tail": 2,
+        "tailport": "e"
+      },
+      {
+        "_gvid": 2,
+        "arrowsize": "0.5",
+        "comment": "Y",
+        "fontname": "Serif",
+        "head": 4,
+        "headport": "w",
+        "id": "e2",
+        "pos": "e,55,72 1,12 35.054,12 20.788,66.061 49.935,71.552",
+        "tail": 3,
+        "tailport": "e"
+      },
+      {
+        "_gvid": 3,
+        "arrowsize": "0.5",
+        "fontname": "Serif",
+        "head": 5,
+        "pos": "e,55.5,24.188 55.5,59.673 55.5,49.601 55.5,39.528 55.5,29.455",
+        "style": "invis",
+        "tail": 4
+      }
+    ],
+    "fontname": "Serif",
+    "name": "G",
+    "nodesep": "0.5",
+    "objects": [
+      {
+        "_gvid": 0,
+        "edges": [
+          0
+        ],
+        "fontname": "Serif",
+        "name": "%3",
+        "nodes": [
+          2,
+          3
+        ],
+        "nodesep": "0.5",
+        "pad": "0.1,0.5",
+        "rank": "source",
+        "rankdir": "TB",
+        "ranksep": "0.75"
+      },
+      {
+        "_gvid": 1,
+        "edges": [
+          3
+        ],
+        "fontname": "Serif",
+        "name": "%7",
+        "nodes": [
+          4,
+          5
+        ],
+        "nodesep": "0.5",
+        "pad": "0.1,0.5",
+        "rank": "sink",
+        "rankdir": "TB",
+        "ranksep": "0.75"
+      },
+      {
+        "_gvid": 2,
+        "fontname": "Serif",
+        "height": "0.33333",
+        "id": "in1",
+        "label": "",
+        "margin": "0",
+        "name": "n1p1",
+        "pos": "0.5,72",
+        "shape": "none",
+        "style": "invis",
+        "width": "0.013889"
+      },
+      {
+        "_gvid": 3,
+        "fontname": "Serif",
+        "height": "0.33333",
+        "id": "in2",
+        "label": "",
+        "margin": "0",
+        "name": "n1p2",
+        "pos": "0.5,12",
+        "shape": "none",
+        "style": "invis",
+        "width": "0.013889"
+      },
+      {
+        "_gvid": 4,
+        "fontname": "Serif",
+        "height": "0.33333",
+        "id": "out1",
+        "label": "",
+        "margin": "0",
+        "name": "n2p1",
+        "pos": "55.5,72",
+        "shape": "none",
+        "style": "invis",
+        "width": "0.013889"
+      },
+      {
+        "_gvid": 5,
+        "fontname": "Serif",
+        "height": "0.33333",
+        "id": "out2",
+        "label": "",
+        "margin": "0",
+        "name": "n2p2",
+        "pos": "55.5,12",
+        "shape": "none",
+        "style": "invis",
+        "width": "0.013889"
+      }
+    ],
+    "pad": "0.1,0.5",
+    "rankdir": "LR",
+    "ranksep": "0.75",
+    "strict": false
+  }
 }

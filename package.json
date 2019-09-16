@@ -32,6 +32,7 @@
     "gray-matter": "^4.0.2",
     "highlight.js": "^9.12.0",
     "katex": "^0.10.0",
+    "konva": "^4.0.10",
     "lodash": "^4.17.15",
     "mdast-util-toc": "^2.0.1",
     "prop-types": "^15.7.2",
@@ -39,11 +40,13 @@
     "react": "^16.9.0",
     "react-bulma-components": "^3.0.1-7",
     "react-dom": "^16.9.0",
+    "react-konva": "^16.9.0-0",
     "react-markdown": "^4.2.2",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "remark-math": "^1.0.4",
-    "remark-parse": "^5.0.0"
+    "remark-parse": "^5.0.0",
+    "wiring-diagram-canvas": "file:.yalc/wiring-diagram-canvas"
   },
   "devDependencies": {
     "autoprefixer": "^9.1.0",

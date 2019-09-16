@@ -488,6 +488,11 @@ cyclist@~0.2.2:
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
   integrity sha1-GzN5LhHpFKL9bW7WRHRkRE5fpkA=
 
+d3-path@^1.0.7:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/d3-path/-/d3-path-1.0.8.tgz#4a0606a794d104513ec4a8af43525f374b278719"
+  integrity sha512-J6EfUNwcMQ+aM5YPOB8ZbgAZu6wc82f/0WFxrxwV6Ll8wBwLaHLKCqQ5Imub02JriCVVdPjgI+6P3a4EWJCxAg==
+
 decode-uri-component@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
@@ -975,6 +980,11 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
 
+konva@^4.0.10:
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/konva/-/konva-4.0.10.tgz#1b4e188130e0a183fd6b2e3474767e0892a75a28"
+  integrity sha512-F9SQKxEPxBUtOe3qbXQhAlFg2uM3UZ7w5E2we6vRk6Rv8fuyIiV2UfasIX3ahxvJx57xmQq/UtO+ZL4qSlWe3w==
+
 loader-utils@^1.0.2, loader-utils@^1.2.3:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-1.2.3.tgz#1ff5dc6911c9f0a062531a4c04b609406108c2c7"
@@ -1447,6 +1457,14 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.9.0.tgz#21ca9561399aad0ff1a7701c01683e8ca981edcb"
   integrity sha512-tJBzzzIgnnRfEm046qRcURvwQnZVXmuCbscxUO5RWrGTXpon2d4c8mI0D8WE6ydVIm29JiLB6+RslkIvym9Rjw==
 
+react-konva@^16.9.0-0:
+  version "16.9.0-0"
+  resolved "https://registry.yarnpkg.com/react-konva/-/react-konva-16.9.0-0.tgz#1a23f6a182d3e7434adf2e9073969d48aafcf9b5"
+  integrity sha512-uGff8YkWabo1gZxGiwj2njPbtv34sIFcv1m1GmOT8FPsaHfQl9XEnVn2HIinPIj0W1zHbkWYQ3WpphdfgmSXnA==
+  dependencies:
+    react-reconciler "^0.21.0"
+    scheduler "^0.15.0"
+
 react-markdown@^4.2.2:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/react-markdown/-/react-markdown-4.2.2.tgz#b378774fcffb354653db8749153fc8740f9ed2f1"
@@ -1460,6 +1478,16 @@ react-markdown@^4.2.2:
     unified "^6.1.5"
     unist-util-visit "^1.3.0"
     xtend "^4.0.1"
+
+react-reconciler@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.21.0.tgz#8180342ab3c8295f860025a86d0a03742a294ea7"
+  integrity sha512-h4Rl3L3O6G9V4Ff+F+tCXX8ElDVn0Psk/odT+NPWeA55Yk5G7+kHT8D+Q3yE+51C72LbrYcX6OfLmCZ/7Nx9cw==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.15.0"
 
 react-router-dom@^5.0.1:
   version "5.0.1"
@@ -1914,6 +1942,11 @@ vfile@^2.0.0:
     replace-ext "1.0.0"
     unist-util-stringify-position "^1.0.0"
     vfile-message "^1.0.0"
+
+"wiring-diagram-canvas@file:.yalc/wiring-diagram-canvas":
+  version "0.1.0-b8701f4c"
+  dependencies:
+    d3-path "^1.0.7"
 
 wrappy@1:
   version "1.0.2"
