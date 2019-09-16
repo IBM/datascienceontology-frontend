@@ -1,3 +1,4 @@
+import { Diagrams, Graphviz } from "wiring-diagram-canvas";
 import { SExp } from "./expression";
 
 /** Cached data for a code annotation.
@@ -22,9 +23,9 @@ export interface AnnotationCache {
     expression: SExp;
 
     /* Definition as wiring diagram. */
-    diagram: any;
+    diagram: Diagrams.WiringDiagram;
     
     /* Definition as Graphviz JSON. */
-    graphviz?: any;
+    graphviz?: Graphviz.Graph;
   }
 }

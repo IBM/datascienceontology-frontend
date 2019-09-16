@@ -32,7 +32,7 @@ export const ConceptDisplay = (props: {data?: Concept.Concept}) => {
           Concept
         </span>
         {concept.name}
-        <a className="has-text-grey" title="Edit on GitHub"
+        <a className="has-text-grey is-size-5" title="Edit on GitHub"
            href={`https://github.com/IBM/datascienceontology/tree/master/concept/${concept.id}.yml`}>
           <FontAwesomeIcon icon={faEdit} className="is-pulled-right" />
         </a>

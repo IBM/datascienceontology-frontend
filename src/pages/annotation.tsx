@@ -10,6 +10,7 @@ import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import { displayResponseData } from "../components/higher-order";
 import { Link } from "../components/link";
 import { SExpComponent } from "../components/sexp";
+import { WiringDiagramComponent } from "../components/wiring-diagram";
 
 import { apiUrl } from "../config";
 
@@ -41,7 +42,7 @@ export const AnnotationDisplay = (props: {data?: Annotation.Annotation}) => {
           Annotation
         </span>
         {annotation.name || annotation.id}
-        <a className="has-text-grey" title="Edit on GitHub"
+        <a className="has-text-grey is-size-5" title="Edit on GitHub"
            href={`https://github.com/IBM/datascienceontology/tree/master/annotation/${annotation.language}/${annotation.package}/${annotation.id}.yml`}>
           <FontAwesomeIcon icon={faEdit} className="is-pulled-right" />
         </a>
@@ -303,7 +304,7 @@ const PackageRepositoryLink = (props: {annotation: Annotation.Annotation}) => {
 const FunctionDiagram = (props: {data?: AnnotationCache}) => {
   const cache = props.data;
   return cache && (
-    <p>TODO</p>
+    <WiringDiagramComponent {...cache.definition}/>
   );
 }
 const FunctionDiagramRequest = displayResponseData(FunctionDiagram);
