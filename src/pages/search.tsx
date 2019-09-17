@@ -49,12 +49,12 @@ export class SearchResults extends React.Component<SearchResultsProps,SearchResu
     }
   }
   
-  componentWillMount() {
+  componentDidMount() {
     this.search(this.props.query);
   }
-  componentWillReceiveProps(nextProps: SearchResultsProps) {
-    if (nextProps.query !== this.props.query) {
-      this.search(nextProps.query);
+  componentDidUpdate(prevProps: SearchResultsProps) {
+    if (this.props.query !== prevProps.query) {
+      this.search(this.props.query);
     }
   }
   

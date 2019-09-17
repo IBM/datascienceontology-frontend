@@ -4,14 +4,13 @@ import { Content } from "react-bulma-components";
 import { registerLanguage } from "highlight.js/lib/highlight";
 
 import { SExp } from "../interfaces/expression";
-import { CytoscapeDocument } from "../components/cytoscape";
 import { MarkdownDocument } from "../components/markdown";
 import { SchemaGlyph, KindGlyph } from "../components/glyphs";
 import { Highlight } from "../components/highlight";
 import { SExpComponent } from "../components/sexp";
+import { WiringDiagramDocument } from "../components/wiring-diagram";
 
 import "../../style/pages/markdown.css";
-import * as CytoscapeStyle from "../../style/pages/markdown.cytoscape.json";
 
 import * as yaml from "highlight.js/lib/languages/yaml";
 registerLanguage("yaml", yaml);
@@ -34,26 +33,17 @@ export const MarkdownDisplay = (props: {page: string}) => {
           <Highlight language={props.language}>
             {props.value}
           </Highlight>,
-        cytoscape: (props: {value: string, children: string[]}) => {
-          const docURL = `/assets/pages/${props.value}`;
-          return <p>
-            <CytoscapeDocument docURL={docURL}
-              defaults={{
-                layout: {
-                  name: "preset",
-                  padding: 0,
-                },
-                style: CytoscapeStyle as any,
-                autolock: true,
-                userPanningEnabled: false,
-                userZoomingEnabled: false,
-              }}
-            />
-          </p>;
-        },
         sexp: (props: {value: string}) => {
           const sexp = JSON.parse(props.value) as SExp;
-          return <p><SExpComponent sexp={sexp} /></p>;
+          return <div className="markdown-figure">
+            <SExpComponent sexp={sexp}/>
+          </div>;
+        },
+        wiringdiagram: (props: {value: string, children: string[]}) => {
+          const docURL = `/assets/pages/${props.value}`;
+          return <div className="markdown-figure">
+            <WiringDiagramDocument url={docURL}/>
+          </div>;
         },
         glyph_schema: (props: {value: string}) =>
           <SchemaGlyph schema={props.value} />,

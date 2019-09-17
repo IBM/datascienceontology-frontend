@@ -1,4 +1,156 @@
 {
+  "diagram": {
+    "children": [
+      {
+        "id": "n3",
+        "ports": [
+          {
+            "id": "in1",
+            "portkind": "input",
+            "properties": {
+              "label": {
+                "text": "X"
+              },
+              "ob": [
+                "Ob",
+                "X"
+              ]
+            }
+          },
+          {
+            "id": "out1",
+            "portkind": "output",
+            "properties": {
+              "label": {
+                "text": "Y"
+              },
+              "ob": [
+                "Ob",
+                "Y"
+              ]
+            }
+          }
+        ],
+        "properties": {
+          "hom": [
+            "Hom",
+            "f",
+            [
+              "Ob",
+              "X"
+            ],
+            [
+              "Ob",
+              "Y"
+            ]
+          ],
+          "label": {
+            "text": "f"
+          }
+        }
+      },
+      {
+        "id": "n4",
+        "ports": [
+          {
+            "id": "in1",
+            "portkind": "input",
+            "properties": {
+              "label": {
+                "text": "Y"
+              },
+              "ob": [
+                "Ob",
+                "Y"
+              ]
+            }
+          },
+          {
+            "id": "out1",
+            "portkind": "output",
+            "properties": {
+              "label": {
+                "text": "Z"
+              },
+              "ob": [
+                "Ob",
+                "Z"
+              ]
+            }
+          }
+        ],
+        "properties": {
+          "hom": [
+            "Hom",
+            "g",
+            [
+              "Ob",
+              "Y"
+            ],
+            [
+              "Ob",
+              "Z"
+            ]
+          ],
+          "label": {
+            "text": "g"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "root",
+        "sourcePort": "in1",
+        "target": "n3",
+        "targetPort": "in1"
+      },
+      {
+        "id": "e2",
+        "source": "n3",
+        "sourcePort": "out1",
+        "target": "n4",
+        "targetPort": "in1"
+      },
+      {
+        "id": "e3",
+        "source": "n4",
+        "sourcePort": "out1",
+        "target": "root",
+        "targetPort": "out1"
+      }
+    ],
+    "id": "root",
+    "ports": [
+      {
+        "id": "in1",
+        "portkind": "input",
+        "properties": {
+          "label": {
+            "text": "X"
+          },
+          "ob": [
+            "Ob",
+            "X"
+          ]
+        }
+      },
+      {
+        "id": "out1",
+        "portkind": "output",
+        "properties": {
+          "label": {
+            "text": "Z"
+          },
+          "ob": [
+            "Ob",
+            "Z"
+          ]
+        }
+      }
+    ]
+  },
   "expression": [
     "compose",
     [
@@ -26,145 +178,134 @@
       ]
     ]
   ],
-  "height": "300px",
-  "cytoscape": {
-    "elements": [
+  "graphviz": {
+    "_subgraph_cnt": 2,
+    "bb": "0,0,260,24",
+    "directed": true,
+    "edges": [
       {
-        "group": "nodes",
-        "classes": "graphviz graphviz-invis",
-        "data": {
-          "id": "n1p1",
-          "label": "",
-          "width": 24,
-          "height": 1
-        },
-        "position": {
-          "x": 12,
-          "y": 0.5
-        }
+        "_gvid": 0,
+        "arrowsize": "0.5",
+        "comment": "X",
+        "fontname": "Serif",
+        "head": 4,
+        "headport": "in1:w",
+        "id": "e1",
+        "pos": "e,55,12 1,12 23.219,12 30.01,12 49.939,12",
+        "tail": 2,
+        "tailport": "e"
       },
       {
-        "group": "nodes",
-        "classes": "graphviz graphviz-invis",
-        "data": {
-          "id": "n2p1",
-          "label": "",
-          "width": 24,
-          "height": 1
-        },
-        "position": {
-          "x": 12,
-          "y": 155.5
-        }
+        "_gvid": 1,
+        "arrowsize": "0.5",
+        "comment": "Y",
+        "fontname": "Serif",
+        "head": 5,
+        "headport": "in1:w",
+        "id": "e2",
+        "pos": "e,157,12 103,12 125.22,12 132.01,12 151.94,12",
+        "tail": 4,
+        "tailport": "out1:e"
       },
       {
-        "group": "nodes",
-        "classes": "graphviz",
-        "data": {
-          "name": "f",
-          "label": "f",
-          "height": 23,
-          "id": "n3",
-          "width": 24
-        },
-        "position": {
-          "x": 12,
-          "y": 48.5
-        }
-      },
-      {
-        "group": "nodes",
-        "classes": "graphviz",
-        "data": {
-          "name": "g",
-          "label": "g",
-          "height": 23,
-          "id": "n4",
-          "width": 24
-        },
-        "position": {
-          "x": 12,
-          "y": 107.5
-        }
-      },
-      {
-        "group": "edges",
-        "classes": "graphviz",
-        "data": {
-          "name": "X",
-          "source": "n1p1",
-          "label": "X",
-          "targetEndpoint": [
-            0,
-            -11
-          ],
-          "controlPointWeights": [
-            0.179,
-            0.602
-          ],
-          "target": "n3",
-          "sourceEndpoint": [
-            0,
-            0.5
-          ],
-          "controlPointDistances": [
-            0,
-            0
-          ]
-        }
-      },
-      {
-        "group": "edges",
-        "classes": "graphviz",
-        "data": {
-          "name": "Y",
-          "source": "n3",
-          "label": "Y",
-          "targetEndpoint": [
-            0,
-            -11
-          ],
-          "controlPointWeights": [
-            0.332,
-            0.676
-          ],
-          "target": "n4",
-          "sourceEndpoint": [
-            0,
-            11.5
-          ],
-          "controlPointDistances": [
-            0,
-            0
-          ]
-        }
-      },
-      {
-        "group": "edges",
-        "classes": "graphviz",
-        "data": {
-          "name": "Z",
-          "source": "n4",
-          "label": "Z",
-          "targetEndpoint": [
-            0,
-            -0.5
-          ],
-          "controlPointWeights": [
-            0.406,
-            0.823
-          ],
-          "target": "n2p1",
-          "sourceEndpoint": [
-            0,
-            11.5
-          ],
-          "controlPointDistances": [
-            0,
-            0
-          ]
-        }
+        "_gvid": 2,
+        "arrowsize": "0.5",
+        "comment": "Z",
+        "fontname": "Serif",
+        "head": 3,
+        "headport": "w",
+        "id": "e3",
+        "pos": "e,259,12 205,12 227.22,12 234.01,12 253.94,12",
+        "tail": 5,
+        "tailport": "out1:e"
       }
-    ]
+    ],
+    "fontname": "Serif",
+    "name": "G",
+    "nodesep": "0.5",
+    "objects": [
+      {
+        "_gvid": 0,
+        "fontname": "Serif",
+        "name": "%3",
+        "nodes": [
+          2
+        ],
+        "nodesep": "0.5",
+        "pad": "0.1,0.5",
+        "rank": "source",
+        "rankdir": "TB",
+        "ranksep": "0.75"
+      },
+      {
+        "_gvid": 1,
+        "fontname": "Serif",
+        "name": "%5",
+        "nodes": [
+          3
+        ],
+        "nodesep": "0.5",
+        "pad": "0.1,0.5",
+        "rank": "sink",
+        "rankdir": "TB",
+        "ranksep": "0.75"
+      },
+      {
+        "_gvid": 2,
+        "fontname": "Serif",
+        "height": "0.33333",
+        "id": "in1",
+        "label": "",
+        "margin": "0",
+        "name": "n1p1",
+        "pos": "0.5,12",
+        "shape": "none",
+        "style": "invis",
+        "width": "0.013889"
+      },
+      {
+        "_gvid": 3,
+        "fontname": "Serif",
+        "height": "0.33333",
+        "id": "out1",
+        "label": "",
+        "margin": "0",
+        "name": "n2p1",
+        "pos": "259.5,12",
+        "shape": "none",
+        "style": "invis",
+        "width": "0.013889"
+      },
+      {
+        "_gvid": 4,
+        "comment": "f",
+        "fontname": "Serif",
+        "height": "0.33333",
+        "id": "n3",
+        "label": "<TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\">\n<TR>\n<TD><TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\"><TR><TD HEIGHT=\"24\" WIDTH=\"0\" PORT=\"in1\"></TD></TR></TABLE></TD>\n<TD BORDER=\"1\" CELLPADDING=\"4\" WIDTH=\"48\"></TD>\n<TD><TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\"><TR><TD HEIGHT=\"24\" WIDTH=\"0\" PORT=\"out1\"></TD></TR></TABLE></TD>\n</TR>\n</TABLE>",
+        "margin": "0",
+        "name": "n3",
+        "pos": "79,12",
+        "shape": "none",
+        "width": "0.66667"
+      },
+      {
+        "_gvid": 5,
+        "comment": "g",
+        "fontname": "Serif",
+        "height": "0.33333",
+        "id": "n4",
+        "label": "<TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\">\n<TR>\n<TD><TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\"><TR><TD HEIGHT=\"24\" WIDTH=\"0\" PORT=\"in1\"></TD></TR></TABLE></TD>\n<TD BORDER=\"1\" CELLPADDING=\"4\" WIDTH=\"48\"></TD>\n<TD><TABLE BORDER=\"0\" CELLPADDING=\"0\" CELLSPACING=\"0\"><TR><TD HEIGHT=\"24\" WIDTH=\"0\" PORT=\"out1\"></TD></TR></TABLE></TD>\n</TR>\n</TABLE>",
+        "margin": "0",
+        "name": "n4",
+        "pos": "181,12",
+        "shape": "none",
+        "width": "0.66667"
+      }
+    ],
+    "pad": "0.1,0.5",
+    "rankdir": "LR",
+    "ranksep": "0.75",
+    "strict": false
   }
 }

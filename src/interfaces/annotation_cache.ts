@@ -1,5 +1,5 @@
+import { Diagrams, Graphviz } from "wiring-diagram-canvas";
 import { SExp } from "./expression";
-import { Cytoscape } from "./cytoscape";
 
 /** Cached data for a code annotation.
 
@@ -21,11 +21,11 @@ export interface AnnotationCache {
   definition: {
     /* Definition as S-expression. */
     expression: SExp;
+
+    /* Definition as wiring diagram. */
+    diagram: Diagrams.WiringDiagram;
     
     /* Definition as Graphviz JSON. */
-    graphviz?: any;
-    
-    /* Definition as Cytoscape elements data. */
-    cytoscape?: Cytoscape;
+    graphviz?: Graphviz.Graph;
   }
 }

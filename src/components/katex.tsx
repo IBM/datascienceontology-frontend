@@ -20,12 +20,12 @@ export class KaTeXMath extends React.Component<KaTeXProps,KaTeXState> {
     this.state = { html: null };
   }
   
-  componentWillMount() {
+  componentDidMount() {
     this.generateHTML(this.props.children);
   }
-  componentWillReceiveProps(nextProps: KaTeXProps) {
-    if (nextProps.children !== this.props.children) {
-      this.generateHTML(nextProps.children);
+  componentDidUpdate(prevProps: KaTeXProps) {
+    if (this.props.children !== prevProps.children) {
+      this.generateHTML(this.props.children);
     }
   }
 

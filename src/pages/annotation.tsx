@@ -6,15 +6,14 @@ import { Columns, Heading } from "react-bulma-components";
 
 import * as Annotation from "../interfaces/annotation";
 import { AnnotationCache } from "../interfaces/annotation_cache";
-import { CytoscapeComponent} from "../components/cytoscape";
 import { KindGlyph, LanguageGlyph, SchemaGlyph } from "../components/glyphs";
 import { displayResponseData } from "../components/higher-order";
 import { Link } from "../components/link";
 import { SExpComponent } from "../components/sexp";
+import { WiringDiagramComponent } from "../components/wiring-diagram";
 
 import { apiUrl } from "../config";
 
-import * as CytoscapeStyle from "../../style/pages/annotation.cytoscape.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
@@ -43,7 +42,7 @@ export const AnnotationDisplay = (props: {data?: Annotation.Annotation}) => {
           Annotation
         </span>
         {annotation.name || annotation.id}
-        <a className="has-text-grey" title="Edit on GitHub"
+        <a className="has-text-grey is-size-5" title="Edit on GitHub"
            href={`https://github.com/IBM/datascienceontology/tree/master/annotation/${annotation.language}/${annotation.package}/${annotation.id}.yml`}>
           <FontAwesomeIcon icon={faEdit} className="is-pulled-right" />
         </a>
@@ -305,12 +304,7 @@ const PackageRepositoryLink = (props: {annotation: Annotation.Annotation}) => {
 const FunctionDiagram = (props: {data?: AnnotationCache}) => {
   const cache = props.data;
   return cache && (
-    <CytoscapeComponent height="600px" cytoscape={{
-      ...cache.definition.cytoscape,
-      style: CytoscapeStyle as any,
-      maxZoom: 2,
-      autolock: true,
-    }} />
+    <WiringDiagramComponent {...cache.definition}/>
   );
 }
 const FunctionDiagramRequest = displayResponseData(FunctionDiagram);
