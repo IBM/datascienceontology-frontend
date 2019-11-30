@@ -7,7 +7,7 @@
   "author": "Evan Patterson",
   "license": "Apache-2.0",
   "scripts": {
-    "serve": "webpack-dev-server --content-base build/"
+    "serve": "webpack-dev-server --content-base build/ --define process.env.NODE_ENV='\"development\"'"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.5.0",
