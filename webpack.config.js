@@ -70,6 +70,13 @@ module.exports = {
   },
   devServer: {
     // Route 404's back to index.html to be handled by React Router.
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      "/api": {
+        target: "https://api.datascienceontology.org/",
+        pathRewrite: {"^/api": ""},
+        changeOrigin: true
+      }
+    }
   }
 };
