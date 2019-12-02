@@ -6,6 +6,9 @@ in TypeScript and React.
 The Data Science Ontology itself lives in its own
 [repository](https://github.com/ibm/datascienceontology).
 
-To run, install dependencies with `yarn` and use `npm run serve`. Note that
-the frontend is hard-coded to call `api.datascienceontology.org` which has no
-CORS header for `localhost`, so data may not load.
+## Getting started
+
+To serve the frontend locally, install the dependencies using `yarn` and then
+run `npm run serve`. The development server will proxy the official
+[backend](https://github.com/epatters/datascienceontology-backend) running at
+https://api.datascienceontology.org.
