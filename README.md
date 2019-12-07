@@ -12,3 +12,5 @@ To serve the frontend locally, install the dependencies using `yarn` and then
 run `npm run serve`. The development server will proxy the official
 [backend](https://github.com/epatters/datascienceontology-backend) running at
 https://api.datascienceontology.org.
+
+To change the backend for the locally served frontend, set `ONTOLOGY_API` to another URL such as `http://localhost:3000`.
