@@ -8,7 +8,7 @@ The Data Science Ontology itself lives in its own
 
 ## Getting started
 
-To serve the frontend locally, install the dependencies using `yarn` and then
+To serve the frontend locally, install the dependencies using `npm install` and then
 run `npm run serve`. The development server will proxy the official
 [backend](https://github.com/epatters/datascienceontology-backend) running at
 https://api.datascienceontology.org.
