@@ -73,7 +73,8 @@ module.exports = {
     historyApiFallback: true,
     proxy: {
       "/api": {
-        target: "https://api.datascienceontology.org/",
+        target: process.env.ONTOLOGY_API ||
+          "https://api.datascienceontology.org/",
         pathRewrite: {"^/api": ""},
         changeOrigin: true
       }
