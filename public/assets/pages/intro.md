@@ -26,7 +26,7 @@ The Data Science Ontology is comprised of two kinds of entities: concepts and an
 In summary, the entities comprising the ontology are classified by the two-by-two table:
 
 |                                    | !glyph_schema(concept) Concept | !glyph_schema(annotation) Annotation |
-|------------------------------------|--------------------------------|--------------------------------------|
+| ---------------------------------- | ------------------------------ | ------------------------------------ |
 | !glyph_kind(type) **Type**         | Type concept                   | Type annotation                      |
 | !glyph_kind(function) **Function** | Function concept               | Function annotation                  |
 
@@ -48,7 +48,7 @@ Monocl's type system is about as minimalistic as they come. It has product types
 
 #### Type constructors
 
-The **product** of two types $X$ and $Y$ is another type $X \times Y$. The interpretation is that an element of type $X \times Y$ consists of an element of type $X$ *and* an element of type $Y$. Thus, if $x$ has type $X$ and $y$ has type $Y$, then the pair $\langle x, y \rangle$ has type $X \times Y$. Products of three or more types are defined similarly. Product types are often supported as tuples or record types in real-world programming languages, for example as `struct` types in C. As an expression tree, the product type $X \times Y$ appears as:
+The **product** of two types $X$ and $Y$ is another type $X \times Y$. The interpretation is that an element of type $X \times Y$ consists of an element of type $X$ _and_ an element of type $Y$. Thus, if $x$ has type $X$ and $y$ has type $Y$, then the pair $\langle x, y \rangle$ has type $X \times Y$. Products of three or more types are defined similarly. Product types are often supported as tuples or record types in real-world programming languages, for example as `struct` types in C. As an expression tree, the product type $X \times Y$ appears as:
 
 sexp: Product of types
 :::
@@ -68,15 +68,15 @@ Every type in a Monocl is either a basic type, the unit type, or a product of ba
 
 A basic type can be declared a **subtype** of one or more other basic types. To a first approximation, subtyping establishes an “is-a” relationship between types. For instance, the [matrix](/concept/matrix) concept is a subtype of both [array](/concept/array) (being an array of rank 2) and [data table](/concept/table) (being a table whose columns all have the same data type).
 
-As this example illustrates, subtyping in Monocl is *not* like inheritance in a typical object-oriented programming language. Inheritance is a design pattern that combines—arguably conflates—subtyping with a mechanism for implementation sharing (code reuse). Because Monocl concepts are not implemented at all, implementation sharing is irrelevant and the usual problems related to multiple inheritance do not arise.
+As this example illustrates, subtyping in Monocl is _not_ like inheritance in a typical object-oriented programming language. Inheritance is a design pattern that combines—arguably conflates—subtyping with a mechanism for implementation sharing (code reuse). Because Monocl concepts are not implemented at all, implementation sharing is irrelevant and the usual problems related to multiple inheritance do not arise.
 
-Instead, subtyping should be understood in terms of *implicit conversion*, also known as *coercion*. The idea is that if a type $X$ is a subtype of $X'$, then there is a canonical way to convert elements of type $X$ into elements of type $X'$.  Elaborating the example above, a matrix simply *is* an array (of rank 2), hence can be trivially converted into an array. Meanwhile, a matrix can be converted into a data table (of homogeneous data type) by assigning numerical names to the columns, as accomplished by the function `as.data.frame` in R. Notice that the set of matrices is *not* a subset of the set of data tables, hence the slogan in programming language theory that [types are not sets](https://doi.org/10.1145/512927.512938).
+Instead, subtyping should be understood in terms of _implicit conversion_, also known as _coercion_. The idea is that if a type $X$ is a subtype of $X'$, then there is a canonical way to convert elements of type $X$ into elements of type $X'$. Elaborating the example above, a matrix simply _is_ an array (of rank 2), hence can be trivially converted into an array. Meanwhile, a matrix can be converted into a data table (of homogeneous data type) by assigning numerical names to the columns, as accomplished by the function `as.data.frame` in R. Notice that the set of matrices is _not_ a subset of the set of data tables, hence the slogan in programming language theory that [types are not sets](https://doi.org/10.1145/512927.512938).
 
 Besides playing the role of the ubiquitous “is-a” relation in knowledge representation systems, subtyping enables a form of [ad hoc polymorphism](https://en.wikipedia.org/wiki/Ad_hoc_polymorphism): a function taking input of type $X'$ can, via implicit conversion, automatically take input of any subtype $X$ of $X'$. What this means should become more clear when we discuss functions below.
 
 ### Functions
 
-Every function has an input type (aka *domain*) and an output type (aka *codomain*). These types may be basic or compound. Thus a function may have zero, one, or many basic types as inputs, and likewise for outputs. In contrast to many programming languages, there is a perfect symmetry between inputs and outputs, even at the syntactic level.
+Every function has an input type (aka _domain_) and an output type (aka _codomain_). These types may be basic or compound. Thus a function may have zero, one, or many basic types as inputs, and likewise for outputs. In contrast to many programming languages, there is a perfect symmetry between inputs and outputs, even at the syntactic level.
 
 A **program** in Monocl is a function built from the basic functions using a set of predefined constructors. There are several constructors for making new functions out of existing functions or types. The most important are composition and products. The ontology language also has a notion of “generic function” that extends the idea of subtyping from types to functions.
 
@@ -122,7 +122,7 @@ A **wiring diagram** consists of a collection of boxes whose ports are connected
 
 ##### Composition
 
-The most fundamental function constructor is **composition**: it composes two or more functions *in sequence*, so that the outputs of the first function become the inputs of the second function, the outputs of the second become the inputs of the third, and so on. The input type of the composition is the input type of the first function and the output type is the output type of the last function. In “point-full” mathematical notation, the composition of a function $f$ with another function $g$ is the function $x \mapsto g(f(x))$. That is, the function $f$ is applied, followed by $g$. The expression tree for this composition is
+The most fundamental function constructor is **composition**: it composes two or more functions _in sequence_, so that the outputs of the first function become the inputs of the second function, the outputs of the second become the inputs of the third, and so on. The input type of the composition is the input type of the first function and the output type is the output type of the last function. In “point-full” mathematical notation, the composition of a function $f$ with another function $g$ is the function $x \mapsto g(f(x))$. That is, the function $f$ is applied, followed by $g$. The expression tree for this composition is
 
 sexp: Composition of functions
 :::
@@ -136,13 +136,13 @@ wiringdiagram: Composition of functions
 intro/compose.json
 :::
 
-In order for a composition to be well-defined, the input and output types must be compatible. There must be the same number of output types of $f$ as input types of $g$ and, moreover, each output type of $f$ must be a subtype of the corresponding input type of $g$. The interpretation is that outputs of $f$ are *implicitly converted* to the input types of $g$ before being passed as inputs to $g$. Diagrammatically, this means that the source port type of any wire must be a subtype of the target port type of the wire.
+In order for a composition to be well-defined, the input and output types must be compatible. There must be the same number of output types of $f$ as input types of $g$ and, moreover, each output type of $f$ must be a subtype of the corresponding input type of $g$. The interpretation is that outputs of $f$ are _implicitly converted_ to the input types of $g$ before being passed as inputs to $g$. Diagrammatically, this means that the source port type of any wire must be a subtype of the target port type of the wire.
 
 ##### Products
 
-Another fundamental function constructor is the **product**: it composes two or more functions *in parallel*, concatenating both the inputs and the outputs. It extends the product constructor from types to function. Thus, if $f$ is a function with input type $X$ and output type $W$, and if $g$ is a function with input type $Y$ and output type $Z$, then product of $f$ and $g$ is a function $f \times g$ whose input type is $X \times Y$ and output type is $W \times Z$. In “point-full” mathematical notation, $f \times g$ is the function $\langle x,y \rangle \mapsto \langle f(x),g(y) \rangle$. Products of three or more functions are defined similarly.
+Another fundamental function constructor is the **product**: it composes two or more functions _in parallel_, concatenating both the inputs and the outputs. It extends the product constructor from types to function. Thus, if $f$ is a function with input type $X$ and output type $W$, and if $g$ is a function with input type $Y$ and output type $Z$, then product of $f$ and $g$ is a function $f \times g$ whose input type is $X \times Y$ and output type is $W \times Z$. In “point-full” mathematical notation, $f \times g$ is the function $\langle x,y \rangle \mapsto \langle f(x),g(y) \rangle$. Products of three or more functions are defined similarly.
 
-*Warning*: Do not confuse the notation $f \times g$ with pointwise multiplication! For most types, the operation of multiplication does not even make sense.
+_Warning_: Do not confuse the notation $f \times g$ with pointwise multiplication! For most types, the operation of multiplication does not even make sense.
 
 The product $f \times g$ is represented textually by the expression tree
 
@@ -236,7 +236,7 @@ sexp: n-fold copy
 ["mcopy", "X", "n"]
 :::
 
-In the graphical syntax, a copy is implicitly represented by an output port with multiple outgoing wires and a deletion is implicitly represented by an output port with no outgoing wires. Thus any output port is allow to have zero, one, or many outgoing wires. The same is *not* true of input ports: in a valid wiring diagram, every input port has exactly one incoming wire. This restriction holds because there is no natural way to **merge** multiple elements or **create** new elements of an arbitrary data type.
+In the graphical syntax, a copy is implicitly represented by an output port with multiple outgoing wires and a deletion is implicitly represented by an output port with no outgoing wires. Thus any output port is allow to have zero, one, or many outgoing wires. The same is _not_ true of input ports: in a valid wiring diagram, every input port has exactly one incoming wire. This restriction holds because there is no natural way to **merge** multiple elements or **create** new elements of an arbitrary data type.
 
 There is, however, a family of functions to **construct** elements of a given data type satisfying certain properties. In the simplest case, the construct function take no inputs and creates an element of type $X$ that does not necessarily satisfy any properties:
 
@@ -298,7 +298,7 @@ Every concept is uniquely identified among all concepts in the ontology by an **
 
 Type concepts in the Data Science Ontology include [SQL queries](/concept/sql-query), [data tables](/concept/table), [clustering models](/concept/clustering-model), and [linear regression models](/concept/linear-regression).
 
-The **is** field lists the types of which the concept is a direct subtype. We say “direct” because the relation of being a subtype is *transitive*: if $X$ is a subtype of $X'$ and $X'$ is a subtype of $X''$, then $X$ is a subtype of $X''$. (Why? Because if $X$ is implicitly convertible to $X'$ and $X'$ is implicitly convertible to $X''$, then $X$ is implicitly convertible to $X''$ by composing the two implicit conversion functions.) The subtype relation is also *reflexive*: every type is a subtype of itself. (Why? Because every type is implictly convertible to itself by applying the identity function.) The **is** field lists only the direct supertypes of the concept, not those implied by reflexivity or transitivity.
+The **is** field lists the types of which the concept is a direct subtype. We say “direct” because the relation of being a subtype is _transitive_: if $X$ is a subtype of $X'$ and $X'$ is a subtype of $X''$, then $X$ is a subtype of $X''$. (Why? Because if $X$ is implicitly convertible to $X'$ and $X'$ is implicitly convertible to $X''$, then $X$ is implicitly convertible to $X''$ by composing the two implicit conversion functions.) The subtype relation is also _reflexive_: every type is a subtype of itself. (Why? Because every type is implictly convertible to itself by applying the identity function.) The **is** field lists only the direct supertypes of the concept, not those implied by reflexivity or transitivity.
 
 ### Function concepts
 
@@ -310,7 +310,7 @@ Function concepts in the ontology include [reading a data table](/concept/read-t
 
 3. Finally, some functions in the ontology exist purely for knowledge representation purposes and are unlikely to be reified in source code. An example is the class of the [kernelized](/concept/kernelized) functions, such as [kernelized PCA](/concept/pca-kernelized), mapping models to their kernelizations (where Euclidean inner products are replaced by arbitrary kernels, via the so-called [“kernel trick”](https://en.wikipedia.org/wiki/Kernel_method)). Kernelization defines a valid functional relation but most machine learning libraries do not make this relation explicit.
 
-The taxonomy of functions is informal. Function concepts in the ontology are *not* marked as belonging to one of these categories; in some cases, there is no single category that obviously applies.
+The taxonomy of functions is informal. Function concepts in the ontology are _not_ marked as belonging to one of these categories; in some cases, there is no single category that obviously applies.
 
 Entries for function concepts have several additional fields. The **input** and **ouput** fields state the input and output types of the functions, presented as a finite list of basic types. The **is** field lists the functions of which the concept is a direct subfunction. We say “direct” subfunction for the same reason we said “direct” subtype above.
 
@@ -328,7 +328,7 @@ Some examples of type annotations are the [numpy array](/annotation/python/numpy
 
 The **definition** of a type annotation is the abstract type to which the concrete type is mapped. For now we require the definition to be a basic type of the ontology, although we may relax that restriction in the future. As an example, the [pandas data frame](/annotation/python/pandas/data-frame) annotation maps the pandas `DataFrame` class to the [data table](/concept/table) concept.
 
-A type annotation applies to the concrete type given by its **class** field. The assignment of annotations to concrete types respects class inheritance. When multiple annotations match, the annotation with the most specific class is assigned. The “most specific class” is unambiguous in languages with single inheritance, such as R. When multiple inheritance is allowed, ambiguities are settled in a language-specific manner, e.g. by the [method resolution order (MRO)](https://www.python.org/download/releases/2.3/mro/) in Python. Under multiple inheritance, the **class** field may also list multiple classes. In this case the annotation matches any class inheriting from *all* the listed classes. Here's an example. The annotation for [clusterers in scikit-learn](/annotation/python/sklearn/base-clusterer) matches all classes that inherit from both `BaseEstimator` and `ClusterMixin`, which is how clustering models are represented in scikit-learn. However, for the `KMeans` class, which inherits from both `BaseEstimator` and `ClusterMixin`, the more specific [k-means clustering](/annotation/python/sklearn/k-means) annotation takes precedence over the [clusterers](/annotation/python/sklearn/base-clusterer) annotation.
+A type annotation applies to the concrete type given by its **class** field. The assignment of annotations to concrete types respects class inheritance. When multiple annotations match, the annotation with the most specific class is assigned. The “most specific class” is unambiguous in languages with single inheritance, such as R. When multiple inheritance is allowed, ambiguities are settled in a language-specific manner, e.g. by the [method resolution order (MRO)](https://www.python.org/download/releases/2.3/mro/) in Python. Under multiple inheritance, the **class** field may also list multiple classes. In this case the annotation matches any class inheriting from _all_ the listed classes. Here's an example. The annotation for [clusterers in scikit-learn](/annotation/python/sklearn/base-clusterer) matches all classes that inherit from both `BaseEstimator` and `ClusterMixin`, which is how clustering models are represented in scikit-learn. However, for the `KMeans` class, which inherits from both `BaseEstimator` and `ClusterMixin`, the more specific [k-means clustering](/annotation/python/sklearn/k-means) annotation takes precedence over the [clusterers](/annotation/python/sklearn/base-clusterer) annotation.
 
 The properties of a concrete type are annotated by the **slots** field. Slots are essentially a shorthand for function annotations. A slot annotation maps a slot on the concrete type to an abstract function whose input type is the **definition** type (or a supertype thereof). For example, the annotation of [k-means clustering in scikit-learn](/annotation/python/sklearn/k-means) has slots for the number of clusters, the cluster assignments, and the centroids of the clusters. As usual, what constitutes a “slot” depends on the target language. Object attributes, methods with no arguments, and compositions thereof are all slots.
 
@@ -348,7 +348,7 @@ Let us expand on how concrete inputs and outputs are specified. A concrete input
 
 A concrete output is either the function's return value, identified by the special name `__return__`, or a function argument, identified as above. Marking a function argument as an output means that the argument is passed by reference and mutated within the function. Because the ontology language is purely functional, mutated arguments are represented as extra outputs. For example, when [fitting a regression model in scikit-learn](/annotation/python/sklearn/fit-regression), the `self` argument is both an input and an output. The method is reinterpreted as taking an unfitted regression model as input and yielding a fitted regression model as output.
 
-## What's next? 
+## What's next?
 
 You should now have a working knowledge of the Data Science Ontology, sufficient to read and understand the content of this website. If you'd like to contribute to the ontology, you should also read the short [contribution guide](/help/contribute). The [advanced guide](/help/math) presents the ontology language with greater mathematical rigor and references to the research literature.
 

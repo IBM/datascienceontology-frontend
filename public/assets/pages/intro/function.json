@@ -11,10 +11,7 @@
               "label": {
                 "text": "X"
               },
-              "ob": [
-                "Ob",
-                "X"
-              ]
+              "ob": ["Ob", "X"]
             }
           },
           {
@@ -24,10 +21,7 @@
               "label": {
                 "text": "Y"
               },
-              "ob": [
-                "Ob",
-                "Y"
-              ]
+              "ob": ["Ob", "Y"]
             }
           },
           {
@@ -37,10 +31,7 @@
               "label": {
                 "text": "W"
               },
-              "ob": [
-                "Ob",
-                "W"
-              ]
+              "ob": ["Ob", "W"]
             }
           },
           {
@@ -50,10 +41,7 @@
               "label": {
                 "text": "Z"
               },
-              "ob": [
-                "Ob",
-                "Z"
-              ]
+              "ob": ["Ob", "Z"]
             }
           }
         ],
@@ -61,28 +49,8 @@
           "hom": [
             "Hom",
             "f",
-            [
-              "otimes",
-              [
-                "Ob",
-                "X"
-              ],
-              [
-                "Ob",
-                "Y"
-              ]
-            ],
-            [
-              "otimes",
-              [
-                "Ob",
-                "W"
-              ],
-              [
-                "Ob",
-                "Z"
-              ]
-            ]
+            ["otimes", ["Ob", "X"], ["Ob", "Y"]],
+            ["otimes", ["Ob", "W"], ["Ob", "Z"]]
           ],
           "label": {
             "text": "f"
@@ -129,10 +97,7 @@
           "label": {
             "text": "X"
           },
-          "ob": [
-            "Ob",
-            "X"
-          ]
+          "ob": ["Ob", "X"]
         }
       },
       {
@@ -142,10 +107,7 @@
           "label": {
             "text": "Y"
           },
-          "ob": [
-            "Ob",
-            "Y"
-          ]
+          "ob": ["Ob", "Y"]
         }
       },
       {
@@ -155,10 +117,7 @@
           "label": {
             "text": "W"
           },
-          "ob": [
-            "Ob",
-            "W"
-          ]
+          "ob": ["Ob", "W"]
         }
       },
       {
@@ -168,10 +127,7 @@
           "label": {
             "text": "Z"
           },
-          "ob": [
-            "Ob",
-            "Z"
-          ]
+          "ob": ["Ob", "Z"]
         }
       }
     ]
@@ -179,28 +135,8 @@
   "expression": [
     "Hom",
     "f",
-    [
-      "otimes",
-      [
-        "Ob",
-        "X"
-      ],
-      [
-        "Ob",
-        "Y"
-      ]
-    ],
-    [
-      "otimes",
-      [
-        "Ob",
-        "W"
-      ],
-      [
-        "Ob",
-        "Z"
-      ]
-    ]
+    ["otimes", ["Ob", "X"], ["Ob", "Y"]],
+    ["otimes", ["Ob", "W"], ["Ob", "Z"]]
   ],
   "graphviz": {
     "_subgraph_cnt": 2,
@@ -280,15 +216,10 @@
     "objects": [
       {
         "_gvid": 0,
-        "edges": [
-          0
-        ],
+        "edges": [0],
         "fontname": "Serif",
         "name": "%3",
-        "nodes": [
-          2,
-          3
-        ],
+        "nodes": [2, 3],
         "nodesep": "0.5",
         "pad": "0.1,0.5",
         "rank": "source",
@@ -297,15 +228,10 @@
       },
       {
         "_gvid": 1,
-        "edges": [
-          3
-        ],
+        "edges": [3],
         "fontname": "Serif",
         "name": "%7",
-        "nodes": [
-          4,
-          5
-        ],
+        "nodes": [4, 5],
         "nodesep": "0.5",
         "pad": "0.1,0.5",
         "rank": "sink",

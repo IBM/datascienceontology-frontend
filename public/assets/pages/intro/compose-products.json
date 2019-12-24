@@ -11,10 +11,7 @@
               "label": {
                 "text": "A"
               },
-              "ob": [
-                "Ob",
-                "A"
-              ]
+              "ob": ["Ob", "A"]
             }
           },
           {
@@ -24,26 +21,12 @@
               "label": {
                 "text": "B"
               },
-              "ob": [
-                "Ob",
-                "B"
-              ]
+              "ob": ["Ob", "B"]
             }
           }
         ],
         "properties": {
-          "hom": [
-            "Hom",
-            "h",
-            [
-              "Ob",
-              "A"
-            ],
-            [
-              "Ob",
-              "B"
-            ]
-          ],
+          "hom": ["Hom", "h", ["Ob", "A"], ["Ob", "B"]],
           "label": {
             "text": "h"
           }
@@ -59,10 +42,7 @@
               "label": {
                 "text": "B"
               },
-              "ob": [
-                "Ob",
-                "B"
-              ]
+              "ob": ["Ob", "B"]
             }
           },
           {
@@ -72,26 +52,12 @@
               "label": {
                 "text": "C"
               },
-              "ob": [
-                "Ob",
-                "C"
-              ]
+              "ob": ["Ob", "C"]
             }
           }
         ],
         "properties": {
-          "hom": [
-            "Hom",
-            "k",
-            [
-              "Ob",
-              "B"
-            ],
-            [
-              "Ob",
-              "C"
-            ]
-          ],
+          "hom": ["Hom", "k", ["Ob", "B"], ["Ob", "C"]],
           "label": {
             "text": "k"
           }
@@ -107,10 +73,7 @@
               "label": {
                 "text": "X"
               },
-              "ob": [
-                "Ob",
-                "X"
-              ]
+              "ob": ["Ob", "X"]
             }
           },
           {
@@ -120,26 +83,12 @@
               "label": {
                 "text": "Y"
               },
-              "ob": [
-                "Ob",
-                "Y"
-              ]
+              "ob": ["Ob", "Y"]
             }
           }
         ],
         "properties": {
-          "hom": [
-            "Hom",
-            "f",
-            [
-              "Ob",
-              "X"
-            ],
-            [
-              "Ob",
-              "Y"
-            ]
-          ],
+          "hom": ["Hom", "f", ["Ob", "X"], ["Ob", "Y"]],
           "label": {
             "text": "f"
           }
@@ -155,10 +104,7 @@
               "label": {
                 "text": "Y"
               },
-              "ob": [
-                "Ob",
-                "Y"
-              ]
+              "ob": ["Ob", "Y"]
             }
           },
           {
@@ -168,26 +114,12 @@
               "label": {
                 "text": "Z"
               },
-              "ob": [
-                "Ob",
-                "Z"
-              ]
+              "ob": ["Ob", "Z"]
             }
           }
         ],
         "properties": {
-          "hom": [
-            "Hom",
-            "g",
-            [
-              "Ob",
-              "Y"
-            ],
-            [
-              "Ob",
-              "Z"
-            ]
-          ],
+          "hom": ["Hom", "g", ["Ob", "Y"], ["Ob", "Z"]],
           "label": {
             "text": "g"
           }
@@ -247,10 +179,7 @@
           "label": {
             "text": "X"
           },
-          "ob": [
-            "Ob",
-            "X"
-          ]
+          "ob": ["Ob", "X"]
         }
       },
       {
@@ -260,10 +189,7 @@
           "label": {
             "text": "A"
           },
-          "ob": [
-            "Ob",
-            "A"
-          ]
+          "ob": ["Ob", "A"]
         }
       },
       {
@@ -273,10 +199,7 @@
           "label": {
             "text": "Z"
           },
-          "ob": [
-            "Ob",
-            "Z"
-          ]
+          "ob": ["Ob", "Z"]
         }
       },
       {
@@ -286,10 +209,7 @@
           "label": {
             "text": "C"
           },
-          "ob": [
-            "Ob",
-            "C"
-          ]
+          "ob": ["Ob", "C"]
         }
       }
     ]
@@ -298,57 +218,13 @@
     "otimes",
     [
       "compose",
-      [
-        "Hom",
-        "f",
-        [
-          "Ob",
-          "X"
-        ],
-        [
-          "Ob",
-          "Y"
-        ]
-      ],
-      [
-        "Hom",
-        "g",
-        [
-          "Ob",
-          "Y"
-        ],
-        [
-          "Ob",
-          "Z"
-        ]
-      ]
+      ["Hom", "f", ["Ob", "X"], ["Ob", "Y"]],
+      ["Hom", "g", ["Ob", "Y"], ["Ob", "Z"]]
     ],
     [
       "compose",
-      [
-        "Hom",
-        "h",
-        [
-          "Ob",
-          "A"
-        ],
-        [
-          "Ob",
-          "B"
-        ]
-      ],
-      [
-        "Hom",
-        "k",
-        [
-          "Ob",
-          "B"
-        ],
-        [
-          "Ob",
-          "C"
-        ]
-      ]
+      ["Hom", "h", ["Ob", "A"], ["Ob", "B"]],
+      ["Hom", "k", ["Ob", "B"], ["Ob", "C"]]
     ]
   ],
   "graphviz": {
@@ -453,15 +329,10 @@
     "objects": [
       {
         "_gvid": 0,
-        "edges": [
-          0
-        ],
+        "edges": [0],
         "fontname": "Serif",
         "name": "%3",
-        "nodes": [
-          2,
-          3
-        ],
+        "nodes": [2, 3],
         "nodesep": "0.5",
         "pad": "0.1,0.5",
         "rank": "source",
@@ -470,15 +341,10 @@
       },
       {
         "_gvid": 1,
-        "edges": [
-          3
-        ],
+        "edges": [3],
         "fontname": "Serif",
         "name": "%7",
-        "nodes": [
-          4,
-          5
-        ],
+        "nodes": [4, 5],
         "nodesep": "0.5",
         "pad": "0.1,0.5",
         "rank": "sink",

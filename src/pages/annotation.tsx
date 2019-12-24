@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import * as React from "react";
 import * as Router from "react-router-dom";
-import * as ReactMarkdown from "react-markdown";
+import ReactMarkdown from "react-markdown";
 import { Columns, Heading } from "react-bulma-components";
 
 import * as Annotation from "../interfaces/annotation";
@@ -17,7 +17,6 @@ import { apiUrl } from "../config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
-
 interface AnnotationKey {
   language: string;
   package: string;
@@ -29,32 +28,34 @@ export const AnnotationPage = (props: AnnotationPageProps) => {
   const key = props.match.params;
   const endpoint = `annotation/${key.language}/${key.package}/${key.id}`;
   return <AnnotationRequest url={`${apiUrl}/${endpoint}`} />;
-}
+};
 
-export const AnnotationDisplay = (props: {data?: Annotation.Annotation}) => {
+export const AnnotationDisplay = (props: { data?: Annotation.Annotation }) => {
   const annotation = props.data;
-  return annotation && (
+  return annotation ? (
     <section id="annotation">
       <Heading size={3}>
         <span className="has-text-grey has-margin-right-75">
-          <SchemaGlyph schema="annotation" />
-          {" "}
-          Annotation
+          <SchemaGlyph schema="annotation" /> Annotation
         </span>
         {annotation.name || annotation.id}
-        <a className="has-text-grey is-size-5" title="Edit on GitHub"
-           href={`https://github.com/IBM/datascienceontology/tree/master/annotation/${annotation.language}/${annotation.package}/${annotation.id}.yml`}>
+        <a
+          className="has-text-grey is-size-5"
+          title="Edit on GitHub"
+          href={`https://github.com/IBM/datascienceontology/tree/master/annotation/${annotation.language}/${annotation.package}/${annotation.id}.yml`}
+        >
           <FontAwesomeIcon icon={faEdit} className="is-pulled-right" />
         </a>
       </Heading>
       <AnnotationContent annotation={annotation} />
     </section>
+  ) : (
+    <></>
   );
-}
+};
 const AnnotationRequest = displayResponseData(AnnotationDisplay);
 
-
-const AnnotationContent = (props: {annotation: Annotation.Annotation}) => {
+const AnnotationContent = (props: { annotation: Annotation.Annotation }) => {
   const annotation = props.annotation;
   if (Annotation.isType(annotation)) {
     return (
@@ -80,16 +81,15 @@ const AnnotationContent = (props: {annotation: Annotation.Annotation}) => {
     );
   }
   return null;
-}
+};
 
-const BaseDefList = (props: {annotation: Annotation.Annotation}) => {
+const BaseDefList = (props: { annotation: Annotation.Annotation }) => {
   const annotation = props.annotation;
-  const packageLink = PackageRepositoryLink({annotation});
+  const packageLink = PackageRepositoryLink({ annotation });
   const elements = [
     <dt key="language-dt">Language</dt>,
     <dd key="language-dd">
-      <LanguageGlyph language={annotation.language} />
-      {" "}
+      <LanguageGlyph language={annotation.language} />{" "}
       {_.capitalize(annotation.language)}
     </dd>,
     <dt key="package-dt">Package</dt>,
@@ -103,56 +103,63 @@ const BaseDefList = (props: {annotation: Annotation.Annotation}) => {
     <dd key="id-dd">{annotation.id}</dd>,
     <dt key="kind-dt">Kind</dt>,
     <dd key="kind-dd">
-      <KindGlyph kind={annotation.kind} />
-      {" "}
-      {annotation.kind}
-    </dd>,
+      <KindGlyph kind={annotation.kind} /> {annotation.kind}
+    </dd>
   ];
-  if (annotation.name) { elements.push(
-    <dt key="name-dt">Name</dt>,
-    <dd key="name-dd">{annotation.name}</dd>,
-  ); }
-  if (annotation.description) { elements.push(
-    <dt key="description-dt">Description</dt>,
-    <dd key="description-dd">
-      <ReactMarkdown source={annotation.description}/>
-    </dd>,
-  ); }
+  if (annotation.name) {
+    elements.push(
+      <dt key="name-dt">Name</dt>,
+      <dd key="name-dd">{annotation.name}</dd>
+    );
+  }
+  if (annotation.description) {
+    elements.push(
+      <dt key="description-dt">Description</dt>,
+      <dd key="description-dd">
+        <ReactMarkdown source={annotation.description} />
+      </dd>
+    );
+  }
   return elements;
-}
+};
 
-const TypeDefList = (props: {annotation: Annotation.TypeAnnotation}) => {
+const TypeDefList = (props: { annotation: Annotation.TypeAnnotation }) => {
   const annotation = props.annotation;
   if (Annotation.isPythonType(annotation)) {
-    return PythonTypeDefList({annotation});
+    return PythonTypeDefList({ annotation });
   } else if (Annotation.isRType(annotation)) {
-    return RTypeDefList({annotation});
+    return RTypeDefList({ annotation });
   }
   return [];
-}
+};
 
-const FunctionDefList = (props: {annotation: Annotation.FunctionAnnotation}) => {
+const FunctionDefList = (props: {
+  annotation: Annotation.FunctionAnnotation;
+}) => {
   const annotation = props.annotation;
   if (Annotation.isPythonFunction(annotation)) {
-    return PythonFunctionDefList({annotation});
+    return PythonFunctionDefList({ annotation });
   } else if (Annotation.isRFunction(annotation)) {
-    return RFunctionDefList({annotation});
+    return RFunctionDefList({ annotation });
   }
   return [];
-}
+};
 
-
-const PythonTypeDefList = (props: {annotation: Annotation.PythonType}) => {
+const PythonTypeDefList = (props: { annotation: Annotation.PythonType }) => {
   const annotation = props.annotation;
-  const classes = typeof annotation.class === "string" ?
-    [ annotation.class ] : annotation.class;
+  const classes =
+    typeof annotation.class === "string"
+      ? [annotation.class]
+      : annotation.class;
   return [
     <dt key="class-dt">Python class</dt>,
     <dd key="class-dd">
-      <ul className="list-inline">{classes.map((className, i) =>
-        <li key={i}>
-          <code>{className}</code>
-        </li>)}
+      <ul className="list-inline">
+        {classes.map((className, i) => (
+          <li key={i}>
+            <code>{className}</code>
+          </li>
+        ))}
       </ul>
     </dd>,
     <dt key="def-dt">Definition</dt>,
@@ -162,37 +169,49 @@ const PythonTypeDefList = (props: {annotation: Annotation.PythonType}) => {
     <dt key="slots-dt">Slots</dt>,
     <dd key="slots-dd">
       <SlotList slots={annotation.slots || []} />
-    </dd>,
+    </dd>
   ];
-}
+};
 
-const PythonFunctionDefList = (props: {annotation: Annotation.PythonFunction}) => {
+const PythonFunctionDefList = (props: {
+  annotation: Annotation.PythonFunction;
+}) => {
   const annotation = props.annotation;
-  const classes = typeof annotation.class === "string" ?
-    [ annotation.class ] : annotation.class;
+  const classes =
+    typeof annotation.class === "string"
+      ? [annotation.class]
+      : annotation.class;
   const elements: JSX.Element[] = [];
-  if (annotation.function) { elements.push(
-    <dt key="function-dt">Python function</dt>,
-    <dd key="function-dd">
-      <code>{annotation.function}</code>
-    </dd>,
-  ); }
-  if (classes) { elements.push(
-    <dt key="class-dt">Python class</dt>,
-    <dd key="class-dd">
-      <ul className="list-inline">{classes.map((className, i) =>
-        <li key={i}>
-          <code>{className}</code>
-        </li>)}
-      </ul>
-    </dd>,
-  ); }
-  if (annotation.method) { elements.push(
-    <dt key="method-dt">Python method</dt>,
-    <dd key="method-dd">
-      <code>{annotation.method}</code>
-    </dd>,
-  ); }
+  if (annotation.function) {
+    elements.push(
+      <dt key="function-dt">Python function</dt>,
+      <dd key="function-dd">
+        <code>{annotation.function}</code>
+      </dd>
+    );
+  }
+  if (classes) {
+    elements.push(
+      <dt key="class-dt">Python class</dt>,
+      <dd key="class-dd">
+        <ul className="list-inline">
+          {classes.map((className, i) => (
+            <li key={i}>
+              <code>{className}</code>
+            </li>
+          ))}
+        </ul>
+      </dd>
+    );
+  }
+  if (annotation.method) {
+    elements.push(
+      <dt key="method-dt">Python method</dt>,
+      <dd key="method-dd">
+        <code>{annotation.method}</code>
+      </dd>
+    );
+  }
   elements.push(
     <dt key="dom-dt">Inputs</dt>,
     <dd key="dom-dd">
@@ -205,13 +224,12 @@ const PythonFunctionDefList = (props: {annotation: Annotation.PythonFunction}) =
     <dt key="def-dt">Definition</dt>,
     <dd key="def-dd">
       <SExpComponent inline ontology sexp={annotation.definition} />
-    </dd>,
+    </dd>
   );
   return elements;
-}
+};
 
-
-const RTypeDefList = (props: {annotation: Annotation.RType}) => {
+const RTypeDefList = (props: { annotation: Annotation.RType }) => {
   const annotation = props.annotation;
   const slots = annotation.slots || [];
   return [
@@ -226,24 +244,26 @@ const RTypeDefList = (props: {annotation: Annotation.RType}) => {
     <dt key="slots-dt">Slots</dt>,
     <dd key="slots-dd">
       <SlotList slots={annotation.slots || []} />
-    </dd>,
+    </dd>
   ];
-}
+};
 
-const RFunctionDefList = (props: {annotation: Annotation.RFunction}) => {
+const RFunctionDefList = (props: { annotation: Annotation.RFunction }) => {
   const annotation = props.annotation;
   const elements: JSX.Element[] = [
     <dt key="function-dt">R function</dt>,
     <dd key="function-dd">
       <code>{annotation.function}</code>
-    </dd>,
+    </dd>
   ];
-  if (annotation.class) { elements.push(
-    <dt key="class-dt">{annotation.system || "S3"} method of</dt>,
-    <dd key="class-dd">
-      <code>{annotation.class}</code>
-    </dd>,
-  ); }
+  if (annotation.class) {
+    elements.push(
+      <dt key="class-dt">{annotation.system || "S3"} method of</dt>,
+      <dd key="class-dd">
+        <code>{annotation.class}</code>
+      </dd>
+    );
+  }
   elements.push(
     <dt key="dom-dt">Inputs</dt>,
     <dd key="dom-dd">
@@ -256,33 +276,42 @@ const RFunctionDefList = (props: {annotation: Annotation.RFunction}) => {
     <dt key="def-dt">Definition</dt>,
     <dd key="def-dd">
       <SExpComponent inline ontology sexp={annotation.definition} />
-    </dd>,
+    </dd>
   );
   return elements;
-}
+};
 
+const PortAnnotationList = (props: { ports: Annotation.PortAnnotation[] }) =>
+  _.isEmpty(props.ports) ? (
+    <span>(empty)</span>
+  ) : (
+    <ul>
+      {props.ports.map((port, i) => (
+        <li key={i}>
+          <code>{port.slot}</code>
+        </li>
+      ))}
+    </ul>
+  );
 
-const PortAnnotationList = (props: {ports: Annotation.PortAnnotation[]}) =>
-  _.isEmpty(props.ports) ?
-    <span>(empty)</span> :
-    <ul>{props.ports.map((port, i) =>
-      <li key={i}>
-        <code>{port.slot}</code>
-      </li>)}
-    </ul>;
+const SlotList = (props: { slots: Annotation.Slot[] }) =>
+  _.isEmpty(props.slots) ? (
+    <span>(none)</span>
+  ) : (
+    <ul>
+      {props.slots.map((slot, i) => (
+        <li key={i}>
+          <code>{slot.slot}</code>
+          {": "}
+          <SExpComponent inline ontology sexp={slot.definition} />
+        </li>
+      ))}
+    </ul>
+  );
 
-const SlotList = (props: {slots: Annotation.Slot[]}) =>
-  _.isEmpty(props.slots) ?
-    <span>(none)</span> :
-    <ul>{props.slots.map((slot, i) =>
-      <li key={i}>
-        <code>{slot.slot}</code>
-        {": "}
-        <SExpComponent inline ontology sexp={slot.definition} />
-      </li>)}
-    </ul>;
-
-const PackageRepositoryLink = (props: {annotation: Annotation.Annotation}) => {
+const PackageRepositoryLink = (props: {
+  annotation: Annotation.Annotation;
+}) => {
   const annotation = props.annotation;
   const pkg = annotation.package;
   if (Annotation.isPython(annotation) && pkg != "builtins") {
@@ -299,31 +328,28 @@ const PackageRepositoryLink = (props: {annotation: Annotation.Annotation}) => {
     );
   }
   return null;
-}
+};
 
-const FunctionDiagram = (props: {data?: AnnotationCache}) => {
+const FunctionDiagram = (props: { data?: AnnotationCache }) => {
   const cache = props.data;
-  return cache && (
-    <WiringDiagramComponent {...cache.definition}/>
-  );
-}
+  return cache ? <WiringDiagramComponent {...cache.definition} /> : <></>;
+};
 const FunctionDiagramRequest = displayResponseData(FunctionDiagram);
 
-
-export const AnnotationFullName = (props: {annotation: Annotation.Annotation}) => {
+export const AnnotationFullName = (props: {
+  annotation: Annotation.Annotation;
+}) => {
   const note = props.annotation;
   const key = `${note.language}/${note.package}/${note.id}`;
-  return <span>
-    <Router.Link to={`/annotation/${key}`}>
-      {note.name !== undefined ? note.name : note.id}
-    </Router.Link>
-    {" "}
-    <span className="has-text-grey">
-      ({key})
+  return (
+    <span>
+      <Router.Link to={`/annotation/${key}`}>
+        {note.name !== undefined ? note.name : note.id}
+      </Router.Link>{" "}
+      <span className="has-text-grey">({key})</span>
     </span>
-  </span>;
-}
-
+  );
+};
 
 /** List of packages in r-base (the R standard library).
 
@@ -345,5 +371,5 @@ const rStdLib = [
   "tcltk",
   "tools",
   "translations",
-  "utils",
+  "utils"
 ];

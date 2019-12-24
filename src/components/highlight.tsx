@@ -4,13 +4,12 @@ import { highlightBlock } from "highlight.js/lib/highlight";
 //import "highlight.js/styles/color-brewer.css";
 import "highlight.js/styles/github.css";
 
-
 interface HighlightProps {
   language: string;
 }
 
 export class Highlight extends React.Component<HighlightProps> {
-  private _code: HTMLElement;
+  private _code?: HTMLElement = undefined;
 
   highlight() {
     highlightBlock(this._code);
@@ -24,11 +23,17 @@ export class Highlight extends React.Component<HighlightProps> {
   }
 
   render() {
-    return <pre>
-      <code className={`language-${this.props.language}`}
-            ref={(elem) => { this._code = elem; }} >
-        {this.props.children}
-      </code>
-    </pre>
+    return (
+      <pre>
+        <code
+          className={`language-${this.props.language}`}
+          ref={elem => {
+            this._code = elem || undefined;
+          }}
+        >
+          {this.props.children}
+        </code>
+      </pre>
+    );
   }
 }

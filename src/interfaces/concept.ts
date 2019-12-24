@@ -7,25 +7,25 @@ import { SExp } from "./expression";
 export interface Concept {
   /* ID of document in database. */
   _id?: string;
-  
+
   /* Schema of document in database. */
   schema?: "concept";
-  
+
   /* ID for concept, unique within ontology */
   id: string;
-  
+
   /* Human-readable name of concept */
   name: string;
-  
+
   /* Human-readable description of concept in Markdown */
   description?: string;
-  
+
   /* Kind of concept. */
   kind: "type" | "function";
-  
+
   /* Definition of concept in terms of other concepts */
   definition?: SExp;
-  
+
   /* Concept is a sub-concept of these concepts */
   "is-a"?: string | string[];
 
@@ -54,7 +54,7 @@ export interface FunctionConcept extends Concept {
 
   /* Inputs of function. */
   inputs: Port[];
-  
+
   /* Outputs of function. */
   outputs: Port[];
 }
@@ -64,18 +64,18 @@ export interface FunctionConcept extends Concept {
 export interface Port {
   /* ID of a type concept */
   type: string;
-  
+
   /* Syntactic name of port */
   name?: string;
-  
+
   /* Human-readable description of port */
   description?: string;
 }
 
 export function isType(concept: Concept): concept is TypeConcept {
- return concept.kind === "type";
+  return concept.kind === "type";
 }
 
 export function isFunction(concept: Concept): concept is FunctionConcept {
- return concept.kind === "function";
+  return concept.kind === "function";
 }

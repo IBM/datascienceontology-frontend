@@ -26,10 +26,7 @@
           "label": {
             "text": "X"
           },
-          "ob": [
-            "Ob",
-            "X"
-          ]
+          "ob": ["Ob", "X"]
         }
       },
       {
@@ -39,10 +36,7 @@
           "label": {
             "text": "Y"
           },
-          "ob": [
-            "Ob",
-            "Y"
-          ]
+          "ob": ["Ob", "Y"]
         }
       },
       {
@@ -52,10 +46,7 @@
           "label": {
             "text": "Y"
           },
-          "ob": [
-            "Ob",
-            "Y"
-          ]
+          "ob": ["Ob", "Y"]
         }
       },
       {
@@ -65,25 +56,12 @@
           "label": {
             "text": "X"
           },
-          "ob": [
-            "Ob",
-            "X"
-          ]
+          "ob": ["Ob", "X"]
         }
       }
     ]
   },
-  "expression": [
-    "braid",
-    [
-      "Ob",
-      "X"
-    ],
-    [
-      "Ob",
-      "Y"
-    ]
-  ],
+  "expression": ["braid", ["Ob", "X"], ["Ob", "Y"]],
   "graphviz": {
     "_subgraph_cnt": 2,
     "bb": "0,0,56,84",
@@ -138,15 +116,10 @@
     "objects": [
       {
         "_gvid": 0,
-        "edges": [
-          0
-        ],
+        "edges": [0],
         "fontname": "Serif",
         "name": "%3",
-        "nodes": [
-          2,
-          3
-        ],
+        "nodes": [2, 3],
         "nodesep": "0.5",
         "pad": "0.1,0.5",
         "rank": "source",
@@ -155,15 +128,10 @@
       },
       {
         "_gvid": 1,
-        "edges": [
-          3
-        ],
+        "edges": [3],
         "fontname": "Serif",
         "name": "%7",
-        "nodes": [
-          4,
-          5
-        ],
+        "nodes": [4, 5],
         "nodesep": "0.5",
         "pad": "0.1,0.5",
         "rank": "sink",

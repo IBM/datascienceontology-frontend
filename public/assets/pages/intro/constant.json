@@ -11,26 +11,14 @@
               "label": {
                 "text": "X"
               },
-              "ob": [
-                "Ob",
-                "X"
-              ]
+              "ob": ["Ob", "X"]
             }
           }
         ],
         "properties": {
-          "hom": [
-            "construct",
-            [
-              "delete",
-              [
-                "Ob",
-                "X"
-              ]
-            ]
-          ],
+          "hom": ["Hom", "c", ["munit"], ["Ob", "X"]],
           "label": {
-            "text": "X"
+            "text": "c"
           }
         }
       }
@@ -53,21 +41,12 @@
           "label": {
             "text": "X"
           },
-          "ob": [
-            "Ob",
-            "X"
-          ]
+          "ob": ["Ob", "X"]
         }
       }
     ]
   },
-  "expression": [
-    "construct",
-    [
-      "Ob",
-      "X"
-    ]
-  ],
+  "expression": ["Hom", "c", ["munit"], ["Ob", "X"]],
   "graphviz": {
     "_subgraph_cnt": 1,
     "bb": "0,0,103,24",
@@ -94,9 +73,7 @@
         "_gvid": 0,
         "fontname": "Serif",
         "name": "%3",
-        "nodes": [
-          1
-        ],
+        "nodes": [1],
         "nodesep": "0.5",
         "pad": "0.1,0.5",
         "rank": "sink",
@@ -118,7 +95,7 @@
       },
       {
         "_gvid": 2,
-        "comment": "X",
+        "comment": "c",
         "fontname": "Serif",
         "height": "0.33333",
         "id": "n3",
