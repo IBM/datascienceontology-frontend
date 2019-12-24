@@ -11,7 +11,7 @@ interface RequestProps {
 
 interface ResponseState<Data> {
   /* Response data. */
-  data: Data;
+  data?: Data;
 
   /* Error status and message. */
   ok: boolean;
@@ -33,7 +33,7 @@ export function displayResponseData<Props, Data>(
   > {
     constructor(props: Props & RequestProps) {
       super(props);
-      this.state = { data: null, ok: true };
+      this.state = { ok: true };
     }
 
     componentDidMount() {
@@ -55,7 +55,7 @@ export function displayResponseData<Props, Data>(
           this.setState({ data, ok: true });
         })
         .catch(reason => {
-          this.setState({ data: null, ok: false, message: reason });
+          this.setState({ data: undefined, ok: false, message: reason });
         });
     }
 

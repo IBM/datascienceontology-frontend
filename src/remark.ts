@@ -21,9 +21,8 @@ export interface ExtensionNode extends UNIST.Node {
   - does not support key-value properties
   - is compatible with the react-markdown package
  */
-export function remarkGenericExtensions(options: {}) {
-  const Remark: RemarkParse = this;
-  const Parser = Remark.Parser;
+export function remarkGenericExtensions(this: RemarkParse, options: {}) {
+  const Parser = this.Parser;
 
   const inlineTokenizers = Parser.prototype.inlineTokenizers;
   const inlineMethods = Parser.prototype.inlineMethods;

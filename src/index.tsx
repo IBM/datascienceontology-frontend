@@ -23,7 +23,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import "react-bulma-components/dist/react-bulma-components.min.css";
 import "bulma-helpers/css/bulma-helpers.min.css";
-import "../style/main.css";
+import "./style/main.css";
 
 const App = () => (
   <div id="app">
@@ -152,5 +152,5 @@ ReactDOM.render(
   <Router.BrowserRouter>
     <App />
   </Router.BrowserRouter>,
-  document.getElementById("react-container")
+  document.getElementById("root")
 );

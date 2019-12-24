@@ -1,6 +1,8 @@
 import * as React from "react";
 import * as KaTeX from "katex";
 
+import "../../node_modules/katex/dist/katex.css";
+
 interface KaTeXProps {
   children?: string;
   display?: boolean;
@@ -8,7 +10,7 @@ interface KaTeXProps {
 }
 
 interface KaTeXState {
-  html: string;
+  html?: string;
 }
 
 /** Render LaTeX math inside a React component using KaTeX.
@@ -16,15 +18,15 @@ interface KaTeXState {
 export class KaTeXMath extends React.Component<KaTeXProps, KaTeXState> {
   constructor(props: KaTeXProps) {
     super(props);
-    this.state = { html: null };
+    this.state = {};
   }
 
   componentDidMount() {
-    this.generateHTML(this.props.children);
+    if (this.props.children) this.generateHTML(this.props.children);
   }
   componentDidUpdate(prevProps: KaTeXProps) {
     if (this.props.children !== prevProps.children) {
-      this.generateHTML(this.props.children);
+      if (this.props.children) this.generateHTML(this.props.children);
     }
   }
 
@@ -37,7 +39,6 @@ export class KaTeXMath extends React.Component<KaTeXProps, KaTeXState> {
   }
 
   render() {
-    if (!this.state.html) return null;
     const element = this.props.display ? "div" : "span";
     return React.createElement(element, {
       dangerouslySetInnerHTML: { __html: this.state.html }

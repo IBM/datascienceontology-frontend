@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulb, faStickyNote } from "@fortawesome/free-regular-svg-icons";
 import { faCube, faLongArrowAltRight } from "@fortawesome/free-solid-svg-icons";
 
-import "../../style/components/glyphs.css";
+import "../style/components/glyphs.css";
 
 /** Glyph for document schema.
  */

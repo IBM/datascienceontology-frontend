@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import * as React from "react";
 import * as Router from "react-router-dom";
-import * as ReactMarkdown from "react-markdown";
+import ReactMarkdown from "react-markdown";
 import {
   Button,
   Card,
@@ -116,63 +116,62 @@ const RandomDocs = () => (
 
 const RandomConceptDisplay = (props: { data?: Concept.Concept }) => {
   const concept = props.data;
-  return (
-    concept && (
-      <dl className="dl-inline">
-        <dt>Name</dt>
+  return concept ? (
+    <dl className="dl-inline">
+      <dt>Name</dt>
+      <dd>
+        <ConceptFullName concept={concept} />
+      </dd>
+      <dt>Kind</dt>
+      <dd>
+        <KindGlyph kind={concept.kind} /> {concept.kind}
+      </dd>
+      {concept.description && <dt>Description</dt>}
+      {concept.description && (
         <dd>
-          <ConceptFullName concept={concept} />
+          <ReactMarkdown
+            source={concept.description}
+            renderers={{ paragraph: "span" }}
+          />
         </dd>
-        <dt>Kind</dt>
-        <dd>
-          <KindGlyph kind={concept.kind} /> {concept.kind}
-        </dd>
-        {concept.description && <dt>Description</dt>}
-        {concept.description && (
-          <dd>
-            <ReactMarkdown
-              source={concept.description}
-              renderers={{ paragraph: "span" }}
-            />
-          </dd>
-        )}
-      </dl>
-    )
+      )}
+    </dl>
+  ) : (
+    <></>
   );
 };
 const RandomConceptRequest = displayResponseData(RandomConceptDisplay);
 
 const RandomAnnotationDisplay = (props: { data?: Annotation.Annotation }) => {
   const note = props.data;
-  return (
-    note && (
-      <dl className="dl-inline">
-        <dt>Name</dt>
+  return note ? (
+    <dl className="dl-inline">
+      <dt>Name</dt>
+      <dd>
+        <AnnotationFullName annotation={note} />
+      </dd>
+      <dt>Kind</dt>
+      <dd>
+        <KindGlyph kind={note.kind} /> {note.kind}
+      </dd>
+      <dt>Language</dt>
+      <dd>
+        <LanguageGlyph language={note.language} /> {_.capitalize(note.language)}
+      </dd>
+      <dt>Package</dt>
+      <dd>{note.package}</dd>
+      {note.description && <dt>Description</dt>}
+      {note.description && (
         <dd>
-          <AnnotationFullName annotation={note} />
+          <ReactMarkdown
+            source={note.description}
+            renderers={{ paragraph: "span" }}
+          />
         </dd>
-        <dt>Kind</dt>
-        <dd>
-          <KindGlyph kind={note.kind} /> {note.kind}
-        </dd>
-        <dt>Language</dt>
-        <dd>
-          <LanguageGlyph language={note.language} />{" "}
-          {_.capitalize(note.language)}
-        </dd>
-        <dt>Package</dt>
-        <dd>{note.package}</dd>
-        {note.description && <dt>Description</dt>}
-        {note.description && (
-          <dd>
-            <ReactMarkdown
-              source={note.description}
-              renderers={{ paragraph: "span" }}
-            />
-          </dd>
-        )}
-      </dl>
-    )
+      )}
+    </dl>
+  ) : (
+    <></>
   );
 };
 const RandomAnnotationRequest = displayResponseData(RandomAnnotationDisplay);

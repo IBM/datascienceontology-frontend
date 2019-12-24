@@ -3,7 +3,7 @@ import * as Router from "react-router-dom";
 
 import { SExp } from "../interfaces/expression";
 
-import "../../style/components/sexp.css";
+import "../style/components/sexp.css";
 
 interface SExpProps {
   /* S-expression to display. */
@@ -35,7 +35,7 @@ export class SExpComponent extends React.Component<SExpProps> {
     return (
       <ol>
         {sexp.map((term, i) => {
-          let content: JSX.Element = null;
+          let content: JSX.Element | null = null;
           if (i === 0 && typeof term === "string") {
             content = this.renderSExpHead(term);
           } else {

@@ -10,7 +10,7 @@ import { Highlight } from "../components/highlight";
 import { SExpComponent } from "../components/sexp";
 import { WiringDiagramDocument } from "../components/wiring-diagram";
 
-import "../../style/pages/markdown.css";
+import "../style/pages/markdown.css";
 
 import * as yaml from "highlight.js/lib/languages/yaml";
 registerLanguage("yaml", yaml);

@@ -1,8 +1,8 @@
 import * as React from "react";
 import { KatexOptions } from "katex";
 
-import * as ReactMarkdown from "react-markdown";
-import remarkMath = require("remark-math");
+import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
 
 import { KaTeXMath } from "./katex";
 

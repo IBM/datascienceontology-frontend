@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Redirect } from "react-router-dom";
 
-import * as ReactMarkdown from "react-markdown";
-import * as GrayMatter from "gray-matter";
-import Slugger = require("github-slugger");
+import ReactMarkdown from "react-markdown";
+import GrayMatter from "gray-matter";
+import * as Slugger from "github-slugger";
 
 import { Link } from "./link";
 import { ReactMarkdownKaTeX } from "./markdown-katex";
@@ -14,7 +14,7 @@ import {
 } from "./markdown-toc";
 import { remarkGenericExtensions } from "../remark";
 
-import "../../style/components/markdown.css";
+import "../style/components/markdown.css";
 
 interface MarkdownDocumentProps {
   /* URL of Markdown document to render. */
@@ -32,7 +32,7 @@ interface MarkdownDocumentProps {
 
 interface MarkdownDocumentState {
   /* Markdown document to render. */
-  doc: string;
+  doc?: string;
 
   /* Error status. */
   ok: boolean;
@@ -58,7 +58,7 @@ export class MarkdownDocument extends React.Component<
 > {
   constructor(props: MarkdownDocumentProps) {
     super(props);
-    this.state = { doc: null, ok: true };
+    this.state = { ok: true };
   }
 
   componentDidMount() {
@@ -87,7 +87,7 @@ export class MarkdownDocument extends React.Component<
           this.setState({ doc: text, ok: true });
         });
       } else {
-        this.setState({ doc: null, ok: false });
+        this.setState({ doc: undefined, ok: false });
       }
     });
   }

@@ -26,7 +26,7 @@ export const WiringDiagramComponent = (props: WiringDiagramProps) => {
 };
 
 const WiringDiagramDocumentInner = (props: { data?: WiringDiagramProps }) => {
-  return props.data && <WiringDiagramComponent {...props.data} />;
+  return props.data ? <WiringDiagramComponent {...props.data} /> : <></>;
 };
 export const WiringDiagramDocument = displayResponseData(
   WiringDiagramDocumentInner

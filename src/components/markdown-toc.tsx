@@ -2,7 +2,7 @@ import * as _ from "lodash";
 import * as React from "react";
 
 import { UNIST } from "unist";
-import searchHeadings = require("mdast-util-toc/lib/search");
+import * as searchHeadings from "mdast-util-toc/lib/search";
 
 interface TableOfContentsItem {
   id: string;
@@ -44,18 +44,24 @@ interface TableOfContentsNode {
 /** Convert a table of contents from list form to tree form.
  */
 function tableOfContentsTree(toc: TableOfContents): TableOfContentsNode {
-  const root: TableOfContentsNode = { id: null, value: null, children: [] };
+  const root: TableOfContentsNode = { id: "", value: "", children: [] };
   const stack = [{ node: root, depth: 0 }];
+  function getLastFromStackUnsafe() {
+    const last = _.last(stack);
+    if (!last) throw "No elements on stack";
+    const { node, depth } = last;
+    return { node, depth };
+  }
   toc.map(item => {
     const { id, value } = item;
     const itemNode: TableOfContentsNode = { id, value, children: [] };
-    let { node, depth } = _.last(stack);
+    let { node, depth } = getLastFromStackUnsafe();
 
     // Move up the stack until the new node's depth exceeds the depth at the
     // top of the stack.
     while (item.depth <= depth) {
       stack.pop();
-      ({ node, depth } = _.last(stack));
+      ({ node, depth } = getLastFromStackUnsafe());
     }
 
     // Add the new node as a child of the node at the top of the stack.

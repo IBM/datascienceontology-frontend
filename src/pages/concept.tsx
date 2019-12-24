@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Router from "react-router-dom";
-import * as ReactMarkdown from "react-markdown";
+import ReactMarkdown from "react-markdown";
 import { Heading } from "react-bulma-components";
 
 import * as Concept from "../interfaces/concept";
@@ -22,28 +22,28 @@ export const ConceptPage = (props: ConceptPageProps) => {
 
 export const ConceptDisplay = (props: { data?: Concept.Concept }) => {
   const concept = props.data;
-  return (
-    concept && (
-      <section id="concept">
-        <Heading size={3}>
-          <span className="has-text-grey has-margin-right-75">
-            <SchemaGlyph schema="concept" /> Concept
-          </span>
-          {concept.name}
-          <a
-            className="has-text-grey is-size-5"
-            title="Edit on GitHub"
-            href={`https://github.com/IBM/datascienceontology/tree/master/concept/${concept.id}.yml`}
-          >
-            <FontAwesomeIcon icon={faEdit} className="is-pulled-right" />
-          </a>
-        </Heading>
-        <dl className="dl-inline">
-          {ConceptDefList({ concept })}
-          {Concept.isFunction(concept) && FunctionConceptDefList({ concept })}
-        </dl>
-      </section>
-    )
+  return concept ? (
+    <section id="concept">
+      <Heading size={3}>
+        <span className="has-text-grey has-margin-right-75">
+          <SchemaGlyph schema="concept" /> Concept
+        </span>
+        {concept.name}
+        <a
+          className="has-text-grey is-size-5"
+          title="Edit on GitHub"
+          href={`https://github.com/IBM/datascienceontology/tree/master/concept/${concept.id}.yml`}
+        >
+          <FontAwesomeIcon icon={faEdit} className="is-pulled-right" />
+        </a>
+      </Heading>
+      <dl className="dl-inline">
+        {ConceptDefList({ concept })}
+        {Concept.isFunction(concept) && FunctionConceptDefList({ concept })}
+      </dl>
+    </section>
+  ) : (
+    <></>
   );
 };
 const ConceptDisplayRequest = displayResponseData(ConceptDisplay);

@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import * as React from "react";
 import * as Router from "react-router-dom";
-import * as ReactMarkdown from "react-markdown";
+import ReactMarkdown from "react-markdown";
 import { Columns, Heading } from "react-bulma-components";
 
 import * as Annotation from "../interfaces/annotation";
@@ -32,25 +32,25 @@ export const AnnotationPage = (props: AnnotationPageProps) => {
 
 export const AnnotationDisplay = (props: { data?: Annotation.Annotation }) => {
   const annotation = props.data;
-  return (
-    annotation && (
-      <section id="annotation">
-        <Heading size={3}>
-          <span className="has-text-grey has-margin-right-75">
-            <SchemaGlyph schema="annotation" /> Annotation
-          </span>
-          {annotation.name || annotation.id}
-          <a
-            className="has-text-grey is-size-5"
-            title="Edit on GitHub"
-            href={`https://github.com/IBM/datascienceontology/tree/master/annotation/${annotation.language}/${annotation.package}/${annotation.id}.yml`}
-          >
-            <FontAwesomeIcon icon={faEdit} className="is-pulled-right" />
-          </a>
-        </Heading>
-        <AnnotationContent annotation={annotation} />
-      </section>
-    )
+  return annotation ? (
+    <section id="annotation">
+      <Heading size={3}>
+        <span className="has-text-grey has-margin-right-75">
+          <SchemaGlyph schema="annotation" /> Annotation
+        </span>
+        {annotation.name || annotation.id}
+        <a
+          className="has-text-grey is-size-5"
+          title="Edit on GitHub"
+          href={`https://github.com/IBM/datascienceontology/tree/master/annotation/${annotation.language}/${annotation.package}/${annotation.id}.yml`}
+        >
+          <FontAwesomeIcon icon={faEdit} className="is-pulled-right" />
+        </a>
+      </Heading>
+      <AnnotationContent annotation={annotation} />
+    </section>
+  ) : (
+    <></>
   );
 };
 const AnnotationRequest = displayResponseData(AnnotationDisplay);
@@ -332,7 +332,7 @@ const PackageRepositoryLink = (props: {
 
 const FunctionDiagram = (props: { data?: AnnotationCache }) => {
   const cache = props.data;
-  return cache && <WiringDiagramComponent {...cache.definition} />;
+  return cache ? <WiringDiagramComponent {...cache.definition} /> : <></>;
 };
 const FunctionDiagramRequest = displayResponseData(FunctionDiagram);
 

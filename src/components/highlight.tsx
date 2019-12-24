@@ -9,7 +9,7 @@ interface HighlightProps {
 }
 
 export class Highlight extends React.Component<HighlightProps> {
-  private _code: HTMLElement;
+  private _code?: HTMLElement = undefined;
 
   highlight() {
     highlightBlock(this._code);
@@ -28,7 +28,7 @@ export class Highlight extends React.Component<HighlightProps> {
         <code
           className={`language-${this.props.language}`}
           ref={elem => {
-            this._code = elem;
+            this._code = elem || undefined;
           }}
         >
           {this.props.children}
