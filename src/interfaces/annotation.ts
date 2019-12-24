@@ -7,28 +7,28 @@ import { SExp } from "./expression";
 export interface Annotation {
   /* ID of document in database. */
   _id?: string;
-  
+
   /* Schema of document in database. */
   schema?: "annotation";
-  
+
   /* Programming language of annotated code. */
   language: "python" | "r";
-  
+
   /* Library or package of annotated code. */
   package: string;
-  
+
   /* Identifer for annotation, unique within language and package. */
   id: string;
-  
+
   /* Human-readable name of annotated code entity. */
   name?: string;
-  
+
   /* Human-readable description of annotated code entity. */
   description?: string;
-  
+
   /* Kind of annotation. */
   kind: "type" | "function";
-  
+
   /* Definition of annotated code as concept in ontology. */
   definition: SExp;
 }
@@ -47,7 +47,6 @@ export interface FunctionAnnotation extends Annotation {
   kind: "function";
 }
 
-
 /** Annotation for a Python class, function, or method.
  */
 export interface PythonAnnotation extends Annotation {
@@ -63,7 +62,7 @@ export interface PythonType extends PythonAnnotation {
 
   /* Python class to which annotation applies. */
   class: string | Array<string>;
-  
+
   /* Slots corresponding to functions in the ontology.
    */
   slots?: Slot[];
@@ -77,20 +76,19 @@ export interface PythonFunction extends Annotation {
 
   /* Fully qualified name of function, if annotating a function. */
   function?: string;
-  
+
   /* Class to which annotation applies, if annotating a method. */
   class?: string | Array<string>;
-  
+
   /* Unqualified name of method, if annotating a method. */
   method?: string;
-  
+
   /* Mapping of arguments (positional and named) to function inputs. */
   inputs: PortAnnotation[];
-  
+
   /* Mapping of mutated arguments and return value to function outputs. */
   outputs: PortAnnotation[];
 }
-
 
 /** Annotation for an R class or function.
  */
@@ -110,7 +108,7 @@ export interface RType extends RAnnotation {
 
   /* Object-oriented system to which class belongs (default S3). */
   system?: string;
-  
+
   /* Slots corresponding to functions in the ontology.
    */
   slots?: Slot[];
@@ -124,30 +122,29 @@ export interface RFunction extends RAnnotation {
 
   /* Name of function. */
   function: string;
-  
+
   /* Class on which function dispatches, if generic. */
   class?: string;
 
   /* Object-oriented system of function, if generic (default S3). */
   system?: string;
-  
+
   /* Mapping of arguments (positional and named) to function inputs. */
   inputs: PortAnnotation[];
-  
+
   /* Mapping of mutated arguments and return value to function outputs. */
   outputs: PortAnnotation[];
 }
-
 
 /** Input or output of a concrete function or method.
  */
 export interface PortAnnotation {
   /* Function slot (argument or return value) */
   slot: number | string;
-  
+
   /* Syntactic name of port */
   name?: string;
-  
+
   /* Human-readable description of port */
   description?: string;
 }
@@ -157,11 +154,10 @@ export interface PortAnnotation {
 export interface Slot {
   /* Language-specific slot specification. */
   slot: string;
-  
+
   /* Definition of slot as function in ontology. */
   definition: SExp;
 }
-
 
 export function isType(note: Annotation): note is TypeAnnotation {
   return note.kind === "type";

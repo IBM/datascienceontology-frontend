@@ -19,10 +19,7 @@
           "label": {
             "text": "X"
           },
-          "ob": [
-            "Ob",
-            "X"
-          ]
+          "ob": ["Ob", "X"]
         }
       },
       {
@@ -32,21 +29,12 @@
           "label": {
             "text": "X"
           },
-          "ob": [
-            "Ob",
-            "X"
-          ]
+          "ob": ["Ob", "X"]
         }
       }
     ]
   },
-  "expression": [
-    "id",
-    [
-      "Ob",
-      "X"
-    ]
-  ],
+  "expression": ["id", ["Ob", "X"]],
   "graphviz": {
     "_subgraph_cnt": 2,
     "bb": "0,0,56,24",
@@ -73,9 +61,7 @@
         "_gvid": 0,
         "fontname": "Serif",
         "name": "%3",
-        "nodes": [
-          2
-        ],
+        "nodes": [2],
         "nodesep": "0.5",
         "pad": "0.1,0.5",
         "rank": "source",
@@ -86,9 +72,7 @@
         "_gvid": 1,
         "fontname": "Serif",
         "name": "%5",
-        "nodes": [
-          3
-        ],
+        "nodes": [3],
         "nodesep": "0.5",
         "pad": "0.1,0.5",
         "rank": "sink",

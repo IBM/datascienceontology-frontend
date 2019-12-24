@@ -11,7 +11,5 @@
       "node" // Bug: https://github.com/jonschlinkert/gray-matter/issues/68
     ]
   },
-  "include": [
-    "./src/**/*"
-  ]
+  "include": ["./src/**/*"]
 }

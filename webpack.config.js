@@ -1,5 +1,5 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const path = require('path');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const path = require("path");
 
 module.exports = {
   mode: "production",
@@ -39,7 +39,7 @@ module.exports = {
           {
             loader: "postcss-loader",
             options: {
-              plugins: () => [require('autoprefixer')]
+              plugins: () => [require("autoprefixer")]
             }
           }
         ]
@@ -47,7 +47,7 @@ module.exports = {
       // Bundle fonts referenced in CSS files.
       {
         test: /\.(woff|woff2|eot|ttf)$/,
-        loader: 'url-loader'
+        loader: "url-loader"
       }
     ]
   },
@@ -58,24 +58,24 @@ module.exports = {
     ])
   ],
   externals: {
-    "lodash": {
+    lodash: {
       commonjs: "lodash",
       amd: "lodash",
       root: "_",
       var: "_"
     },
-    "react": "React",
+    react: "React",
     "react-dom": "ReactDOM",
-    "katex": "katex"
+    katex: "katex"
   },
   devServer: {
     // Route 404's back to index.html to be handled by React Router.
     historyApiFallback: true,
     proxy: {
       "/api": {
-        target: process.env.ONTOLOGY_API ||
-          "https://api.datascienceontology.org/",
-        pathRewrite: {"^/api": ""},
+        target:
+          process.env.ONTOLOGY_API || "https://api.datascienceontology.org/",
+        pathRewrite: { "^/api": "" },
         changeOrigin: true
       }
     }
