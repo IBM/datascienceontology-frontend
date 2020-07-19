@@ -33,7 +33,7 @@
     "highlight.js": "^9.12.0",
     "katex": "^0.10.0",
     "konva": "^4.0.10",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mdast-util-toc": "^2.0.1",
     "prop-types": "^15.7.2",
     "query-string": "^6.1.0",
