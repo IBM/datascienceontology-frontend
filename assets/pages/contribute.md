@@ -66,11 +66,8 @@ name: read data frame from SQL table
 description: read pandas data frame from table in SQL databsase
 function: pandas.io.sql.read_sql_table
 kind: function
-definition: [
-  compose,
-  [ construct, [ pair, sql-table-database, sql-table-name ] ],
-  read-table
-]
+definition:
+  [compose, [construct, [pair, sql-table-database, sql-table-name]], read-table]
 inputs:
   - slot: 1
     name: database

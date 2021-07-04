@@ -11,10 +11,7 @@
               "label": {
                 "text": "Y"
               },
-              "ob": [
-                "Ob",
-                "Y"
-              ]
+              "ob": ["Ob", "Y"]
             }
           },
           {
@@ -24,29 +21,12 @@
               "label": {
                 "text": "X"
               },
-              "ob": [
-                "Ob",
-                "X"
-              ]
+              "ob": ["Ob", "X"]
             }
           }
         ],
         "properties": {
-          "hom": [
-            "construct",
-            [
-              "Hom",
-              "f",
-              [
-                "Ob",
-                "X"
-              ],
-              [
-                "Ob",
-                "Y"
-              ]
-            ]
-          ],
+          "hom": ["construct", ["Hom", "f", ["Ob", "X"], ["Ob", "Y"]]],
           "label": {
             "text": "X"
           }
@@ -78,10 +58,7 @@
           "label": {
             "text": "Y"
           },
-          "ob": [
-            "Ob",
-            "Y"
-          ]
+          "ob": ["Ob", "Y"]
         }
       },
       {
@@ -91,29 +68,12 @@
           "label": {
             "text": "X"
           },
-          "ob": [
-            "Ob",
-            "X"
-          ]
+          "ob": ["Ob", "X"]
         }
       }
     ]
   },
-  "expression": [
-    "construct",
-    [
-      "Hom",
-      "f",
-      [
-        "Ob",
-        "X"
-      ],
-      [
-        "Ob",
-        "Y"
-      ]
-    ]
-  ],
+  "expression": ["construct", ["Hom", "f", ["Ob", "X"], ["Ob", "Y"]]],
   "graphviz": {
     "_subgraph_cnt": 2,
     "bb": "0,0,158,24",
@@ -152,9 +112,7 @@
         "_gvid": 0,
         "fontname": "Serif",
         "name": "%3",
-        "nodes": [
-          2
-        ],
+        "nodes": [2],
         "nodesep": "0.5",
         "pad": "0.1,0.5",
         "rank": "source",
@@ -165,9 +123,7 @@
         "_gvid": 1,
         "fontname": "Serif",
         "name": "%5",
-        "nodes": [
-          3
-        ],
+        "nodes": [3],
         "nodesep": "0.5",
         "pad": "0.1,0.5",
         "rank": "sink",

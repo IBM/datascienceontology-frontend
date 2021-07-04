@@ -4,11 +4,10 @@ import * as React from "react";
 import { UNIST } from "unist";
 import searchHeadings = require("mdast-util-toc/lib/search");
 
-
 interface TableOfContentsItem {
-  id: string,
-  depth: number,
-  value: string,
+  id: string;
+  depth: number;
+  value: string;
 }
 export type TableOfContents = TableOfContentsItem[];
 
@@ -23,32 +22,34 @@ export type TableOfContents = TableOfContentsItem[];
   See issues on GitHub:
   https://github.com/rexxars/react-markdown/issues/48
   https://github.com/rexxars/react-markdown/issues/188
- */ 
+ */
+
 export function remarkTableOfContents(
-    callback: (toc: TableOfContents) => void, maxDepth: number) {
-  return function (tree: UNIST.Node) {
+  callback: (toc: TableOfContents) => void,
+  maxDepth: number
+) {
+  return function(tree: UNIST.Node) {
     const result = searchHeadings(tree, null, maxDepth);
     callback(result.map);
     return tree;
-  }
+  };
 }
 
-
 interface TableOfContentsNode {
-  id: string,
-  value: string,
-  children: TableOfContentsNode[],
+  id: string;
+  value: string;
+  children: TableOfContentsNode[];
 }
 
 /** Convert a table of contents from list form to tree form.
  */
 function tableOfContentsTree(toc: TableOfContents): TableOfContentsNode {
   const root: TableOfContentsNode = { id: null, value: null, children: [] };
-  const stack = [ { node: root, depth: 0 } ];
+  const stack = [{ node: root, depth: 0 }];
   toc.map(item => {
     const { id, value } = item;
     const itemNode: TableOfContentsNode = { id, value, children: [] };
-    let { node, depth } = _.last(stack);   
+    let { node, depth } = _.last(stack);
 
     // Move up the stack until the new node's depth exceeds the depth at the
     // top of the stack.
@@ -64,9 +65,8 @@ function tableOfContentsTree(toc: TableOfContents): TableOfContentsNode {
   return root;
 }
 
-
 interface TableOfContentsProps {
-  children: TableOfContents
+  children: TableOfContents;
 }
 
 /** Render table of contents as a nested, ordered list.
@@ -75,18 +75,19 @@ export const ReactTableOfContents = (props: TableOfContentsProps) => {
   const tree = tableOfContentsTree(props.children);
 
   function renderNode(node: TableOfContentsNode, key: number): JSX.Element {
-    return <li key={key}>
-      <a href={`#${node.id}`}>{node.value}</a>
-      {_.isEmpty(node.children) ? null : <ol>
-        {node.children.map(renderNode)}
-      </ol>}
-    </li>;
+    return (
+      <li key={key}>
+        <a href={`#${node.id}`}>{node.value}</a>
+        {_.isEmpty(node.children) ? null : (
+          <ol>{node.children.map(renderNode)}</ol>
+        )}
+      </li>
+    );
   }
 
-  return <div className="table-of-contents">
-    <ol>
-      {tree.children.map(renderNode)}
-    </ol>
-  </div>;
+  return (
+    <div className="table-of-contents">
+      <ol>{tree.children.map(renderNode)}</ol>
+    </div>
+  );
 };
-

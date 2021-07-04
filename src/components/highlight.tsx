@@ -4,7 +4,6 @@ import { highlightBlock } from "highlight.js/lib/highlight";
 //import "highlight.js/styles/color-brewer.css";
 import "highlight.js/styles/github.css";
 
-
 interface HighlightProps {
   language: string;
 }
@@ -24,11 +23,17 @@ export class Highlight extends React.Component<HighlightProps> {
   }
 
   render() {
-    return <pre>
-      <code className={`language-${this.props.language}`}
-            ref={(elem) => { this._code = elem; }} >
-        {this.props.children}
-      </code>
-    </pre>
+    return (
+      <pre>
+        <code
+          className={`language-${this.props.language}`}
+          ref={elem => {
+            this._code = elem;
+          }}
+        >
+          {this.props.children}
+        </code>
+      </pre>
+    );
   }
 }

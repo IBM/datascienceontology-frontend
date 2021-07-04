@@ -11,7 +11,7 @@ In this guide, we explain the mathematical underpinnings of the Data Science Ont
 Throughout this website and the ontology data format, we use terminology of programming language theory. Category theory has its own distinctive terminology. The following dictionary may be helpful for translating back and forth.
 
 | Programming | Category theory            | Notation                      |
-|-------------|----------------------------|-------------------------------|
+| ----------- | -------------------------- | ----------------------------- |
 | type        | object                     | $X$                           |
 | function    | morphism                   | $f: X \to Y$                  |
 | inputs      | domain                     | $\text{dom}(f)$               |
@@ -24,31 +24,36 @@ Throughout this website and the ontology data format, we use terminology of prog
 
 ## References
 
-[BS10]: #
+[bs10]: #
+
 \[[BS10]]: John C. Baez and Mike Stay, 2010.
 Physics, topology, logic and computation: A Rosetta Stone.
 [DOI](https://doi.org/10.1007/978-3-642-12821-9_2),
 [arXiv](https://arxiv.org/abs/0903.0340)
 
-[CP10]: #
+[cp10]: #
+
 \[[CP10]]: Bob Coecke and Eric Oliver Paquette, 2010.
 Categories for the practising physicist.
 [DOI](https://doi.org/10.1007/978-3-642-12821-9_3),
 [arXiv](https://arxiv.org/abs/0905.3010)
 
-[Pat17]: #
+[pat17]: #
+
 \[[Pat17]]: Evan Patterson, 2017.
 Knowledge representation in bicategories of relations.
 [arXiv](https://arxiv.org/abs/1706.00526)
 
-[Sel10]: #
+[sel10]: #
+
 \[[Sel10]]: Peter Selinger, 2010.
 A survey of graphical languages for monoidal categories.
 [DOI](https://doi.org/10.1007/978-3-642-12821-9_4),
 [arXiv](https://arxiv.org/abs/0908.3347)
 
-[SK12]: #
+[sk12]: #
+
 \[[SK12]]: David I. Spivak and Robert E. Kent, 2012.
- Ologs: a categorical framework for knowledge representation.
- [DOI](https://doi.org/10.1371/journal.pone.0024274),
- [arXiv](https://arxiv.org/abs/1102.1889)
+Ologs: a categorical framework for knowledge representation.
+[DOI](https://doi.org/10.1371/journal.pone.0024274),
+[arXiv](https://arxiv.org/abs/1102.1889)

@@ -1,4 +1,3 @@
-
 /** S-expression in JSON-able format.
 
   The same definition is used in the database JSON schemas for concepts and

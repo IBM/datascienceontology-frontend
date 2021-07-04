@@ -11,10 +11,7 @@
               "label": {
                 "text": "X"
               },
-              "ob": [
-                "Ob",
-                "X"
-              ]
+              "ob": ["Ob", "X"]
             }
           },
           {
@@ -24,26 +21,12 @@
               "label": {
                 "text": "Y"
               },
-              "ob": [
-                "Ob",
-                "Y"
-              ]
+              "ob": ["Ob", "Y"]
             }
           }
         ],
         "properties": {
-          "hom": [
-            "Hom",
-            "f",
-            [
-              "Ob",
-              "X"
-            ],
-            [
-              "Ob",
-              "Y"
-            ]
-          ],
+          "hom": ["Hom", "f", ["Ob", "X"], ["Ob", "Y"]],
           "label": {
             "text": "f"
           }
@@ -59,10 +42,7 @@
               "label": {
                 "text": "Y"
               },
-              "ob": [
-                "Ob",
-                "Y"
-              ]
+              "ob": ["Ob", "Y"]
             }
           },
           {
@@ -72,26 +52,12 @@
               "label": {
                 "text": "Z"
               },
-              "ob": [
-                "Ob",
-                "Z"
-              ]
+              "ob": ["Ob", "Z"]
             }
           }
         ],
         "properties": {
-          "hom": [
-            "Hom",
-            "g",
-            [
-              "Ob",
-              "Y"
-            ],
-            [
-              "Ob",
-              "Z"
-            ]
-          ],
+          "hom": ["Hom", "g", ["Ob", "Y"], ["Ob", "Z"]],
           "label": {
             "text": "g"
           }
@@ -130,10 +96,7 @@
           "label": {
             "text": "X"
           },
-          "ob": [
-            "Ob",
-            "X"
-          ]
+          "ob": ["Ob", "X"]
         }
       },
       {
@@ -143,40 +106,15 @@
           "label": {
             "text": "Z"
           },
-          "ob": [
-            "Ob",
-            "Z"
-          ]
+          "ob": ["Ob", "Z"]
         }
       }
     ]
   },
   "expression": [
     "compose",
-    [
-      "Hom",
-      "f",
-      [
-        "Ob",
-        "X"
-      ],
-      [
-        "Ob",
-        "Y"
-      ]
-    ],
-    [
-      "Hom",
-      "g",
-      [
-        "Ob",
-        "Y"
-      ],
-      [
-        "Ob",
-        "Z"
-      ]
-    ]
+    ["Hom", "f", ["Ob", "X"], ["Ob", "Y"]],
+    ["Hom", "g", ["Ob", "Y"], ["Ob", "Z"]]
   ],
   "graphviz": {
     "_subgraph_cnt": 2,
@@ -228,9 +166,7 @@
         "_gvid": 0,
         "fontname": "Serif",
         "name": "%3",
-        "nodes": [
-          2
-        ],
+        "nodes": [2],
         "nodesep": "0.5",
         "pad": "0.1,0.5",
         "rank": "source",
@@ -241,9 +177,7 @@
         "_gvid": 1,
         "fontname": "Serif",
         "name": "%5",
-        "nodes": [
-          3
-        ],
+        "nodes": [3],
         "nodesep": "0.5",
         "pad": "0.1,0.5",
         "rank": "sink",
